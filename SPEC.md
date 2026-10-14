@@ -1,5 +1,7 @@
 # Project specification (v1, 15 Oct 2026)
 
+> Scope and IVHM system design are superseded by **[IVHM_SPEC.md](IVHM_SPEC.md)**. The research protocol in §4 still applies.
+
 **Verdict: MODIFY.** The core idea is sound and buildable in 8 weeks, but four things in the original brief would not survive a viva:
 
 1. **"Vehicle component" in the title.** The data come from a laboratory electromechanical drive test rig with 6203 ball bearings. Nothing in the project touches a vehicle. Drop "vehicle"; you may mention electric drives (including EV traction drives) only as motivation.
@@ -61,7 +63,7 @@ Labels used below: **[V]** verified from an official or primary source today; **
 **Unit of analysis [D].** 0.5 s non-overlapping windows (8 per file). Every window carries its bearing ID; splits are by bearing.
 
 **Features [D]** (per window only, no dataset statistics):
-- Vibration (25): kurtosis, skewness, crest, shape; envelope-spectrum peaks at 1–3 × BPFO, BPFI and shaft frequency in dB over the local median (2–20 kHz band); 16 relative log-band powers; envelope kurtosis; high-frequency energy ratio.
+- Vibration (31): kurtosis, skewness, crest, shape; envelope-spectrum peaks at 1–3 × BPFO, BPFI and shaft frequency in dB over the local median (2–20 kHz band); 16 relative log-band powers; envelope kurtosis; high-frequency energy ratio.
 - Current (30, averaged over 2 phases): fundamental frequency; phase imbalance; harmonics 2–7 relative to the fundamental; sidebands f₁ ± k·BPFO/BPFI; 12 relative log-band powers; residual kurtosis and power after notching the fundamental.
 - Quality indicators (7 per sensor, label-free): NaN fraction, flat-line fraction, clipping fraction, log RMS, spectral flatness, spike level, spectral dominance.
 

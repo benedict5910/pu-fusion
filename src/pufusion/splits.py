@@ -65,4 +65,19 @@ def inner_group_folds(bearings: np.ndarray, labels: np.ndarray, k=3, seed=0):
         for i, b in enumerate(bs):
             assign[b] = i % k
     fold_of = np.array([assign[b] for b in bearings])
-    return [(np.where(fold_of != i)[0], np.where(fold_of == i)[0]) for i in range(k)]
+    # every row lands in exactly one validation fold; empty folds (fewer bearings
+    # of a class than k) are dropped instead of producing empty predictions
+    return [(np.where(fold_of != i)[0], np.where(fold_of == i)[0]) for i in range(k) if (fold_of == i).any()]
+
+
+def leaky_splits(stems, n_seeds=3, test_frac=0.2):
+    """DELIBERATELY LEAKY reference: random split of recordings, so the same
+    bearings appear in train and test. Used only to show how much this common
+    practice inflates scores. Never report it as model performance."""
+    stems = np.unique(stems)
+    out = []
+    for s in range(n_seeds):
+        perm = np.random.default_rng(s).permutation(stems)
+        k = int(len(stems) * test_frac)
+        out.append({"name": f"LEAKY_s{s}", "train_stems": perm[k:], "test_stems": perm[:k]})
+    return out

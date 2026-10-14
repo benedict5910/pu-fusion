@@ -1,5 +1,6 @@
 data/
 models/
 results/
+configs/rig.json
 __pycache__/
 *.pyc

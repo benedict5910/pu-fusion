@@ -16,6 +16,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from pufusion.dataset import concat, load_tables, subset  # noqa: E402
 from pufusion.models import EarlyFusion, ReliabilityGated, SingleSensor  # noqa: E402
+from pufusion.reliability import ReliabilityAssessor  # noqa: E402
 
 
 def main():
@@ -30,7 +31,9 @@ def main():
               (SingleSensor("vib"), SingleSensor("cur"), EarlyFusion(), ReliabilityGated())}
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     with open(a.out, "wb") as f:
-        pickle.dump({"models": models, "holdout": a.holdout,
+        clean = subset(t["clean"], ~np.isin(t["clean"]["bearing"], a.holdout))
+        assessors = {"vib": ReliabilityAssessor().fit(clean["qv"]), "cur": ReliabilityAssessor().fit(clean["qc"])}
+        pickle.dump({"models": models, "holdout": a.holdout, "assessors": assessors,
                      "trained_on": sorted(set(train["bearing"]))}, f)
     print("saved", a.out, "| demo bearings (unseen):", a.holdout)
 

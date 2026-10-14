@@ -1,37 +1,37 @@
-# Reliability-gated vibration–current fusion (Paderborn bearing data)
+# Sensor-fault-tolerant bearing health monitoring (IVHM prototype)
 
-Final-year project code. Research question, protocol and plan: **[SPEC.md](SPEC.md)**. Leakage guards: **[docs/LEAKAGE.md](docs/LEAKAGE.md)**.
+Final-year IVHM project. System scope, hardware, plan: **[IVHM_SPEC.md](IVHM_SPEC.md)**. Research protocol: **[SPEC.md](SPEC.md)**. Leakage guards: **[docs/LEAKAGE.md](docs/LEAKAGE.md)**.
 
 **No experimental results exist yet.** The only numbers this repo has produced come from `pufusion/synthetic.py`, which is for testing code and is labelled SYNTHETIC everywhere it appears.
 
 ## Layout
 ```
-src/pufusion/   config (dataset metadata), data (loader), features, corruption,
-                dataset (feature tables), splits, models, metrics, experiment
-scripts/        download_pu.py, build_features.py, run_experiments.py,
-                summarize.py, train_demo_model.py
-app/            dashboard.py (Streamlit replay on held-out bearings)
+src/pufusion/   config, data (loader), features, corruption, dataset, splits, models,
+                metrics, experiment            <- benchmark research
+                reliability, explain, health, store, rig, monitor   <- IVHM layer
+scripts/        run_all.py (one command), download_pu.py, build_features.py,
+                run_experiments.py, summarize.py, train_demo_model.py,
+                rig_record.py, rig_train.py
+firmware/       rig_esp32/rig_esp32.ino (ESP32 streamer; not yet flashed)
+app/            dashboard.py (Streamlit: benchmark replay | rig simulated | rig live)
 tests/          unit tests (stdlib unittest; pytest also works)
 ```
 
 ## Quick start
 ```bash
 pip install -r requirements.txt
-python -m unittest discover -s tests -v                    # 18 tests
+python -m unittest discover -s tests -v          # 31 tests
 
-# 1. data (run on your own machine; ~1.9 GB starter, ~5.1 GB all)
-python scripts/download_pu.py --subset starter
+# Benchmark study, one command (download -> features -> P1/P2/P3/leaky -> summary -> demo model)
+python scripts/run_all.py                         # starter subset, ~1.9 GB
+python scripts/run_all.py --subset all            # full dataset, ~5.1 GB, final results
 
-# 2. features (8 windows/file; ~80 ms per window per core)
-python scripts/build_features.py --raw data/raw --out data/features.npz --jobs 4
+# Rig (or --simulate without hardware)
+python scripts/rig_record.py --calibrate-zero --port COM5     # motor off
+python scripts/rig_record.py --port COM5 --session H1 --label healthy --minutes 5
+python scripts/rig_train.py --fit H1 --cal H2 --test-healthy H3 --test-fault F1 F2
 
-# 3. experiments
-python scripts/run_experiments.py --features data/features.npz --protocol p1 --models all --out results/p1.csv
-python scripts/summarize.py results/p1.csv
-
-# 4. demo
-python scripts/train_demo_model.py --features data/features.npz --holdout K004 KA22 KI18
-streamlit run app/dashboard.py -- --models models/demo_models.pkl --raw data/raw
+streamlit run app/dashboard.py
 ```
 With the starter subset, P1 keeps only folds whose test set still contains all three classes.
 

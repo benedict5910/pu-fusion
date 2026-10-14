@@ -57,15 +57,23 @@ BALL_DIAMETER_MM = 6.75
 PITCH_DIAMETER_MM = 28.55
 
 
-def fault_frequencies(rpm: float) -> dict[str, float]:
-    """Kinematic bearing frequencies (Hz), zero contact angle."""
+PU_GEOMETRY = {"n_balls": N_BALLS, "d": BALL_DIAMETER_MM, "D": PITCH_DIAMETER_MM}
+
+
+def fault_frequencies(rpm: float, geom: dict | None = None) -> dict[str, float]:
+    """Kinematic bearing frequencies (Hz), zero contact angle.
+
+    ``geom`` = {"n_balls", "d" (ball dia), "D" (pitch dia)}; default: Paderborn 6203.
+    """
+    g = geom or PU_GEOMETRY
+    n, d, D = g["n_balls"], g["d"], g["D"]
     fr = rpm / 60.0
-    r = BALL_DIAMETER_MM / PITCH_DIAMETER_MM
+    r = d / D
     return {
         "fr": fr,
-        "bpfo": N_BALLS / 2 * fr * (1 - r),
-        "bpfi": N_BALLS / 2 * fr * (1 + r),
-        "bsf": PITCH_DIAMETER_MM / (2 * BALL_DIAMETER_MM) * fr * (1 - r * r),
+        "bpfo": n / 2 * fr * (1 - r),
+        "bpfi": n / 2 * fr * (1 + r),
+        "bsf": D / (2 * d) * fr * (1 - r * r),
         "ftf": fr / 2 * (1 - r),
     }
 

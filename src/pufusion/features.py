@@ -61,14 +61,18 @@ VIB_FEATURE_NAMES = (
 )
 
 
-def vibration_features(x, fs: int, rpm: float) -> np.ndarray:
+def vibration_features(x, fs: int, rpm: float, band=(2000, 20000), geom=None) -> np.ndarray:
+    """``band``: resonance band for envelope analysis. Paderborn (64 kHz): 2-20 kHz.
+    A low-cost rig (ADXL345, 3.2 kHz) must use a lower band, e.g. (300, 1500)."""
     x = _clean(x)
     x = x - x.mean()
-    ff = fault_frequencies(rpm)
+    ff = fault_frequencies(rpm, geom)
     feats = _time_stats(x)
 
     # Envelope spectrum of the high-pass band (bearing impacts excite resonances)
-    sos = signal.butter(4, [2000, min(20000, fs / 2 - 1)], btype="bandpass", fs=fs, output="sos")
+    hi = min(band[1], 0.45 * fs)
+    lo = min(band[0], 0.5 * hi)
+    sos = signal.butter(4, [lo, hi], btype="bandpass", fs=fs, output="sos")
     xb = signal.sosfiltfilt(sos, x)
     env = np.abs(signal.hilbert(xb))
     env = env - env.mean()
@@ -79,10 +83,10 @@ def vibration_features(x, fs: int, rpm: float) -> np.ndarray:
         for k in (1, 2, 3):
             feats.append(_db(_peak_energy(freqs, spec, k * ff[name]), ref))
 
-    f, psd = signal.welch(x, fs=fs, nperseg=4096)
+    f, psd = signal.welch(x, fs=fs, nperseg=min(4096, len(x)))
     feats += _log_bands(f, psd, 10, fs / 2, 16)
     feats.append(float(stats.kurtosis(env)) if env.std() > EPS else 0.0)
-    feats.append(_db(psd[f >= 2000].sum(), psd.sum()))
+    feats.append(_db(psd[f >= lo].sum(), psd.sum()))
     return np.asarray(feats, dtype=np.float32)
 
 
@@ -154,7 +158,7 @@ def quality_indicators(x, fs: int) -> np.ndarray:
         amax = np.max(np.abs(ch)) + EPS
         clip_frac = float(np.mean(np.abs(ch) >= 0.999 * amax)) if np.std(ch) > EPS else 1.0
         log_rms = float(np.log10(np.sqrt(np.mean(ch ** 2)) + 1e-9))
-        f, psd = signal.welch(ch, fs=fs, nperseg=2048)
+        f, psd = signal.welch(ch, fs=fs, nperseg=min(2048, len(ch)))
         psd = psd + EPS
         flatness = float(np.exp(np.mean(np.log(psd))) / np.mean(psd))
         med = np.median(ch)
@@ -163,3 +167,19 @@ def quality_indicators(x, fs: int) -> np.ndarray:
         dominance = float(psd.max() / psd.sum())
         rows.append([nan_frac, flat_frac, clip_frac, log_rms, flatness, spike_db, dominance])
     return np.asarray(rows).mean(axis=0).astype(np.float32)
+
+
+# ---------------------------------------------------------- generic (rig)
+GENERIC_NAMES = ["rms_log", "kurt", "skew", "crest", "mean_abs_over_rms", "dom_freq_hz"] + [f"band{i}" for i in range(8)]
+
+
+def generic_features(x, fs: int) -> np.ndarray:
+    """Model-free features for a signal without a known physical signature
+    (e.g. DC-motor current on the rig). Not used on Paderborn."""
+    x = _clean(x).ravel()
+    xc = x - x.mean()
+    f, psd = signal.welch(xc, fs=fs, nperseg=min(1024, len(xc)))
+    feats = [float(np.log10(np.sqrt(np.mean(x ** 2)) + 1e-9))] + _time_stats(xc)
+    feats.append(float(f[1:][np.argmax(psd[1:])]) if len(f) > 1 else 0.0)
+    feats += _log_bands(f, psd, max(f[1], 1.0) if len(f) > 1 else 1.0, fs / 2, 8)
+    return np.asarray(feats, dtype=np.float32)

@@ -17,9 +17,9 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from pufusion.config import BEARINGS  # noqa: E402
 from pufusion.dataset import load_tables  # noqa: E402
-from pufusion.experiment import run  # noqa: E402
+from pufusion.experiment import run, run_leaky  # noqa: E402
 from pufusion.models import ablation_zoo, model_zoo  # noqa: E402
-from pufusion.splits import p1_folds, p2_folds  # noqa: E402
+from pufusion.splits import leaky_splits, p1_folds, p2_folds  # noqa: E402
 
 
 def restrict(folds, available):
@@ -37,7 +37,7 @@ def restrict(folds, available):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--features", required=True)
-    ap.add_argument("--protocol", choices=["p1", "p2"], default="p1")
+    ap.add_argument("--protocol", choices=["p1", "p2", "leaky"], default="p1")
     ap.add_argument("--repeats", type=int, default=5)
     ap.add_argument("--condition-holdout", action="store_true")
     ap.add_argument("--models", choices=["main", "ablation", "all"], default="main")
@@ -51,24 +51,31 @@ def main():
     meta_path = Path(a.features).with_suffix(".json")
     source = json.loads(meta_path.read_text())["source"] if meta_path.exists() else "unknown"
     available = set(np.unique(tables["clean"]["bearing"]))
+    models = {"main": model_zoo, "ablation": ablation_zoo,
+              "all": lambda k: model_zoo(k) + ablation_zoo(k)}[a.models](a.expert)
+    if a.protocol == "leaky":
+        rows = run_leaky(tables, leaky_splits(tables["clean"]["stem"]), models, use_aug=not a.no_aug)
+        return _write(rows, source, a.out)
     folds = p1_folds(a.repeats) if a.protocol == "p1" else p2_folds()
     folds = restrict(folds, available)
     if a.max_folds:
         folds = folds[: a.max_folds]
     if not folds:
         raise SystemExit("no valid folds: the feature file must contain every class among held-out bearings")
-    models = {"main": model_zoo, "ablation": ablation_zoo,
-              "all": lambda k: model_zoo(k) + ablation_zoo(k)}[a.models](a.expert)
     print(f"source={source} folds={len(folds)} models={[m.name for m in models]}")
     rows = run(tables, folds, models, use_aug=not a.no_aug, condition_holdout=a.condition_holdout)
+    _write(rows, source, a.out)
+
+
+def _write(rows, source, out):
     for r in rows:
         r["data_source"] = source
-    Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(out).parent.mkdir(parents=True, exist_ok=True)
     keys = sorted({k for r in rows for k in r})
-    with open(a.out, "w", newline="") as f:
+    with open(out, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=keys)
         w.writeheader(); w.writerows(rows)
-    print(f"wrote {len(rows)} rows -> {a.out}")
+    print(f"wrote {len(rows)} rows -> {out}")
 
 
 if __name__ == "__main__":

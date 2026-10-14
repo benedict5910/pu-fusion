@@ -70,3 +70,22 @@ def run(tables, folds, models, use_aug=True, condition_holdout=False, log=print)
                 log(f"{fold['name']} held={held or '-'} {model.name}: "
                     f"clean macro-F1={clean_row['macro_f1']:.3f}")
     return rows
+
+
+def run_leaky(tables, splits, models, use_aug=True, log=print):
+    """Random recording-level split (bearings shared). Reference only."""
+    rows = []
+    for sp in splits:
+        sel = lambda t, stems: subset(t, np.isin(t["stem"], stems))
+        train = sel(tables["clean"], sp["train_stems"])
+        if use_aug and "aug" in tables:
+            train = concat(train, sel(tables["aug"], sp["train_stems"]))
+        test = sel(tables["clean"], sp["test_stems"])
+        for proto in models:
+            model = copy.deepcopy(proto).fit(train)
+            row = {"fold": sp["name"], "held_condition": "-", "model": model.name, "aug": use_aug,
+                   "corruption": "none:clean:None", "protocol_note": "LEAKY reference split",
+                   **classification(test["y"], model.predict_proba(test))}
+            rows.append(row)
+            log(f"{sp['name']} {model.name}: clean macro-F1={row['macro_f1']:.3f} (LEAKY)")
+    return rows

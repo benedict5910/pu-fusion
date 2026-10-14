@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from pufusion.rig import (SerialRigSource, SimulatedRigSource, collect_windows,  # noqa: E402
+from pufusion.rig import (SerialRigSource, SimulatedRigSource, TimingAnalyzer, collect_windows,  # noqa: E402
                           load_rig_config, save_rig_config)
 
 
@@ -52,17 +52,26 @@ def main():
 
     n = int(a.minutes * 60 / cfg.window_s)
     t0 = time.time()
-    wins, bad = collect_windows(src, cfg, n)
     out = Path("data/rig") / f"{a.session}.npz"
     out.parent.mkdir(parents=True, exist_ok=True)
-    np.savez_compressed(out, vib=np.stack([w["vib"] for w in wins]), cur=np.stack([w["cur"] for w in wins]),
+    ta = TimingAnalyzer(cfg)
+    with open(out.with_suffix(".bin"), "wb") as raw:          # raw frames, for re-analysis
+        wins, bad = collect_windows(src, cfg, n, raw_sink=raw, timing=ta)
+    # windows can differ by a sample or two (measured rates); store as object arrays
+    obj = lambda k: np.array([w[k] for w in wins], dtype=object)
+    np.savez_compressed(out, vib=obj("vib"), cur=obj("cur"), fs_vib=np.array([w["fs_vib"] for w in wins]),
+                        fs_cur=np.array([w["fs_cur"] for w in wins]),
                         rpm=np.array([w["rpm"] for w in wins]), temp_c=np.array([w["temp_c"] for w in wins]),
                         vbus=np.array([w["vbus"] for w in wins]))
+    timing = ta.report(bad)
     meta = {"session": a.session, "label": a.label, "source": kind, "windows": len(wins),
             "corrupt_frames": bad, "recorded_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "duration_s": round(time.time() - t0, 1), "notes": a.notes}
+            "duration_s": round(time.time() - t0, 1), "notes": a.notes,
+            "acquisition_checks": timing.get("checks"), "timing": timing}
     out.with_suffix(".json").write_text(json.dumps(meta, indent=2))
-    print(json.dumps(meta))
+    print(json.dumps({k: v for k, v in meta.items() if k != 'timing'}))
+    if meta['acquisition_checks'] and not all(meta['acquisition_checks'].values()):
+        print('WARNING: acquisition checks failed - see', out.with_suffix('.json'))
 
 
 if __name__ == "__main__":

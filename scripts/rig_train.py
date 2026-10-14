@@ -23,9 +23,10 @@ from pufusion.rig import RigAnomalyDetector, load_rig_config, rig_features  # no
 
 
 def load_session(name, cfg):
-    z = np.load(f"data/rig/{name}.npz")
+    z = np.load(f"data/rig/{name}.npz", allow_pickle=True)    # own recordings only (object arrays)
     meta = json.loads(Path(f"data/rig/{name}.json").read_text())
-    wins = [{"vib": z["vib"][i], "cur": z["cur"][i], "rpm": float(z["rpm"][i]),
+    wins = [{"vib": np.asarray(z["vib"][i], np.float32), "cur": np.asarray(z["cur"][i], np.float32),
+             "fs_vib": float(z["fs_vib"][i]), "fs_cur": float(z["fs_cur"][i]), "rpm": float(z["rpm"][i]),
              "temp_c": float(z["temp_c"][i]), "vbus": float(z["vbus"][i])} for i in range(len(z["vib"]))]
     return wins, meta
 

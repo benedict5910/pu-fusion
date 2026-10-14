@@ -19,7 +19,7 @@ from pufusion.models import ReliabilityGated  # noqa: E402
 from pufusion.monitor import SOURCE_BENCHMARK, SOURCE_SIM, BenchmarkDiagnoser, MonitorEngine, RigDiagnoser  # noqa: E402
 from pufusion.reliability import ReliabilityAssessor, SensorReliability  # noqa: E402
 from pufusion.rig import (FrameParser, RigAnomalyDetector, RigConfig, SimulatedRigSource,  # noqa: E402
-                          WindowAssembler, encode_frame, rig_features)
+                          TimingAnalyzer, WindowAssembler, encode_frame, rig_features)
 from pufusion.store import HealthStore  # noqa: E402
 from pufusion.synthetic import synth_recording  # noqa: E402
 from test_pipeline import _small_tables  # noqa: E402
@@ -133,8 +133,9 @@ class TestStore(unittest.TestCase):
 
 class TestRig(unittest.TestCase):
     def test_protocol_roundtrip_chunked_and_corrupt(self):
-        f1 = encode_frame(1, 250, np.arange(800) - 400, np.full(1250, 2048), 1500.0, 30.0, 12.0)
-        f2 = encode_frame(2, 500, np.zeros(800), np.zeros(1250), 1501.0, 30.0, 12.0)
+        f1 = encode_frame({"seq": 1, "vib_first": 0, "vib_ref_idx": 799, "vib_ref_us": 250000},
+                          np.arange(800) - 400, np.full(1250, 2048))
+        f2 = encode_frame({"seq": 2, "vib_first": 800, "rpm": 1501.0}, np.zeros(800), np.zeros(1250))
         bad = bytearray(f2); bad[40] ^= 0xFF
         stream = b"junk" + f1 + bytes(bad) + f2
         p, got = FrameParser(), []
@@ -143,15 +144,81 @@ class TestRig(unittest.TestCase):
         self.assertEqual([g["seq"] for g in got], [1, 2])
         self.assertEqual(p.bad, 1)
         np.testing.assert_array_equal(got[0]["vib"], np.arange(800) - 400)
+        self.assertEqual(got[0]["vib_ref_us"], 250000)
+        self.assertAlmostEqual(got[1]["rpm"], 1501.0, places=3)
 
-    def test_gap_becomes_nan(self):
+    def test_firmware_header_layout_matches_parser(self):
+        """Compile the firmware's own Header struct on the host and decode its bytes."""
+        import re, shutil, subprocess
+        if not shutil.which("g++"):
+            self.skipTest("g++ not available")
+        ino = (Path(__file__).resolve().parents[1] / "firmware/rig_esp32/rig_esp32.ino").read_text()
+        struct_src = re.search(r"#pragma pack\(push, 1\)(.*?)#pragma pack\(pop\)", ino, re.S).group(0)
+        prog = ("#include <cstdint>\n#include <cstdio>\n#include <cmath>\n" + struct_src + "\n"
+                "int main(){Header h={};h.seq=7;h.t_us=123456;h.dt_us=250001;h.vib_first=11;h.vib_ref_idx=12;"
+                "h.vib_ref_us=13;h.cur_first=21;h.cur_ref_idx=22;h.cur_ref_us=23;h.n_vib=0;h.n_cur=0;h.rpm=1499.5f;"
+                "h.temp_c=36.25f;h.vbus_adc=1234.5f;h.vib_overruns=1;h.adc_pool_ovf=2;h.vib_drops=3;h.cur_drops=4;"
+                "h.adc_bad_ch=5;h.flags=3;fwrite(\"RIG2\",1,4,stdout);fwrite(&h,sizeof h,1,stdout);"
+                "const unsigned char*p=(const unsigned char*)&h;unsigned s=0;for(unsigned i=0;i<sizeof h;i++)s+=p[i];"
+                "unsigned short c=s&0xFFFF;fwrite(&c,2,1,stdout);return 0;}")
+        with tempfile.TemporaryDirectory() as d:
+            src, exe = Path(d) / "h.cpp", Path(d) / "h"
+            src.write_text(prog)
+            subprocess.run(["g++", "-std=c++17", "-o", str(exe), str(src)], check=True)
+            raw = subprocess.run([str(exe)], check=True, capture_output=True).stdout
+        fr = FrameParser().feed(raw)
+        self.assertEqual(len(fr), 1)
+        f = fr[0]
+        self.assertEqual((f["seq"], f["t_us"], f["dt_us"], f["vib_first"], f["vib_ref_idx"], f["vib_ref_us"],
+                          f["cur_first"], f["cur_ref_idx"], f["cur_ref_us"]), (7, 123456, 250001, 11, 12, 13, 21, 22, 23))
+        self.assertEqual((f["vib_overruns"], f["adc_pool_ovf"], f["vib_drops"], f["cur_drops"], f["adc_bad_ch"], f["flags"]),
+                         (1, 2, 3, 4, 5, 3))
+        self.assertAlmostEqual(f["rpm"], 1499.5, places=3)
+
+    def test_gap_becomes_nan_exactly(self):
+        src = SimulatedRigSource(seed=1, drop_every=4)
+        p, asm, wins = FrameParser(), WindowAssembler(src.cfg), []
+        while len(wins) < 6:
+            for fr in p.feed(src.read()):
+                wins += asm.push(fr)
+        self.assertEqual(asm.v.gap_samples, 100 * asm.v.gap_events)
+        self.assertGreater(asm.v.gap_events, 0)
+        n_nan = sum(int(np.isnan(w["vib"]).sum()) for w in wins)
+        self.assertEqual(n_nan % 100, 0)
+        self.assertGreater(n_nan, 0)
+
+    def test_timing_recovers_clock_error_and_aligns_streams(self):
         cfg = RigConfig()
-        asm = WindowAssembler(cfg)
-        mk = lambda s: {"seq": s, "t_ms": s * 250, "vib": np.zeros(cfg.n_vib, "i2"),
-                        "cur": np.full(cfg.n_cur, 2048, "u2"), "rpm": 1500.0, "temp_c": 30.0, "vbus": 12.0}
-        wins = asm.push(mk(0)) + asm.push(mk(2))          # frame 1 lost
-        self.assertEqual(len(wins), 1)
-        self.assertTrue(np.isnan(wins[0]["vib"][cfg.n_vib:]).all())
+        src = SimulatedRigSource(cfg, seed=2, vib_clock_err=0.02, cur_clock_err=-0.0005, ref_jitter_us=300)
+        p, asm, ta, wins = FrameParser(), WindowAssembler(cfg), TimingAnalyzer(cfg), []
+        for _ in range(240):                                  # 60 s
+            for fr in p.feed(src.read()):
+                ta.add(fr); wins += asm.push(fr)
+        rep = ta.report(p.bad)
+        self.assertAlmostEqual(rep["vib"]["ppm_vs_nominal"], 20000, delta=200)
+        self.assertAlmostEqual(rep["cur"]["ppm_vs_nominal"], -500, delta=200)
+        self.assertGreater(rep["vib"]["ref_jitter_us_rms"], 50)
+        self.assertTrue(rep["checks"]["no_sample_gaps"])
+        self.assertFalse(rep["checks"]["vib_rate_within_5pct"] is False)
+        late = wins[-10:]
+        for w in late:                                       # both streams cover the same 0.5 s
+            self.assertAlmostEqual(len(w["vib"]) / w["fs_vib"], 0.5, delta=2 / w["fs_vib"])
+            self.assertAlmostEqual(len(w["cur"]) / w["fs_cur"], 0.5, delta=2 / w["fs_cur"])
+            self.assertAlmostEqual(w["fs_vib"], 3264, delta=3)
+        # alignment: window start times advance by exactly window_s in device time
+        np.testing.assert_allclose(np.diff([w["t_us"] for w in late]), 5e5, atol=1)
+
+    def test_timing_flags_drops(self):
+        cfg = RigConfig()
+        src = SimulatedRigSource(cfg, seed=3, drop_every=10)
+        p, ta = FrameParser(), TimingAnalyzer(cfg)
+        for _ in range(60):
+            for fr in p.feed(src.read()):
+                ta.add(fr)
+        rep = ta.report(p.bad)
+        self.assertFalse(rep["checks"]["no_sample_gaps"])
+        self.assertFalse(rep["checks"]["no_device_overruns"])
+        self.assertEqual(rep["vib"]["gap_samples"], 100 * rep["vib"]["gap_events"])
 
     def _session(self, condition, seed, n=24, fault=None):
         src = SimulatedRigSource(condition=condition, seed=seed)

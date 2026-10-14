@@ -1,4 +1,4 @@
-# IVHM project specification (v2, 15 Oct 2026)
+# IVHM project specification (v2.1, 15 Oct 2026)
 
 Supersedes the scope in `SPEC.md`; the research protocol in `SPEC.md` §4 is unchanged.
 
@@ -158,11 +158,49 @@ ESP32 rig ─serial frames─→ parser → windows → rig features ─→ heal
 
 | Signal | Sensor | Rate | Purpose | Notes |
 |---|---|---|---|---|
-| Vibration (radial) | ADXL345, SPI, ±16 g, 3.9 mg/LSB | 3200 Hz (1.6 kHz usable band) | Bearing defect and unbalance signatures | For the 608 bearing at 1500–3000 rpm, BPFO ≈ 64–129 Hz and BPFI ≈ 111–222 Hz, with harmonics inside the band. MPU6050 rejected (1 kHz accelerometer rate). |
-| Motor current | ACS712-05B via 10k/20k divider to GPIO34 | 5000 Hz | Load and commutation ripple; second modality | Zero offset calibrated with the motor off (`--calibrate-zero`). ESP32 ADC nonlinearity accepted for anomaly use. |
-| Speed | A3144 Hall sensor + magnet | 4 updates/s | Fault frequencies; operating-condition context | Required for the frequency-based features. |
+| Vibration (radial) | ADXL345, SPI mode 3 at **4 MHz**, ±16 g full-resolution, 3.9 mg/LSB typ. (3.5–4.3) | 3200 Hz output (1600 Hz bandwidth) | Bearing defect and unbalance signatures | For the 608 bearing at 1500–3000 rpm, BPFO ≈ 64–129 Hz and BPFI ≈ 111–222 Hz, with harmonics inside the band. MPU6050 rejected (1 kHz accelerometer rate). |
+| Motor current | ACS712-05B via 10k/20k divider to GPIO34 (ADC1_CH6) | ADC DMA at 10 kHz per channel, averaged in pairs to **5000 Hz** | Load and commutation ripple; second modality | Zero offset calibrated with the motor off (`--calibrate-zero`). ESP32 ADC nonlinearity accepted for anomaly use. |
+| Speed | A3144 Hall sensor + magnet | 4 updates/s, rate from the measured frame time | Fault frequencies; operating-condition context | Required for the frequency-based features. |
 | Temperature | DS18B20 on bearing housing | 1 Hz | Trend only | Optional; logged and displayed. |
-| Bus voltage | 100k/22k divider to GPIO35 | 4 updates/s | Separates supply sag and motor-off from faults | Optional; logged and displayed. |
+| Bus voltage | 100k/22k divider to GPIO35 (ADC1_CH7) | Same DMA scan, averaged per frame | Separates supply sag and motor-off from faults | Optional; logged and displayed. |
+
+### Hardware corrections verified on 15 Oct 2026
+
+Checked against the ADXL345 datasheet and the ESP32 Arduino core 3.3.12 source. The firmware compiles (arduino-cli, `esp32:esp32:esp32`: 22 % flash, 18 % RAM, no warnings in the sketch). **It has not yet been run on hardware.**
+
+1. **ADXL345 SPI clock: 4 MHz.**
+   - The datasheet requires at least 2 MHz SPI for 3200 Hz or 1600 Hz output, or samples are missed; the maximum is 5 MHz at 100 pF.
+   - The earlier sketch used 5 MHz, the absolute limit, on breadboard wiring. 4 MHz keeps margin both ways.
+2. **ADXL345 FIFO reads.**
+   - At least 5 µs must pass between reading one FIFO entry and the next read. The firmware now waits explicitly.
+   - Each entry is popped by one 6-byte multi-byte burst.
+   - The INT_SOURCE overrun bit is checked on every drain and counted.
+   - DEVID is checked at boot (0xE5) and reported in every frame.
+3. **ADXL345 rate accuracy is not specified in the datasheet.**
+   - The true output rate is therefore **measured, not assumed**. Every frame carries an (index, time) reference per stream.
+   - The host fits the true rate and computes features at the measured rate.
+   - `scripts/rig_check_timing.py` reports the rate error in ppm.
+4. **Aliasing.** The ADXL345 has no documented anti-aliasing filter. Bearing resonances above 1.6 kHz can fold into the band. This is acceptable for anomaly detection against the rig's own baseline; it is one more reason Paderborn models are never applied to the rig.
+5. **Current sampling replaced.**
+   - The old design was a busy-wait `analogRead()` task at priority 3 on core 1. It would starve the Arduino `loop()` task (priority 1, same core) that sends the serial frames.
+   - The new design uses the ESP-IDF continuous ADC (DMA). On ESP32-classic it supports **20 kHz minimum** total rate, on ADC1 only.
+   - The scan alternates current and bus voltage at 10 kHz each. Current is averaged in pairs to 5 kHz.
+   - Bus voltage moved into the same scan, because one-shot `analogRead` and DMA cannot share ADC1.
+   - DMA pool overflows are counted by callback, and samples tagged with an unexpected channel are counted.
+6. **Synchronisation.**
+   - Vibration (ADXL345 oscillator) and current (ESP32 clock) run on independent clocks.
+   - Each frame now sends, for each stream, the absolute index of its first sample plus a consistent (index, time) pair for the newest sample.
+   - The host fits each stream's clock and cuts both streams on the **same 0.5 s time grid**. A few-percent ADXL345 rate error cannot slowly misalign the two sensors.
+   - Residual alignment error is the reference jitter: about 2 ms for the vibration FIFO drain, up to 12.8 ms for the current DMA frame. The least-squares fit reduces this.
+7. **Dropped samples are explicit.** Ring-buffer drops, ADXL345 overruns, DMA overflows, checksum errors and lost frames all show up as index gaps (filled with NaN, reported as link loss) or as counters. Nothing is silently skipped.
+8. **Link budget.** About 4.1 kB per 0.25 s frame (16.4 kB/s) against about 92 kB/s at 921 600 baud, using a 16 kB TX buffer.
+
+**Bring-up acceptance test (week 2).** Run `python scripts/rig_check_timing.py --port COMx --seconds 120`. It must PASS:
+- no checksum errors, sample gaps or device overruns;
+- vibration rate within 5 % of nominal and current rate within 0.5 %;
+- ADXL345 and ADC detected.
+
+Record the measured rates in the report.
 
 ## Bill of materials (INR, estimates to confirm at purchase)
 
@@ -204,7 +242,7 @@ Safety: a guard over the rotating shaft. No exposed mains wiring.
 | Wk | Student 1 | Student 2 | Student 3 |
 |---|---|---|---|
 | 1 | `run_all.py` on the starter subset; check labels against fact sheets; confirm 64 kHz from the files; read Lin 2025 and Zhao 2024 | Run dashboard in benchmark mode on starter models; review recommendation texts | Order parts; bench-test sensors on breadboard |
-| 2 | `run_all.py --subset all`; leaky-vs-disjoint figure | Explanation faithfulness summary over test bearings | Assemble rig; flash firmware; verify actual sample rates and checksum errors; zero calibration |
+| 2 | `run_all.py --subset all`; leaky-vs-disjoint figure | Explanation faithfulness summary over test bearings | Assemble rig; flash firmware; **`rig_check_timing.py` must PASS**; zero calibration |
 | 3 | P3 and ablations; HGB expert check | Replay false alarms per hour per model; report polish | Record healthy sessions H1–H4 on different days |
 | 4 | **Freeze benchmark results and statistics** | Integrate rig mode with real sessions | Record seeded-fault sessions; run `rig_train.py` |
 | 5 | Write methods and results | Dashboard with all three modes on real models | Live-link robustness (unplug and replug, frame loss) |
@@ -221,6 +259,7 @@ Safety: a guard over the rotating shaft. No exposed mains wiring.
   - The leaky split is reported only to show inflation.
 - **Health layer:** policy thresholds fixed in advance (0.5 / 0.8, 2 and 4 of the last 6 windows, 6 quiet windows to clear a warning). Report state-level false-alarm events per hour on held-out healthy bearings and time to INSPECT on held-out faulty bearings.
 - **Explanations:** faithfulness (deletion drop) reported next to confidence. The two are never merged.
+- **Sensor-quality detector:** validated on its own, without fault labels (`scripts/eval_quality.py`). It is fitted on clean windows of training bearings only. On held-out bearings it reports the false-flag rate on clean data, the detection rate per corruption family and severity, and the cross-flag rate on the healthy sensor.
 - **Rig:** session-disjoint (fit H1, threshold H2, test H3+ and fault sessions). Report window alarm rate, whether the state ever left NORMAL, time to first non-NORMAL, and rig sample-rate and checksum statistics. No accuracy claims transfer between platforms.
 
 ## Demo scenario (about 5 minutes)
@@ -243,6 +282,6 @@ Safety: a guard over the rotating shaft. No exposed mains wiring.
 |---|---|
 | Real results show no gain from gating (H2 rejected) | Pre-registered hypotheses; a negative result with a clean protocol is still a valid finding; the IVHM prototype stands either way |
 | Bearing-disjoint scores are low and noisy (only 6 healthy bearings) | Per-bearing analysis; P2 as a second view; the claim is the robustness difference, not absolute accuracy |
-| Firmware timing (ADXL345 FIFO overruns, ADC jitter) | Sequence numbers make losses visible (NaN, link-loss reason); measure real rates in week 2; fall back to 1600 Hz vibration if needed |
+| Firmware timing (ADXL345 FIFO overruns, ADC jitter, clock drift) | DMA-paced ADC; explicit 5 µs FIFO gaps; per-stream sample indices make every loss visible; measured rates used for features; `rig_check_timing.py` acceptance test; fall back to 1600 Hz vibration if overruns persist |
 | Seeded bearing faults too weak to detect on the rig | Unbalance as the guaranteed-visible case; report detection per session honestly; anomaly detection, not classification |
 | Time lost to integration or polish | Engine is unit-tested; dashboard is thin; optional items locked until week 5; OBD-II excluded |

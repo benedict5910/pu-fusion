@@ -28,10 +28,12 @@ def main():
     ap.add_argument("--subset", choices=["starter", "all"], default="starter")
     ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--repeats", type=int, default=5)
+    ap.add_argument("--skip-download", action="store_true", help="archives already extracted under data/raw")
     a = ap.parse_args()
     feats = f"data/features_{a.subset}.npz"
     res = Path(f"results/{a.subset}")
-    step("download", ["scripts/download_pu.py", "--subset", a.subset])
+    if not a.skip_download:
+        step("download", ["scripts/download_pu.py", "--subset", a.subset])
     step("features", ["scripts/build_features.py", "--raw", "data/raw", "--out", feats, "--jobs", a.jobs], feats)
     runs = {"p1": ["--protocol", "p1", "--repeats", a.repeats, "--models", "all"],
             "p2": ["--protocol", "p2", "--models", "main"],
@@ -43,11 +45,17 @@ def main():
     for name, args in runs.items():
         out = res / f"{name}.csv"
         step(f"experiment {name}", ["scripts/run_experiments.py", "--features", feats, *args, "--out", out], out)
+    q = res / "quality.json"
+    step("sensor-quality validation", ["scripts/eval_quality.py", "--features", feats, "--repeats", a.repeats,
+                                       "--out", q], q)
     with open(res / "SUMMARY.txt", "w") as f:
         for name in runs:
             f.write(f"\n##### {name}\n")
             f.flush()
             subprocess.run([PY, "scripts/summarize.py", str(res / f"{name}.csv")], cwd=ROOT, stdout=f, check=True)
+        f.write("\n##### sensor-quality detector\n"); f.flush()
+        subprocess.run([PY, "scripts/eval_quality.py", "--features", feats, "--repeats", str(a.repeats),
+                        "--out", str(q)], cwd=ROOT, stdout=f, check=True)
     print((res / "SUMMARY.txt").read_text())
     step("demo model", ["scripts/train_demo_model.py", "--features", feats, "--out", "models/demo_models.pkl"],
          "models/demo_models.pkl")

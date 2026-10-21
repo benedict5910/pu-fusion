@@ -14,6 +14,7 @@ an unrar backend. On Windows, 7-Zip works.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import shutil
 import subprocess
 import sys
@@ -24,6 +25,24 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from pufusion.config import BEARINGS, EXCLUDED_COMBINED  # noqa: E402
 
 BASE = "https://groups.uni-paderborn.de/kat/BearingDataCenter/"
+# Zenodo mirror (record 15845309): sizes match the official listing; MD5s from Zenodo.
+ZENODO = "https://zenodo.org/records/15845309/files/{code}.rar?download=1"
+_MD5_FILE = Path(__file__).resolve().parent / "windows" / "zenodo_15845309_md5.txt"
+ZENODO_MD5 = {l.split()[0]: (int(l.split()[1]), l.split()[2])
+              for l in _MD5_FILE.read_text().splitlines() if l.strip()} if _MD5_FILE.exists() else {}
+
+
+def md5_ok(path: Path, code: str) -> bool:
+    if code not in ZENODO_MD5:
+        return True                     # no reference checksum (official source)
+    size, ref = ZENODO_MD5[code]
+    if path.stat().st_size != size:
+        return False
+    h = hashlib.md5()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest() == ref
 # Starter subset: enough for a first bearing-disjoint split (4 healthy,
 # 4 real OR, 4 real IR) - every class has unseen bearings at test time.
 STARTER = ["K001", "K002", "K003", "K004",
@@ -31,16 +50,19 @@ STARTER = ["K001", "K002", "K003", "K004",
            "KI04", "KI14", "KI16", "KI18"]
 
 
-def download(code: str, out: Path) -> Path:
+def download(code: str, out: Path, source: str = "zenodo") -> Path:
     dst = out / f"{code}.rar"
-    if dst.exists() and dst.stat().st_size > 1_000_000:
-        print(f"[skip] {dst.name} already present")
+    if dst.exists() and dst.stat().st_size > 1_000_000 and md5_ok(dst, code):
+        print(f"[skip] {dst.name} already present (verified)")
         return dst
+    url = ZENODO.format(code=code) if source == "zenodo" else BASE + f"{code}.rar"
     tmp = dst.with_suffix(".part")
-    print(f"[get ] {BASE}{code}.rar")
-    with urllib.request.urlopen(BASE + f"{code}.rar", timeout=60) as r, open(tmp, "wb") as f:
+    print(f"[get ] {url}")
+    with urllib.request.urlopen(url, timeout=60) as r, open(tmp, "wb") as f:
         shutil.copyfileobj(r, f, length=1 << 20)
-    tmp.rename(dst)
+    tmp.replace(dst)
+    if source == "zenodo" and not md5_ok(dst, code):
+        raise SystemExit(f"{dst.name}: MD5/size mismatch against Zenodo record - not used")
     return dst
 
 
@@ -69,11 +91,12 @@ def main():
     ap.add_argument("--bearings", nargs="*")
     ap.add_argument("--out", default="data/raw")
     ap.add_argument("--no-extract", action="store_true")
+    ap.add_argument("--source", choices=["zenodo", "official"], default="zenodo")
     a = ap.parse_args()
     codes = a.bearings or (STARTER if a.subset == "starter" else sorted(BEARINGS) + EXCLUDED_COMBINED)
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     for c in codes:
-        arc = download(c, out)
+        arc = download(c, out, a.source)
         if not a.no_extract:
             extract(arc, out)
     print("done:", len(codes), "archives in", out)

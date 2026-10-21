@@ -2,5 +2,6 @@ numpy>=1.26
 scipy>=1.11
 scikit-learn>=1.4
 streamlit>=1.35      # dashboard only
+pyserial>=3.5        # ESP32 rig over USB serial (rig_*.py, dashboard 'Rig - live')
 rarfile>=4.1         # optional; 7-Zip/unrar also work
 pytest>=8            # optional; stdlib unittest works too

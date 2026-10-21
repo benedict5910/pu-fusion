@@ -65,6 +65,7 @@ class HealthTracker:
         self.hist = deque(maxlen=self.p.n)
         self.state = NORMAL
         self.quiet = 0
+        self.pre_fault = NORMAL      # state held before a sensor outage (restored afterwards)
 
     def acknowledge(self):
         """Operator acknowledges a latched INSPECT alert.
@@ -94,10 +95,14 @@ class HealthTracker:
 
         if not usable or p_fault is None:
             if self.state != INSPECT:            # never silently clear a latched INSPECT
+                if self.state != SENSOR_FAULT:
+                    self.pre_fault = self.state
                 self.state = SENSOR_FAULT
             recs.insert(0, "No reliable sensor data: fault diagnosis suspended until a sensor is restored.")
             return Assessment(self.state, "no usable sensor", recs, False, degraded)
 
+        if self.state == SENSOR_FAULT:           # sensor restored: an outage must not shortcut WARNING recovery
+            self.state = self.pre_fault
         self.hist.append(p_fault)
         n_warn = sum(x > p.warn_p for x in self.hist)
         n_insp = sum(x > p.inspect_p for x in self.hist)

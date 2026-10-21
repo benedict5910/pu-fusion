@@ -285,5 +285,22 @@ class TestBenchmarkEngine(unittest.TestCase):
         self.assertAlmostEqual(sum(outs[-1]["diagnosis"]["probs"].values()), 1.0, places=6)
 
 
+
+class TestOutageRecovery(unittest.TestCase):
+    def test_sensor_outage_does_not_clear_warning(self):
+        """A sensor outage during WARNING recovery must not let the first good window jump to NORMAL."""
+        from types import SimpleNamespace as N
+        from pufusion.health import HealthTracker, WARNING, SENSOR_FAULT, NORMAL
+        ok = {"vib": N(status="ok", score=1, reasons=[]), "cur": N(status="ok", score=1, reasons=[])}
+        bad = {"vib": N(status="failed", score=0, reasons=["dropout"]), "cur": N(status="failed", score=0, reasons=["dropout"])}
+        t = HealthTracker()
+        for p in [0.6, 0.6, 0.1, 0.1, 0.1, 0.1, 0.1, 0.6]:
+            t.update(p, None, ok)
+        assert t.state == WARNING and t.quiet == 0
+        assert t.update(None, None, bad).state == SENSOR_FAULT
+        states = [t.update(0.1, None, ok).state for _ in range(t.p.recover_n)]
+        assert states[:-1] == [WARNING] * (t.p.recover_n - 1) and states[-1] == NORMAL
+
+
 if __name__ == "__main__":
     unittest.main()

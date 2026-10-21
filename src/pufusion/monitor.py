@@ -85,6 +85,8 @@ class MonitorEngine:
                "w_vib": d.get("weights", {}).get("vib"), "w_cur": d.get("weights", {}).get("cur"),
                "readings": d["readings"], "explanation": d.get("explanation"),
                "recommendations": a.recommendations}
+        if not a.diagnosis_available:      # no usable sensor: store no diagnostic values (they are not supported by data)
+            rec.update(p_fault=None, fault_type=None, confidence=None, w_vib=None, w_cur=None, explanation=None)
         if self.store:
             self.store.log_window(rec)
             if a.state != before:

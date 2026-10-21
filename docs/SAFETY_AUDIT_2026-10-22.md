@@ -50,8 +50,8 @@ requirement still applies. Test: `TestOutageRecovery`. It fails on the old code 
 - **False alarm on healthy bearing K004.** It reaches INSPECT on clean data, a model limitation shown in the OB1 audit. The window false-alarm rate is about 0.45, coming from K002/K004. It was not tuned away.
 - **Vibration noise, spikes and gain faults are mostly not flagged by OB2.** The cause is the spectral-flatness bound issue in `AUDIT_2026-10-21.md`. Until that is fixed on training bearings only, a noisy accelerometer can pass as "ok".
 
-## 6. Re-validation needed
-The dashboard changes in §1–§3 were exercised with a scripted Streamlit stand-in and unit tests, not
-yet on the real laptop UI. The OB3 UI validation of 21 Oct covered the pre-fix behaviour. Re-run steps 5–7 of
-`UI_VALIDATION_2026-10-21.md` on the laptop (acknowledge → WARNING with warning text, event logged,
-both-sensor dropout → "Diagnosis suspended" with no weights) and add the screenshots to `results/starter/ui/`.
+## 6. Re-validation (done 22 Oct, 01:19-01:34)
+Re-checked on the real laptop UI: `docs/UI_RECHECK_2026-10-22.md`. All checks pass. The re-check found one more
+leak: the history trend plotted a prior-based fault evidence during a total outage. It is fixed in `monitor.py`
+(suspended windows store no diagnostic values), covered by a unit test, and re-checked on the UI.
+Open (display only): the Live tab shows no state banner between runs; after an acknowledgement only the message is shown.

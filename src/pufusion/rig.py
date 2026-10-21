@@ -49,7 +49,7 @@ class RigConfig:
     vib_g_per_lsb: float = 0.0039          # ADXL345 full-resolution mode
     adc_vref: float = 3.3
     adc_max: int = 4095
-    divider: float = 1.5                   # 10k/20k divider on the 5 V ACS712 output
+    divider: float = 25.0 / 15.0           # 10k (top) / 15k (bottom) divider on the 5 V ACS712 output: <= 3.15 V at the pin even at a 5.25 V rail
     acs_v_per_a: float = 0.185             # ACS712-05B
     cur_zero_v: float = 2.5                # measure with motor off (scripts/rig_record.py --calibrate-zero)
     vbus_scale: float = 3.3 / 4095 * 122 / 22   # ADC counts -> volts (100k/22k divider)

@@ -4,7 +4,7 @@
 // Signals
 //   vibration   ADXL345 over SPI @ 4 MHz (datasheet: >= 2 MHz needed for 3200 Hz ODR, max 5 MHz),
 //               ODR 3200 Hz (bandwidth 1600 Hz), +-16 g full resolution, one radial axis, FIFO stream mode
-//   current     ACS712-05B -> 10k/20k divider -> GPIO34 (ADC1_CH6)
+//   current     ACS712-05B -> 10k/15k divider (x0.6) -> GPIO34 (ADC1_CH6)
 //   bus voltage 100k/22k divider -> GPIO35 (ADC1_CH7)
 //               both sampled by the ADC DMA engine (hardware-paced, no busy-wait):
 //               20 kHz total (ESP32 minimum for continuous mode), pattern CH6,CH7 -> 10 kHz each;

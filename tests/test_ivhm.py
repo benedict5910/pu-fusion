@@ -287,6 +287,17 @@ class TestBenchmarkEngine(unittest.TestCase):
 
 
 class TestOutageRecovery(unittest.TestCase):
+    def test_suspended_diagnosis_not_logged(self):
+        """While no sensor is usable, the logged history must not carry a fault probability."""
+        from types import SimpleNamespace as N
+        bad = {"vib": N(status="failed", score=0.0, reasons=["dropout"]), "cur": N(status="failed", score=0.0, reasons=["dropout"])}
+        diag = lambda w: {"reliability": bad, "p_fault": 0.67, "fault_type": "outer_race", "confidence": 0.33,
+                          "weights": {"vib": 0.78, "cur": 0.22}, "readings": {}, "explanation": {"x": 1}}
+        rec = MonitorEngine(diag, SOURCE_SIM).step({})
+        self.assertEqual(rec["state"], SENSOR_FAULT)
+        for k in ("p_fault", "fault_type", "confidence", "w_vib", "w_cur", "explanation"):
+            self.assertIsNone(rec[k], k)
+
     def test_sensor_outage_does_not_clear_warning(self):
         """A sensor outage during WARNING recovery must not let the first good window jump to NORMAL."""
         from types import SimpleNamespace as N

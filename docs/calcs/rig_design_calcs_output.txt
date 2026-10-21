@@ -1,0 +1,59 @@
+==============================================================================
+1. LOAD TORQUE (bearing friction) - Palmgren/SKF simplified model
+==============================================================================
+n=  900 rpm  F_test=  20 N  R_B= 25.0 N  R_A=  5.0 N  T_friction nominal= 4.15 mN.m  worst= 8.22 mN.m
+n=  900 rpm  F_test=  50 N  R_B= 62.5 N  R_A= 12.5 N  T_friction nominal= 4.39 mN.m  worst= 8.46 mN.m
+n= 1500 rpm  F_test=  20 N  R_B= 25.0 N  R_A=  5.0 N  T_friction nominal= 5.80 mN.m  worst=11.52 mN.m
+n= 1500 rpm  F_test=  50 N  R_B= 62.5 N  R_A= 12.5 N  T_friction nominal= 6.04 mN.m  worst=11.76 mN.m
+disc mass 76 g; total inertia J = 6.10e-05 kg.m^2; accel torque (0->1500 rpm in 2 s) = 4.79 mN.m
+
+==============================================================================
+2. MOTOR OPERATING POINTS - representative 12 V / 4,550 rpm RS-775 winding (770-4087 datasheet row)
+==============================================================================
+R = 0.851 ohm ; Kt = ke = 24.7 mN.m/A ; check no-load speed = 4433 rpm
+n=  900 F= 20 N nominal     : T= 4.15 mN.m  I=0.53 A  V=2.78 V  P_el=1.47 W  Cu loss=0.24 W
+n=  900 F= 20 N worst+accel : T=13.00 mN.m  I=0.88 A  V=3.09 V  P_el=2.73 W  Cu loss=0.67 W
+n=  900 F= 50 N nominal     : T= 4.39 mN.m  I=0.54 A  V=2.79 V  P_el=1.50 W  Cu loss=0.25 W
+n=  900 F= 50 N worst+accel : T=13.25 mN.m  I=0.89 A  V=3.09 V  P_el=2.77 W  Cu loss=0.68 W
+n= 1500 F= 20 N nominal     : T= 5.80 mN.m  I=0.63 A  V=4.43 V  P_el=2.80 W  Cu loss=0.34 W
+n= 1500 F= 20 N worst+accel : T=16.30 mN.m  I=1.06 A  V=4.79 V  P_el=5.06 W  Cu loss=0.95 W
+n= 1500 F= 50 N nominal     : T= 6.04 mN.m  I=0.64 A  V=4.43 V  P_el=2.85 W  Cu loss=0.35 W
+n= 1500 F= 50 N worst+accel : T=16.55 mN.m  I=1.07 A  V=4.80 V  P_el=5.12 W  Cu loss=0.97 W
+start torque available at the 2.0 A CC limit: 42.1 mN.m ; worst running load 11.8 mN.m (+4.8 accel)
+continuous-torque margin vs datasheet nominal point (3500 rpm, 2.8 A): 54.4 mN.m / 16.5 mN.m = 3.3x
+
+Open-loop speed sensitivities (fixed supply voltage):
+  load torque  : 13.3 rpm per mN.m
+   900 rpm: grease warm-up +17.5 rpm, magnet temp +27.0, copper temp -10.3, supply +1.2, 20->50 N load -0.00  => warm-up drift +34.2 rpm (+3.8 %)
+  1500 rpm: grease warm-up +24.1 rpm, magnet temp +45.0, copper temp -12.4, supply +1.2, 20->50 N load -0.00  => warm-up drift +56.7 rpm (+3.8 %)
+  voltage resolution of a 10 mV supply step: 3.9 rpm (0.43 % at 900 rpm)
+
+==============================================================================
+3. SHAFT (8 mm h6, hardened), overhung test bearing
+==============================================================================
+I = 201 mm^4, Z = 50.3 mm^3
+bending moment at support B = 1.50 N.m ; stress = 29.8 MPa (x2 for set-screw/collar notch = 60 MPa)
+deflection at test bearing = 56 um ; slope = 2.05 mrad = 7.1 arcmin
+first bending critical speed (disc at mid-span, shaft mass neglected) ~ 36,528 rpm = 24x the 1500 rpm operating speed
+608 L10 life at P=50.0 N: 328,509 million rev (3,650,100 h at 1500 rpm)
+608 L10 life at P=62.5 N: 168,197 million rev (1,868,851 h at 1500 rpm)
+unbalance 1 g at r=20 mm: 0.49 N at 1500 rpm, 0.18 N at 900 rpm
+unbalance 3 g at r=20 mm: 1.48 N at 1500 rpm, 0.53 N at 900 rpm
+
+==============================================================================
+4. LOAD MECHANISM - two calibrated compression springs on M5 studs
+==============================================================================
+target 20 N: housing weight 2.34 N -> each spring compressed 1.77 mm (2.2 turns of an M5x0.8 nut)
+target 50 N: housing weight 2.34 N -> each spring compressed 4.77 mm (6.0 turns of an M5x0.8 nut)
+stud-hole clearance tilt allowance: 0.6 mm / 50 mm = 41 arcmin  (needed: 7.1 arcmin)
+
+==============================================================================
+5. DATA ACQUISITION - IIS3DWB -> ESP32 -> USB-UART
+==============================================================================
+FIFO: 438 words = 16.4 ms at 26667 Hz (worst case: 1 sample per word)
+watermark 256 words = 9.6 ms; SPI read at 8 MHz = 1.79 ms; service deadline before overrun = 6.8 ms
+SPI bus load = 19 %
+UART   921600 baud 8N1: capacity 92.2 kB/s, payload 64.3 kB/s (frame 6429 B every 100 ms) -> utilisation 70 %
+UART  2000000 baud 8N1: capacity 200.0 kB/s, payload 64.3 kB/s (frame 6429 B every 100 ms) -> utilisation 32 %
+3-axis at full rate would need 170.0 kB/s -> exceeds 921,600 baud; single axis selected
+ESP32 buffering: vib ring 0.5 s = 26.0 KiB, current ring 0.5 s = 4.9 KiB, UART TX buffer >= 2 frames = 12.6 KiB

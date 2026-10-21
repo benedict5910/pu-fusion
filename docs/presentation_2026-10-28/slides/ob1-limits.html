@@ -1,0 +1,23 @@
+<section id="ob1-limits" data-transition="fade" style="background:#EEF1F5;color:#1E2A3B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#14213D">Why these OB1 numbers are preliminary</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#FBFBF8;padding:40px;border-radius:16px">
+<h3 style="font-size:36px;font-weight:600;color:#14213D">11 of 15 folds ran</h3>
+<p style="font-size:28px;line-height:1.4">4 folds were skipped by the pre-set rule: with 12 bearings, their test set lacked a class.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FBFBF8;padding:40px;border-radius:16px">
+<h3 style="font-size:36px;font-weight:600;color:#14213D">Small training sets</h3>
+<p style="font-size:28px;line-height:1.4">7–9 training bearings per fold, about 20 in the full design (no artificial-damage bearings yet).</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FBFBF8;padding:40px;border-radius:16px">
+<h3 style="font-size:36px;font-weight:600;color:#14213D">Runs are not independent</h3>
+<p style="font-size:28px;line-height:1.4">All 11 runs reuse the same 12 bearings, so Wilcoxon p-values overstate the evidence.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FBFBF8;padding:40px;border-radius:16px">
+<h3 style="font-size:36px;font-weight:600;color:#14213D">Low power</h3>
+<p style="font-size:28px;line-height:1.4">Run-to-run sd 0.16–0.18 exceeds every model gap; smallest Holm-adjusted p for the gate is 0.117.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7179">Fold-by-fold list: docs/P1_RUNS.md</p>
+<aside>Be upfront about these four points before anyone asks. The skip rule was in the code before any result existed; we did not drop folds after seeing results. Because the runs share bearings, the effective sample is about 12 bearings, not 11 independent runs. With this little data, only a difference that holds in essentially every run could reach significance after correction.</aside>
+</section>

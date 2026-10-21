@@ -1,0 +1,23 @@
+<section id="ob3-ui" data-transition="fade" style="background:#FBFBF8;color:#1E2A3B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#14213D">OB3 verified on the real dashboard</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px 48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<img src="/_blob/106917d9aba9248ec5d5997205d29b7b" alt="Vibration dropout injected: vibration flagged failed, gate weight moves fully to current, WARNING" style="width:640px;height:299px;object-fit:contain;background:#0E1117;border-radius:10px">
+<p style="font-size:24px;color:#4A5568">Vibration dropout: flagged, weight moves to current</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<img src="/_blob/e9229b487ac2c0a19262d1526810714d" alt="Both sensors dropped: SENSOR_FAULT, diagnosis suspended, advice for both sensors" style="width:640px;height:299px;object-fit:contain;background:#0E1117;border-radius:10px">
+<p style="font-size:24px;color:#4A5568">Both sensors lost: SENSOR_FAULT, diagnosis suspended</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<img src="/_blob/c2b6b098903bafd42e1658a71715aef1" alt="Unseen healthy bearing K004 reaches WARNING: outer race 0.46 versus healthy 0.27" style="width:640px;height:299px;object-fit:contain;background:#0E1117;border-radius:10px">
+<p style="font-size:24px;color:#4A5568">Healthy K004: the known false alarm, shown as it is</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<img src="/_blob/4e462322f45d2abf2938dfda019e53ae" alt="History tab: evidence trend, logged state change NORMAL to WARNING with rule, HTML and CSV download buttons" style="width:640px;height:299px;object-fit:contain;background:#0E1117;border-radius:10px">
+<p style="font-size:24px;color:#4A5568">History: trend, logged events, HTML and CSV export</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7179">Laptop, 21 Oct 2026, real held-out recordings · docs/UI_VALIDATION_2026-10-21.md</p>
+<aside>All seven checks passed. Exports were checked on disk: the SQLite log held 32 windows and 5 state changes, and the CSV and HTML reports matched the session. Four small issues were found and logged, not changed before the review: with both sensors dead the weights line still shows the gate’s raw weights (the prediction itself correctly falls back to the prior); acknowledgement is not logged as its own event; the event table shows raw timestamps; and the state history follows the asset name rather than the recording.</aside>
+</section>

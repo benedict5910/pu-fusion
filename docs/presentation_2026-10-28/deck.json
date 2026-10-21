@@ -1,0 +1,19 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-21T17:30:00Z"},
+  "lists": "css",
+  "title": "IVHM Progress Presentation, 28 Oct 2026",
+  "order": ["cover", "status", "data", "method", "ob1-result", "ob1-claim", "ob1-figs", "ob1-limits", "far", "ob2-result", "ob2-why", "ob3", "ob3-ui", "ob3-demo", "ob4", "plan", "next", "conclusion", "refs"],
+  "sections": {
+    "s1": {"description": "Where the project stands and what changed since approval", "start": "cover"},
+    "s2": {"description": "OB1: benchmark results on unseen Paderborn bearings, with limits", "start": "method"},
+    "s3": {"description": "OB2: label-free sensor-quality assessment", "start": "ob2-result"},
+    "s4": {"description": "OB3 health layer and OB4 rig status", "start": "ob3"},
+    "s5": {"description": "Progress against plan, remaining work, conclusion and references", "start": "plan"}
+  },
+  "faces": {
+    "source-serif-4": {"family": "Source Serif 4", "href": "https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap"},
+    "ibm-plex-sans": {"family": "IBM Plex Sans", "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"}
+  },
+  "designSystems": []
+}

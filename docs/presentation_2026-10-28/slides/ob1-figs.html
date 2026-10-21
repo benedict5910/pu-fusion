@@ -1,0 +1,15 @@
+<section id="ob1-figs" data-transition="fade" style="background:#FBFBF8;color:#1E2A3B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#14213D">Where errors fall, and why random splits mislead</h2>
+<div style="display:flex;gap:32px;align-items:start">
+<div style="flex:1.55;display:flex;flex-direction:column;gap:16px">
+<img src="/_blob/f6aa1cf5312ddb144ec73425fdb9b5fa" alt="Row-normalised confusion matrices on clean sensors for vibration-only, early fusion and gated fusion; healthy correct 55-58 percent, outer race 46-52 percent, inner race 58-67 percent" style="width:1000px;height:330px;object-fit:contain;background:#FFFFFF;border-radius:12px">
+<p style="font-size:26px;line-height:1.4;color:#4A5568">Healthy windows are often called outer race; outer and inner race are confused with each other.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<img src="/_blob/d44d6a8afddfe434865d0ae6bdb26e19" alt="Bar chart: random recording split gives macro-F1 0.95 to 0.98, bearing-disjoint split gives 0.53 to 0.57" style="width:632px;height:330px;object-fit:contain;background:#FFFFFF;border-radius:12px">
+<p style="font-size:26px;line-height:1.4;color:#4A5568">A random split that reuses bearings scores 0.95–0.98; on unseen bearings, 0.53–0.57.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7179">Counts summed over 11 P1 runs · leaky reference: 3 random recording splits</p>
+<aside>Left: most errors are healthy bearings called outer race, and confusion between the two damage types. Right: this is why the bearing-disjoint protocol matters. If the same bearings appear in training and testing, accuracy looks almost perfect; the honest number is about 0.55.</aside>
+</section>

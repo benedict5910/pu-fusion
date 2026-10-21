@@ -1,0 +1,16 @@
+<section id="ob3-demo" data-transition="fade" style="background:#14213D;color:#F3F1EA;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#F3F1EA">Live demonstration sequence</h2>
+<div style="display:flex;gap:56px;align-items:start">
+<ol style="flex:1;font-size:30px;line-height:1.45;color:#E4E9F1">
+<li>Unseen inner-race bearing KI18, clean: WARNING, then INSPECT with explanation and advice</li>
+<li>Acknowledge INSPECT: back to NORMAL</li>
+<li>Inject vibration dropout: vibration flagged, weight moves to current</li>
+<li>Drop both sensors: SENSOR_FAULT, diagnosis suspended</li>
+<li>Unseen healthy bearing K004: the known false alarm, shown openly</li>
+<li>History tab: download the HTML report and CSV log</li>
+</ol>
+<img src="/_blob/10887dc715b0bb9dfd903d8ecb9e029d" alt="Dashboard showing INSPECT for unseen inner-race bearing KI18: inner race 0.84, both sensors ok, gate weights vib 0.77 cur 0.23, inspection advice" style="width:640px;height:317px;object-fit:contain;background:#0E1117;border-radius:12px">
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#9FB0C9">Streamlit dashboard · app/dashboard.py · launch: scripts\windows\run_dashboard.bat</p>
+<aside>About four minutes. Launch the dashboard before the session starts; the first run trains the demo model, which takes a few minutes. Select the recordings named here in the sidebar. If the laptop fails, use the screenshots in results/starter/ui and the exported reports in results/starter/ui/exports as backup. Use a new asset name for each bearing (e.g. KI18-demo, K004-demo) so its history starts fresh. In step 3 the fault type is misread with current alone; say that this matches the weak current-only benchmark score.</aside>
+</section>

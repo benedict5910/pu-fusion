@@ -20,6 +20,9 @@ def classification(y, p) -> dict:
         "nll": float(-np.log(p[np.arange(len(y)), y] + 1e-9).mean()),
         "brier": float(((p - np.eye(3)[y]) ** 2).sum(1).mean()),
         "ece": ece(y, p),
+        # 3x3 confusion counts (rows = true, cols = predicted), row-major, space-separated
+        "cm": " ".join(str(int(v)) for v in
+                       np.bincount(3 * np.asarray(y) + yhat, minlength=9)[:9]),
     }
 
 

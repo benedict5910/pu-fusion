@@ -23,7 +23,7 @@ pip install -r requirements.txt
 python -m unittest discover -s tests -v          # 31 tests
 
 # Benchmark study, one command (download -> features -> P1/P2/P3/leaky -> summary -> demo model)
-python scripts/run_all.py                         # starter subset, ~1.9 GB
+python scripts/run_all.py                         # starter subset, ~1.9 GB (Windows: scripts\windows\pu_download.bat, then --skip-download)
 python scripts/run_all.py --subset all            # full dataset, ~5.1 GB, final results
 
 # Rig (or --simulate without hardware)

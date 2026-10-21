@@ -180,5 +180,15 @@ class TestModels(unittest.TestCase):
         np.testing.assert_array_equal(a["aug"]["fv"], b["aug"]["fv"])
 
 
+
+class TestMetricsConfusion(unittest.TestCase):
+    def test_cm_counts(self):
+        from pufusion.metrics import classification
+        y = np.array([0, 0, 1, 2, 2, 2])
+        p = np.eye(3)[[0, 1, 1, 2, 0, 2]]
+        cm = np.array(classification(y, p)["cm"].split(), int).reshape(3, 3)
+        self.assertEqual(cm.sum(), len(y))
+        np.testing.assert_array_equal(cm, [[1, 1, 0], [0, 1, 0], [1, 0, 2]])
+
 if __name__ == "__main__":
     unittest.main()

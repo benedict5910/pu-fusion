@@ -67,13 +67,22 @@ def main():
 
     if a.proposed in models and len(runs) >= 6:
         print(f"\nPaired Wilcoxon, {a.proposed} vs baseline (per-run mean macro-F1; Holm-correct across baselines)")
+        tests = []
         for g in ("clean", "seen", "heldout"):
             for m in models:
                 if m == a.proposed or not len(per[(m, g)]):
                     continue
                 d = per[(a.proposed, g)] - per[(m, g)]
                 p = wilcoxon(d).pvalue if np.any(d != 0) else 1.0
-                print(f"  {g:8s} vs {m:20s} Δ={d.mean():+.3f}  p={p:.4f}")
+                tests.append((g, m, d.mean(), p))
+        # Holm step-down correction across all comparisons printed here
+        order = np.argsort([t[3] for t in tests])
+        adj, run = np.empty(len(tests)), 0.0
+        for rank, i in enumerate(order):
+            run = max(run, (len(tests) - rank) * tests[i][3])
+            adj[i] = min(1.0, run)
+        for (g, m, dm, p), ph in zip(tests, adj):
+            print(f"  {g:8s} vs {m:20s} Δ={dm:+.3f}  p={p:.4f}  p_holm={ph:.4f}")
     elif a.proposed in models:
         print("\n(too few runs for a paired test; use >= 6, ideally 15 = 5 repeats x 3 folds)")
 

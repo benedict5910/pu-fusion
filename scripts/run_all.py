@@ -57,6 +57,7 @@ def main():
         subprocess.run([PY, "scripts/eval_quality.py", "--features", feats, "--repeats", str(a.repeats),
                         "--out", str(q)], cwd=ROOT, stdout=f, check=True)
     print((res / "SUMMARY.txt").read_text())
+    step("figures", ["scripts/make_figures.py", res])
     step("demo model", ["scripts/train_demo_model.py", "--features", feats, "--out", "models/demo_models.pkl"],
          "models/demo_models.pkl")
     print("\nDone. Send results/%s/ back for review; start the dashboard with:\n"

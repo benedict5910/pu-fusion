@@ -94,8 +94,31 @@ class TestHealth(unittest.TestCase):
         self.assertEqual(states[-1], INSPECT)
         a = h.update(0.0, None, {"vib": OK, "cur": OK})
         self.assertEqual(a.state, INSPECT)                     # latched
+        rec = h.acknowledge()
+        self.assertEqual(rec["to_state"], WARNING)              # acknowledged, NOT healthy
+        self.assertEqual(h.state, WARNING)
+        # quiet evidence after acknowledgement: WARNING held until recover_n quiet windows
+        quiet = [h.update(0.0, None, {"vib": OK, "cur": OK}).state for _ in range(h.p.recover_n)]
+        self.assertTrue(all(s == WARNING for s in quiet[:-1]))
+        self.assertEqual(quiet[-1], NORMAL)
+
+    def test_ack_does_not_hide_persistent_fault(self):
+        h = HealthTracker()
+        for _ in range(4):
+            h.update(0.95, "outer_race", {"vib": OK, "cur": OK})
+        self.assertEqual(h.state, INSPECT)
         h.acknowledge()
-        self.assertEqual(h.update(0.0, None, {"vib": OK, "cur": OK}).state, NORMAL)
+        states = [h.update(0.95, "outer_race", {"vib": OK, "cur": OK}).state for _ in range(h.p.inspect_k)]
+        self.assertNotIn(NORMAL, states)                         # never shown healthy
+        self.assertEqual(states[-1], INSPECT)                    # persistent evidence re-latches
+
+    def test_ack_only_applies_to_inspect(self):
+        h = HealthTracker()
+        for _ in range(2):
+            h.update(0.6, None, {"vib": OK, "cur": OK})
+        self.assertEqual(h.state, WARNING)
+        self.assertIsNone(h.acknowledge())
+        self.assertEqual(h.state, WARNING)
 
     def test_warning_recovers_after_quiet_windows(self):
         h = HealthTracker()

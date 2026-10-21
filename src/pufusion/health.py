@@ -31,6 +31,9 @@ _SENSOR_ADVICE = {
     "cur": "check the current sensor wiring and supply",
 }
 _SENSOR_LABEL = {"vib": "Vibration", "cur": "Current"}
+ACK_RULE = "INSPECT acknowledged by operator - component condition NOT verified; monitoring continues"
+ACK_ADVICE = ("Acknowledgement records that the alert was seen; it does not confirm the bearing is healthy. "
+              "The state stays WARNING until consecutive windows show no fault evidence.")
 
 
 @dataclass
@@ -64,9 +67,21 @@ class HealthTracker:
         self.quiet = 0
 
     def acknowledge(self):
-        """Operator acknowledges an INSPECT state (e.g. after inspection)."""
-        self.state, self.quiet = NORMAL, 0
-        self.hist.clear()
+        """Operator acknowledges a latched INSPECT alert.
+
+        Acknowledging records that the alert was seen; it is NOT evidence that the component
+        is healthy. The latch is released and the state drops to WARNING (never to NORMAL).
+        Escalation is then judged on evidence recorded AFTER the acknowledgement: if fault
+        evidence persists, INSPECT re-latches within ``inspect_k`` windows; NORMAL is reached
+        only after ``recover_n`` consecutive quiet windows of new data.
+        Returns an audit record to log, or None when there is no INSPECT to acknowledge.
+        """
+        if self.state != INSPECT:
+            return None
+        self.state, self.quiet = WARNING, 0
+        self.hist.clear()          # re-escalation judged on new evidence only; state is NOT reset to NORMAL
+        return {"from_state": INSPECT, "to_state": WARNING, "rule": ACK_RULE,
+                "recommendations": [ACK_ADVICE]}
 
     def update(self, p_fault: float | None, fault_type: str | None, reliability: dict) -> Assessment:
         p = self.p

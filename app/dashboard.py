@@ -95,6 +95,10 @@ if mode == "Benchmark replay":
     if not files:
         st.error(f"No raw files for held-out bearings {bundle['holdout']}"); st.stop()
     f = st.sidebar.selectbox("Recording (unseen bearing)", files, format_func=lambda p: p.stem)
+    # a new recording is a different bearing: never carry one bearing's state history into another
+    if st.session_state.get("tracker_rec") != f.stem:
+        st.session_state.tracker, st.session_state.tracker_rec = HealthTracker(), f.stem
+    tracker = st.session_state.tracker
     engine = MonitorEngine(BenchmarkDiagnoser(bundle["models"]["gated_both"], bundle["assessors"]),
                            SOURCE_BENCHMARK, asset, store, tracker)
     rec = load_mat(f)
@@ -143,9 +147,16 @@ with tab_live:
     c4, c5 = st.columns([2, 3])
     comp_box, rec_box = c4.empty(), c5.empty()
     expl_box = st.empty()
-    if st.button("Acknowledge INSPECT (after inspection)"):
-        tracker.acknowledge()
-        st.success("Acknowledged - state reset to NORMAL.")
+    if st.button("Acknowledge INSPECT alert"):
+        ack = tracker.acknowledge()
+        if ack is None:
+            st.info(f"Nothing to acknowledge: current state is {tracker.state}, not INSPECT.")
+        else:
+            store.log_event(asset, engine.source, ack["from_state"], ack["to_state"], ack["rule"],
+                            ack["recommendations"], time.time())
+            st.warning("INSPECT acknowledged and logged. This does NOT confirm the bearing is healthy: "
+                       "the state is now WARNING and returns to NORMAL only after consecutive windows "
+                       "show no fault evidence; persistent evidence re-raises INSPECT.")
 
     if run:
         for win in stream():
@@ -159,7 +170,10 @@ with tab_live:
                                 "current": (cur[0] if cur.ndim > 1 else cur)[:1500]})
             rel_box.markdown("**Sensor reliability**\n\n" + "\n\n".join(
                 f"- {s}: **{r.status}** ({r.score:.2f}) {', '.join(r.reasons)}" for s, r in d["reliability"].items()))
-            if "probs" in d:
+            if not a.diagnosis_available:
+                txt = ("**Diagnosis suspended** - no usable sensor. No fault probabilities or sensor "
+                       "weights are shown because none are supported by data.")
+            elif "probs" in d:
                 txt = "**AI diagnosis**\n\n" + "\n".join(f"- {k}: {v:.2f}" for k, v in d["probs"].items())
                 if d.get("weights"):
                     txt += f"\n\nSensor weights: vib {d['weights']['vib']:.2f} / cur {d['weights']['cur']:.2f}"
@@ -171,7 +185,7 @@ with tab_live:
             diag_box.markdown(txt)
             comp_box.markdown(component_svg(a.state, d["reliability"]), unsafe_allow_html=True)
             rec_box.markdown("**Recommendations**\n\n" + ("\n".join(f"- {r}" for r in a.recommendations) or "- none"))
-            e = d.get("explanation")
+            e = d.get("explanation") if a.diagnosis_available else None
             if e:
                 expl_box.markdown(
                     f"**Why** - predicted *{e['predicted']}* (confidence {e['confidence']:.2f}). "
@@ -188,7 +202,8 @@ with tab_hist:
         st.line_chart({"fault evidence": [h["p_fault"] if h["p_fault"] is not None else np.nan for h in hist],
                        "vib reliability": [h["rel_vib"] for h in hist],
                        "cur reliability": [h["rel_cur"] for h in hist]})
-        st.dataframe([{k: e[k] for k in ("ts", "source", "from_state", "to_state", "rule")} for e in store.events(asset)])
+        st.dataframe([{"time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(e["ts"])),
+                       **{k: e[k] for k in ("source", "from_state", "to_state", "rule")}} for e in store.events(asset)])
         rp = ROOT / "data" / f"report_{asset}.html"
         cp = ROOT / "data" / f"history_{asset}.csv"
         store.export_html(rp, asset); store.export_csv(cp, asset)

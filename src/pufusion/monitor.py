@@ -23,6 +23,11 @@ SOURCE_RIG = "rig live"
 SOURCE_SIM = "SIMULATED rig"
 
 
+def _temp_or_none(t):
+    """DS18B20 reports -127 C when not fitted or disconnected: show 'no reading', not a temperature."""
+    return None if t is None or not np.isfinite(t) or t <= -100 else float(t)
+
+
 class BenchmarkDiagnoser:
     def __init__(self, model, assessors):
         self.model, self.assessors = model, assessors
@@ -61,7 +66,7 @@ class RigDiagnoser:
                 "confidence": None, "sensor_evidence": {s: float(np.ravel(v)[0]) for s, v in ev.items()},
                 "readings": {"vib_rms_g": float(np.sqrt(np.nanmean(np.square(win["vib"])))),
                              "cur_mean_a": float(np.nanmean(win["cur"])), "rpm": win.get("rpm"),
-                             "temp_c": win.get("temp_c"), "vbus": win.get("vbus")}}
+                             "temp_c": _temp_or_none(win.get("temp_c")), "vbus": win.get("vbus")}}
 
 
 class MonitorEngine:

@@ -1,0 +1,369 @@
+{
+ "n_folds": 11,
+ "folds": [
+  {
+   "fold": "P1_r0_f0",
+   "test": [
+    "K003",
+    "K004",
+    "KA15",
+    "KI16"
+   ],
+   "train_healthy": [
+    "K001",
+    "K002"
+   ],
+   "vib_only": 0.407,
+   "early_fusion": 0.38,
+   "late_average": 0.398,
+   "gated_both": 0.386
+  },
+  {
+   "fold": "P1_r0_f2",
+   "test": [
+    "K001",
+    "K002",
+    "KA22",
+    "KI14",
+    "KI18"
+   ],
+   "train_healthy": [
+    "K003",
+    "K004"
+   ],
+   "vib_only": 0.486,
+   "early_fusion": 0.478,
+   "late_average": 0.489,
+   "gated_both": 0.486
+  },
+  {
+   "fold": "P1_r1_f2",
+   "test": [
+    "K001",
+    "K004",
+    "KA16",
+    "KI04",
+    "KI14"
+   ],
+   "train_healthy": [
+    "K002",
+    "K003"
+   ],
+   "vib_only": 0.427,
+   "early_fusion": 0.48,
+   "late_average": 0.476,
+   "gated_both": 0.639
+  },
+  {
+   "fold": "P1_r2_f0",
+   "test": [
+    "K003",
+    "K004",
+    "KA22",
+    "KI04"
+   ],
+   "train_healthy": [
+    "K001",
+    "K002"
+   ],
+   "vib_only": 0.389,
+   "early_fusion": 0.372,
+   "late_average": 0.392,
+   "gated_both": 0.455
+  },
+  {
+   "fold": "P1_r2_f1",
+   "test": [
+    "K002",
+    "KA04",
+    "KA15",
+    "KI14",
+    "KI18"
+   ],
+   "train_healthy": [
+    "K001",
+    "K003",
+    "K004"
+   ],
+   "vib_only": 0.936,
+   "early_fusion": 0.981,
+   "late_average": 0.947,
+   "gated_both": 0.951
+  },
+  {
+   "fold": "P1_r2_f2",
+   "test": [
+    "K001",
+    "KA16",
+    "KI16"
+   ],
+   "train_healthy": [
+    "K002",
+    "K003",
+    "K004"
+   ],
+   "vib_only": 0.003,
+   "early_fusion": 0.0,
+   "late_average": 0.002,
+   "gated_both": 0.002
+  },
+  {
+   "fold": "P1_r3_f0",
+   "test": [
+    "K002",
+    "K003",
+    "KA04",
+    "KA16",
+    "KI18"
+   ],
+   "train_healthy": [
+    "K001",
+    "K004"
+   ],
+   "vib_only": 0.493,
+   "early_fusion": 0.592,
+   "late_average": 0.51,
+   "gated_both": 0.505
+  },
+  {
+   "fold": "P1_r3_f1",
+   "test": [
+    "K001",
+    "KA22",
+    "KI14",
+    "KI16"
+   ],
+   "train_healthy": [
+    "K002",
+    "K003",
+    "K004"
+   ],
+   "vib_only": 0.003,
+   "early_fusion": 0.0,
+   "late_average": 0.002,
+   "gated_both": 0.003
+  },
+  {
+   "fold": "P1_r3_f2",
+   "test": [
+    "K004",
+    "KA15",
+    "KI04"
+   ],
+   "train_healthy": [
+    "K001",
+    "K002",
+    "K003"
+   ],
+   "vib_only": 0.775,
+   "early_fusion": 0.78,
+   "late_average": 0.8,
+   "gated_both": 0.867
+  },
+  {
+   "fold": "P1_r4_f0",
+   "test": [
+    "K004",
+    "KA04",
+    "KA16",
+    "KI14"
+   ],
+   "train_healthy": [
+    "K001",
+    "K002",
+    "K003"
+   ],
+   "vib_only": 0.903,
+   "early_fusion": 0.794,
+   "late_average": 0.791,
+   "gated_both": 0.825
+  },
+  {
+   "fold": "P1_r4_f1",
+   "test": [
+    "K001",
+    "K002",
+    "KA15",
+    "KA22",
+    "KI04"
+   ],
+   "train_healthy": [
+    "K003",
+    "K004"
+   ],
+   "vib_only": 0.048,
+   "early_fusion": 0.049,
+   "late_average": 0.063,
+   "gated_both": 0.048
+  }
+ ],
+ "far_by_heldout_healthy_bearing": {
+  "vib_only": {
+   "K003": 0.0,
+   "K004": 0.821,
+   "K001": 0.006,
+   "K002": 0.748
+  },
+  "early_fusion": {
+   "K003": 0.063,
+   "K004": 0.807,
+   "K001": 0.001,
+   "K002": 0.758
+  },
+  "late_average": {
+   "K003": 0.009,
+   "K004": 0.817,
+   "K001": 0.009,
+   "K002": 0.761
+  },
+  "gated_both": {
+   "K003": 0.008,
+   "K004": 0.869,
+   "K001": 0.062,
+   "K002": 0.752
+  }
+ },
+ "far_by_condition": {
+  "vib_only": {
+   "N09_M07_F10": 0.239,
+   "N15_M01_F10": 0.478,
+   "N15_M07_F04": 0.479,
+   "N15_M07_F10": 0.479
+  },
+  "early_fusion": {
+   "N09_M07_F10": 0.26,
+   "N15_M01_F10": 0.487,
+   "N15_M07_F04": 0.473,
+   "N15_M07_F10": 0.488
+  },
+  "late_average": {
+   "N09_M07_F10": 0.239,
+   "N15_M01_F10": 0.483,
+   "N15_M07_F04": 0.483,
+   "N15_M07_F10": 0.488
+  },
+  "gated_both": {
+   "N09_M07_F10": 0.33,
+   "N15_M01_F10": 0.504,
+   "N15_M07_F04": 0.492,
+   "N15_M07_F10": 0.483
+  }
+ },
+ "pred_class_share_on_healthy": {
+  "vib_only|K003": {
+   "healthy": 1.0,
+   "outer_race": 0.0,
+   "inner_race": 0.0
+  },
+  "vib_only|K004": {
+   "healthy": 0.179,
+   "outer_race": 0.518,
+   "inner_race": 0.303
+  },
+  "early_fusion|K003": {
+   "healthy": 0.937,
+   "outer_race": 0.063,
+   "inner_race": 0.0
+  },
+  "early_fusion|K004": {
+   "healthy": 0.193,
+   "outer_race": 0.407,
+   "inner_race": 0.4
+  },
+  "late_average|K003": {
+   "healthy": 0.991,
+   "outer_race": 0.009,
+   "inner_race": 0.001
+  },
+  "late_average|K004": {
+   "healthy": 0.183,
+   "outer_race": 0.402,
+   "inner_race": 0.414
+  },
+  "gated_both|K003": {
+   "healthy": 0.992,
+   "outer_race": 0.008,
+   "inner_race": 0.0
+  },
+  "gated_both|K004": {
+   "healthy": 0.131,
+   "outer_race": 0.408,
+   "inner_race": 0.462
+  },
+  "vib_only|K001": {
+   "healthy": 0.994,
+   "outer_race": 0.0,
+   "inner_race": 0.006
+  },
+  "vib_only|K002": {
+   "healthy": 0.252,
+   "outer_race": 0.71,
+   "inner_race": 0.038
+  },
+  "early_fusion|K001": {
+   "healthy": 0.999,
+   "outer_race": 0.001,
+   "inner_race": 0.0
+  },
+  "early_fusion|K002": {
+   "healthy": 0.242,
+   "outer_race": 0.727,
+   "inner_race": 0.031
+  },
+  "late_average|K001": {
+   "healthy": 0.991,
+   "outer_race": 0.002,
+   "inner_race": 0.007
+  },
+  "late_average|K002": {
+   "healthy": 0.239,
+   "outer_race": 0.71,
+   "inner_race": 0.051
+  },
+  "gated_both|K001": {
+   "healthy": 0.938,
+   "outer_race": 0.035,
+   "inner_race": 0.027
+  },
+  "gated_both|K002": {
+   "healthy": 0.248,
+   "outer_race": 0.703,
+   "inner_race": 0.049
+  }
+ },
+ "healthy_bearings_in_training_per_fold": [
+  2,
+  2,
+  2,
+  2,
+  3,
+  3,
+  2,
+  3,
+  3,
+  3,
+  2
+ ],
+ "health_rule_final_state_on_healthy_recordings": {
+  "vib_only": {
+   "INSPECT": 0.388,
+   "NORMAL": 0.541,
+   "WARNING": 0.071
+  },
+  "early_fusion": {
+   "INSPECT": 0.383,
+   "NORMAL": 0.521,
+   "WARNING": 0.096
+  },
+  "late_average": {
+   "INSPECT": 0.351,
+   "NORMAL": 0.439,
+   "WARNING": 0.21
+  },
+  "gated_both": {
+   "INSPECT": 0.381,
+   "NORMAL": 0.418,
+   "WARNING": 0.201
+  }
+ }
+}

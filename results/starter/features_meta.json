@@ -1,0 +1,25 @@
+{
+  "source": "/home/claude/data/raw + /home/claude/data/raw_ka16",
+  "merged_from": [
+    "/home/claude/data/features_starter11.npz",
+    "/home/claude/data/features_ka16.npz"
+  ],
+  "options": {
+    "raw": "/home/claude/data/raw",
+    "out": "/home/claude/data/features_starter11.npz",
+    "synthetic": false,
+    "synthetic_reps": 2,
+    "synthetic_seconds": 1.0,
+    "win": 0.5,
+    "n_aug": 1,
+    "eval_windows": 1,
+    "max_reps": 20,
+    "jobs": 2
+  },
+  "errors": [],
+  "n_rows": {
+    "clean": 7667,
+    "aug": 7667,
+    "corr": 36480
+  }
+}

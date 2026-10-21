@@ -1,0 +1,360 @@
+{
+  "source": "/home/claude/data/raw + /home/claude/data/raw_ka16",
+  "folds": 15,
+  "metrics": {
+    "both:noise:0": {
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_detect": {
+        "mean": 0.0827,
+        "sd": 0.1521
+      }
+    },
+    "both:noise:10": {
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_detect": {
+        "mean": 0.024,
+        "sd": 0.0489
+      }
+    },
+    "clean": {
+      "cur_false_flag": {
+        "mean": 0.0122,
+        "sd": 0.0241
+      },
+      "vib_false_flag": {
+        "mean": 0.016,
+        "sd": 0.026
+      }
+    },
+    "clipping:0.05": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      }
+    },
+    "clipping:0.2": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      }
+    },
+    "clipping:0.5": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.9616,
+        "sd": 0.0228
+      }
+    },
+    "dropout:None": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      }
+    },
+    "gain:0.5": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 0.0833,
+        "sd": 0.1179
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.0226,
+        "sd": 0.0228
+      }
+    },
+    "gain:2.0": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 0.7631,
+        "sd": 0.0248
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.1605,
+        "sd": 0.237
+      }
+    },
+    "intermittent:0.05": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      }
+    },
+    "intermittent:0.2": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      }
+    },
+    "intermittent:0.5": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      }
+    },
+    "noise:-5": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.1545,
+        "sd": 0.2399
+      }
+    },
+    "noise:0": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.082,
+        "sd": 0.1534
+      }
+    },
+    "noise:10": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.0245,
+        "sd": 0.0498
+      }
+    },
+    "noise:20": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.0145,
+        "sd": 0.0299
+      }
+    },
+    "noise:5": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.0372,
+        "sd": 0.0761
+      }
+    },
+    "spikes:10": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.0187,
+        "sd": 0.0307
+      }
+    },
+    "spikes:100": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.0308,
+        "sd": 0.0536
+      }
+    },
+    "spikes:1000": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 0.1076,
+        "sd": 0.1712
+      }
+    },
+    "stuck:None": {
+      "cur_cross_flag": {
+        "mean": 0.0131,
+        "sd": 0.0248
+      },
+      "cur_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "vib_cross_flag": {
+        "mean": 0.0153,
+        "sd": 0.0258
+      },
+      "vib_detect": {
+        "mean": 1.0,
+        "sd": 0.0
+      }
+    }
+  }
+}

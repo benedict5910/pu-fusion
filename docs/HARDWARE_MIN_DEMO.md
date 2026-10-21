@@ -1,5 +1,7 @@
 # OB4 – Minimum hardware for a live-monitoring demonstration (rev. 2, 22 Oct 2026)
 
+> **Superseded in part by `HARDWARE_FINAL_2026-10-22.md` (rev. 3):** the motor (now Pololu #3225), adapter (Mean Well GST60A12-P1J), fuse (T1 A), unbalance mass, purchase list and criteria A2/E1–E3 there replace the values below. Wiring, safety, isolation rule and procedures here still apply.
+
 **Scope.** This is the smallest rig that shows live monitoring with the existing firmware
 (`firmware/rig_esp32/rig_esp32.ino`) and host code (`src/pufusion/rig.py`, `scripts/rig_*.py`,
 dashboard mode "Rig - live"). Nothing here changes the frozen OB1/OB2 results or the OB3 health

@@ -151,7 +151,10 @@ class TestStore(unittest.TestCase):
             html = Path(s.export_html(Path(d) / "r.html", "a")).read_text()
             self.assertIn("SIMULATED rig", html)
             self.assertIn("watch trend", html)
-            self.assertIn("p_fault", Path(s.export_csv(Path(d) / "r.csv", "a")).read_text())
+            csv_text = Path(s.export_csv(Path(d) / "r.csv", "a")).read_text()
+            self.assertIn("p_fault", csv_text)
+            self.assertTrue(csv_text.startswith("time,ts,asset"))
+            s.close()
 
 
 class TestRig(unittest.TestCase):
@@ -269,6 +272,7 @@ class TestRig(unittest.TestCase):
             dead = [eng.step(w, ts=200 + i) for i, w in enumerate(self._session("healthy", 5, 4, "vib_dropout"))]
             self.assertEqual(dead[-1]["diagnosis"]["reliability"]["vib"].status, "failed")
             self.assertTrue(dead[-1]["assessment"].diagnosis_available)
+            eng.store.close()
 
 
 class TestBenchmarkEngine(unittest.TestCase):

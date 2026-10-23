@@ -57,6 +57,8 @@ def main():
     ap.add_argument("--test-healthy", nargs="+", required=True)
     ap.add_argument("--test-fault", nargs="+", required=True)
     ap.add_argument("--config", default="configs/rig.json")
+    ap.add_argument("--out", default="models/rig_models.pkl", help="model file (simulated sessions: use a separate file)")
+    ap.add_argument("--report", default="results/rig_eval.json")
     a = ap.parse_args()
     names = [a.fit, a.cal, *a.test_healthy, *a.test_fault]
     if len(set(names)) != len(names):
@@ -74,11 +76,12 @@ def main():
     for n in [*a.test_healthy, *a.test_fault]:
         w, m = load_session(n, cfg)
         report["sessions"][n] = {"label": m["label"], "source": m["source"], **run_session(diag, w, cfg)}
-    Path("results").mkdir(exist_ok=True)
-    Path("results/rig_eval.json").write_text(json.dumps(report, indent=2))
-    Path("models").mkdir(exist_ok=True)
-    with open("models/rig_models.pkl", "wb") as f:
-        pickle.dump({"detector": det, "assessors": assess, "config": cfg, "trained_on": [a.fit, a.cal]}, f)
+    Path(a.report).parent.mkdir(parents=True, exist_ok=True)
+    Path(a.report).write_text(json.dumps(report, indent=2))
+    Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+    with open(a.out, "wb") as f:
+        pickle.dump({"detector": det, "assessors": assess, "config": cfg, "trained_on": [a.fit, a.cal],
+                     "data_source": report["data_source"]}, f)
     print(json.dumps(report, indent=2))
     if any("SIMULATED" in s for s in report["data_source"]):
         print("\nSIMULATED sessions: this checks the pipeline only; it is not a rig result.")

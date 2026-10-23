@@ -29,6 +29,10 @@ class HealthStore:
         self.db = sqlite3.connect(self.path, check_same_thread=False)
         self.db.executescript(_SCHEMA)
 
+    def close(self):
+        """Release the SQLite file (Windows cannot delete an open database)."""
+        self.db.close()
+
     def log_window(self, rec: dict):
         row = [rec.get(c) for c in _COLS]
         row[0] = row[0] or time.time()
@@ -57,8 +61,9 @@ class HealthStore:
     def export_csv(self, path, asset=None):
         rows = self.history(asset, limit=10 ** 9)
         with open(path, "w", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=_COLS)
-            w.writeheader(); w.writerows(rows)
+            w = csv.DictWriter(f, fieldnames=["time"] + _COLS)      # readable local time + raw epoch ts
+            w.writeheader()
+            w.writerows({"time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(r["ts"])), **r} for r in rows)
         return path
 
     def export_html(self, path, asset=None):

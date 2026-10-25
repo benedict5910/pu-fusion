@@ -19,7 +19,7 @@ tests/          unit tests (stdlib unittest; pytest also works)
 
 ## Quick start
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-dev.txt   (cloud/dashboard only: requirements.txt)
 python -m unittest discover -s tests -v          # 31 tests
 
 # Benchmark study, one command (download -> features -> P1/P2/P3/leaky -> summary -> demo model)

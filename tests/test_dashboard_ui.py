@@ -162,5 +162,44 @@ class TestDashboardHeadless(unittest.TestCase):
         self.st.session_state["mode"] = "Benchmark replay"
 
 
+@unittest.skipUnless(HAVE_DATA, "held-out recordings / demo model not present")
+@unittest.skipIf(HAVE_STREAMLIT, "real Streamlit present: covered by test_dashboard_apptest")
+class TestCloudSessionIsolation(unittest.TestCase):
+    """IVHM_CLOUD=1: each browser session has its own temporary log; no hardware mode."""
+
+    def setUp(self):
+        import fake_streamlit as F
+        self.st = F.install()
+        os.environ["IVHM_CLOUD"] = "1"
+
+    def tearDown(self):
+        os.environ.pop("IVHM_CLOUD", None)
+
+    def run_app(self, press=None, **ss):
+        self.st.session_state.update(ss)
+        if press:
+            self.st.PRESS.add(press)
+        self.st.LOG.clear()
+        runpy.run_path(str(ROOT / "app" / "dashboard.py"))
+        return "\n".join(self.st.LOG)
+
+    def test_sessions_do_not_share_history(self):
+        self.st.session_state.clear()                                     # viewer A
+        self.run_app("▶ Run monitoring", view="Live Diagnostics", nwin=8, pace=0.0, asset="cloud-KI18",
+                     rec="N15_M07_F10_KI18_1", mode="Benchmark replay", target="none")
+        dir_a = self.st.session_state["_store_dir"]
+        out = self.run_app(view="History & Reports", hist_asset="cloud-KI18")
+        self.assertEqual(out.count("<download"), 2)
+        self.assertTrue(dir_a.startswith(tempfile.gettempdir()))
+        self.assertTrue(any(p.startswith("report_cloud-KI18") for p in os.listdir(dir_a)))
+        self.st.session_state.clear()                                     # viewer B, fresh session
+        out = self.run_app(view="History & Reports")
+        self.assertIn("No history yet", out)
+        self.assertNotEqual(self.st.session_state["_store_dir"], dir_a)
+        out = self.run_app("▶ Run monitoring", view="Live Diagnostics", mode="Rig - live")
+        self.assertIn("Rig not connected", out)
+        self.assertIn("cloud demo", out)
+
+
 if __name__ == "__main__":
     unittest.main()

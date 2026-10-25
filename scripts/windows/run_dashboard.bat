@@ -7,7 +7,7 @@ cd /d "%~dp0..\.."
 where python 1>NUL 2>NUL
 if errorlevel 1 (echo Python not found. Install Python 3.10+ from python.org and tick "Add to PATH". & pause & exit /b 1)
 python --version
-python -m pip install --disable-pip-version-check -q -r requirements.txt
+python -m pip install --disable-pip-version-check -q -r requirements-dev.txt
 if errorlevel 1 (echo pip install failed & pause & exit /b 1)
 if not exist models\demo_models.pkl python scripts\train_demo_model.py --features data\features_starter.npz --out models\demo_models.pkl
 if not exist models\rig_models_simulated.pkl (

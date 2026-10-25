@@ -51,6 +51,10 @@ except Exception:  # noqa: BLE001 - test stand-ins have no version
 FULL = {"width": "stretch"} if _ST_VER >= (1, 50) else {"use_container_width": True}
 
 RESULTS = ROOT / "results" / "starter"
+# Cloud deployment (Streamlit Community Cloud mounts the repo under /mount/src): every browser session gets
+# its own temporary SQLite log and report folder, so viewers never see each other's runs, and no hardware
+# can be attached. Locally (single operator) the shared data/health.db is kept.
+CLOUD = os.environ.get("IVHM_CLOUD", "1" if str(ROOT).startswith("/mount/src") else "0") == "1"
 VIEWS = ["Overview", "Live Diagnostics", "Research Lab", "History & Reports"]
 MODES = ["Benchmark replay", "Rig - simulated", "Rig - live"]
 MODEL_FILES = {"Benchmark replay": ROOT / "models" / "demo_models.pkl",
@@ -70,8 +74,27 @@ def load_pickle(path):
 
 
 @st.cache_resource
-def get_store():
+def _shared_store():
     return HealthStore(os.environ.get("IVHM_DB", str(ROOT / "data" / "health.db")))
+
+
+def get_store():
+    """Local: one shared log. Cloud: one temporary log per browser session (isolated, not persistent)."""
+    if not CLOUD:
+        return _shared_store()
+    if "_store" not in st.session_state:
+        import tempfile
+        d = Path(tempfile.mkdtemp(prefix="ivhm_session_"))
+        st.session_state["_store_dir"] = str(d)
+        st.session_state["_store"] = HealthStore(d / "health.db")
+    return st.session_state["_store"]
+
+
+def export_dir() -> Path:
+    if CLOUD:
+        get_store()
+        return Path(st.session_state["_store_dir"])
+    return ROOT / "data"
 
 
 @st.cache_data
@@ -162,6 +185,11 @@ with st.sidebar:
         st.button("■ End demo", on_click=stop_demo, **FULL)
     st.caption("Data sources are labelled on every view: BENCHMARK (real Paderborn recordings, held out), "
                "SIMULATED (synthetic), LIVE RIG (not connected), RESULTS (frozen).")
+    if CLOUD:
+        st.caption("Cloud demo: your runs, history and reports exist only in this browser session and are "
+                   "cleared when it ends. Other viewers cannot see them.")
+    st.caption("Benchmark recordings: Paderborn University KAt-DataCenter (Lessmeier et al., 2016), "
+               "CC BY-NC 4.0, non-commercial academic use.")
 
 
 def demo_bar():
@@ -428,7 +456,10 @@ def view_live():
                     yield {"vib": v, "cur": c, "fs": rec.fs, "condition": rec.condition}
         else:
             rig_err = None
-            if not mp.exists():
+            if ss.mode == "Rig - live" and CLOUD:
+                rig_err = ("This is the cloud demo: no USB/serial hardware can be attached here, and the physical "
+                           "rig has not been built yet (Design B rev A). No live rig data exists.")
+            elif not mp.exists():
                 rig_err = (f"{mp.relative_to(ROOT)} not found. " + (
                     "run_dashboard.bat creates it from simulated sessions." if ss.mode == "Rig - simulated"
                     else "The physical rig has not been built yet (Design B rev A); no rig model exists."))
@@ -774,8 +805,8 @@ def view_history():
         html("".join(ui.bar(s.replace("_", " "), counts.get(s, 0) / max(len(hist), 1), ui.STATE_COLOR[s],
                             fmt="{:.0%}") for s in ui.STATE_COLOR))
     with c[1]:
-        rp = ROOT / "data" / f"report_{asset}.html"
-        cp = ROOT / "data" / f"history_{asset}.csv"
+        rp = export_dir() / f"report_{asset}.html"
+        cp = export_dir() / f"history_{asset}.csv"
         store.export_html(rp, asset)
         store.export_csv(cp, asset)
         html("<div class='ivhm-h'>Exports</div><div class='ivhm-sub' style='margin-bottom:.5rem'>Generated from "

@@ -1,6 +1,40 @@
-data/
-models/
-results/
-configs/rig.json
+# --- local / machine-specific ---
 __pycache__/
 *.pyc
+.pytest_cache/
+.venv/
+venv/
+.env
+.streamlit/secrets.toml
+configs/rig.json
+*.rar
+*.zip
+*.bundle
+
+# --- data: never commit the Paderborn dataset; only the three held-out demo recordings ---
+data/*
+!data/raw/
+data/raw/*
+!data/raw/README_DATA.md
+!data/raw/KI18/
+!data/raw/KA22/
+!data/raw/K004/
+data/raw/KI18/*
+data/raw/KA22/*
+data/raw/K004/*
+!data/raw/KI18/N15_M07_F10_KI18_1.mat
+!data/raw/KA22/N15_M07_F10_KA22_1.mat
+!data/raw/K004/N15_M07_F10_K004_1.mat
+data/rig/
+
+# --- models: only the frozen artifacts the dashboard loads ---
+models/*
+!models/demo_models.pkl
+!models/rig_models_simulated.pkl
+
+# --- results: frozen research results and verification evidence are kept ---
+results/*
+!results/starter/
+!results/ui_tests/
+!results/rig_eval_SIMULATED.json
+results/starter/ui/exports/

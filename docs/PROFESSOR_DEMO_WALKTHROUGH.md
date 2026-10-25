@@ -49,3 +49,30 @@ same state sequence, so the run is deterministic for these recordings.
 - Downloads: both buttons delivered files whose sizes match the server-side exports
   (HTML 2,707 B, CSV 25,249 B); the HTML report was saved to Downloads.
 - Acknowledgement and sensor-failure behaviour checked in steps 2–4 above and in the audit trail.
+
+## Cloud deployment (25 Oct 2026)
+
+- **Public demo URL:** https://ivhm-bearing-health.streamlit.app — opens without sign-in; no PC,
+  Python or dataset needed. Click **▶ Start professor demo** and follow the steps above.
+- **Hosting:** Streamlit Community Cloud, Python 3.11, from the private GitHub repo
+  `benedict5910/pu-fusion`, branch `master`, main file `app/dashboard.py`. Every push to `master`
+  redeploys automatically. Manage it at https://share.streamlit.io (app settings → Sharing).
+- **Dependencies:** `requirements.txt` (streamlit 1.66.0, altair 6.3.0, pandas 3.0.6, numpy 2.4.6,
+  scikit-learn 1.9.1 exactly, scipy 1.x).
+- **Verified on the hosted URL:** all eight steps give the same states, probabilities, gate weights
+  and audit trail as the PC; HTML and CSV exports download; a second, signed-out browser session
+  starts empty and cannot see the first session's history; "Rig - live" shows "Rig not connected".
+  Screenshots: `results/starter/ui/cloud_2026-10-25/`.
+- **Cloud limitations:** each viewer's history and reports live in a temporary per-session folder
+  and are lost when the tab closes or the app restarts (free hosting has no persistent disk). The
+  app sleeps after a few days without visitors; the first visit then takes about a minute to wake.
+  Free tier: about 1 GB memory (the app needs far less). Times are shown in IST.
+- **Data:** only three held-out Paderborn recordings are online (CC BY-NC 4.0, attribution in
+  `data/raw/README_DATA.md` and in the app sidebar). Non-commercial academic use only.
+
+### Rollback
+- Local app: unchanged; `scripts\windows\run_dashboard.bat` still runs from the PC.
+- Code: `git revert <commit>` (or `git reset --hard 62a27b3` for the pre-deployment dashboard) and
+  push `master`; the cloud app redeploys. Backup bundles: `C:\Users\Admin\Projects\pu-fusion-*.bundle`.
+- Take the demo offline: share.streamlit.io → app ⋮ → Settings → Sharing → "Only specific people",
+  or ⋮ → Delete.

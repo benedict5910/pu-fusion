@@ -55,6 +55,9 @@ RESULTS = ROOT / "results" / "starter"
 # its own temporary SQLite log and report folder, so viewers never see each other's runs, and no hardware
 # can be attached. Locally (single operator) the shared data/health.db is kept.
 CLOUD = os.environ.get("IVHM_CLOUD", "1" if str(ROOT).startswith("/mount/src") else "0") == "1"
+if CLOUD and hasattr(time, "tzset"):                 # cloud servers run on UTC; show the team's local time
+    os.environ["TZ"] = os.environ.get("IVHM_TZ", "Asia/Kolkata")
+    time.tzset()
 VIEWS = ["Overview", "Live Diagnostics", "Research Lab", "History & Reports"]
 MODES = ["Benchmark replay", "Rig - simulated", "Rig - live"]
 MODEL_FILES = {"Benchmark replay": ROOT / "models" / "demo_models.pkl",

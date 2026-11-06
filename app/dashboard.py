@@ -7,6 +7,7 @@ Views
   Live Diagnostics  monitoring engine on a selected source, with a guided professor demo
   Research Lab      frozen preliminary OB1/OB2 results, confusion matrices, limitations
   History & Reports SQLite history per asset, event audit trail, CSV/HTML export
+  Gearbox Pilot     held-out MCC5-THU replay with local pilot recordings
 
 Sources (always labelled)
   Benchmark replay  Paderborn recordings of bearings HELD OUT from training, replayed through the
@@ -14,8 +15,7 @@ Sources (always labelled)
   Rig - simulated   the rig pipeline fed by SYNTHETIC signals (models/rig_models_simulated.pkl).
   Rig - live        the physical ESP32 rig (models/rig_models.pkl, trained on real rig sessions only).
                     The rig is at design stage; this mode reports "not connected" until it exists.
-A model trained on one platform is never applied to the other. The dashboard computes no result of
-its own: diagnoses come from the frozen models, research numbers from results/starter.
+Bearing diagnoses use the frozen models and the Research Lab displays results/starter.
 """
 import os
 import pickle
@@ -58,7 +58,7 @@ CLOUD = os.environ.get("IVHM_CLOUD", "1" if str(ROOT).startswith("/mount/src") e
 if CLOUD and hasattr(time, "tzset"):                 # cloud servers run on UTC; show the team's local time
     os.environ["TZ"] = os.environ.get("IVHM_TZ", "Asia/Kolkata")
     time.tzset()
-VIEWS = ["Overview", "Live Diagnostics", "Research Lab", "History & Reports"]
+VIEWS = ["Overview", "Live Diagnostics", "Research Lab", "History & Reports", "Gearbox Pilot"]
 MODES = ["Benchmark replay", "Rig - simulated", "Rig - live"]
 MODEL_FILES = {"Benchmark replay": ROOT / "models" / "demo_models.pkl",
                "Rig - simulated": ROOT / "models" / "rig_models_simulated.pkl",
@@ -818,5 +818,10 @@ def view_history():
         st.download_button("⬇ CSV history", cp.read_bytes(), cp.name, "text/csv", **FULL)
 
 
+def view_gearbox_pilot():
+    from gearbox_view import view_gearbox
+    view_gearbox(ROOT / "data" / "mcc5")
+
+
 {"Overview": view_overview, "Live Diagnostics": view_live, "Research Lab": view_research,
- "History & Reports": view_history}[ss.view]()
+ "History & Reports": view_history, "Gearbox Pilot": view_gearbox_pilot}[ss.view]()

@@ -1,5 +1,19 @@
 # Evidence log (objective by objective)
 
+## Status update and corrections (6 Nov 2026)
+
+No result, model or threshold was changed. These notes correct or complete earlier entries; the 21 Oct table below is kept as written.
+
+| Topic | Earlier wording | Correct as of 6 Nov 2026 | Evidence |
+|---|---|---|---|
+| P3 coverage | "P3 8 runs" | 8 runs = **2 bearing folds** (P1_r0_f0, P1_r0_f2) x 4 held-out conditions. `run_all.py` runs P3 with `--repeats 1`, and only 2 of those 3 folds are valid on the starter subset. The 8 runs share bearings, so the P3 Wilcoxon tests are weaker still than P1's. | `results/starter/p3.log` (`folds=2`), `results/starter/p3.csv` |
+| Test count | README "31 tests"; this log "34", "38", "39/39"; walkthrough "52 tests, 1 skipped" | The suite grew over time; each count was right for its date. Current tree: **54 tests**. 6 Nov cloud run: 50 passed, 4 skipped (the 4 real-Streamlit AppTest tests; Streamlit not installed there). The last run with Streamlit is the 23 Oct PC log (52 run, 1 skipped), before the 25 Oct cloud commits. | `results/test_runs/2026-11-06_cloud_unittest.txt`, `results/ui_tests/test_log.txt` |
+| OB4 | "Pending ... ≈ ₹5,000" | Superseded: Design B rev A approved (ceiling case ₹24,892); nothing bought; firmware not flashed; only SIMULATED rig results. | `docs/RIG_ENGINEERING_CHECKS_2026-10-22.md` |
+| Deployment | not in this table | Dashboard deployed 25 Oct on Streamlit Community Cloud from `master`; verified then by 4 screenshots. Not re-verified on 6 Nov (the URL could not be opened from the audit environment). | `docs/PROFESSOR_DEMO_WALKTHROUGH.md`, `results/starter/ui/cloud_2026-10-25/` |
+| Repository visibility | walkthrough "private GitHub repo" | GitHub reports the repository as **public** on 6 Nov 2026. Team decision pending. | GitHub |
+| README | "No experimental results exist yet" | Stale since 21 Oct; README rewritten on 6 Nov with current status and limitations. | `README.md` |
+| Reproducibility | not stated | `SUMMARY.txt` re-derives exactly from the committed CSVs; the demo model reproduces every documented demo value; the feature file and starter archives are not in the repository. | `docs/REPRODUCIBILITY_2026-11-06.md`, `results/test_runs/` |
+
 ## Objective status (21 Oct 2026, preliminary, starter subset of 12 bearings)
 | Objective | Status |
 |---|---|
@@ -40,3 +54,4 @@ runs, unit/pipeline tests only, no result · **BLOCKED** = reason given. Synthet
 - 2026-10-22 (02:00-03:00): final pre-procurement compatibility check (`docs/HARDWARE_FINAL_2026-10-22.md`). RS775SH rejected (no documented stall current). Selected Pololu #3225 25D MP 12 V 4.4:1 (documented stall 1.8 A, 1800 rpm, 4 mm D shaft) and Mean Well GST60A12-P1J (BIS IS13252, 5 A, OLP 105-150 % hiccup), fuse T1 A; ACS712 and ESP32 ADC limits checked against Allegro and Espressif datasheets. Batch 1 (sensors/mechanics) available in Bengaluru now; documented motor arrival likely after 28 Oct. No code or model changes.
 - 2026-10-22: strategy change - 28 Oct is a reporting milestone only. Rig design review (`docs/DESIGN_REVIEW_RIG_2026-10-22.md`): preferred design = direct-drive brushed DC on a current-limited lab supply, replaceable 608 test bearing in a floating housing with dead-weight radial load (4 conditions), IIS3DWB vibration sensor (6 kHz), ACS712 kept pending a measured SNR gate (ACS724 if needed). Rev. 3 gearmotor plan superseded as a design. No purchases; no model or result changes.
 - 2026-10-22: Design B approved. Pre-procurement checks (`docs/RIG_ENGINEERING_CHECKS_2026-10-22.md`, calcs `scripts/design/rig_design_calcs.py`, drawing `docs/drawings/rig_revA.pdf`): motor torque margin 3.3x, worst current 1.1 A; open-loop speed drift predicted +3.8 % -> warm-up + trim-and-hold with per-recording acceptance (+/-1 % mean, <=0.3 % std); overhung 608 test cartridge with captive two-spring load and hard stop; IIS3DWB single-axis 26.667 kHz over RIG3/CRC-32 at 921,600 baud (70 % utilisation) with loss counters and tests T1-T8. Ceiling-case cost Rs 24,892. No purchases, no model changes.
+- 2026-11-06: branch `gearbox-v0` created from `master` (68b1ead) for the gearbox extension; `master` and the deployed dashboard unchanged. Documentation truth pass (README status, P3 = 2 bearing folds, test counts, OB4 status, repository visibility). Tests re-run (54 tests: 50 passed, 4 Streamlit AppTest skipped, no Streamlit in that environment). New read-only check `scripts/check_demo_replay.py`: the committed demo model reproduces every documented demo value (KI18 INSPECT at window 4, inner race 0.84, gate 0.77/0.23; KA22 vibration dropout gate 0.00/1.00, outer race 0.42; K004 WARNING, outer race 0.46). `SUMMARY.txt` recomputed from the committed CSVs: identical. Reproducibility report `docs/REPRODUCIBILITY_2026-11-06.md`. No results, models or thresholds changed.

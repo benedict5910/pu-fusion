@@ -36,5 +36,6 @@ models/*
 results/*
 !results/starter/
 !results/ui_tests/
+!results/test_runs/
 !results/rig_eval_SIMULATED.json
 results/starter/ui/exports/

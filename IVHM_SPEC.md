@@ -2,6 +2,8 @@
 
 Supersedes the scope in `SPEC.md`; the research protocol in `SPEC.md` §4 is unchanged.
 
+> **Status note (6 Nov 2026).** This spec is kept as written on 15 Oct. Since then, preliminary Paderborn results exist for the 12-bearing starter subset (`results/starter/`, from 21 Oct), so the sentence below saying no experiment has been run is out of date. The rig section is superseded by Design B (`docs/RIG_ENGINEERING_CHECKS_2026-10-22.md`). Current status: `README.md` and `docs/EVIDENCE_LOG.md`.
+
 ## Verdict: MODIFY
 
 Keep the bearing-fusion study as the research core and wrap it in a small, honest IVHM loop: **sense → check sensor health → diagnose → decide → log and report**. Five of the six proposed deliverables stay (some trimmed). OBD-II and any "digital twin" claim are cut.

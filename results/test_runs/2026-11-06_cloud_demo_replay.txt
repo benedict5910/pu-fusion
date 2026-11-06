@@ -1,0 +1,25 @@
+# check_demo_replay.py, 2026-11-06T13:18:23Z, commit base 68b1eade0681fe85d565840f6eb59742980a545b
+demo model trained on: K001, K002, K003, KA04, KA15, KA16, KI04, KI14, KI16
+held out (replayed here): K004, KA22, KI18
+
+KI18 clean: states ['NORMAL', 'WARNING', 'WARNING', 'INSPECT', 'INSPECT', 'INSPECT', 'INSPECT', 'INSPECT']
+  first_WARNING  documented 2          reproduced 2          OK
+  first_INSPECT  documented 4          reproduced 4          OK
+  final_state    documented INSPECT    reproduced INSPECT    OK
+  final_class    documented inner_race reproduced inner_race OK
+  final_p        documented 0.84       reproduced 0.844      OK
+  final_w_vib    documented 0.77       reproduced 0.774      OK
+
+KA22 dropout@vib: states ['NORMAL', 'WARNING', 'WARNING', 'WARNING', 'WARNING', 'WARNING', 'WARNING', 'WARNING']
+  final_state    documented WARNING    reproduced WARNING    OK
+  final_class    documented outer_race reproduced outer_race OK
+  final_p        documented 0.42       reproduced 0.421      OK
+  final_w_vib    documented 0.0        reproduced 0.000      OK
+
+K004 clean: states ['NORMAL', 'WARNING', 'WARNING', 'WARNING', 'WARNING', 'WARNING', 'WARNING', 'WARNING']
+  final_state    documented WARNING    reproduced WARNING    OK
+  final_class    documented outer_race reproduced outer_race OK
+  final_p        documented 0.46       reproduced 0.465      OK
+
+ALL DOCUMENTED VALUES REPRODUCED
+exit code 0

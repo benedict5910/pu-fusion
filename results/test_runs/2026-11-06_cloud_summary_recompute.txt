@@ -1,0 +1,2 @@
+# summarize.py recomputed from committed CSVs vs results/starter/SUMMARY.txt, 2026-11-06T13:18:25Z
+IDENTICAL: SUMMARY.txt reproduced exactly from p1.csv, p3.csv, leaky.csv

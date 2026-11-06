@@ -50,3 +50,18 @@ chosen after seeing results.
 6. **What would firm this up (after 28 Oct).** The full download enables all 15 P1 folds with the
    designed training sets and P2. A bearing-level analysis (one score per test bearing) would
    avoid the dependence between overlapping runs.
+
+## P3 coverage on the starter subset (added 6 Nov 2026)
+
+P3 (bearing- and condition-disjoint) was run by `run_all.py` with `--repeats 1`, i.e. on the three folds of
+repeat 0. On the starter subset only two of them are valid (P1_r0_f1 has no healthy test bearing), so P3 =
+**2 bearing folds x 4 held-out operating conditions = 8 runs** (`results/starter/p3.log`: `folds=2`).
+
+| Fold | Test bearings | Held-out conditions |
+|---|---|---|
+| P1_r0_f0 | K003, K004, KA15, KI16 | N09_M07_F10, N15_M01_F10, N15_M07_F04, N15_M07_F10 |
+| P1_r0_f2 | K001, K002, KA22, KI14, KI18 | same four |
+
+Only 9 of the 12 bearings are ever tested in P3, and the 4 runs within a fold share their test bearings.
+Read the P3 numbers and Wilcoxon tests in `SUMMARY.txt` as a narrow diagnostic, not as a full condition
+hold-out study. The full dataset with `--repeats 5` is needed for that.

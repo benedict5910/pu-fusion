@@ -54,9 +54,12 @@ same state sequence, so the run is deterministic for these recordings.
 
 - **Public demo URL:** https://ivhm-bearing-health.streamlit.app — opens without sign-in; no PC,
   Python or dataset needed. Click **▶ Start professor demo** and follow the steps above.
-- **Hosting:** Streamlit Community Cloud, Python 3.11, from the private GitHub repo
+- **Hosting:** Streamlit Community Cloud, Python 3.11, from the GitHub repo
   `benedict5910/pu-fusion`, branch `master`, main file `app/dashboard.py`. Every push to `master`
-  redeploys automatically. Manage it at https://share.streamlit.io (app settings → Sharing).
+  redeploys automatically; other branches (e.g. `gearbox-v0`) do not. Manage it at
+  https://share.streamlit.io (app settings → Sharing). *Correction 6 Nov 2026:* this line said
+  "private repo"; GitHub reports the repository as public. Whether it stays public is a team decision.
+  The deployment was verified on 25 Oct (screenshots below) and has not been re-checked since.
 - **Dependencies:** `requirements.txt` (streamlit 1.66.0, altair 6.3.0, pandas 3.0.6, numpy 2.4.6,
   scikit-learn 1.9.1 exactly, scipy 1.x).
 - **Verified on the hosted URL:** all eight steps give the same states, probabilities, gate weights

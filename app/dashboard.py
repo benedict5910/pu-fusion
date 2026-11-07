@@ -27,6 +27,12 @@ def label(state):
     return STATE_LABELS.get(state, state)
 
 
+def replay_rule(snapshot):
+    if snapshot["rule"] == "INSPECT latched until acknowledged":
+        return "Inspection alert remains active for this replay."
+    return snapshot["rule"].capitalize()
+
+
 def run_component(component, family=None, target=None, record=None):
     """Replay into an independent tracker and publish a complete snapshot on success."""
     try:
@@ -77,6 +83,12 @@ def show_component(component, snapshot):
     columns[1].metric("Model confidence", f"{confidence:.0%}" if confidence is not None else "Unavailable")
     columns[2].metric("Health state", label(snapshot["state"]))
     st.caption("Confidence is the model score for the selected class on the final window.")
+    if snapshot["signal"] is not None:
+        signal = snapshot["signal"]
+        st.markdown("**Clean vs corrupted signal**")
+        st.caption(f"{signal['name']} ({signal['unit']}) · first 60 ms of the same replay window")
+        st.line_chart(pd.DataFrame({"Time (ms)": signal["ms"], "Clean": signal["clean"],
+                                    "Corrupted": signal["corrupted"]}), x="Time (ms)")
     st.markdown("**Sensor reliability**")
     sensors = snapshot["sensors"]
     st.dataframe([
@@ -86,7 +98,7 @@ def show_component(component, snapshot):
         for sensor, reading in sensors.items()
     ], hide_index=True)
     st.markdown("**Why this assessment?**")
-    st.write(snapshot["rule"].capitalize())
+    st.write(replay_rule(snapshot))
     if condition is not None:
         weights = [f"{sensor} {reading['weight']:.0%}" for sensor, reading in sensors.items()
                    if reading["weight"] is not None]
@@ -96,12 +108,6 @@ def show_component(component, snapshot):
         st.caption(f"{sensor} features with the largest model contributions · {', '.join(features)}")
     for recommendation in snapshot["recommendations"]:
         st.write(recommendation)
-    if snapshot["signal"] is not None:
-        signal = snapshot["signal"]
-        st.markdown("**Clean vs corrupted signal**")
-        st.caption(f"{signal['name']} ({signal['unit']}) · first 60 ms of the same replay window")
-        st.line_chart(pd.DataFrame({"Time (ms)": signal["ms"], "Clean": signal["clean"],
-                                    "Corrupted": signal["corrupted"]}), x="Time (ms)")
     st.caption(f"{snapshot['window_count']} replayed windows. The assessment above is for the final window.")
 
 
@@ -126,7 +132,7 @@ def system_dashboard():
     warnings = []
     for component, snap in snapshots.items():
         if snap["state"] != "NORMAL":
-            warnings.append(f"{component} · {label(snap['state'])} · {snap['rule']}")
+            warnings.append(f"{component} · {label(snap['state'])} · {replay_rule(snap)}")
         for sensor, reading in snap["sensors"].items():
             if reading["status"] != "ok":
                 warnings.append(f"{component} · {sensor} {reading['status']}")

@@ -59,6 +59,7 @@ class TestPresentationDashboard(unittest.TestCase):
         self.assertFalse(app.exception or app.error)
         self.assertEqual(self.metrics(app)["Bearing state"], "Inspect")
         self.assertEqual(self.metrics(app)["Gearbox state"], "Inspect")
+        self.assertTrue(all("active for this replay" in item.value for item in app.warning))
         app.radio(key="system_component").set_value("Gearbox").run()
         self.assertEqual(self.metrics(app)["Predicted condition"], "Gear pitting")
         self.assertTrue(self.metrics(app)["Model confidence"].endswith("%"))

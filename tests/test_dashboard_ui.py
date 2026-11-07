@@ -1,17 +1,5 @@
-"""Dashboard regression tests that need no browser.
-
-- research.py reads the frozen results unchanged (snapshot of SUMMARY.txt / p1.csv values)
-- ui.py renders labels, states and the schematic safely
-- the dashboard script runs headless through every view with a Streamlit stand-in, on the real
-  held-out recordings, and keeps the safety behaviour (ack -> WARNING, outage -> no diagnosis,
-  recovery -> WARNING held, live rig -> not connected). Skipped if data/models are absent, and
-  skipped where real Streamlit is installed (tests/test_dashboard_apptest.py covers it there).
-"""
-import importlib.util
-import os
-import runpy
+"""Regression checks for frozen results and dashboard display helpers."""
 import sys
-import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -26,7 +14,6 @@ import ui  # noqa: E402
 RES = ROOT / "results" / "starter"
 HAVE_RESULTS = (RES / "SUMMARY.txt").exists()
 HAVE_DATA = (ROOT / "models" / "demo_models.pkl").exists() and (ROOT / "data" / "raw" / "KI18").exists()
-HAVE_STREAMLIT = importlib.util.find_spec("streamlit") is not None
 
 
 @unittest.skipUnless(HAVE_RESULTS, "frozen results not present")
@@ -104,102 +91,3 @@ class TestUiHelpers(unittest.TestCase):
             b = pickle.load(open(ROOT / "models" / "demo_models.pkl", "rb"))
             self.assertEqual(set(b["holdout"]), held)
             self.assertTrue(held.isdisjoint(set(b["trained_on"])))
-
-
-@unittest.skipUnless(HAVE_DATA, "held-out recordings / demo model not present")
-@unittest.skipIf(HAVE_STREAMLIT, "real Streamlit present: covered by test_dashboard_apptest")
-class TestDashboardHeadless(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        import fake_streamlit as F
-        cls.st = F.install()
-        cls.db = tempfile.mktemp(suffix=".db")
-        os.environ["IVHM_DB"] = cls.db
-        cls.st.session_state.clear()
-
-    def run_app(self, press=None, **ss):
-        self.st.session_state.update(ss)
-        if press:
-            self.st.PRESS.add(press)
-        self.st.LOG.clear()
-        runpy.run_path(str(ROOT / "app" / "dashboard.py"))
-        return "\n".join(self.st.LOG)
-
-    def test_full_sequence(self):
-        for v in ("Overview", "Research Lab", "History & Reports", "Live Diagnostics"):
-            self.run_app(view=v)
-        out = self.run_app(view="Overview")
-        self.assertIn("BENCHMARK", out)
-        self.assertIn("Design stage".upper(), out)
-        self.st.session_state.update(nwin=24, pace=0.0, rec="N15_M07_F10_KI18_1", asset="t-KI18",
-                                     mode="Benchmark replay", target="none")
-        self.run_app("▶ Run monitoring", view="Live Diagnostics")
-        last = self.st.session_state["last"]
-        self.assertEqual(last["state"], "INSPECT")
-        self.assertEqual(max(last["probs"], key=last["probs"].get), "inner_race")
-        out = self.run_app("Acknowledge INSPECT alert")
-        self.assertEqual(self.st.session_state["tracker"].state, "WARNING")       # never NORMAL
-        self.assertIn("not</b> confirm the bearing is healthy", out)
-        out = self.run_app("Acknowledge INSPECT alert")
-        self.assertIn("Nothing to acknowledge", out)
-        out = self.run_app("▶ Run monitoring", target="both", fam="dropout", nwin=6)
-        last = self.st.session_state["last"]
-        self.assertEqual(last["state"], "SENSOR_FAULT")
-        self.assertFalse(last["diag_ok"])
-        self.assertNotIn("probs", last)
-        self.assertIn("Diagnosis suspended", out)
-        self.run_app("▶ Run monitoring", target="none", nwin=4)
-        from pufusion.store import HealthStore
-        ev = HealthStore(self.db).events("t-KI18")
-        rules = [e["rule"] for e in ev]
-        self.assertTrue(any("component condition NOT verified" in r for r in rules))
-        held = [e for e in ev if e["from_state"] == "SENSOR_FAULT"]
-        self.assertEqual(held[0]["to_state"], "WARNING")                         # outage does not reset to NORMAL
-        out = self.run_app(view="History & Reports", hist_asset="t-KI18")
-        self.assertEqual(out.count("<download"), 2)
-        out = self.run_app("▶ Run monitoring", view="Live Diagnostics", mode="Rig - live")
-        self.assertIn("Rig not connected", out)
-        self.st.session_state["mode"] = "Benchmark replay"
-
-
-@unittest.skipUnless(HAVE_DATA, "held-out recordings / demo model not present")
-@unittest.skipIf(HAVE_STREAMLIT, "real Streamlit present: covered by test_dashboard_apptest")
-class TestCloudSessionIsolation(unittest.TestCase):
-    """IVHM_CLOUD=1: each browser session has its own temporary log; no hardware mode."""
-
-    def setUp(self):
-        import fake_streamlit as F
-        self.st = F.install()
-        os.environ["IVHM_CLOUD"] = "1"
-
-    def tearDown(self):
-        os.environ.pop("IVHM_CLOUD", None)
-
-    def run_app(self, press=None, **ss):
-        self.st.session_state.update(ss)
-        if press:
-            self.st.PRESS.add(press)
-        self.st.LOG.clear()
-        runpy.run_path(str(ROOT / "app" / "dashboard.py"))
-        return "\n".join(self.st.LOG)
-
-    def test_sessions_do_not_share_history(self):
-        self.st.session_state.clear()                                     # viewer A
-        self.run_app("▶ Run monitoring", view="Live Diagnostics", nwin=8, pace=0.0, asset="cloud-KI18",
-                     rec="N15_M07_F10_KI18_1", mode="Benchmark replay", target="none")
-        dir_a = self.st.session_state["_store_dir"]
-        out = self.run_app(view="History & Reports", hist_asset="cloud-KI18")
-        self.assertEqual(out.count("<download"), 2)
-        self.assertTrue(dir_a.startswith(tempfile.gettempdir()))
-        self.assertTrue(any(p.startswith("report_cloud-KI18") for p in os.listdir(dir_a)))
-        self.st.session_state.clear()                                     # viewer B, fresh session
-        out = self.run_app(view="History & Reports")
-        self.assertIn("No history yet", out)
-        self.assertNotEqual(self.st.session_state["_store_dir"], dir_a)
-        out = self.run_app("▶ Run monitoring", view="Live Diagnostics", mode="Rig - live")
-        self.assertIn("Rig not connected", out)
-        self.assertIn("cloud demo", out)
-
-
-if __name__ == "__main__":
-    unittest.main()

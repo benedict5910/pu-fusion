@@ -137,7 +137,7 @@ class GearboxModel:
         }, reliability, weights
 
 
-def replay(model, x, q):
+def replay(model, x, q, *, include_details=False):
     tracker = HealthTracker(fault_advice=GEARBOX_ADVICE)
     probabilities, reliability, weights = model.predict(x, q, tracker.p.min_reliability)
     healthy = list(model.classes).index("healthy")
@@ -146,13 +146,17 @@ def replay(model, x, q):
         label = model.classes[np.argmax(probs)] if available else None
         evidence = float(1 - probs[healthy]) if available else None
         assessment = tracker.update(evidence, label, rel)
-        yield {
+        row = {
             "window": index, "state": assessment.state,
             "prediction": label, "fault_score": evidence,
             **{f"{s}_status": rel[s].status for s in SENSORS},
             **{f"{s}_weight": float(w) for s, w in zip(SENSORS, weight)},
             "rule": assessment.rule, "recommendations": " ".join(assessment.recommendations),
         }
+        if include_details:
+            row["confidence"] = float(probs.max()) if available else None
+            row["reliability"] = {sensor: reading.as_dict() for sensor, reading in rel.items()}
+        yield row
 
 
 def extract(record, family=None, target=None, seed=42):

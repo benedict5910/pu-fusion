@@ -2,8 +2,8 @@
 
 ## Presentation sequence
 
-1. Run the existing bearing demo on the committed KI18 recording. Point out the sustained fault evidence and the transition from WARNING to INSPECT.
-2. Open **Gearbox Pilot** and choose a held-out operating profile and a test recording. Run clean replay, repeat with motor dropout, and then repeat with both sensors dropped out. Compare sensor weights, diagnosis availability and the state trace. Export the replay CSV if needed.
+1. On **System Dashboard**, run the clean system replay. Select Bearing and show the inspection state for the held-out KI18 recording.
+2. Open **Simulation** and select Gearbox. Use the default held-out pitting recording. Run a clean replay, repeat with motor dropout, and then repeat with both sensors dropped out. Compare sensor weights, diagnosis availability and the signal overlay.
 3. Show the pilot evaluation beside the bearing rerun. Explain that both subsystems use the same health-state rules, with separate models and sensor calibration. Distinguish experimental recordings, simulated signal faults and offline model predictions.
 
 ## Paderborn recovery

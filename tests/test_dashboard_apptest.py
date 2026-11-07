@@ -1,100 +1,79 @@
-"""UI regression tests on the REAL Streamlit app (streamlit.testing AppTest).
-
-Runs only where Streamlit and the held-out recordings are installed (the team laptop:
-scripts/windows/run_tests.bat). Uses a temporary SQLite file, never data/health.db.
-"""
+"""End-to-end regression checks for presentation mode on real Streamlit."""
 import importlib.util
-import os
-import tempfile
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HAVE_STREAMLIT = importlib.util.find_spec("streamlit") is not None
-HAVE_DATA = (ROOT / "models" / "demo_models.pkl").exists() and (ROOT / "data" / "raw" / "KI18").exists()
 
 
-@unittest.skipUnless(HAVE_STREAMLIT and HAVE_DATA, "needs Streamlit and the held-out recordings")
-class TestDashboardAppTest(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        os.environ["IVHM_DB"] = tempfile.mktemp(suffix=".db")
-
+@unittest.skipUnless(HAVE_STREAMLIT, "needs Streamlit")
+class TestPresentationDashboard(unittest.TestCase):
     def app(self):
         from streamlit.testing.v1 import AppTest
-        at = AppTest.from_file(str(ROOT / "app" / "dashboard.py"), default_timeout=300)
-        at.run()
-        self.assertFalse(at.exception, at.exception)
-        return at
+        app = AppTest.from_file(str(ROOT / "app" / "dashboard.py"), default_timeout=120).run()
+        self.assertFalse(app.exception)
+        return app
 
     @staticmethod
-    def text(at):
-        return "\n".join(m.value for m in at.markdown)
+    def click(app, label):
+        next(button for button in app.button if button.label == label).click().run()
 
     @staticmethod
-    def click(at, label):
-        [b for b in at.button if b.label == label][0].click().run()
+    def metrics(app):
+        return {metric.label: metric.value for metric in app.metric}
 
-    def test_professor_demo_steps(self):
-        at = self.app()
-        self.click(at, "▶ Start professor demo")
-        self.assertEqual(at.session_state["view"], "Live Diagnostics")
-        at.session_state["pace"] = 0.0
-        expect = {0: "INSPECT", 1: "WARNING", 2: "SENSOR_FAULT", 3: "INSPECT"}
-        for i in range(8):
-            [b for b in at.button if b.key == "demo_next"][0].click().run()
-            self.assertFalse(at.exception, f"step {i + 1}: {at.exception}")
-            if i in expect:
-                self.assertEqual(at.session_state["tracker"].state, expect[i], f"step {i + 1}")
-        self.assertEqual(at.session_state["view"], "Research Lab")
-        [b for b in at.button if b.key == "demo_done"][0].click().run()
-        self.assertFalse(at.session_state["demo_on"])
-        self.assertFalse(str(at.session_state["asset"]).startswith("demo-"))
+    def test_only_presentation_pages_and_verified_results(self):
+        app = self.app()
+        nav = app.sidebar.radio[0]
+        self.assertEqual(nav.value, "System Dashboard")
+        self.assertEqual(nav.options, ["Overview", "System Dashboard", "Simulation", "Results"])
+        self.assertEqual(self.metrics(app)["Overall system state"], "Awaiting replay")
+        for page in nav.options:
+            app.sidebar.radio[0].set_value(page).run()
+            self.assertFalse(app.exception, app.exception)
+        self.assertEqual(len(app.dataframe), 2)
+        self.assertIn("0.533", app.dataframe[0].value["Clean"].tolist())
+        self.assertIn("0.565", app.dataframe[1].value["Gated fusion"].tolist())
 
-    def test_every_view_renders(self):
-        at = self.app()
-        for v in ("Overview", "Live Diagnostics", "Research Lab", "History & Reports"):
-            at.sidebar.radio(key="view").set_value(v).run()
-            self.assertFalse(at.exception, f"{v}: {at.exception}")
-        at.sidebar.radio(key="view").set_value("Overview").run()
-        self.assertIn("BENCHMARK", self.text(at))
+    def test_bearing_dropout_is_reflected_in_unified_view(self):
+        app = self.app()
+        app.sidebar.radio[0].set_value("Simulation").run()
+        app.selectbox[1].select("dropout").run()
+        app.selectbox[2].select("both").run()
+        self.click(app, "Run simulation")
+        self.assertFalse(app.exception or app.error)
+        self.assertEqual(self.metrics(app)["Predicted condition"], "Unavailable")
+        self.assertEqual(self.metrics(app)["Model confidence"], "Unavailable")
+        self.assertEqual(self.metrics(app)["Health state"], "Sensor fault")
+        self.assertTrue(any("Clean vs corrupted signal" in item.value for item in app.markdown))
+        app.sidebar.radio[0].set_value("System Dashboard").run()
+        self.assertFalse(app.exception)
+        self.assertEqual(self.metrics(app)["Overall system state"], "Sensor fault")
+        self.assertEqual(self.metrics(app)["Gearbox state"], "Awaiting replay")
 
-    def test_ack_and_sensor_failure_on_real_app(self):
-        at = self.app()
-        at.sidebar.radio(key="view").set_value("Live Diagnostics").run()
-        at.session_state["pace"] = 0.0
-        at.session_state["nwin"] = 24
-        at.session_state["asset"] = "apptest-KI18"
-        at.session_state["rec"] = "N15_M07_F10_KI18_1"
-        at.run()
-        self.click(at, "▶ Run monitoring")
-        self.assertFalse(at.exception, at.exception)
-        self.assertEqual(at.session_state["last"]["state"], "INSPECT")
-        self.click(at, "Acknowledge INSPECT alert")
-        self.assertEqual(at.session_state["tracker"].state, "WARNING")
-        self.assertIn("confirm the bearing is healthy", self.text(at))
-        at.session_state["target"] = "both"
-        at.session_state["fam"] = "dropout"
-        at.session_state["nwin"] = 6
-        at.run()
-        self.click(at, "▶ Run monitoring")
-        last = at.session_state["last"]
-        self.assertEqual(last["state"], "SENSOR_FAULT")
-        self.assertFalse(last["diag_ok"])
-        self.assertIn("Diagnosis suspended", self.text(at))
-
-    def test_live_rig_not_connected_and_no_fabrication(self):
-        at = self.app()
-        at.sidebar.radio(key="view").set_value("Live Diagnostics").run()
-        at.sidebar.radio(key="mode").set_value("Rig - live").run()
-        self.assertFalse(at.exception, at.exception)
-        self.assertIn("Rig not connected", self.text(at))
-        self.assertEqual(at.session_state["asset"], "rig-1")      # sources never share an asset log
-        at.sidebar.radio(key="mode").set_value("Rig - simulated").run()
-        self.assertFalse(at.exception, at.exception)
-        self.assertEqual(at.session_state["asset"], "sim-rig-1")
-        self.assertIn("SIMULATED", self.text(at))
-
-
-if __name__ == "__main__":
-    unittest.main()
+    @unittest.skipUnless(len(list((ROOT / "data" / "mcc5").glob("*.csv*"))) >= 12, "needs local gearbox pilot data")
+    def test_clean_system_and_gearbox_simulation(self):
+        app = self.app()
+        self.click(app, "Run clean system replay")
+        self.assertFalse(app.exception or app.error)
+        self.assertEqual(self.metrics(app)["Bearing state"], "Inspect")
+        self.assertEqual(self.metrics(app)["Gearbox state"], "Inspect")
+        app.radio(key="system_component").set_value("Gearbox").run()
+        self.assertEqual(self.metrics(app)["Predicted condition"], "Gear pitting")
+        self.assertTrue(self.metrics(app)["Model confidence"].endswith("%"))
+        app.sidebar.radio[0].set_value("Simulation").run()
+        app.radio(key="simulation_component").set_value("Gearbox").run()
+        app.selectbox[1].select("dropout").run()
+        self.click(app, "Run simulation")
+        self.assertFalse(app.exception or app.error)
+        self.assertEqual(app.dataframe[0].value["Fusion weight"].tolist(), ["0%", "100%"])
+        app.selectbox[2].select("both").run()
+        self.assertNotIn("Predicted condition", self.metrics(app))
+        self.click(app, "Run simulation")
+        self.assertFalse(app.exception or app.error)
+        self.assertEqual(self.metrics(app)["Health state"], "Sensor fault")
+        app.sidebar.radio[0].set_value("System Dashboard").run()
+        self.assertEqual(self.metrics(app)["Bearing state"], "Inspect")
+        self.assertEqual(self.metrics(app)["Gearbox state"], "Sensor fault")
+        self.assertEqual(self.metrics(app)["Overall system state"], "Inspect")

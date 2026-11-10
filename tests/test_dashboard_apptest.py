@@ -119,6 +119,8 @@ class TestGearboxAppTest(unittest.TestCase):
         at.session_state["nwin"] = 59
         at.session_state["gb_rec"] = "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv"
         for target, check in (("none", "clean"), ("motor", "motor"), ("both", "both")):
+            # a fresh asset per scenario: a latched INSPECT (by design) persists through a later sensor outage
+            at.session_state["asset"] = f"apptest-gear-{check}"
             at.session_state["gb_target"] = target
             at.session_state["gb_fam"] = "dropout"
             at.run()
@@ -127,6 +129,7 @@ class TestGearboxAppTest(unittest.TestCase):
             last = at.session_state["last"]
             if check == "both":
                 self.assertEqual(last["state"], "SENSOR_FAULT")
+                self.assertFalse(last["diag_ok"])
                 self.assertNotIn("probs", last)
             else:
                 self.assertEqual(max(last["probs"], key=last["probs"].get), "gear_pitting")

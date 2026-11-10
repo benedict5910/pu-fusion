@@ -36,6 +36,25 @@ APP = Path(__file__).resolve().parent
 ROOT = APP.parent
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(APP))
+
+
+def _drop_stale_project_modules():
+    """Streamlit re-runs this script in a long-lived process. After a code update (git pull on Streamlit Cloud,
+    or a local edit) the already-imported project modules would otherwise stay at their old version while
+    this script is new. When any project source file changed since the last run, drop those modules (and the
+    Streamlit caches built from them) so this run imports the current code."""
+    files = sorted(list((ROOT / "src" / "pufusion").glob("*.py")) + list(APP.glob("*.py")))
+    stamp = tuple((str(f), f.stat().st_mtime_ns, f.stat().st_size) for f in files)
+    previous = getattr(sys, "_ivhm_code_stamp", None)
+    sys._ivhm_code_stamp = stamp
+    if previous is not None and previous != stamp:
+        for name in [n for n in sys.modules if n in ("ui", "research") or n == "pufusion" or n.startswith("pufusion.")]:
+            del sys.modules[name]
+        st.cache_resource.clear()
+        st.cache_data.clear()
+
+
+_drop_stale_project_modules()
 import research as R  # noqa: E402
 import ui  # noqa: E402
 from pufusion import corruption as C  # noqa: E402

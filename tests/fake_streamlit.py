@@ -115,7 +115,7 @@ st_mod.download_button = lambda label, data, *a, **k: st_mod.LOG.append(f"<downl
 st_mod.columns = _columns
 st_mod.tabs = lambda names: [_Box(st_mod.LOG) for _ in names]
 st_mod.container = lambda **k: _Box(st_mod.LOG)
-st_mod.expander = lambda *a, **k: _Box(st_mod.LOG)
+st_mod.expander = st_mod.spinner = lambda *a, **k: _Box(st_mod.LOG)
 st_mod.empty = lambda: _Box(st_mod.LOG)
 st_mod.sidebar = _Box(st_mod.LOG)
 st_mod.line_chart = lambda *a, **k: st_mod.LOG.append("<chart>")

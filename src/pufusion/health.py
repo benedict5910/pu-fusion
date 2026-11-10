@@ -60,8 +60,9 @@ class Assessment:
 
 
 class HealthTracker:
-    def __init__(self, policy: HealthPolicy | None = None):
+    def __init__(self, policy: HealthPolicy | None = None, *, fault_advice=None):
         self.p = policy or HealthPolicy()
+        self.fault_advice = _FAULT_ADVICE if fault_advice is None else fault_advice
         self.hist = deque(maxlen=self.p.n)
         self.state = NORMAL
         self.quiet = 0
@@ -120,7 +121,7 @@ class HealthTracker:
             self.state, rule = NORMAL, "no persistent fault evidence"
 
         if self.state == INSPECT:
-            recs.insert(0, f"Schedule an inspection - {_FAULT_ADVICE.get(fault_type, _FAULT_ADVICE[None])}.")
+            recs.insert(0, f"Schedule an inspection - {self.fault_advice.get(fault_type, self.fault_advice[None])}.")
         elif self.state == WARNING:
             recs.insert(0, "Increase monitoring and watch the trend; no action yet unless the warning persists.")
         if len(usable) < len(reliability):

@@ -32,9 +32,14 @@ SOURCES = {
     "live": dict(tag="LIVE RIG", color="#f59e0b",
                  title="Physical ESP32 rig - not connected",
                  detail="The rig is at design stage (Design B rev A). No live rig data exists yet."),
+    "gearbox": dict(tag="BENCHMARK", color="#3b82f6",
+                    title="MCC5-THU gearbox recording from a held-out operating profile - real measured data, replayed",
+                    detail="That torque/speed profile is never used in training; the model is fitted on the other "
+                           "three profiles."),
     "results": dict(tag="RESULTS", color="#22d3ee",
-                    title="Frozen preliminary results - Paderborn starter subset (12 bearings)",
-                    detail="Read unchanged from results/starter; nothing is re-run in the dashboard."),
+                    title="Frozen preliminary results - Paderborn bearings and MCC5-THU gearbox pilot",
+                    detail="Read unchanged from results/starter and results/test_runs; nothing is re-run in the "
+                           "dashboard."),
 }
 MODE_SOURCE = {"Benchmark replay": "benchmark", "Rig - simulated": "simulated", "Rig - live": "live"}
 
@@ -199,10 +204,35 @@ def sensor_card_html(name: str, status: str, score: float, reasons) -> str:
             + bar("reliability score", score, c) + f"<div class='ivhm-sub'>{esc(why)}</div>")
 
 
-def component_svg(state: str, vib_status: str, cur_status: str, source_tag: str) -> str:
-    """Schematic of the monitored drive train (illustrative; not a digital twin, not the physical rig)."""
+def _bearing_glyph(sc: str) -> str:
+    return (f'<circle cx="398" cy="114" r="26" fill="none" stroke="{sc}" stroke-width="3"/>'
+            f'<circle cx="398" cy="114" r="12" fill="none" stroke="{sc}" stroke-width="2"/>'
+            f'<g fill="{sc}">' + ''.join(f'<circle cx="{398 + 19 * math.cos(k * 0.785):.1f}" '
+                                         f'cy="{114 + 19 * math.sin(k * 0.785):.1f}" r="3.2"/>' for k in range(8))
+            + '</g>')
+
+
+def _gear_glyph(sc: str) -> str:
+    teeth = ''.join(f'<rect x="394" y="84" width="8" height="10" rx="1.5" fill="{sc}" '
+                    f'transform="rotate({k * 30} 398 114)"/>' for k in range(12))
+    return (f'{teeth}<circle cx="398" cy="114" r="22" fill="none" stroke="{sc}" stroke-width="3"/>'
+            f'<circle cx="398" cy="114" r="7" fill="none" stroke="{sc}" stroke-width="2"/>')
+
+
+COMPONENTS = {   # schematic labels: (component, right-hand sensor on the component, left-hand sensor on the motor)
+    "bearing": ("BEARING", "vibration sensor", "current sensor"),
+    "gearbox": ("GEARBOX", "gearbox vibration", "motor vibration"),
+}
+
+
+def component_svg(state: str, vib_status: str, cur_status: str, source_tag: str, component: str = "bearing") -> str:
+    """Schematic of the monitored drive train (illustrative; not a digital twin, not the physical rig).
+
+    `vib_status` is the sensor on the monitored component, `cur_status` the sensor on the motor."""
     sc = STATE_COLOR.get(state, MUTED)
     rv, rc = REL_COLOR.get(vib_status, MUTED), REL_COLOR.get(cur_status, MUTED)
+    name, right_lbl, left_lbl = COMPONENTS[component]
+    glyph = _gear_glyph(sc) if component == "gearbox" else _bearing_glyph(sc)
     return f"""
 <svg viewBox="0 0 560 210" width="100%" style="max-height:300px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg" font-family="Inter,Segoe UI,sans-serif">
  <defs>
@@ -220,17 +250,15 @@ def component_svg(state: str, vib_status: str, cur_status: str, source_tag: str)
  <rect x="210" y="98" width="26" height="32" rx="4" fill="#475569" stroke="#64748b"/>
  <text x="223" y="148" fill="{MUTED}" font-size="10" text-anchor="middle">coupling</text>
  <rect x="350" y="76" width="96" height="94" rx="10" fill="{sc}" fill-opacity=".18" stroke="{sc}" stroke-width="2.5" filter="url(#glow)"/>
- <circle cx="398" cy="114" r="26" fill="none" stroke="{sc}" stroke-width="3"/>
- <circle cx="398" cy="114" r="12" fill="none" stroke="{sc}" stroke-width="2"/>
- <g fill="{sc}">{''.join(f'<circle cx="{398 + 19 * math.cos(k * 0.785):.1f}" cy="{114 + 19 * math.sin(k * 0.785):.1f}" r="3.2"/>' for k in range(8))}</g>
- <text x="398" y="190" fill="{sc}" font-size="13" text-anchor="middle" font-weight="700">BEARING &#183; {esc(state.replace('_', ' '))}</text>
+ {glyph}
+ <text x="398" y="190" fill="{sc}" font-size="13" text-anchor="middle" font-weight="700">{name} &#183; {esc(state.replace('_', ' '))}</text>
  <circle cx="398" cy="58" r="9" fill="{rv}" filter="url(#glow)"/>
  <line x1="398" y1="67" x2="398" y2="76" stroke="{rv}" stroke-width="2"/>
- <text x="414" y="54" fill="{TEXT}" font-size="11">vibration sensor</text>
+ <text x="414" y="54" fill="{TEXT}" font-size="11">{right_lbl}</text>
  <text x="414" y="67" fill="{rv}" font-size="10" font-weight="700">{esc(vib_status.upper())}</text>
  <circle cx="110" cy="52" r="9" fill="{rc}" filter="url(#glow)"/>
  <line x1="110" y1="61" x2="110" y2="70" stroke="{rc}" stroke-width="2"/>
- <text x="126" y="48" fill="{TEXT}" font-size="11">current sensor</text>
+ <text x="126" y="48" fill="{TEXT}" font-size="11">{left_lbl}</text>
  <text x="126" y="61" fill="{rc}" font-size="10" font-weight="700">{esc(cur_status.upper())}</text>
 </svg>"""
 
@@ -241,8 +269,9 @@ def grid(cards, min_px: int = 200) -> str:
             + "".join(cards) + "</div>")
 
 
-PIPELINE = [("Sensors", "vibration + motor current"), ("Signal quality", "label-free reliability (OB2)"),
-            ("Diagnosis", "reliability-gated fusion (OB1)"), ("Health layer", "states, rules, advice (OB3)"),
+PIPELINE = [("Sensors", "bearing: vibration + current · gearbox: motor + gearbox vibration"),
+            ("Signal quality", "label-free reliability"),
+            ("Diagnosis", "reliability-gated fusion"), ("Health layer", "states, rules, advice"),
             ("Operator", "dashboard, log, reports")]
 
 
@@ -286,7 +315,7 @@ DEMO_STEPS = [
          target="vib", fam="dropout", sev=None, n=8, action="run",
          say="Real outer-race bearing KA22 with the accelerometer dead: the gate shifts all weight to current.",
          expect="Vibration FAILED; gate weights vib 0.00 / cur 1.00; WARNING, but outer race only 0.42 - current "
-                "alone is weak (OB1); 'reduced redundancy' advice."),
+                "alone is weak; 'reduced redundancy' advice."),
     dict(key="d6", title="Healthy bearing - known false alarm", asset="K004", rec="N15_M07_F10_K004_1",
          target="none", fam="noise", sev=None, n=8, action="run",
          say="Healthy bearing K004 is flagged: the known limitation, explained in the Research Lab.",
@@ -296,6 +325,37 @@ DEMO_STEPS = [
          say="Every window and state change is in SQLite; reports export as CSV and HTML.",
          expect="Event log with formatted times and rules; CSV and HTML downloads."),
     dict(key="d8", title="Research evidence and limitations", action="view", view="Research Lab",
-         say="The frozen OB1/OB2 results, including the negative findings.",
-         expect="Gated fusion not significantly better (Holm); FAR from 2 of 4 healthy bearings; OB2 misses noise."),
+         say="The frozen bearing and gearbox results, including the negative findings.",
+         expect="Gated fusion not significantly better (Holm); FAR from 2 of 4 healthy bearings; the sensor check "
+                "misses vibration noise; gearbox pilot results on a separate tab."),
 ]
+
+
+# ------------------------------------------------------- test-scenario labels (display only)
+# The underlying recording file names are unchanged; these only make the selector readable.
+_PADERBORN_CONDITION = {"K0": "Healthy", "KA": "Outer-race damage", "KI": "Inner-race damage"}
+
+
+def bearing_scenario_label(stem: str) -> str:
+    """'N15_M07_F10_KI18_1' -> 'KI18 · Inner-race damage · 1500 rpm · 0.7 Nm · 1000 N radial load'."""
+    try:
+        n, m, f, bearing, _ = stem.split("_")
+        cond = _PADERBORN_CONDITION.get(bearing[:2], "Bearing")
+        return (f"{bearing} · {cond} · {int(n[1:]) * 100} rpm · {int(m[1:]) / 10:g} Nm · "
+                f"{int(f[1:]) * 100} N radial load")
+    except (ValueError, IndexError):
+        return stem
+
+
+_GEARBOX_CONDITION = {"health": "Healthy gearbox", "gear_pitting_M": "Gear pitting (medium)",
+                      "gear_wear_M": "Gear wear (medium)"}
+
+
+def gearbox_scenario_label(name: str) -> str:
+    """'gear_pitting_M_torque_circulation_1000rpm_10Nm.csv' -> 'Gear pitting (medium) · 1000 rpm · 10 Nm'."""
+    import re
+    mt = re.fullmatch(r"(health|gear_pitting_M|gear_wear_M)_torque_circulation_(\d+)rpm_(\d+)Nm\.csv(?:\.gz)?", name)
+    if not mt:
+        return name
+    cond, rpm, nm = mt.groups()
+    return f"{_GEARBOX_CONDITION[cond]} · {rpm} rpm · {nm} Nm"

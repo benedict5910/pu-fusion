@@ -74,6 +74,7 @@ class HealthStore:
             counts[r["state"]] = counts.get(r["state"], 0) + 1
         fmt_t = lambda t: time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(t))
         e = html.escape
+        title = "Gearbox health report" if any("gearbox" in s.lower() for s in sources) else "Bearing health report"
         ev_rows = "".join(
             f"<tr><td>{fmt_t(x['ts'])}</td><td>{e(x['from_state'])} → <b>{e(x['to_state'])}</b></td>"
             f"<td>{e(x['rule'])}</td><td>{'<br>'.join(e(s) for s in json.loads(x['recommendations']))}</td></tr>"
@@ -82,9 +83,9 @@ class HealthStore:
 <style>body{{font-family:system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1rem;color:#222}}
 table{{border-collapse:collapse;width:100%}}td,th{{border-bottom:1px solid #ddd;padding:.4rem;text-align:left;vertical-align:top}}
 .note{{background:#fff6e0;padding:.6rem;border-left:4px solid #e0a000}}</style></head><body>
-<h1>Bearing health report{(' - ' + e(asset)) if asset else ''}</h1>
+<h1>{title}{(' - ' + e(asset)) if asset else ''}</h1>
 <p class="note">Data source: <b>{e(', '.join(sources) or 'none')}</b>. Benchmark replay results are validated on held-out
-Paderborn bearings; rig results are valid only for the rig they were trained on; simulated data is for demonstration.
+Paderborn bearings, gearbox replay results on held-out MCC5-THU operating profiles; rig results are valid only for the rig they were trained on; simulated data is for demonstration.
 No remaining-useful-life estimate is made.</p>
 <p>Windows logged: {len(rows)}{(' from ' + fmt_t(rows[0]['ts']) + ' to ' + fmt_t(rows[-1]['ts'])) if rows else ''}</p>
 <h2>Time in each state (windows)</h2><p>{', '.join(f'{e(k)}: {v}' for k, v in sorted(counts.items())) or '-'}</p>

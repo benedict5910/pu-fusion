@@ -58,6 +58,8 @@ class TestDashboardAppTest(unittest.TestCase):
             self.assertFalse(at.exception, f"{v}: {at.exception}")
         at.sidebar.radio(key="view").set_value("Overview").run()
         self.assertIn("BENCHMARK", self.text(at))
+        for gone in ("OB1", "OB2", "OB3", "OB4", "DESIGN STAGE"):
+            self.assertNotIn(gone, self.text(at))
 
     def test_ack_and_sensor_failure_on_real_app(self):
         at = self.app()
@@ -94,6 +96,83 @@ class TestDashboardAppTest(unittest.TestCase):
         self.assertFalse(at.exception, at.exception)
         self.assertEqual(at.session_state["asset"], "sim-rig-1")
         self.assertIn("SIMULATED", self.text(at))
+
+
+HAVE_MCC5 = len(list((ROOT / "data" / "mcc5").glob("*.csv*"))) == 12 if (ROOT / "data" / "mcc5").is_dir() else False
+
+
+@unittest.skipUnless(HAVE_STREAMLIT and HAVE_DATA and HAVE_MCC5, "needs Streamlit and the MCC5-THU recordings")
+class TestGearboxAppTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        os.environ["IVHM_DB"] = tempfile.mktemp(suffix=".db")
+
+    def test_gearbox_clean_motor_dropout_and_dual_dropout(self):
+        from streamlit.testing.v1 import AppTest
+        at = AppTest.from_file(str(ROOT / "app" / "dashboard.py"), default_timeout=600)
+        at.run()
+        at.sidebar.radio(key="view").set_value("Live Diagnostics").run()
+        at.sidebar.radio(key="component").set_value("Gearbox").run()
+        self.assertFalse(at.exception, at.exception)
+        self.assertEqual(at.session_state["asset"], "gearbox-1")
+        at.session_state["pace"] = 0.0
+        at.session_state["nwin"] = 59
+        at.session_state["gb_rec"] = "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv"
+        for target, check in (("none", "clean"), ("motor", "motor"), ("both", "both")):
+            # a fresh asset per scenario: a latched INSPECT (by design) persists through a later sensor outage
+            at.session_state["asset"] = f"apptest-gear-{check}"
+            at.session_state["gb_target"] = target
+            at.session_state["gb_fam"] = "dropout"
+            at.run()
+            [b for b in at.button if b.label == "▶ Run monitoring"][0].click().run()
+            self.assertFalse(at.exception, f"{target}: {at.exception}")
+            last = at.session_state["last"]
+            if check == "both":
+                self.assertEqual(last["state"], "SENSOR_FAULT")
+                self.assertFalse(last["diag_ok"])
+                self.assertNotIn("probs", last)
+            else:
+                self.assertEqual(max(last["probs"], key=last["probs"].get), "gear_pitting")
+            if check == "motor":
+                self.assertEqual(last["weights"]["motor"], 0.0)
+
+
+MANIFEST = ROOT / "models" / "gearbox_demo_manifest.json"
+
+
+@unittest.skipUnless(HAVE_STREAMLIT and HAVE_DATA and HAVE_MCC5 and MANIFEST.exists(),
+                     "needs Streamlit, data/mcc5 and the demo manifest")
+class TestGearboxDemoModeAppTest(unittest.TestCase):
+    """Streamlit Cloud path on the real app: no data/mcc5, only the checksum-verified demo set + exported model."""
+
+    def test_demo_mode_pitting_replay(self):
+        import json
+        import shutil
+        from streamlit.testing.v1 import AppTest
+        man = json.loads(MANIFEST.read_text())
+        cache = Path(tempfile.gettempdir()) / "ivhm_mcc5_demo"
+        cache.mkdir(exist_ok=True)
+        for name in man["recordings"]:                      # stands in for the release download
+            shutil.copyfile(ROOT / "data" / "mcc5" / name, cache / name)
+        os.environ["IVHM_MCC5"] = str(ROOT / "data" / "no-mcc5-here")
+        os.environ["IVHM_DB"] = tempfile.mktemp(suffix=".db")
+        try:
+            at = AppTest.from_file(str(ROOT / "app" / "dashboard.py"), default_timeout=600)
+            at.run()
+            at.sidebar.radio(key="view").set_value("Live Diagnostics").run()
+            at.sidebar.radio(key="component").set_value("Gearbox").run()
+            at.session_state["pace"] = 0.0
+            at.session_state["nwin"] = 59
+            at.session_state["gb_rec"] = "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv"
+            at.session_state["gb_target"] = "none"
+            at.run()
+            [b for b in at.button if b.label == "▶ Run monitoring"][0].click().run()
+            self.assertFalse(at.exception, at.exception)
+            last = at.session_state["last"]
+            self.assertEqual(last["state"], "INSPECT")
+            self.assertAlmostEqual(last["probs"]["gear_pitting"], 0.719, places=3)
+        finally:
+            os.environ.pop("IVHM_MCC5", None)
 
 
 if __name__ == "__main__":

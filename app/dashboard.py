@@ -47,8 +47,10 @@ def _drop_stale_project_modules():
     stamp = tuple((str(f), f.stat().st_mtime_ns, f.stat().st_size) for f in files)
     previous = getattr(sys, "_ivhm_code_stamp", None)
     sys._ivhm_code_stamp = stamp
-    if previous is not None and previous != stamp:
-        for name in [n for n in sys.modules if n in ("ui", "research") or n == "pufusion" or n.startswith("pufusion.")]:
+    loaded = [n for n in sys.modules if n in ("ui", "research") or n == "pufusion" or n.startswith("pufusion.")]
+    # no stamp but modules already loaded = they were imported by an older version of this script
+    if loaded and previous != stamp:
+        for name in loaded:
             del sys.modules[name]
         st.cache_resource.clear()
         st.cache_data.clear()

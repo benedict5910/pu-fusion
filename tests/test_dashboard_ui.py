@@ -348,6 +348,10 @@ class TestStaleModulesAfterUpdate(unittest.TestCase):
         _sys._ivhm_code_stamp = ("simulated", "older code")       # as if a deploy changed the files
         runpy.run_path(str(ROOT / "app" / "dashboard.py"))
         self.assertIsNot(_sys.modules["pufusion.health"], old)
+        old2 = _sys.modules["pufusion.health"]
+        del _sys._ivhm_code_stamp                                 # modules loaded by a version without the guard
+        runpy.run_path(str(ROOT / "app" / "dashboard.py"))
+        self.assertIsNot(_sys.modules["pufusion.health"], old2)
         same = _sys.modules["pufusion.health"]
         runpy.run_path(str(ROOT / "app" / "dashboard.py"))         # unchanged code: nothing is reloaded
         self.assertIs(_sys.modules["pufusion.health"], same)

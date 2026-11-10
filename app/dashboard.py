@@ -68,7 +68,8 @@ if CLOUD and hasattr(time, "tzset"):                 # cloud servers run on UTC;
 VIEWS = ["Overview", "Live Diagnostics", "Research Lab", "History & Reports"]
 COMPONENTS = ["Bearing", "Gearbox"]
 TEST_RUNS = ROOT / "results" / "test_runs"
-MCC5 = ROOT / "data" / "mcc5"
+MCC5 = Path(os.environ.get("IVHM_MCC5", str(ROOT / "data" / "mcc5")))
+GB_DEMO_MANIFEST = ROOT / "models" / "gearbox_demo_manifest.json"
 GB_SOURCE = "benchmark replay (MCC5-THU gearbox, held-out profile)"
 GB_DEFAULT = "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv"
 GB_NAMES = {"motor": "motor vibration", "gearbox": "gearbox vibration"}
@@ -126,16 +127,97 @@ def load_gearbox_results():
             "trace": R.gearbox_replay_trace(TEST_RUNS / "mcc5_pitting_replay.csv")}
 
 
-def gearbox_recordings():
-    """MCC5-THU recordings found in data/mcc5, keyed by file name (empty if the folder is missing)."""
-    return {r.id: r for r in G.discover(MCC5)} if MCC5.is_dir() else {}
+def _sha256(path):
+    import hashlib
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for block in iter(lambda: f.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def gearbox_demo_manifest():
+    import json
+    return json.loads(GB_DEMO_MANIFEST.read_text()) if GB_DEMO_MANIFEST.exists() else None
+
+
+@st.cache_resource(show_spinner=False)
+def gearbox_demo_recordings():
+    """Held-out demo recordings for deployments without data/mcc5 (e.g. Streamlit Cloud).
+
+    Downloaded once from the project's GitHub release (MCC5-THU v2, CC BY 4.0, unchanged files) and accepted
+    only if every SHA-256 matches the committed manifest. Returns the folder, or raises with the reason."""
+    import tempfile
+    import urllib.request
+    man = gearbox_demo_manifest()
+    if not man:
+        raise FileNotFoundError("models/gearbox_demo_manifest.json not found")
+    folder = Path(tempfile.gettempdir()) / "ivhm_mcc5_demo"
+    folder.mkdir(parents=True, exist_ok=True)
+    for name, meta in man["recordings"].items():
+        dest = folder / name
+        if dest.exists() and _sha256(dest) == meta["sha256"]:
+            continue
+        part = dest.with_suffix(dest.suffix + ".part")
+        with urllib.request.urlopen(man["release_url"] + name, timeout=120) as r, open(part, "wb") as f:
+            while chunk := r.read(1 << 20):
+                f.write(chunk)
+        if _sha256(part) != meta["sha256"]:
+            part.unlink()
+            raise ValueError(f"checksum mismatch for {name}; the download was discarded")
+        part.replace(dest)
+    return folder
+
+
+def gearbox_source():
+    """(recordings by file name, demo bundle or None, note). Full local data wins; else the verified demo set."""
+    if MCC5.is_dir():
+        recs = {r.id: r for r in G.discover(MCC5)}
+        if recs:
+            return recs, None, None
+    man = gearbox_demo_manifest()
+    if not man:
+        return {}, None, None
+    try:
+        with st.spinner("Fetching the MCC5-THU demo recordings (CC BY 4.0) from the project's GitHub release - "
+                        "first use only ..."):
+            folder = gearbox_demo_recordings()
+    except Exception as ex:  # no network / checksum mismatch: report, never substitute data
+        return {}, None, f"{type(ex).__name__}: {ex}"
+    recs = {r.id: r for r in G.discover(folder) if r.path.name in man["recordings"]}
+    return recs, man, None
+
+
+@st.cache_resource(show_spinner=False)
+def gearbox_demo_bundle(condition):
+    """Pre-fitted pilot model for one held-out profile (scripts/export_gearbox_demo.py), checksum-verified."""
+    man = gearbox_demo_manifest()
+    if not man or man["condition"] != condition:
+        return None
+    path = ROOT / "models" / man["model_file"]
+    if not path.exists() or _sha256(path) != man["model_sha256"]:
+        return None
+    with open(path, "rb") as f:
+        return pickle.load(f)
 
 
 @st.cache_resource(show_spinner=False)
 def gearbox_model(condition):
-    """Fit the existing pilot pipeline on the three profiles other than `condition` (same split as the evaluation)."""
+    """The exported model for the demo profile if present (identical pipeline and split), else fit the existing
+    pilot pipeline on the three profiles other than `condition` (same split as the evaluation)."""
+    bundle = gearbox_demo_bundle(condition)
+    if bundle is not None:
+        return bundle["model"]
     train, _ = G.condition_split(G.discover(MCC5), condition)
     return G.fit_records(train, {r.id: G.extract(r) for r in train})
+
+
+def gearbox_seed(rec, recs):
+    """Corruption seed as in the evaluation: 42 + position in the full 12-recording list."""
+    bundle = gearbox_demo_bundle(rec.condition)
+    if bundle is not None and rec.id in bundle["seeds"]:
+        return bundle["seeds"][rec.id]
+    return 42 + G.discover(MCC5).index(rec)
 
 
 @st.cache_data
@@ -502,14 +584,17 @@ def view_live_gearbox():
 
     with main:
         header("Live diagnostics", "gearbox")
-        recs = gearbox_recordings()
+        recs, demo, dl_err = gearbox_source()
         err = None
-        if not recs:
+        if dl_err:
+            err = (f"The MCC5-THU demo recordings could not be fetched or verified ({dl_err}). No gearbox data is "
+                   "substituted. The frozen gearbox evaluation is still available in the Research Lab.")
+        elif not recs:
             err = ("Gearbox recordings unavailable: data/mcc5 must contain the 12 MCC5-THU v2 CSV files (or .csv.gz "
                    "copies) named {health,gear_pitting_M,gear_wear_M}_torque_circulation_{1000rpm_10Nm,1000rpm_20Nm,"
                    "2000rpm_10Nm,3000rpm_10Nm}. They are not in git; see docs/GEARBOX_INTERIM.md. The frozen gearbox "
                    "evaluation is still available in the Research Lab.")
-        else:
+        elif demo is None:
             try:
                 for c_ in sorted({r.condition for r in recs.values()}):
                     G.condition_split(list(recs.values()), c_)
@@ -522,7 +607,8 @@ def view_live_gearbox():
         if ss.get("gb_rec") not in ids:
             ss.gb_rec = GB_DEFAULT if GB_DEFAULT in ids else ids[0]
         cols = st.columns([1.5, 1, 1])
-        cols[0].selectbox("Recording (held-out operating profile)", ids, key="gb_rec")
+        cols[0].selectbox("Test scenario", ids, key="gb_rec", format_func=ui.gearbox_scenario_label,
+                          help="MCC5-THU recording from a held-out operating profile (file: shown in the caption).")
         rec = recs[ss.gb_rec]
         prof = rec.condition.replace("torque_circulation_", "").replace("_", " ")
         cols[1].markdown(ui.card("Ground truth", f"<b>{ui.esc(rec.label.replace('_', ' '))}</b>"
@@ -537,8 +623,11 @@ def view_live_gearbox():
         if ss.get("tracker_key") != tkey:        # new asset / recording: never carry state over
             ss.tracker, ss.tracker_key = HealthTracker(fault_advice=G.GEARBOX_ADVICE), tkey
         tracker = ss.tracker
-        st.caption(f"Model: the existing MCC5-THU pilot pipeline, fitted on the three profiles other than {prof} "
-                   "(fitted once per profile on first run, then cached). A recording provides 59 windows of 1 s.")
+        how = ("pre-fitted export of that model, checksum-verified" if gearbox_demo_bundle(rec.condition) is not None
+               else "fitted once per profile on first run, then cached")
+        st.caption(f"File {rec.id}. Model: the existing MCC5-THU pilot pipeline, fitted on the three profiles other "
+                   f"than {prof} ({how}). A recording provides 59 windows of 1 s."
+                   + (" Demo set: the three held-out recordings of this profile." if demo else ""))
 
         b1, b2, _ = st.columns([1.15, 1.45, 1.2])
         run = b1.button("▶ Run monitoring", type="primary", **FULL)
@@ -567,7 +656,7 @@ def view_live_gearbox():
                 with st.spinner("Preparing the gearbox model and recording ..."):
                     model = gearbox_model(rec.condition)
                     # identical to gearbox.extract(): one generator seeded per recording, applied window by window
-                    rng = np.random.default_rng(42 + G.discover(MCC5).index(rec))
+                    rng = np.random.default_rng(gearbox_seed(rec, recs))
                     fam_ = None if target == "none" else fam
                     wins = [G.corrupt(w, fam_, target, rng) if fam_ else w for w in G.windows(rec)]
                     n = min(ss.nwin, len(wins))
@@ -657,7 +746,8 @@ def view_live():
             if ss.get("rec") not in stems:
                 ss.rec = stems[0]
             cols = st.columns([1.5, 1, 1])
-            cols[0].selectbox("Recording (held-out bearing)", stems, key="rec")
+            cols[0].selectbox("Test scenario", stems, key="rec", format_func=ui.bearing_scenario_label,
+                              help="Paderborn recording of a bearing held out from training (file: shown in the caption).")
             rec_name = ss.rec
             rec = load_recording(rec_map[rec_name])
             truth = CLASS_NAMES[rec.label]
@@ -680,7 +770,7 @@ def view_live():
                                    SOURCE_BENCHMARK, ss.asset, store, tracker)
             wins = list(windows(rec))
             target, fam, n = ss.target, ss.fam, min(ss.nwin, len(wins))
-            st.caption(f"This recording provides {len(wins)} windows; a run replays {n} of them "
+            st.caption(f"File {rec_name}. This recording provides {len(wins)} windows; a run replays {n} of them "
                        f"(requested {ss.nwin}).")
 
             def stream():

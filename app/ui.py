@@ -329,3 +329,33 @@ DEMO_STEPS = [
          expect="Gated fusion not significantly better (Holm); FAR from 2 of 4 healthy bearings; the sensor check "
                 "misses vibration noise; gearbox pilot results on a separate tab."),
 ]
+
+
+# ------------------------------------------------------- test-scenario labels (display only)
+# The underlying recording file names are unchanged; these only make the selector readable.
+_PADERBORN_CONDITION = {"K0": "Healthy", "KA": "Outer-race damage", "KI": "Inner-race damage"}
+
+
+def bearing_scenario_label(stem: str) -> str:
+    """'N15_M07_F10_KI18_1' -> 'KI18 · Inner-race damage · 1500 rpm · 0.7 Nm · 1000 N radial load'."""
+    try:
+        n, m, f, bearing, _ = stem.split("_")
+        cond = _PADERBORN_CONDITION.get(bearing[:2], "Bearing")
+        return (f"{bearing} · {cond} · {int(n[1:]) * 100} rpm · {int(m[1:]) / 10:g} Nm · "
+                f"{int(f[1:]) * 100} N radial load")
+    except (ValueError, IndexError):
+        return stem
+
+
+_GEARBOX_CONDITION = {"health": "Healthy gearbox", "gear_pitting_M": "Gear pitting (medium)",
+                      "gear_wear_M": "Gear wear (medium)"}
+
+
+def gearbox_scenario_label(name: str) -> str:
+    """'gear_pitting_M_torque_circulation_1000rpm_10Nm.csv' -> 'Gear pitting (medium) · 1000 rpm · 10 Nm'."""
+    import re
+    mt = re.fullmatch(r"(health|gear_pitting_M|gear_wear_M)_torque_circulation_(\d+)rpm_(\d+)Nm\.csv(?:\.gz)?", name)
+    if not mt:
+        return name
+    cond, rpm, nm = mt.groups()
+    return f"{_GEARBOX_CONDITION[cond]} · {rpm} rpm · {nm} Nm"

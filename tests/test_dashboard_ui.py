@@ -272,3 +272,60 @@ class TestGearboxHeadless(unittest.TestCase):
         out = self.run_app(view="Overview")
         self.assertIn("Gearbox · t-gear-both", out)
         self.st.session_state["component"] = "Bearing"
+
+
+class TestScenarioLabels(unittest.TestCase):
+    def test_labels_are_readable_and_keep_file_names(self):
+        self.assertEqual(ui.bearing_scenario_label("N15_M07_F10_KI18_1"),
+                         "KI18 · Inner-race damage · 1500 rpm · 0.7 Nm · 1000 N radial load")
+        self.assertTrue(ui.bearing_scenario_label("N15_M07_F10_K004_1").startswith("K004 · Healthy"))
+        self.assertIn("Outer-race", ui.bearing_scenario_label("N15_M07_F10_KA22_1"))
+        self.assertEqual(ui.gearbox_scenario_label("gear_pitting_M_torque_circulation_1000rpm_10Nm.csv"),
+                         "Gear pitting (medium) · 1000 rpm · 10 Nm")
+        self.assertEqual(ui.gearbox_scenario_label("health_torque_circulation_3000rpm_10Nm.csv"),
+                         "Healthy gearbox · 3000 rpm · 10 Nm")
+        self.assertEqual(ui.gearbox_scenario_label("unexpected.csv"), "unexpected.csv")
+
+
+MANIFEST = ROOT / "models" / "gearbox_demo_manifest.json"
+
+
+@unittest.skipUnless(HAVE_DATA and HAVE_MCC5 and MANIFEST.exists(), "needs data/mcc5 and the demo manifest")
+@unittest.skipIf(HAVE_STREAMLIT, "real Streamlit present: covered by test_dashboard_apptest")
+class TestGearboxDemoMode(unittest.TestCase):
+    """Deployment path: no data/mcc5, only the checksum-verified demo recordings and the exported model."""
+
+    def test_demo_set_reproduces_full_data_results(self):
+        import json
+        import shutil
+        import fake_streamlit as F
+        st = F.install()
+        man = json.loads(MANIFEST.read_text())
+        cache = Path(tempfile.gettempdir()) / "ivhm_mcc5_demo"
+        cache.mkdir(exist_ok=True)
+        for name in man["recordings"]:                       # stands in for the release download
+            shutil.copyfile(ROOT / "data" / "mcc5" / name, cache / name)
+        os.environ["IVHM_MCC5"] = str(ROOT / "data" / "no-mcc5-here")
+        os.environ["IVHM_DB"] = tempfile.mktemp(suffix=".db")
+        try:
+            st.session_state.clear()
+            st.PRESS.clear()
+            results = {}
+            for target in ("none", "motor", "both"):
+                st.session_state.update(view="Live Diagnostics", component="Gearbox", asset=f"demo-{target}",
+                                        gb_rec="gear_pitting_M_torque_circulation_1000rpm_10Nm.csv", nwin=59,
+                                        pace=0.0, gb_target=target, gb_fam="dropout")
+                st.PRESS.add("▶ Run monitoring")
+                st.LOG.clear()
+                runpy.run_path(str(ROOT / "app" / "dashboard.py"))
+                results[target] = st.session_state["last"]
+            self.assertIn("Demo set", "\n".join(st.LOG))
+            clean, motor, both = results["none"], results["motor"], results["both"]
+            self.assertEqual(clean["state"], "INSPECT")
+            self.assertAlmostEqual(clean["probs"]["gear_pitting"], 0.719, places=3)
+            self.assertEqual((motor["weights"]["motor"], motor["weights"]["gearbox"]), (0.0, 1.0))
+            self.assertEqual(max(motor["probs"], key=motor["probs"].get), "gear_pitting")
+            self.assertEqual(both["state"], "SENSOR_FAULT")
+            self.assertNotIn("probs", both)
+        finally:
+            os.environ.pop("IVHM_MCC5", None)

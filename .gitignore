@@ -31,6 +31,8 @@ data/rig/
 models/*
 !models/demo_models.pkl
 !models/rig_models_simulated.pkl
+!models/gearbox_demo_*.pkl
+!models/gearbox_demo_manifest.json
 
 # --- results: frozen research results and verification evidence are kept ---
 results/*

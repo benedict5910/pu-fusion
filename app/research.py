@@ -4,7 +4,7 @@ Pure Python (no Streamlit): every number shown in the Research Lab comes from th
 files, unchanged:
   results/starter/SUMMARY.txt       mean +/- sd macro-F1, ECE, FAR per model; Wilcoxon + Holm
   results/starter/p1.csv, p3.csv    per-run rows incl. confusion-matrix counts
-  results/starter/quality.json      OB2 detection / false-flag rates
+  results/starter/quality.json      sensor-quality detection / false-flag rates
   results/starter/audit/far_audit.json  false-alarm audit (per held-out healthy bearing)
 Nothing here re-trains, re-scores or re-thresholds anything.
 """
@@ -127,3 +127,56 @@ def headline(results_dir) -> dict:
         "vib_false_flag": q["clean"]["vib_false_flag"]["mean"], "cur_false_flag": q["clean"]["cur_false_flag"]["mean"],
         "n_significant_holm": len(sig),
     }
+
+
+# ------------------------------------------------------------------ gearbox pilot (MCC5-THU v2)
+# Read unchanged from results/test_runs (written by scripts/evaluate_gearbox.py); nothing is recomputed here
+# except sums and counts over the stored per-recording values.
+GEARBOX_MODEL_LABEL = {"motor": "Motor vibration only", "gearbox": "Gearbox vibration only",
+                       "early": "Early fusion", "late_average": "Equal late fusion",
+                       "gated": "Reliability-gated late fusion"}
+GEARBOX_SCENARIOS = {"clean": "Clean", "dropout@motor": "Motor sensor dropout",
+                     "dropout@gearbox": "Gearbox sensor dropout", "noise@gearbox": "Gearbox sensor noise",
+                     "gain@gearbox": "Gearbox sensor gain error", "dropout@both": "Both sensors dropped"}
+
+
+def gearbox_eval(path) -> dict:
+    d = json.loads(Path(path).read_text())
+    rows = []
+    for sc, title in GEARBOX_SCENARIOS.items():
+        for m, label in GEARBOX_MODEL_LABEL.items():
+            w = d["pooled"][sc][m]["window"]
+            rows.append({"scenario": title, "key": sc, "model": label, "model_key": m, "macro_f1": w["macro_f1"],
+                         "coverage": w["coverage"], "windows": w["count"],
+                         "recording_macro_f1": d["pooled"][sc][m]["recording"]["macro_f1"]})
+    status = {}
+    for fold in d["folds"].values():
+        for counts in fold["sensor_status_counts"].values():
+            for sc, by_sensor in counts.items():
+                for sensor, c in by_sensor.items():
+                    tot = status.setdefault(sc, {}).setdefault(sensor, {"ok": 0, "degraded": 0, "failed": 0})
+                    for k, v in c.items():
+                        tot[k] += v
+    recordings = sum(len(f["test"]) for f in d["folds"].values())
+    return {"source": d["source"], "protocol": d["protocol"], "folds": len(d["folds"]), "recordings": recordings,
+            "rows": rows, "status": status,
+            "pooled": {sc: {m: d["pooled"][sc][m]["window"] for m in GEARBOX_MODEL_LABEL} for sc in d["pooled"]}}
+
+
+def gearbox_replay_trace(path) -> list[dict]:
+    """First WARNING / INSPECT window, coverage and final weights per scenario of the stored replay trace."""
+    import csv
+    with open(path, newline="") as f:
+        rows = list(csv.DictReader(f))
+    out = []
+    for sc in dict.fromkeys(r["scenario"] for r in rows):
+        rs = [r for r in rows if r["scenario"] == sc]
+        first = lambda s: next((int(r["window"]) for r in rs if r["state"] == s), None)  # noqa: E731
+        last = rs[-1]
+        out.append({"scenario": sc, "windows": len(rs), "first WARNING": first("WARNING"),
+                    "first INSPECT": first("INSPECT"),
+                    "diagnosis coverage": sum(1 for r in rs if r["prediction"]) / len(rs),
+                    "final state": last["state"], "final prediction": last["prediction"] or "withheld",
+                    "final motor / gearbox weight": f"{float(last['motor_weight']):.2f} / "
+                                                    f"{float(last['gearbox_weight']):.2f}"})
+    return out

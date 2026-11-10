@@ -58,6 +58,8 @@ class TestDashboardAppTest(unittest.TestCase):
             self.assertFalse(at.exception, f"{v}: {at.exception}")
         at.sidebar.radio(key="view").set_value("Overview").run()
         self.assertIn("BENCHMARK", self.text(at))
+        for gone in ("OB1", "OB2", "OB3", "OB4", "DESIGN STAGE"):
+            self.assertNotIn(gone, self.text(at))
 
     def test_ack_and_sensor_failure_on_real_app(self):
         at = self.app()
@@ -94,6 +96,42 @@ class TestDashboardAppTest(unittest.TestCase):
         self.assertFalse(at.exception, at.exception)
         self.assertEqual(at.session_state["asset"], "sim-rig-1")
         self.assertIn("SIMULATED", self.text(at))
+
+
+HAVE_MCC5 = len(list((ROOT / "data" / "mcc5").glob("*.csv*"))) == 12 if (ROOT / "data" / "mcc5").is_dir() else False
+
+
+@unittest.skipUnless(HAVE_STREAMLIT and HAVE_DATA and HAVE_MCC5, "needs Streamlit and the MCC5-THU recordings")
+class TestGearboxAppTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        os.environ["IVHM_DB"] = tempfile.mktemp(suffix=".db")
+
+    def test_gearbox_clean_motor_dropout_and_dual_dropout(self):
+        from streamlit.testing.v1 import AppTest
+        at = AppTest.from_file(str(ROOT / "app" / "dashboard.py"), default_timeout=600)
+        at.run()
+        at.sidebar.radio(key="view").set_value("Live Diagnostics").run()
+        at.sidebar.radio(key="component").set_value("Gearbox").run()
+        self.assertFalse(at.exception, at.exception)
+        self.assertEqual(at.session_state["asset"], "gearbox-1")
+        at.session_state["pace"] = 0.0
+        at.session_state["nwin"] = 59
+        at.session_state["gb_rec"] = "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv"
+        for target, check in (("none", "clean"), ("motor", "motor"), ("both", "both")):
+            at.session_state["gb_target"] = target
+            at.session_state["gb_fam"] = "dropout"
+            at.run()
+            [b for b in at.button if b.label == "▶ Run monitoring"][0].click().run()
+            self.assertFalse(at.exception, f"{target}: {at.exception}")
+            last = at.session_state["last"]
+            if check == "both":
+                self.assertEqual(last["state"], "SENSOR_FAULT")
+                self.assertNotIn("probs", last)
+            else:
+                self.assertEqual(max(last["probs"], key=last["probs"].get), "gear_pitting")
+            if check == "motor":
+                self.assertEqual(last["weights"]["motor"], 0.0)
 
 
 if __name__ == "__main__":

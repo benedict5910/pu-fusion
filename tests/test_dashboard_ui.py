@@ -329,3 +329,29 @@ class TestGearboxDemoMode(unittest.TestCase):
             self.assertNotIn("probs", both)
         finally:
             os.environ.pop("IVHM_MCC5", None)
+
+
+@unittest.skipUnless(HAVE_DATA, "held-out recordings / demo model not present")
+@unittest.skipIf(HAVE_STREAMLIT, "real Streamlit present")
+class TestStaleModulesAfterUpdate(unittest.TestCase):
+    """A code update in a long-lived Streamlit process must not leave old project modules loaded."""
+
+    def test_changed_source_reloads_project_modules(self):
+        import sys as _sys
+        import fake_streamlit as F
+        st = F.install()
+        st.session_state.clear()
+        st.PRESS.clear()
+        os.environ["IVHM_DB"] = tempfile.mktemp(suffix=".db")
+        runpy.run_path(str(ROOT / "app" / "dashboard.py"))
+        old = _sys.modules["pufusion.health"]
+        _sys._ivhm_code_stamp = ("simulated", "older code")       # as if a deploy changed the files
+        runpy.run_path(str(ROOT / "app" / "dashboard.py"))
+        self.assertIsNot(_sys.modules["pufusion.health"], old)
+        old2 = _sys.modules["pufusion.health"]
+        del _sys._ivhm_code_stamp                                 # modules loaded by a version without the guard
+        runpy.run_path(str(ROOT / "app" / "dashboard.py"))
+        self.assertIsNot(_sys.modules["pufusion.health"], old2)
+        same = _sys.modules["pufusion.health"]
+        runpy.run_path(str(ROOT / "app" / "dashboard.py"))         # unchanged code: nothing is reloaded
+        self.assertIs(_sys.modules["pufusion.health"], same)

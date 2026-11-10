@@ -107,6 +107,7 @@ st_mod.markdown = lambda s, **k: st_mod.LOG.append(str(s))
 st_mod.write = st_mod.caption = st_mod.subheader = st_mod.header = st_mod.title = st_mod.info = \
     lambda *a, **k: st_mod.LOG.append(" ".join(map(str, a)))
 st_mod.divider = lambda: None
+_passthrough.clear = lambda: None
 st_mod.cache_resource = st_mod.cache_data = _passthrough
 st_mod.radio = st_mod.selectbox = st_mod.select_slider = st_mod.text_input = _widget
 st_mod.slider = lambda label, lo, hi, value=None, key=None, **k: _widget(label, None, key, value if value is not None else lo)

@@ -85,6 +85,23 @@ class TestDashboardAppTest(unittest.TestCase):
         self.assertFalse(last["diag_ok"])
         self.assertIn("Diagnosis suspended", self.text(at))
 
+    def test_simulations_switch_between_bundled_videos(self):
+        at = self.app()
+        at.sidebar.radio(key="view").set_value("Simulations").run()
+        self.assertFalse(at.exception or at.info)
+        self.assertEqual(at.subheader[0].value, "Rolling-element bearing")
+        [bearing] = at.get("video")
+        bearing_url = bearing.proto.url
+        self.assertTrue(bearing_url.endswith(".mp4"))
+
+        at.radio(key="simulation_video_component").set_value("Gearbox").run()
+        self.assertFalse(at.exception or at.info)
+        self.assertEqual(at.subheader[0].value, "Reduction gearbox")
+        [gearbox] = at.get("video")
+        self.assertTrue(gearbox.proto.url.endswith(".mp4"))
+        self.assertNotEqual(bearing_url, gearbox.proto.url)
+        self.assertIsNone(at.session_state["last"])
+
     def test_live_rig_not_connected_and_no_fabrication(self):
         at = self.app()
         at.sidebar.radio(key="view").set_value("Live Diagnostics").run()

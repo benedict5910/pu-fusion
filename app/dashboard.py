@@ -5,6 +5,7 @@
 Views
   Overview          monitoring pipeline, data-source legend, headline results, current state per component
   Live Diagnostics  monitoring engine on a selected component (bearing / gearbox) and source, guided demo
+  Simulations       prerecorded animations from the IVHM virtual testbed
   Research Lab      frozen preliminary bearing and gearbox results, confusion matrices, limitations
   History & Reports SQLite history per asset, event audit trail, CSV/HTML export
 
@@ -86,7 +87,7 @@ CLOUD = os.environ.get("IVHM_CLOUD", "1" if str(ROOT).startswith("/mount/src") e
 if CLOUD and hasattr(time, "tzset"):                 # cloud servers run on UTC; show the team's local time
     os.environ["TZ"] = os.environ.get("IVHM_TZ", "Asia/Kolkata")
     time.tzset()
-VIEWS = ["Overview", "Live Diagnostics", "Research Lab", "History & Reports"]
+VIEWS = ["Overview", "Live Diagnostics", "Simulations", "Research Lab", "History & Reports"]
 COMPONENTS = ["Bearing", "Gearbox"]
 TEST_RUNS = ROOT / "results" / "test_runs"
 MCC5 = Path(os.environ.get("IVHM_MCC5", str(ROOT / "data" / "mcc5")))
@@ -1213,5 +1214,23 @@ def view_history():
         st.download_button("⬇ CSV history", cp.read_bytes(), cp.name, "text/csv", **FULL)
 
 
-{"Overview": view_overview, "Live Diagnostics": view_live, "Research Lab": view_research,
+def view_simulations():
+    st.title("Simulations")
+    st.caption("Prerecorded animations from the IVHM virtual testbed. Use Live Diagnostics for model predictions.")
+    component = st.radio("Component", ("Bearing", "Gearbox"), horizontal=True, key="simulation_video_component")
+    title, duration = {
+        "Bearing": ("Rolling-element bearing", "1:03"),
+        "Gearbox": ("Reduction gearbox", "1:02"),
+    }[component]
+    st.subheader(title)
+    st.caption(f"Simulation video · {duration}")
+    video = APP / "media" / f"ivhm_{component.lower()}_simulation.mp4"
+    if video.is_file():
+        st.video(video, alt=f"IVHM virtual testbed animation of the {title.lower()}")
+    else:
+        st.info(f"The {component.lower()} simulation video is unavailable in this checkout.")
+
+
+{"Overview": view_overview, "Live Diagnostics": view_live, "Simulations": view_simulations,
+ "Research Lab": view_research,
  "History & Reports": view_history}[ss.view]()

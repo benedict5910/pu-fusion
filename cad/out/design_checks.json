@@ -1,0 +1,21 @@
+{
+  "assumptions": {
+    "power_W": 1100.0,
+    "speed_rpm": 1500.0,
+    "test_bearing_radial_load_N": 1000.0,
+    "bearing": "6203 deep-groove ball bearing, C = 9.95 kN (catalogue value)",
+    "material": "steel, E = 210 GPa, density 7850 kg/m3"
+  },
+  "motor_torque_Nm": 7.0,
+  "shaft_shear_stress_MPa_at_d17": 7.3,
+  "bearing_L10_million_rev": 985.0,
+  "bearing_L10_hours_at_1500rpm": 10945.0,
+  "gear_ratio": 2.5,
+  "centre_distance_mm": 70.0,
+  "output_speed_rpm": 600.0,
+  "output_torque_Nm": 17.51,
+  "pinion_tangential_load_N": 350.0,
+  "pinion_lewis_bending_stress_MPa": 27.4,
+  "line_shaft_first_critical_speed_rpm": 52400.0,
+  "critical_speed_margin": 34.9
+}

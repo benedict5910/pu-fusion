@@ -1,0 +1,29 @@
+{
+  "python": "3.11.14",
+  "executable": "E:\\freecad\\bin\\freecadcmd.exe",
+  "modules": {
+    "Part": true,
+    "Import": true,
+    "Mesh": true,
+    "MeshPart": true,
+    "TechDraw": true,
+    "Spreadsheet": true
+  },
+  "functions": {
+    "Import.export": true,
+    "TechDraw.projectToSVG": true,
+    "TechDraw.writeDXFPage": true
+  },
+  "freecad_version": [
+    "1",
+    "1",
+    "4",
+    "20260928 (Git shallow)",
+    "Unknown",
+    "2026/09/28 13:46:34",
+    "(HEAD detached at 4fd3bf320)",
+    "4fd3bf320d9566a27e60069fc8387448aaa3a094"
+  ],
+  "resource_dir": "E:\\freecad\\data\\",
+  "smoke_step_roundtrip_volume_ok": true
+}

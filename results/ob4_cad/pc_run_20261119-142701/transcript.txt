@@ -1,0 +1,190 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261119142701
+Username: DESKTOP-QN2T0J2\Admin
+RunAs User: DESKTOP-QN2T0J2\Admin
+Configuration Name: 
+Machine: DESKTOP-QN2T0J2 (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_finish.ps1
+Process ID: 21808
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+=== Phase 2: gearbox recordings ===
+gear_pitting_M_torque_circulation_1000rpm_10Nm.csv.gz: already present, verified
+gear_wear_M_torque_circulation_1000rpm_10Nm.csv.gz: already present, verified
+health_torque_circulation_1000rpm_10Nm.csv.gz: copied, verified
+New-Item : Access is denied
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:103 char:21
++ ... -not $li) { New-Item -ItemType Junction -Path $link -Target $dest | O ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\Users\Admin\...\data\mcc5_demo:String) [New-Item], Win32Exception
+    + FullyQualifiedErrorId : NewItemCreateIOError,Microsoft.PowerShell.Commands.NewItemCommand
+New-Item : Access is denied
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:103 char:21
++ ... -not $li) { New-Item -ItemType Junction -Path $link -Target $dest | O ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\Users\Admin\...\data\mcc5_demo:String) [New-Item], Win32Exception
+    + FullyQualifiedErrorId : NewItemCreateIOError,Microsoft.PowerShell.Commands.NewItemCommand
+
+Get-Item : Cannot find path 'C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\data\mcc5_demo' because it does not exist.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:104 char:24
++     $S.gearbox_link = (Get-Item $link).Target
++                        ~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\Admin\...\data\mcc5_demo:String) [Get-Item], 
+ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetItemCommand
+Get-Item : Cannot find path 'C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\data\mcc5_demo' because it does not exist.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:104 char:24
++     $S.gearbox_link = (Get-Item $link).Target
++                        ~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\Admin\...\data\mcc5_demo:String) [Get-Item], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetItemCommand
+
+=== Phase 1: FreeCAD ===
+freecadcmd: E:\freecad\bin\freecadcmd.exe
+PS>TerminatingError(): "Program 'freecadcmd.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:148 char:31
++     $S.freecad_version_cli = (& $FC --version 2>&1 | Out-String).Trim ...
++                               ~~~~~~~~~~~~~~~~~~~~."
+Program 'freecadcmd.exe' failed to run: Access is deniedAt 
+C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:148 char:31
++     $S.freecad_version_cli = (& $FC --version 2>&1 | Out-String).Trim ...
++                               ~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:148 char:5
++     $S.freecad_version_cli = (& $FC --version 2>&1 | Out-String).Trim ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+Program 'freecadcmd.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:148 char:31
++     $S.freecad_version_cli = (& $FC --version 2>&1 | Out-String).Trim ...
++                               ~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:148 char:5
++     $S.freecad_version_cli = (& $FC --version 2>&1 | Out-String).Trim ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: Access is denied."
+=== Phase 3: CAD build ===
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: Access is denied."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: Access is denied."
+PS>TerminatingError(): "Program 'python.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:175 char:1
++ & python -c "import matplotlib" 2>$null
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~."
+Program 'python.exe' failed to run: Access is deniedAt 
+C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:175 char:1
++ & python -c "import matplotlib" 2>$null
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:175 char:1
++ & python -c "import matplotlib" 2>$null
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+Program 'python.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:175 char:1
++ & python -c "import matplotlib" 2>$null
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:175 char:1
++ & python -c "import matplotlib" 2>$null
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: Access is denied."
+=== Phase 4: verification + tests ===
+PS>TerminatingError(): "Program 'python.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:187 char:1
++ & python --version *> (Join-Path $Out 'env.txt')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~."
+Program 'python.exe' failed to run: Access is deniedAt 
+C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:187 char:1
++ & python --version *> (Join-Path $Out 'env.txt')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:187 char:1
++ & python --version *> (Join-Path $Out 'env.txt')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+Program 'python.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:187 char:1
++ & python --version *> (Join-Path $Out 'env.txt')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:187 char:1
++ & python --version *> (Join-Path $Out 'env.txt')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+
+PS>TerminatingError(): "Program 'python.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:188 char:1
++ & python -m pip show streamlit altair pandas numpy scikit-learn scipy ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~."
+Program 'python.exe' failed to run: Access is deniedAt 
+C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:188 char:1
++ & python -m pip show streamlit altair pandas numpy scikit-learn scipy ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:188 char:1
++ & python -m pip show streamlit altair pandas numpy scikit-learn scipy ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+Program 'python.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:188 char:1
++ & python -m pip show streamlit altair pandas numpy scikit-learn scipy ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:188 char:1
++ & python -m pip show streamlit altair pandas numpy scikit-learn scipy ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: Access is denied."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: Access is denied."
+=== Git state (nothing committed) ===
+PS>TerminatingError(): "Program 'git.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:203 char:19
++ $S.git_version = (& git --version 2>&1 | Out-String).Trim()
++                   ~~~~~~~~~~~~~~~~~~~~."
+Program 'git.exe' failed to run: Access is deniedAt 
+C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:203 char:19
++ $S.git_version = (& git --version 2>&1 | Out-String).Trim()
++                   ~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:203 char:1
++ $S.git_version = (& git --version 2>&1 | Out-String).Trim()
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+Program 'git.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:203 char:19
++ $S.git_version = (& git --version 2>&1 | Out-String).Trim()
++                   ~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:203 char:1
++ $S.git_version = (& git --version 2>&1 | Out-String).Trim()
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+
+>> TerminatingError(): "Program 'git.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:204 char:16
++ $S.git_user = (& git config user.name 2>&1 | Out-String).Trim()
++                ~~~~~~~~~~~~~~~~~~~~~~~~~~~."
+Program 'git.exe' failed to run: Access is deniedAt 
+C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:204 char:16
++ $S.git_user = (& git config user.name 2>&1 | Out-String).Trim()
++                ~~~~~~~~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:204 char:1
++ $S.git_user = (& git config user.name 2>&1 | Out-String).Trim()
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+Program 'git.exe' failed to run: Access is deniedAt C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:204 char:16
++ $S.git_user = (& git config user.name 2>&1 | Out-String).Trim()
++                ~~~~~~~~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:204 char:1
++ $S.git_user = (& git config user.name 2>&1 | Out-String).Trim()
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+
+**********************
+Windows PowerShell transcript end
+End time: 20261119142814
+**********************

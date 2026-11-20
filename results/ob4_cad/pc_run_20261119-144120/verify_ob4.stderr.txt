@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\verify_ob4.py", line 236, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\verify_ob4.py", line 202, in main
+    rep["v3_strength"] = v3_not_wired()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\verify_ob4.py", line 177, in v3_not_wired
+    hits = {str(f.relative_to(ROOT)): bool(re.search(r"fusion_v3|v3_strength", f.read_text())) for f in files}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\verify_ob4.py", line 177, in <dictcomp>
+    hits = {str(f.relative_to(ROOT)): bool(re.search(r"fusion_v3|v3_strength", f.read_text())) for f in files}
+                                                                               ^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1059, in read_text
+    return f.read()
+           ^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 11299: character maps to <undefined>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IVHM drivetrain 3D</title>
+<style>
+  :root {
+    --bg0: #0b1220; --bg1: #111a2b; --panel: rgba(15, 23, 38, 0.86); --line: rgba(148, 163, 184, 0.18);
+    --text: #e2e8f0; --muted: #94a3b8; --accent: #38bdf8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: transparent; color: var(--text);
+    font: 12.5px/1.45 "Inter", "Segoe UI", system-ui, -apple-system, sans-serif; overflow: hidden; }
+  #wrap { position: relative; width: 100%; height: 100%; border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--line);
+    background: radial-gradient(120% 90% at 50% 18%, #1a2639 0%, #111a2b 48%, #0b1220 100%); }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+  canvas.dragging { cursor: grabbing; } canvas.hovering { cursor: pointer; }
+  .panel { position: absolute; background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  #title { left: 12px; top: 10px; padding: 7px 11px; }
+  #title .t1 { font-weight: 600; letter-spacing: .02em; font-size: 12px; }
+  #title .t2 { color: var(--muted); font-size: 11px; }
+  #toolbar { left: 12px; top: 62px; padding: 6px; display: flex; flex-direction: column; gap: 6px; }
+  .row { display: flex; gap: 4px; align-items: center; }
+  button { font: inherit; font-size: 11.5px; color: var(--text); background: rgba(30, 41, 59, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.22); border-radius: 6px; padding: 4px 8px; cursor: pointer; }
+  button:hover { border-color: rgba(56, 189, 248, 0.55); }
+  button.on { background: rgba(56, 189, 248, 0.16); border-color: rgba(56, 189, 248, 0.7); color: #bae6fd; }
+  .lbl { color: var(--muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; padding: 0 2px; }
+  input[type=range] { width: 120px; accent-color: var(--accent); }
+  #inspector { right: 12px; top: 10px; width: clamp(240px, 27%, 300px); max-height: calc(100% - 92px); overflow: auto; padding: 12px 13px; }
+  #inspector h3 { margin: 0 0 2px; font-size: 14px; font-weight: 600; }
+  #inspector .sub { color: var(--muted); font-size: 11px; margin-bottom: 8px; }
+  #inspector .sec { border-top: 1px solid var(--line); margin-top: 9px; padding-top: 8px; }
+  #inspector .k { color: var(--muted); }
+  #inspector table { width: 100%; border-collapse: collapse; }
+  #inspector td { padding: 2px 0; vertical-align: top; }
+  #inspector td:last-child { text-align: right; overflow-wrap: break-word; padding-left: 8px; }
+  #inspector { overflow-x: hidden; }
+  .chip { display: inline-block; padding: 1px 8px; border-radius: 999px; font-weight: 600; font-size: 11px;
+    border: 1px solid currentColor; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: 0; }
+  .bar { height: 5px; border-radius: 3px; background: rgba(148, 163, 184, 0.18); overflow: hidden; margin: 2px 0 5px; }
+  .bar > i { display: block; height: 100%; }
+  #legend { left: 12px; right: 12px; bottom: 10px; padding: 7px 10px; font-size: 11px; }
+  #legend .row { gap: 10px; flex-wrap: wrap; }
+  #legend .note { color: var(--muted); font-size: 10.5px; margin-top: 4px; }
+  #legend .hint { color: #7dd3fc; font-size: 10.5px; margin-top: 3px; opacity: .85; }
+  .tag { position: absolute; transform: translate(-50%, -100%); pointer-events: auto; cursor: pointer; white-space: nowrap;
+    font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 6px; background: rgba(11, 18, 32, 0.88);
+    border: 1px solid rgba(148, 163, 184, 0.35); user-select: none; }
+  .tag::after { content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 12px;
+    background: rgba(148, 163, 184, 0.55); }
+  .tag.inactive { opacity: .5; font-weight: 500; }
+  .tag.sel { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35); }
+  .tag.state { font-size: 11.5px; padding: 3px 9px; }
+  #msg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--muted);
+    font-size: 13px; pointer-events: none; text-align: center; padding: 30px; }
+  #tip { position: absolute; pointer-events: none; padding: 3px 8px; font-size: 11px; border-radius: 6px;
+    background: rgba(2, 6, 23, 0.92); border: 1px solid var(--line); display: none; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="gl"></canvas>
+  <div id="tags"></div>
+  <div id="title" class="panel"><div class="t1">Representative drivetrain · interactive 3D</div>
+    <div class="t2" id="subtitle">FreeCAD model → STEP → GLB</div></div>
+  <div id="toolbar" class="panel">
+    <div class="row"><button id="b-reset" title="Reset camera">Reset</button><button id="b-fit" title="Fit assembly to view">Fit</button></div>
+    <div class="row"><button data-view="iso">Iso</button><button data-view="front">Front</button><button data-view="top">Top</button><button data-view="side">Side</button></div>
+    <div class="row"><button id="b-xray" title="See-through housings and covers">X-ray</button><button id="b-edges" class="on" title="B-rep feature edges">Edges</button></div>
+    <div class="row"><span class="lbl">Explode</span><input id="explode" type="range" min="0" max="100" value="0"></div>
+  </div>
+  <div id="inspector" class="panel"></div>
+  <div id="legend" class="panel"></div>
+  <div id="tip"></div>
+  <div id="msg">Loading CAD model…</div>
+</div>
+<script src="viewer.js"></script>
+</body>
+</html>

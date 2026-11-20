@@ -1,0 +1,144 @@
+{
+  "units": "mm",
+  "frame": "x along the drive axis (motor -> load), y across the bench, z up; z=0 top of base",
+  "note": "Representative electric-drive assembly. Sensor positions show where each dataset's sensor is mounted relative to the machine element it monitors. They are not the exact positions on the Paderborn or MCC5-THU test benches, which are two different rigs.",
+  "sensors": [
+    {
+      "id": "S1",
+      "name": "sensor_bearing_accel",
+      "label": "Bearing accelerometer",
+      "subsystem": "bearing",
+      "code": "vib",
+      "dataset": "Paderborn KAt (bearing bench)",
+      "channels": [
+        "vibration_1"
+      ],
+      "quantity": "acceleration, 1 axis (radial, vertical)",
+      "fs_hz": 64000,
+      "mount": "test_bearing_housing",
+      "where": "top face of the test-bearing housing, above the bearing",
+      "position_mm": [
+        610.0,
+        0.0,
+        192.0
+      ],
+      "sensing_axis": [
+        0,
+        0,
+        1
+      ],
+      "mount_bbox_mm": [
+        580.0,
+        -55.0,
+        0.0,
+        640.0,
+        55.0,
+        185.0
+      ]
+    },
+    {
+      "id": "S2",
+      "name": "sensor_motor_current",
+      "label": "Motor current sensors (phases 1, 2)",
+      "subsystem": "bearing",
+      "code": "cur",
+      "dataset": "Paderborn KAt (bearing bench)",
+      "channels": [
+        "phase_current_1",
+        "phase_current_2"
+      ],
+      "quantity": "phase current, 2 phases",
+      "fs_hz": 64000,
+      "mount": "motor_supply_cable",
+      "where": "clamp-on current transducers on the motor supply cable",
+      "position_mm": [
+        185.0,
+        83.0,
+        260.0
+      ],
+      "sensing_axis": [
+        0,
+        1,
+        0
+      ],
+      "mount_bbox_mm": [
+        179.0,
+        45.0,
+        254.0,
+        191.0,
+        120.0,
+        266.0
+      ]
+    },
+    {
+      "id": "S3",
+      "name": "sensor_motor_accel",
+      "label": "Motor accelerometer (3-axis)",
+      "subsystem": "gearbox",
+      "code": "motor",
+      "dataset": "MCC5-THU (gearbox bench)",
+      "channels": [
+        "motor_vibration_x",
+        "motor_vibration_y",
+        "motor_vibration_z"
+      ],
+      "quantity": "acceleration, 3 axes",
+      "fs_hz": 12800,
+      "mount": "motor_body",
+      "where": "top of the motor frame at the drive end",
+      "position_mm": [
+        260.0,
+        0.0,
+        237.0
+      ],
+      "sensing_axis": [
+        0,
+        0,
+        1
+      ],
+      "mount_bbox_mm": [
+        40.0,
+        -90.0,
+        50.0,
+        280.0,
+        90.0,
+        230.0
+      ]
+    },
+    {
+      "id": "S4",
+      "name": "sensor_gearbox_accel",
+      "label": "Gearbox accelerometer (3-axis)",
+      "subsystem": "gearbox",
+      "code": "gearbox",
+      "dataset": "MCC5-THU (gearbox bench)",
+      "channels": [
+        "gearbox_vibration_x",
+        "gearbox_vibration_y",
+        "gearbox_vibration_z"
+      ],
+      "quantity": "acceleration, 3 axes",
+      "fs_hz": 12800,
+      "mount": "gearbox_housing",
+      "where": "side wall of the gearbox housing, at the input-shaft bearing",
+      "position_mm": [
+        798.0,
+        -52.0,
+        140.0
+      ],
+      "sensing_axis": [
+        0,
+        -1,
+        0
+      ],
+      "mount_bbox_mm": [
+        780.0,
+        -45.0,
+        70.0,
+        920.0,
+        137.0,
+        210.0
+      ]
+    }
+  ]
+}

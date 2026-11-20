@@ -1,0 +1,2 @@
+drawings: C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\cad\out\drawings\ivhm_drivetrain_drawings.pdf
+interference: 0 overlaps among 198 pairs; unexpected 0

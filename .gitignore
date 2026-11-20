@@ -46,3 +46,9 @@ results/*
 !results/final/
 results/ob_final/predictions.npz
 results/starter/ui/exports/
+!results/ob4_cad/
+results/ob4_cad/**/health.db
+cad/out/*.stl
+
+# OB4 3D viewer: generated copy of cad/out/ivhm_drivetrain.glb served by the component
+app/cad3d_component/model/

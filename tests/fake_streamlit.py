@@ -3,6 +3,7 @@ without the real packages (logic smoke test only; layout is verified on the real
 
 Records markdown/html output and widget calls; buttons return values from `PRESS`.
 """
+import json
 import sys
 import types
 
@@ -126,8 +127,54 @@ st_mod.image = lambda *a, **k: st_mod.LOG.append("<image>")
 st_mod.column_config = _Any("column_config")
 
 
+class RerunException(Exception):
+    """Raised by st.rerun(): like Streamlit, the current script run stops and the script runs again."""
+
+
+def _rerun(**k):
+    raise RerunException()
+
+
+st_mod.rerun = _rerun
+
+
+def run_script(path, max_reruns=1000):
+    """Run a Streamlit script the way the server does: st.rerun() restarts it with the same session state.
+    Only the final run's output is kept (each run replaces the page)."""
+    import runpy
+    for _ in range(max_reruns):
+        st_mod.LOG.clear()
+        try:
+            return runpy.run_path(str(path))
+        except RerunException:
+            st_mod.PRESS.clear()            # a click belongs to one run only
+    raise RuntimeError(f"script still requesting reruns after {max_reruns} runs")
+
+
+# custom components (st.components.v1): the stand-in records the arguments each component was rendered with
+st_mod.COMPONENTS = {}
+components_mod = types.ModuleType("streamlit.components")
+components_v1 = types.ModuleType("streamlit.components.v1")
+
+
+def _declare_component(name, path=None, url=None):
+    def render(key=None, default=None, **args):
+        st_mod.COMPONENTS[key or name] = args
+        st_mod.LOG.append(f"<component {name} {json.dumps(args, sort_keys=True, default=str)}>")
+        return default
+    return render
+
+
+components_v1.declare_component = _declare_component
+components_v1.html = lambda html, **k: st_mod.LOG.append(str(html))
+components_mod.v1 = components_v1
+st_mod.components = components_mod
+
+
 def install():
     sys.modules["streamlit"] = st_mod
+    sys.modules["streamlit.components"] = components_mod
+    sys.modules["streamlit.components.v1"] = components_v1
     if "altair" not in sys.modules:
         try:
             import altair  # noqa: F401

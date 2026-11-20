@@ -1,0 +1,170 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261119133524
+Username: DESKTOP-QN2T0J2\Admin
+RunAs User: DESKTOP-QN2T0J2\Admin
+Configuration Name: 
+Machine: DESKTOP-QN2T0J2 (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1
+Process ID: 29708
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+=== Phase 1: FreeCAD ===
+PS>TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is an empty string."
+Join-Path : Cannot bind argument to parameter 'Path' because it is an empty string.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:56 char:22
++     $GUI = Join-Path (Split-Path $FC) 'FreeCAD.exe'
++                      ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Join-Path], ParameterBindingValidationException
+    + FullyQualifiedErrorId : 
+ParameterArgumentValidationErrorEmptyStringNotAllowed,Microsoft.PowerShell.Commands.JoinPathCommand
+Join-Path : Cannot bind argument to parameter 'Path' because it is an empty string.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:56 char:22
++     $GUI = Join-Path (Split-Path $FC) 'FreeCAD.exe'
++                      ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Join-Path], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorEmptyStringNotAllowed,Microsoft.PowerShell.Commands.Join
+   PathCommand
+
+>> TerminatingError(Test-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Test-Path : Cannot bind argument to parameter 'Path' because it is null.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:57 char:19
++     if (Test-Path $GUI) { $S.freecad_gui = $GUI } else { $S.freecad_g ...
++                   ~~~~
+    + CategoryInfo          : InvalidData: (:) [Test-Path], ParameterBindingValidationException
+    + FullyQualifiedErrorId : 
+ParameterArgumentValidationErrorNullNotAllowed,Microsoft.PowerShell.Commands.TestPathCommand
+Test-Path : Cannot bind argument to parameter 'Path' because it is null.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:57 char:19
++     if (Test-Path $GUI) { $S.freecad_gui = $GUI } else { $S.freecad_g ...
++                   ~~~~
+    + CategoryInfo          : InvalidData: (:) [Test-Path], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorNullNotAllowed,Microsoft.PowerShell.Commands.TestPathCom
+   mand
+
+freecadcmd: E
+& : The term 'E' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:62 char:33
++     $S.freecad_version_cli = (& $FC --version 2>&1 | Out-String).Trim ...
++                                 ~~~
+    + CategoryInfo          : ObjectNotFound: (E:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+& : The term 'E' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:62 char:33
++     $S.freecad_version_cli = (& $FC --version 2>&1 | Out-String).Trim ...
++                                 ~~~
+    + CategoryInfo          : ObjectNotFound: (E:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: The system cannot find the file specified."
+Start-Process : This command cannot be run due to the error: The system cannot find the file specified.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:16 char:10
++     $p = Start-Process -FilePath $exe -ArgumentList $argList -NoNewWi ...
++          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: The system cannot find the file specified.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:16 char:10
++     $p = Start-Process -FilePath $exe -ArgumentList $argList -NoNewWi ...
++          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+You cannot call a method on a null-valued expression.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:18 char:9
++     if (-not $p.WaitForExit($timeoutSec * 1000)) { try { $p.Kill() }  ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+You cannot call a method on a null-valued expression.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:18 char:9
++     if (-not $p.WaitForExit($timeoutSec * 1000)) { try { $p.Kill() }  ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+=== Phase 2: gearbox recordings ===
+gear_pitting_M_torque_circulation_1000rpm_10Nm.csv.gz: copied, verified
+gear_wear_M_torque_circulation_1000rpm_10Nm.csv.gz: copied, verified
+PS>TerminatingError(Copy-Item): "There is not enough space on the disk.
+"
+Copy-Item : There is not enough space on the disk.
+
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:93 char:21
++                     Copy-Item $_.FullName $target -Force
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Copy-Item], IOException
+    + FullyQualifiedErrorId : System.IO.IOException,Microsoft.PowerShell.Commands.CopyItemCommand
+Copy-Item : There is not enough space on the disk.
+
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:93 char:21
++                     Copy-Item $_.FullName $target -Force
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Copy-Item], IOException
+    + FullyQualifiedErrorId : System.IO.IOException,Microsoft.PowerShell.Commands.CopyItemCommand
+
+health_torque_circulation_1000rpm_10Nm.csv.gz: copied, verified
+=== Phase 3: CAD build ===
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: The system cannot find the file specified."
+Start-Process : This command cannot be run due to the error: The system cannot find the file specified.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:16 char:10
++     $p = Start-Process -FilePath $exe -ArgumentList $argList -NoNewWi ...
++          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: The system cannot find the file specified.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:16 char:10
++     $p = Start-Process -FilePath $exe -ArgumentList $argList -NoNewWi ...
++          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+You cannot call a method on a null-valued expression.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:18 char:9
++     if (-not $p.WaitForExit($timeoutSec * 1000)) { try { $p.Kill() }  ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+You cannot call a method on a null-valued expression.
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:18 char:9
++     if (-not $p.WaitForExit($timeoutSec * 1000)) { try { $p.Kill() }  ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+=== Phase 4: verification + tests ===
+python.exe : WARNING: Package(s) not found: matplotlib
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:145 char:1
++ & python -m pip show streamlit altair pandas numpy scikit-learn scipy ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: Packag...und: matplotlib:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+=== Git state (nothing committed) ===
+Set-Content : There is not enough space on the disk.
+
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:14 char:56
++ ...  -Depth 8 | Set-Content -Encoding UTF8 (Join-Path $Out 'summary.json' ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Set-Content], IOException
+    + FullyQualifiedErrorId : ProviderContentWriteError,Microsoft.PowerShell.Commands.SetContentCommand
+Set-Content : There is not enough space on the disk.
+
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:14 char:56
++ ...  -Depth 8 | Set-Content -Encoding UTF8 (Join-Path $Out 'summary.json' ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Set-Content], IOException
+    + FullyQualifiedErrorId : ProviderContentWriteError,Microsoft.PowerShell.Commands.SetContentCommand
+
+**********************
+Windows PowerShell transcript end
+End time: 20261119133807
+**********************

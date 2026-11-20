@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\verify_ob4.py", line 236, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\verify_ob4.py", line 201, in main
+    rep["cad"] = cad_checks()
+                 ^^^^^^^^^^^^
+  File "C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\verify_ob4.py", line 163, in cad_checks
+    inter = D.interference_check(step=0.5)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\src\pufusion\drivetrain_cad.py", line 457, in interference_check
+    both = inside(items[i], g, params) & inside(items[j], g, params)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\src\pufusion\drivetrain_cad.py", line 422, in inside
+    add |= _inside_prim(resolve(pr, params), pts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\src\pufusion\drivetrain_cad.py", line 411, in _inside_prim
+    from matplotlib.path import Path as MPath
+ModuleNotFoundError: No module named 'matplotlib'

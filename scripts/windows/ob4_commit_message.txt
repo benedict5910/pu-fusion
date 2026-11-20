@@ -1,0 +1,14 @@
+OB4: CAD-supported virtual testbed
+
+- Representative drivetrain CAD model (src/pufusion/drivetrain_cad.py): parameters, parts, sensors S1-S4,
+  sensor map, sizing checks, interference check, 2-D views
+- FreeCAD build (cad/build_freecad.py): parametric FCStd, STEP, STL, self-check report
+- Drawings (cad/make_drawings.py): GA, sensor map, exploded view, details
+- ReplaySession (src/pufusion/testbed_session.py): run/pause/step/reset over the unchanged testbed chain
+- Dashboard view "Virtual Testbed" (app/testbed_view.py; app/dashboard.py +10 lines)
+- Tests: session equivalence, playback, view sync, CAD/sensor map, real-Streamlit AppTest
+- scripts/verify_ob4.py evidence folder; docs/OB4_TESTBED.md, docs/OB4_DEMO_GUIDE.md
+Frozen models, earlier results and the dashboard's gated fusion are unchanged; v3_strength is not wired in.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01CtD7L2GJnauufap6dUciV2

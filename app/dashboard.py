@@ -47,7 +47,8 @@ def _drop_stale_project_modules():
     stamp = tuple((str(f), f.stat().st_mtime_ns, f.stat().st_size) for f in files)
     previous = getattr(sys, "_ivhm_code_stamp", None)
     sys._ivhm_code_stamp = stamp
-    loaded = [n for n in sys.modules if n in ("ui", "research") or n == "pufusion" or n.startswith("pufusion.")]
+    loaded = [n for n in sys.modules if n in ("ui", "research", "testbed_view") or n == "pufusion"
+              or n.startswith("pufusion.")]
     # no stamp but modules already loaded = they were imported by an older version of this script
     if loaded and previous != stamp:
         for name in loaded:
@@ -59,6 +60,7 @@ def _drop_stale_project_modules():
 _drop_stale_project_modules()
 import research as R  # noqa: E402
 import ui  # noqa: E402
+import testbed_view as TV  # noqa: E402
 from pufusion import corruption as C  # noqa: E402
 from pufusion.config import CLASS_NAMES  # noqa: E402
 from pufusion import gearbox as G  # noqa: E402
@@ -86,7 +88,7 @@ CLOUD = os.environ.get("IVHM_CLOUD", "1" if str(ROOT).startswith("/mount/src") e
 if CLOUD and hasattr(time, "tzset"):                 # cloud servers run on UTC; show the team's local time
     os.environ["TZ"] = os.environ.get("IVHM_TZ", "Asia/Kolkata")
     time.tzset()
-VIEWS = ["Overview", "Live Diagnostics", "Research Lab", "History & Reports"]
+VIEWS = ["Overview", "Live Diagnostics", "Research Lab", "History & Reports", "Virtual Testbed"]
 COMPONENTS = ["Bearing", "Gearbox"]
 TEST_RUNS = ROOT / "results" / "test_runs"
 MCC5 = Path(os.environ.get("IVHM_MCC5", str(ROOT / "data" / "mcc5")))
@@ -1314,5 +1316,10 @@ def view_history():
         st.download_button("⬇ CSV history", cp.read_bytes(), cp.name, "text/csv", **FULL)
 
 
+def view_testbed():
+    """OB4: CAD-linked virtual testbed (app/testbed_view.py); same frozen models and logging as the other views."""
+    TV.render(dict(store=store, header=header, html=html, FULL=FULL, ss=ss, gearbox_source=gearbox_source))
+
+
 {"Overview": view_overview, "Live Diagnostics": view_live, "Research Lab": view_research,
- "History & Reports": view_history}[ss.view]()
+ "History & Reports": view_history, "Virtual Testbed": view_testbed}[ss.view]()

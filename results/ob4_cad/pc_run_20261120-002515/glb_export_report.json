@@ -1,0 +1,684 @@
+{
+  "step": "C:\\Users\\Admin\\Projects\\pu-fusion-ob4-2026-11-15\\cad\\out\\ivhm_drivetrain.step",
+  "glb": "C:\\Users\\Admin\\Projects\\pu-fusion-ob4-2026-11-15\\cad\\out\\ivhm_drivetrain.glb",
+  "linear_deflection_mm": 0.15,
+  "angular_deflection_rad": 0.3,
+  "errors": [],
+  "started": "2026-11-20 00:25:55",
+  "freecad_version": [
+    "1",
+    "1",
+    "4",
+    "20260928 (Git shallow)"
+  ],
+  "step_sha256": "b2cd11e47a07ecec20f55578d2e156ae4cbca8247a0aa48478b38c60dae19bce",
+  "matching": {
+    "expected": 93,
+    "matched": 93,
+    "missing": [],
+    "duplicated": []
+  },
+  "nodes": 93,
+  "triangles": 54544,
+  "edge_segments": 4148,
+  "glb_bytes": 1694628,
+  "glb_sha256": "0e159f516c65eff15f98e5b2417254d7b48aa9b7cac08e5527f6d6ffc8a95fa1",
+  "max_bbox_dev_mm": 0.0,
+  "max_mesh_vs_brep_dev_mm": 0.0749,
+  "readback_nodes": 93,
+  "per_node": {
+    "base_plate": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 700,
+      "edge_segments": 140,
+      "volume_mm3": 7875684.96
+    },
+    "motor_riser": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 12,
+      "edge_segments": 12,
+      "volume_mm3": 2160000.0
+    },
+    "motor_body": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0749,
+      "triangles": 380,
+      "edge_segments": 148,
+      "volume_mm3": 6321544.37
+    },
+    "motor_end_shield": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0746,
+      "triangles": 296,
+      "edge_segments": 106,
+      "volume_mm3": 340470.1
+    },
+    "motor_terminal_box": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 12,
+      "edge_segments": 12,
+      "volume_mm3": 486000.0
+    },
+    "motor_supply_cable": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0168,
+      "triangles": 164,
+      "edge_segments": 30,
+      "volume_mm3": 8482.3
+    },
+    "motor_shaft": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0336,
+      "triangles": 164,
+      "edge_segments": 40,
+      "volume_mm3": 29405.31
+    },
+    "coupling_1_hub_in": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0726,
+      "triangles": 356,
+      "edge_segments": 106,
+      "volume_mm3": 85977.54
+    },
+    "coupling_1_spider": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0734,
+      "triangles": 168,
+      "edge_segments": 62,
+      "volume_mm3": 23758.29
+    },
+    "coupling_1_hub_out": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0726,
+      "triangles": 356,
+      "edge_segments": 104,
+      "volume_mm3": 90124.44
+    },
+    "line_shaft": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0308,
+      "triangles": 836,
+      "edge_segments": 184,
+      "volume_mm3": 115704.86
+    },
+    "support_bearing_housing": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 200,
+      "edge_segments": 76,
+      "volume_mm3": 513680.71
+    },
+    "support_bearing_outer_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0559,
+      "triangles": 336,
+      "edge_segments": 100,
+      "volume_mm3": 3534.29
+    },
+    "support_bearing_inner_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0294,
+      "triangles": 336,
+      "edge_segments": 72,
+      "volume_mm3": 1432.57
+    },
+    "support_bearing_ball_1": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "support_bearing_ball_2": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "support_bearing_ball_3": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "support_bearing_ball_4": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "support_bearing_ball_5": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "support_bearing_ball_6": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "support_bearing_ball_7": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "support_bearing_ball_8": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "test_bearing_housing": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 200,
+      "edge_segments": 76,
+      "volume_mm3": 513680.71
+    },
+    "test_bearing_outer_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0559,
+      "triangles": 336,
+      "edge_segments": 100,
+      "volume_mm3": 3534.29
+    },
+    "test_bearing_inner_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0294,
+      "triangles": 336,
+      "edge_segments": 72,
+      "volume_mm3": 1432.57
+    },
+    "test_bearing_ball_1": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "test_bearing_ball_2": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "test_bearing_ball_3": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "test_bearing_ball_4": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "test_bearing_ball_5": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "test_bearing_ball_6": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "test_bearing_ball_7": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "test_bearing_ball_8": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "coupling_2_hub_in": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0726,
+      "triangles": 356,
+      "edge_segments": 104,
+      "volume_mm3": 90124.44
+    },
+    "coupling_2_spider": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0734,
+      "triangles": 168,
+      "edge_segments": 62,
+      "volume_mm3": 23758.29
+    },
+    "coupling_2_hub_out": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0726,
+      "triangles": 356,
+      "edge_segments": 100,
+      "volume_mm3": 92739.82
+    },
+    "gearbox_plinth": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 12,
+      "edge_segments": 12,
+      "volume_mm3": 1360800.0
+    },
+    "gearbox_housing": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 716,
+      "edge_segments": 232,
+      "volume_mm3": 1160897.42
+    },
+    "gearbox_cover": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 12,
+      "edge_segments": 12,
+      "volume_mm3": 305760.0
+    },
+    "gearbox_input_shaft": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0238,
+      "triangles": 164,
+      "edge_segments": 34,
+      "volume_mm3": 43126.21
+    },
+    "gearbox_output_shaft": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0238,
+      "triangles": 164,
+      "edge_segments": 34,
+      "volume_mm3": 43126.21
+    },
+    "pinion": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 488,
+      "edge_segments": 274,
+      "volume_mm3": 19194.23
+    },
+    "gear_wheel": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 968,
+      "edge_segments": 634,
+      "volume_mm3": 148923.38
+    },
+    "gb_in_bearing_1_outer_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0559,
+      "triangles": 336,
+      "edge_segments": 100,
+      "volume_mm3": 3534.29
+    },
+    "gb_in_bearing_1_inner_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0294,
+      "triangles": 336,
+      "edge_segments": 72,
+      "volume_mm3": 1432.57
+    },
+    "gb_in_bearing_1_ball_1": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_1_ball_2": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_1_ball_3": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_1_ball_4": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_1_ball_5": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_1_ball_6": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_1_ball_7": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_1_ball_8": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_2_outer_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0559,
+      "triangles": 336,
+      "edge_segments": 100,
+      "volume_mm3": 3534.29
+    },
+    "gb_in_bearing_2_inner_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0294,
+      "triangles": 336,
+      "edge_segments": 72,
+      "volume_mm3": 1432.57
+    },
+    "gb_in_bearing_2_ball_1": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_2_ball_2": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_2_ball_3": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_2_ball_4": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_2_ball_5": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_2_ball_6": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_2_ball_7": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_in_bearing_2_ball_8": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_1_outer_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0559,
+      "triangles": 336,
+      "edge_segments": 100,
+      "volume_mm3": 3534.29
+    },
+    "gb_out_bearing_1_inner_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0294,
+      "triangles": 336,
+      "edge_segments": 72,
+      "volume_mm3": 1432.57
+    },
+    "gb_out_bearing_1_ball_1": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_1_ball_2": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_1_ball_3": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_1_ball_4": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_1_ball_5": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_1_ball_6": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_1_ball_7": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_1_ball_8": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_2_outer_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0559,
+      "triangles": 336,
+      "edge_segments": 100,
+      "volume_mm3": 3534.29
+    },
+    "gb_out_bearing_2_inner_ring": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0294,
+      "triangles": 336,
+      "edge_segments": 72,
+      "volume_mm3": 1432.57
+    },
+    "gb_out_bearing_2_ball_1": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_2_ball_2": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_2_ball_3": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_2_ball_4": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_2_ball_5": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_2_ball_6": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_2_ball_7": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "gb_out_bearing_2_ball_8": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0185,
+      "triangles": 866,
+      "edge_segments": 0,
+      "volume_mm3": 160.82
+    },
+    "coupling_3_hub_in": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0726,
+      "triangles": 356,
+      "edge_segments": 100,
+      "volume_mm3": 92739.82
+    },
+    "coupling_3_spider": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0734,
+      "triangles": 168,
+      "edge_segments": 62,
+      "volume_mm3": 23758.29
+    },
+    "coupling_3_hub_out": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0726,
+      "triangles": 356,
+      "edge_segments": 104,
+      "volume_mm3": 90124.44
+    },
+    "load_shaft": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.028,
+      "triangles": 164,
+      "edge_segments": 38,
+      "volume_mm3": 15707.96
+    },
+    "load_unit": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 268,
+      "edge_segments": 96,
+      "volume_mm3": 1077566.28
+    },
+    "load_pedestal": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 12,
+      "edge_segments": 12,
+      "volume_mm3": 588000.0
+    },
+    "S1 Bearing accelerometer": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 12,
+      "edge_segments": 12,
+      "volume_mm3": 3584.0
+    },
+    "S2 Motor current sensors (phases 1, 2)": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0392,
+      "triangles": 336,
+      "edge_segments": 74,
+      "volume_mm3": 18095.57
+    },
+    "S3 Motor accelerometer (3-axis)": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 12,
+      "edge_segments": 12,
+      "volume_mm3": 3584.0
+    },
+    "S4 Gearbox accelerometer (3-axis)": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 12,
+      "edge_segments": 12,
+      "volume_mm3": 3584.0
+    }
+  },
+  "passed": true,
+  "finished": "2026-11-20 00:25:56"
+}

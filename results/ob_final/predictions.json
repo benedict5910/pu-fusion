@@ -1,0 +1,241 @@
+{
+  "features": "data/features_starter.npz",
+  "selection": "results/ob2_v2/quality_v2.json",
+  "folds": [
+    {
+      "fold": "P1_r0_f0",
+      "train": [
+        "K001",
+        "K002",
+        "KA04",
+        "KA16",
+        "KA22",
+        "KI04",
+        "KI14",
+        "KI18"
+      ],
+      "test": [
+        "K003",
+        "K004",
+        "KA15",
+        "KI16"
+      ],
+      "v2_config": "maha_base_pooled_a99.0"
+    },
+    {
+      "fold": "P1_r0_f2",
+      "train": [
+        "K003",
+        "K004",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KI04",
+        "KI16"
+      ],
+      "test": [
+        "K001",
+        "K002",
+        "KA22",
+        "KI14",
+        "KI18"
+      ],
+      "v2_config": "box_base_pooled_q1.0-99.0_m0.1"
+    },
+    {
+      "fold": "P1_r1_f2",
+      "train": [
+        "K002",
+        "K003",
+        "KA04",
+        "KA15",
+        "KA22",
+        "KI16",
+        "KI18"
+      ],
+      "test": [
+        "K001",
+        "K004",
+        "KA16",
+        "KI04",
+        "KI14"
+      ],
+      "v2_config": "maha_base_pooled_a99.0"
+    },
+    {
+      "fold": "P1_r2_f0",
+      "train": [
+        "K001",
+        "K002",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KI14",
+        "KI16",
+        "KI18"
+      ],
+      "test": [
+        "K003",
+        "K004",
+        "KA22",
+        "KI04"
+      ],
+      "v2_config": "box_base_pooled_q1.0-99.0_m0.1"
+    },
+    {
+      "fold": "P1_r2_f1",
+      "train": [
+        "K001",
+        "K003",
+        "K004",
+        "KA16",
+        "KA22",
+        "KI04",
+        "KI16"
+      ],
+      "test": [
+        "K002",
+        "KA04",
+        "KA15",
+        "KI14",
+        "KI18"
+      ],
+      "v2_config": "maha_base_pooled_a99.0"
+    },
+    {
+      "fold": "P1_r2_f2",
+      "train": [
+        "K002",
+        "K003",
+        "K004",
+        "KA04",
+        "KA15",
+        "KA22",
+        "KI04",
+        "KI14",
+        "KI18"
+      ],
+      "test": [
+        "K001",
+        "KA16",
+        "KI16"
+      ],
+      "v2_config": "box_base_pooled_q1.0-99.0_m0.1"
+    },
+    {
+      "fold": "P1_r3_f0",
+      "train": [
+        "K001",
+        "K004",
+        "KA15",
+        "KA22",
+        "KI04",
+        "KI14",
+        "KI16"
+      ],
+      "test": [
+        "K002",
+        "K003",
+        "KA04",
+        "KA16",
+        "KI18"
+      ],
+      "v2_config": "box_base_pooled_q1.0-99.0_m0.1"
+    },
+    {
+      "fold": "P1_r3_f1",
+      "train": [
+        "K002",
+        "K003",
+        "K004",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KI04",
+        "KI18"
+      ],
+      "test": [
+        "K001",
+        "KA22",
+        "KI14",
+        "KI16"
+      ],
+      "v2_config": "box_base_pooled_q1.0-99.0_m0.1"
+    },
+    {
+      "fold": "P1_r3_f2",
+      "train": [
+        "K001",
+        "K002",
+        "K003",
+        "KA04",
+        "KA16",
+        "KA22",
+        "KI14",
+        "KI16",
+        "KI18"
+      ],
+      "test": [
+        "K004",
+        "KA15",
+        "KI04"
+      ],
+      "v2_config": "maha_base_pooled_a99.0"
+    },
+    {
+      "fold": "P1_r4_f0",
+      "train": [
+        "K001",
+        "K002",
+        "K003",
+        "KA15",
+        "KA22",
+        "KI04",
+        "KI16",
+        "KI18"
+      ],
+      "test": [
+        "K004",
+        "KA04",
+        "KA16",
+        "KI14"
+      ],
+      "v2_config": "maha_base_pooled_a99.0"
+    },
+    {
+      "fold": "P1_r4_f1",
+      "train": [
+        "K003",
+        "K004",
+        "KA04",
+        "KA16",
+        "KI14",
+        "KI16",
+        "KI18"
+      ],
+      "test": [
+        "K001",
+        "K002",
+        "KA15",
+        "KA22",
+        "KI04"
+      ],
+      "v2_config": "box_base_pooled_q1.0-99.0_m0.1"
+    }
+  ],
+  "eval_windows": "held-out bearings, repetitions >= 2, clean + every corruption tag",
+  "bearing_classes": {
+    "K001": 0,
+    "K002": 0,
+    "K003": 0,
+    "K004": 0,
+    "KA04": 1,
+    "KA15": 1,
+    "KA16": 1,
+    "KA22": 1,
+    "KI04": 2,
+    "KI14": 2,
+    "KI16": 2,
+    "KI18": 2
+  }
+}

@@ -1,0 +1,380 @@
+{
+ "KA22": {
+  "code": "KA22",
+  "bytes": 159054470,
+  "md5": "7a16a5bc88d5fe1d83d169f88f0709e8",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "KA22.pdf",
+   "measuring_log_KA22.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   255998,
+   277358
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "29.05",
+   "symptom": "Pitting",
+   "component": "OR",
+   "damage_method": "lifetime test"
+  },
+  "label": "outer_race",
+  "label_ok": true,
+  "ALL_OK": true
+ },
+ "K001": {
+  "code": "K001",
+  "bytes": 173881721,
+  "md5": "af6dc58283d356cd438e7738a2d525b8",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "K001.pdf",
+   "measuring_log_K001.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   256000,
+   261196
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "29.05"
+  },
+  "label": "healthy",
+  "label_ok": true,
+  "ALL_OK": true
+ },
+ "K002": {
+  "code": "K002",
+  "bytes": 161981588,
+  "md5": "88631bc0081a6470846d18189d46381d",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "K002.pdf",
+   "measuring_log_K002.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   255996,
+   291847
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "29.05"
+  },
+  "label": "healthy",
+  "label_ok": true,
+  "ALL_OK": true
+ },
+ "K003": {
+  "code": "K003",
+  "bytes": 173194389,
+  "md5": "08b61792e1058dc47dd21071666bca2c",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "K003.pdf",
+   "measuring_log_K003.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   256000,
+   262593
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "29.05"
+  },
+  "label": "healthy",
+  "label_ok": true,
+  "ALL_OK": true
+ },
+ "K004": {
+  "code": "K004",
+  "bytes": 163337851,
+  "md5": "5b9fde1c6d754806539f9a890ee6bbdd",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "K004.pdf",
+   "measuring_log_K004.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   256000,
+   260910
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "29.05"
+  },
+  "label": "healthy",
+  "label_ok": true,
+  "ALL_OK": true
+ },
+ "KA04": {
+  "code": "KA04",
+  "bytes": 180920703,
+  "md5": "f87503ed69a624ba6e1d9e573e6c09fb",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "KA04.pdf",
+   "measuring_log_KA04.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   255999,
+   262735
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "28.55",
+   "symptom": "Pitting",
+   "component": "OR",
+   "damage_method": "lifetime test"
+  },
+  "label": "outer_race",
+  "label_ok": true,
+  "ALL_OK": true
+ },
+ "KA15": {
+  "code": "KA15",
+  "bytes": 164268273,
+  "md5": "db518f97ba5bcaedb09c648a317431e0",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "KA15.pdf",
+   "measuring_log_KA15.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   255996,
+   278139
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "28.55",
+   "symptom": "Symptom",
+   "component": "OR",
+   "damage_method": "lifetime test"
+  },
+  "label": "outer_race",
+  "label_ok": true,
+  "ALL_OK": true
+ },
+ "KI04": {
+  "code": "KI04",
+  "bytes": 172644279,
+  "md5": "a5a634fcdcb33a8501e7411d30441c6d",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "KI04.pdf",
+   "measuring_log_KI04.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   256000,
+   262172
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "29.05",
+   "modes": [
+    "fatigue",
+    "plastic deformation"
+   ],
+   "symptom": "Pitting",
+   "component": "IR",
+   "all_components": [
+    "IR",
+    "OR"
+   ],
+   "damage_method": "lifetime test lifetime test"
+  },
+  "label": "inner_race",
+  "label_ok": true,
+  "ALL_OK": true
+ },
+ "KI14": {
+  "code": "KI14",
+  "bytes": 163581312,
+  "md5": "13603834975435ca10eb08de6d1840dc",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "KI14.pdf",
+   "measuring_log_KI14.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   256000,
+   274159
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "29.05",
+   "modes": [
+    "fatigue",
+    "plastic deformation"
+   ],
+   "symptom": "Pitting",
+   "component": "IR",
+   "all_components": [
+    "IR",
+    "OR"
+   ],
+   "damage_method": "lifetime test lifetime test"
+  },
+  "label": "inner_race",
+  "label_ok": true,
+  "ALL_OK": true
+ },
+ "KI16": {
+  "code": "KI16",
+  "bytes": 166348305,
+  "md5": "db14eae04a213afd0d1ca99d3d850342",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "KI16.pdf",
+   "measuring_log_KI16.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   255999,
+   299038
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "28.55",
+   "symptom": "Pitting",
+   "component": "IR",
+   "damage_method": "lifetime test"
+  },
+  "label": "inner_race",
+  "label_ok": true,
+  "ALL_OK": true
+ },
+ "KI18": {
+  "code": "KI18",
+  "bytes": 161226797,
+  "md5": "db5da511e9240dbc56ec1e850fd91699",
+  "md5_ok": true,
+  "n_mat": 80,
+  "other_files": [
+   "KI18.pdf",
+   "measuring_log_KI18.pdf"
+  ],
+  "names_ok": true,
+  "per_condition": {
+   "N09_M07_F10": 20,
+   "N15_M01_F10": 20,
+   "N15_M07_F04": 20,
+   "N15_M07_F10": 20
+  },
+  "layout_ok": true,
+  "unreadable": [],
+  "samples_min_max": [
+   255997,
+   277460
+  ],
+  "fs_ok": true,
+  "fact_sheet": {
+   "pitch_diameter_mm": "29.05",
+   "symptom": "Pitting",
+   "component": "IR",
+   "damage_method": "lifetime test"
+  },
+  "label": "inner_race",
+  "label_ok": true,
+  "ALL_OK": true
+ }
+}

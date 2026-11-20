@@ -1,0 +1,2363 @@
+{
+  "condition": "torque_circulation_1000rpm_10Nm",
+  "train_recordings": [
+    "gear_pitting_M_torque_circulation_1000rpm_20Nm.csv",
+    "gear_pitting_M_torque_circulation_2000rpm_10Nm.csv",
+    "gear_pitting_M_torque_circulation_3000rpm_10Nm.csv",
+    "gear_wear_M_torque_circulation_1000rpm_20Nm.csv",
+    "gear_wear_M_torque_circulation_2000rpm_10Nm.csv",
+    "gear_wear_M_torque_circulation_3000rpm_10Nm.csv",
+    "health_torque_circulation_1000rpm_20Nm.csv",
+    "health_torque_circulation_2000rpm_10Nm.csv",
+    "health_torque_circulation_3000rpm_10Nm.csv"
+  ],
+  "test_recordings": [
+    "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv",
+    "gear_wear_M_torque_circulation_1000rpm_10Nm.csv",
+    "health_torque_circulation_1000rpm_10Nm.csv"
+  ],
+  "reproduction_of_stored_fold": {
+    "cells_compared": 160,
+    "confusion_mismatches": 0,
+    "max_abs_macro_f1_diff": 0.0
+  },
+  "severity_sweep": {
+    "clean": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5002568053415511,
+        "gearbox": 0.4997431946584489
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.9548485191555979,
+          "accuracy": 0.9548022598870056,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.03389830508474576,
+          "fault_class_issued": 0.6666666666666666
+        },
+        "late_average": {
+          "macro_f1": 0.9094390134184742,
+          "accuracy": 0.9096045197740112,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.1694915254237288,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.6892655367231638
+        },
+        "gated": {
+          "macro_f1": 0.9094390134184742,
+          "accuracy": 0.9096045197740112,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.1694915254237288,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.6892655367231638
+        }
+      }
+    },
+    "noise:20@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.4620125637074793,
+        "gearbox": 0.5379874362925201
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.6634625322997416,
+          "accuracy": 0.7005649717514124,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.13559322033898305,
+          "missed_fault_rate": 0.3389830508474576,
+          "fault_class_issued": 0.4858757062146893
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.9549769863249488,
+          "accuracy": 0.9548022598870056,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.03389830508474576,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.6497175141242938
+        },
+        "late_average": {
+          "macro_f1": 0.874456149649948,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.2711864406779661,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.7231638418079096
+        },
+        "gated": {
+          "macro_f1": 0.8857468874241473,
+          "accuracy": 0.8870056497175142,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.2542372881355932,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7231638418079096
+        }
+      }
+    },
+    "noise:10@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.4620125637074793,
+        "gearbox": 0.5379874362925201
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.5465970396158167,
+          "accuracy": 0.6214689265536724,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.1864406779661017,
+          "missed_fault_rate": 0.4067796610169492,
+          "fault_class_issued": 0.4576271186440678
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.9329357817231393,
+          "accuracy": 0.9322033898305084,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.0847457627118644,
+          "fault_class_issued": 0.615819209039548
+        },
+        "late_average": {
+          "macro_f1": 0.8577087253979455,
+          "accuracy": 0.8587570621468926,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.288135593220339,
+          "missed_fault_rate": 0.06779661016949153,
+          "fault_class_issued": 0.7175141242937854
+        },
+        "gated": {
+          "macro_f1": 0.8688957808123464,
+          "accuracy": 0.8700564971751412,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.2711864406779661,
+          "missed_fault_rate": 0.059322033898305086,
+          "fault_class_issued": 0.7175141242937854
+        }
+      }
+    },
+    "noise:5@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.4620125637074793,
+        "gearbox": 0.5379874362925201
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.4758611619575081,
+          "accuracy": 0.536723163841808,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4745762711864407,
+          "missed_fault_rate": 0.3220338983050847,
+          "fault_class_issued": 0.6101694915254238
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.9209998175515417,
+          "accuracy": 0.9209039548022598,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.07627118644067797,
+          "fault_class_issued": 0.6214689265536724
+        },
+        "late_average": {
+          "macro_f1": 0.8318375673011925,
+          "accuracy": 0.8361581920903954,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.3898305084745763,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.7627118644067796
+        },
+        "gated": {
+          "macro_f1": 0.8255939412802157,
+          "accuracy": 0.8305084745762712,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4067796610169492,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.768361581920904
+        }
+      }
+    },
+    "noise:0@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.4620125637074793,
+        "gearbox": 0.5379874362925201
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.2835529994408499,
+          "accuracy": 0.384180790960452,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9152542372881356,
+          "missed_fault_rate": 0.09322033898305085,
+          "fault_class_issued": 0.9096045197740112
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.8152139708848382,
+          "accuracy": 0.8192090395480226,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.1016949152542373,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.672316384180791
+        },
+        "late_average": {
+          "macro_f1": 0.7008730852247691,
+          "accuracy": 0.7344632768361582,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7288135593220338,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.903954802259887
+        },
+        "gated": {
+          "macro_f1": 0.7192727141818934,
+          "accuracy": 0.7457627118644068,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.6779661016949152,
+          "missed_fault_rate": 0.025423728813559324,
+          "fault_class_issued": 0.8757062146892656
+        }
+      }
+    },
+    "noise:-5@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.4620125637074793,
+        "gearbox": 0.5379874362925201
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.19747545582047685,
+          "accuracy": 0.3389830508474576,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9830508474576272,
+          "missed_fault_rate": 0.01694915254237288,
+          "fault_class_issued": 0.9830508474576272
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.6432227002960195,
+          "accuracy": 0.6666666666666666,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.2542372881355932,
+          "missed_fault_rate": 0.01694915254237288,
+          "fault_class_issued": 0.7401129943502824
+        },
+        "late_average": {
+          "macro_f1": 0.5153142817410652,
+          "accuracy": 0.5819209039548022,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9322033898305084,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.9717514124293786
+        },
+        "gated": {
+          "macro_f1": 0.6464885933961256,
+          "accuracy": 0.6949152542372882,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.8135593220338984,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.9322033898305084
+        }
+      }
+    },
+    "dropout:None@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 1.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.0,
+        "gearbox": 1.0
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "late_average": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "gated": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        }
+      }
+    },
+    "intermittent:0.05@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.42702448210922783,
+        "gearbox": 0.5729755178907708
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.7276531829022197,
+          "accuracy": 0.751412429378531,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 0.3559322033898305,
+          "fault_class_issued": 0.4293785310734463
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.9549877632846467,
+          "accuracy": 0.9548022598870056,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.059322033898305086,
+          "fault_class_issued": 0.632768361581921
+        },
+        "late_average": {
+          "macro_f1": 0.9324786324786324,
+          "accuracy": 0.9322033898305084,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0847457627118644,
+          "missed_fault_rate": 0.059322033898305086,
+          "fault_class_issued": 0.655367231638418
+        },
+        "gated": {
+          "macro_f1": 0.8973748035799686,
+          "accuracy": 0.8983050847457628,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.2033898305084746,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.7005649717514124
+        }
+      }
+    },
+    "intermittent:0.2@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.41713747645951016,
+        "gearbox": 0.5828625235404885
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.29407151908042856,
+          "accuracy": 0.4011299435028249,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 0.8983050847457628,
+          "fault_class_issued": 0.06779661016949153
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.5971474580170232,
+          "accuracy": 0.6384180790960452,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.5338983050847458,
+          "fault_class_issued": 0.3163841807909605
+        },
+        "late_average": {
+          "macro_f1": 0.8153182275311455,
+          "accuracy": 0.8135593220338984,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.2711864406779661,
+          "fault_class_issued": 0.4915254237288136
+        },
+        "gated": {
+          "macro_f1": 0.9212094327696615,
+          "accuracy": 0.9209039548022598,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0847457627118644,
+          "missed_fault_rate": 0.07627118644067797,
+          "fault_class_issued": 0.6440677966101694
+        }
+      }
+    },
+    "intermittent:0.5@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.36158192090395624,
+        "gearbox": 0.638418079096046
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.4279782816991376,
+          "accuracy": 0.5141242937853108,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.7203389830508474,
+          "fault_class_issued": 0.192090395480226
+        },
+        "late_average": {
+          "macro_f1": 0.45062216366564184,
+          "accuracy": 0.4971751412429379,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 0.7542372881355932,
+          "fault_class_issued": 0.1638418079096045
+        },
+        "gated": {
+          "macro_f1": 0.9092050613348789,
+          "accuracy": 0.9096045197740112,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.15254237288135594,
+          "missed_fault_rate": 0.059322033898305086,
+          "fault_class_issued": 0.6779661016949152
+        }
+      }
+    },
+    "gain:0.5@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5,
+        "gearbox": 0.5
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.7568816556158328,
+          "accuracy": 0.768361581920904,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 0.3389830508474576,
+          "fault_class_issued": 0.4406779661016949
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.9607868953183459,
+          "accuracy": 0.96045197740113,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.6384180790960452
+        },
+        "late_average": {
+          "macro_f1": 0.9385234462414811,
+          "accuracy": 0.9378531073446328,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.03389830508474576,
+          "missed_fault_rate": 0.07627118644067797,
+          "fault_class_issued": 0.6271186440677966
+        },
+        "gated": {
+          "macro_f1": 0.9385234462414811,
+          "accuracy": 0.9378531073446328,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.03389830508474576,
+          "missed_fault_rate": 0.07627118644067797,
+          "fault_class_issued": 0.6271186440677966
+        }
+      }
+    },
+    "gain:2.0@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5002568053415511,
+        "gearbox": 0.4997431946584489
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.4450773125342091,
+          "accuracy": 0.5084745762711864,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9152542372881356,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9717514124293786
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.6779904378726919,
+          "accuracy": 0.7175141242937854,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7627118644067796,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.9152542372881356
+        },
+        "late_average": {
+          "macro_f1": 0.611055865586377,
+          "accuracy": 0.672316384180791,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.864406779661017,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9548022598870056
+        },
+        "gated": {
+          "macro_f1": 0.611055865586377,
+          "accuracy": 0.672316384180791,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.864406779661017,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9548022598870056
+        }
+      }
+    },
+    "clipping:0.5@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.3667893625520757,
+        "gearbox": 0.6332106374479264
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.5405085110967464,
+          "accuracy": 0.5988700564971752,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.8983050847457628,
+          "missed_fault_rate": 0.025423728813559324,
+          "fault_class_issued": 0.9491525423728814
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.6527441729753868,
+          "accuracy": 0.672316384180791,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.711864406779661,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.8983050847457628
+        },
+        "late_average": {
+          "macro_f1": 0.6721170924661809,
+          "accuracy": 0.7231638418079096,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7966101694915254,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9322033898305084
+        },
+        "gated": {
+          "macro_f1": 0.7591252836675508,
+          "accuracy": 0.7796610169491526,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.6101694915254238,
+          "missed_fault_rate": 0.01694915254237288,
+          "fault_class_issued": 0.8587570621468926
+        }
+      }
+    },
+    "clipping:0.2@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.36158192090395624,
+        "gearbox": 0.638418079096046
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.37105448610956565,
+          "accuracy": 0.4632768361581921,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.20215671734025456,
+          "accuracy": 0.3502824858757062,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9830508474576272,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9943502824858758
+        },
+        "late_average": {
+          "macro_f1": 0.6058580998436652,
+          "accuracy": 0.672316384180791,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.8813559322033898,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.96045197740113
+        },
+        "gated": {
+          "macro_f1": 0.7362922722399846,
+          "accuracy": 0.7627118644067796,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.6610169491525424,
+          "missed_fault_rate": 0.01694915254237288,
+          "fault_class_issued": 0.8757062146892656
+        }
+      }
+    },
+    "clipping:0.05@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.3554185927067297,
+        "gearbox": 0.6445814072932725
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.37553688141923436,
+          "accuracy": 0.4689265536723164,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.1903179657575338,
+          "accuracy": 0.3446327683615819,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "late_average": {
+          "macro_f1": 0.6960434798515441,
+          "accuracy": 0.7344632768361582,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.6949152542372882,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.8926553672316384
+        },
+        "gated": {
+          "macro_f1": 0.8165994736512049,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.01694915254237288,
+          "fault_class_issued": 0.8022598870056498
+        }
+      }
+    },
+    "spikes:10@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.41713747645951016,
+        "gearbox": 0.5828625235404885
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.3328302835942904,
+          "accuracy": 0.4180790960451977,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4915254237288136,
+          "missed_fault_rate": 0.2966101694915254,
+          "fault_class_issued": 0.632768361581921
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.5060256534522309,
+          "accuracy": 0.6101694915254238,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.5423728813559322,
+          "fault_class_issued": 0.3107344632768362
+        },
+        "late_average": {
+          "macro_f1": 0.7276383949074519,
+          "accuracy": 0.7288135593220338,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.07627118644067797,
+          "fault_class_issued": 0.7627118644067796
+        },
+        "gated": {
+          "macro_f1": 0.8666076440436473,
+          "accuracy": 0.8700564971751412,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.2711864406779661,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7288135593220338
+        }
+      }
+    },
+    "spikes:100@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.41713747645951016,
+        "gearbox": 0.5828625235404885
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.4128151921021191,
+          "accuracy": 0.5254237288135594,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.423728813559322,
+          "missed_fault_rate": 0.2627118644067797,
+          "fault_class_issued": 0.632768361581921
+        },
+        "late_average": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "gated": {
+          "macro_f1": 0.7483455745487831,
+          "accuracy": 0.768361581920904,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.576271186440678,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.8531073446327684
+        }
+      }
+    },
+    "spikes:1000@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.41713747645951016,
+        "gearbox": 0.5828625235404885
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.251413407176647,
+          "accuracy": 0.3446327683615819,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7966101694915254,
+          "missed_fault_rate": 0.0847457627118644,
+          "fault_class_issued": 0.8757062146892656
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.4443048576214405,
+          "accuracy": 0.5310734463276836,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.6949152542372882,
+          "fault_class_issued": 0.20903954802259886
+        },
+        "late_average": {
+          "macro_f1": 0.7286693542400812,
+          "accuracy": 0.7457627118644068,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.6101694915254238,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.864406779661017
+        },
+        "gated": {
+          "macro_f1": 0.8270676691729323,
+          "accuracy": 0.8361581920903954,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4067796610169492,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.7966101694915254
+        }
+      }
+    },
+    "stuck:None@motor": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 1.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.0,
+        "gearbox": 1.0
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "gearbox": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        },
+        "early": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "late_average": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "gated": {
+          "macro_f1": 0.8173556241168551,
+          "accuracy": 0.8248587570621468,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4406779661016949,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.7853107344632768
+        }
+      }
+    },
+    "noise:20@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 0.1751412429378531
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5067757101655407,
+        "gearbox": 0.49322428983445926
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.7622511148797186,
+          "accuracy": 0.7796610169491526,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.576271186440678,
+          "missed_fault_rate": 0.025423728813559324,
+          "fault_class_issued": 0.8418079096045198
+        },
+        "early": {
+          "macro_f1": 0.9604016603019595,
+          "accuracy": 0.96045197740113,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.025423728813559324,
+          "fault_class_issued": 0.672316384180791
+        },
+        "late_average": {
+          "macro_f1": 0.8469690634047384,
+          "accuracy": 0.8531073446327684,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4067796610169492,
+          "missed_fault_rate": 0.01694915254237288,
+          "fault_class_issued": 0.7909604519774012
+        },
+        "gated": {
+          "macro_f1": 0.841614738961932,
+          "accuracy": 0.847457627118644,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4067796610169492,
+          "missed_fault_rate": 0.025423728813559324,
+          "fault_class_issued": 0.7853107344632768
+        }
+      }
+    },
+    "noise:10@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5385010469756223,
+        "gearbox": 0.46149895302437705
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.4973383796424506,
+          "accuracy": 0.615819209039548,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "early": {
+          "macro_f1": 0.913979047276403,
+          "accuracy": 0.9152542372881356,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.2033898305084746,
+          "missed_fault_rate": 0.025423728813559324,
+          "fault_class_issued": 0.7175141242937854
+        },
+        "late_average": {
+          "macro_f1": 0.659035409035409,
+          "accuracy": 0.7062146892655368,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7796610169491526,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9265536723163842
+        },
+        "gated": {
+          "macro_f1": 0.7341736042277146,
+          "accuracy": 0.7627118644067796,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.6610169491525424,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.8870056497175142
+        }
+      }
+    },
+    "noise:5@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5385010469756223,
+        "gearbox": 0.46149895302437705
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.48178833348675937,
+          "accuracy": 0.5988700564971752,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "early": {
+          "macro_f1": 0.784815442016714,
+          "accuracy": 0.8022598870056498,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.5254237288135594,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.8361581920903954
+        },
+        "late_average": {
+          "macro_f1": 0.6546204082855415,
+          "accuracy": 0.7062146892655368,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7796610169491526,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9265536723163842
+        },
+        "gated": {
+          "macro_f1": 0.7936018440644177,
+          "accuracy": 0.807909604519774,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.5254237288135594,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.8418079096045198
+        }
+      }
+    },
+    "noise:0@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5385010469756223,
+        "gearbox": 0.46149895302437705
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.34251873338167754,
+          "accuracy": 0.4519774011299435,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "early": {
+          "macro_f1": 0.35172210774212537,
+          "accuracy": 0.4463276836158192,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.9943502824858758
+        },
+        "late_average": {
+          "macro_f1": 0.7511136206788381,
+          "accuracy": 0.7740112994350282,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.576271186440678,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.8587570621468926
+        },
+        "gated": {
+          "macro_f1": 0.8777171215880893,
+          "accuracy": 0.8813559322033898,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.3050847457627119,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.768361581920904
+        }
+      }
+    },
+    "noise:-5@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5382442416340713,
+        "gearbox": 0.46175575836592814
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "early": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "late_average": {
+          "macro_f1": 0.5535605863474716,
+          "accuracy": 0.6271186440677966,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9322033898305084,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9774011299435028
+        },
+        "gated": {
+          "macro_f1": 0.789913335865727,
+          "accuracy": 0.8022598870056498,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.5423728813559322,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.847457627118644
+        }
+      }
+    },
+    "dropout:None@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 1.0
+      },
+      "mean_weight": {
+        "motor": 1.0,
+        "gearbox": 0.0
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "early": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "late_average": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "gated": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        }
+      }
+    },
+    "intermittent:0.05@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5388092133854836,
+        "gearbox": 0.4611907866145157
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.8131509121061361,
+          "accuracy": 0.8192090395480226,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.423728813559322,
+          "missed_fault_rate": 0.059322033898305086,
+          "fault_class_issued": 0.768361581920904
+        },
+        "early": {
+          "macro_f1": 0.8397169394073419,
+          "accuracy": 0.847457627118644,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.423728813559322,
+          "missed_fault_rate": 0.01694915254237288,
+          "fault_class_issued": 0.7966101694915254
+        },
+        "late_average": {
+          "macro_f1": 0.9148721425717333,
+          "accuracy": 0.9152542372881356,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.1694915254237288,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.6949152542372882
+        },
+        "gated": {
+          "macro_f1": 0.9261919017870245,
+          "accuracy": 0.9265536723163842,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.15254237288135594,
+          "missed_fault_rate": 0.03389830508474576,
+          "fault_class_issued": 0.6949152542372882
+        }
+      }
+    },
+    "intermittent:0.2@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5426119078661442,
+        "gearbox": 0.4573880921338551
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.8538471691714742,
+          "accuracy": 0.8531073446327684,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.1864406779661017,
+          "missed_fault_rate": 0.1271186440677966,
+          "fault_class_issued": 0.6440677966101694
+        },
+        "early": {
+          "macro_f1": 0.7037203253014418,
+          "accuracy": 0.7401129943502824,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7288135593220338,
+          "missed_fault_rate": 0.025423728813559324,
+          "fault_class_issued": 0.8926553672316384
+        },
+        "late_average": {
+          "macro_f1": 0.9216315724424149,
+          "accuracy": 0.9209039548022598,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.0847457627118644,
+          "fault_class_issued": 0.632768361581921
+        },
+        "gated": {
+          "macro_f1": 0.9382550635314084,
+          "accuracy": 0.9378531073446328,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.059322033898305086,
+          "fault_class_issued": 0.6497175141242938
+        }
+      }
+    },
+    "intermittent:0.5@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.594168543321085,
+        "gearbox": 0.4058314566789141
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.6778002395926924,
+          "accuracy": 0.6949152542372882,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.4322033898305085,
+          "fault_class_issued": 0.384180790960452
+        },
+        "early": {
+          "macro_f1": 0.3900201106083459,
+          "accuracy": 0.4576271186440678,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.8983050847457628,
+          "missed_fault_rate": 0.025423728813559324,
+          "fault_class_issued": 0.9491525423728814
+        },
+        "late_average": {
+          "macro_f1": 0.8718469192233136,
+          "accuracy": 0.8700564971751412,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.1694915254237288,
+          "fault_class_issued": 0.559322033898305
+        },
+        "gated": {
+          "macro_f1": 0.9207178422131693,
+          "accuracy": 0.9209039548022598,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 0.1016949152542373,
+          "fault_class_issued": 0.5988700564971752
+        }
+      }
+    },
+    "gain:0.5@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5002568053415511,
+        "gearbox": 0.4997431946584489
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.9203703703703704,
+          "accuracy": 0.9209039548022598,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.05084745762711865,
+          "missed_fault_rate": 0.09322033898305085,
+          "fault_class_issued": 0.6214689265536724
+        },
+        "early": {
+          "macro_f1": 0.9606749920229545,
+          "accuracy": 0.96045197740113,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.03389830508474576,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.6497175141242938
+        },
+        "late_average": {
+          "macro_f1": 0.9549484993394851,
+          "accuracy": 0.9548022598870056,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.03389830508474576,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.6440677966101694
+        },
+        "gated": {
+          "macro_f1": 0.9549484993394851,
+          "accuracy": 0.9548022598870056,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.03389830508474576,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.6440677966101694
+        }
+      }
+    },
+    "gain:2.0@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 0.005649717514124294
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5,
+        "gearbox": 0.5
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.5448526557828155,
+          "accuracy": 0.6045197740112994,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.8983050847457628,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9661016949152542
+        },
+        "early": {
+          "macro_f1": 0.9204476397710343,
+          "accuracy": 0.9209039548022598,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.1864406779661017,
+          "missed_fault_rate": 0.01694915254237288,
+          "fault_class_issued": 0.7175141242937854
+        },
+        "late_average": {
+          "macro_f1": 0.6327654886007289,
+          "accuracy": 0.6892655367231638,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.847457627118644,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.943502824858757
+        },
+        "gated": {
+          "macro_f1": 0.6327654886007289,
+          "accuracy": 0.6892655367231638,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.847457627118644,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.943502824858757
+        }
+      }
+    },
+    "clipping:0.5@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5874850196884086,
+        "gearbox": 0.41251498031159023
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.8975967198473592,
+          "accuracy": 0.8983050847457628,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.1694915254237288,
+          "missed_fault_rate": 0.059322033898305086,
+          "fault_class_issued": 0.6836158192090396
+        },
+        "early": {
+          "macro_f1": 0.9607868953183459,
+          "accuracy": 0.96045197740113,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.6384180790960452
+        },
+        "late_average": {
+          "macro_f1": 0.9605737823062134,
+          "accuracy": 0.96045197740113,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.03389830508474576,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.6497175141242938
+        },
+        "gated": {
+          "macro_f1": 0.9606658909581219,
+          "accuracy": 0.96045197740113,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.6440677966101694
+        }
+      }
+    },
+    "clipping:0.2@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.638418079096046,
+        "gearbox": 0.36158192090395624
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.1784869976359338,
+          "accuracy": 0.3389830508474576,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9830508474576272,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9943502824858758
+        },
+        "early": {
+          "macro_f1": 0.31459072328637544,
+          "accuracy": 0.4067796610169492,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.864406779661017,
+          "missed_fault_rate": 0.01694915254237288,
+          "fault_class_issued": 0.943502824858757
+        },
+        "late_average": {
+          "macro_f1": 0.5250497809637594,
+          "accuracy": 0.615819209039548,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9830508474576272,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9943502824858758
+        },
+        "gated": {
+          "macro_f1": 0.9096045197740112,
+          "accuracy": 0.9096045197740112,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.1016949152542373,
+          "missed_fault_rate": 0.05084745762711865,
+          "fault_class_issued": 0.6666666666666666
+        }
+      }
+    },
+    "clipping:0.05@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.6445814072932725,
+        "gearbox": 0.3554185927067297
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.1784869976359338,
+          "accuracy": 0.3389830508474576,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9830508474576272,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9943502824858758
+        },
+        "early": {
+          "macro_f1": 0.1784869976359338,
+          "accuracy": 0.3389830508474576,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9830508474576272,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9943502824858758
+        },
+        "late_average": {
+          "macro_f1": 0.1784869976359338,
+          "accuracy": 0.3389830508474576,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9830508474576272,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.9943502824858758
+        },
+        "gated": {
+          "macro_f1": 0.9097923973297851,
+          "accuracy": 0.9096045197740112,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.1016949152542373,
+          "missed_fault_rate": 0.059322033898305086,
+          "fault_class_issued": 0.6610169491525424
+        }
+      }
+    },
+    "spikes:10@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5834274952919009,
+        "gearbox": 0.41657250470809776
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.4900639011491364,
+          "accuracy": 0.5423728813559322,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.8983050847457628,
+          "missed_fault_rate": 0.0423728813559322,
+          "fault_class_issued": 0.9378531073446328
+        },
+        "early": {
+          "macro_f1": 0.3857834734330073,
+          "accuracy": 0.4689265536723164,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9830508474576272,
+          "missed_fault_rate": 0.01694915254237288,
+          "fault_class_issued": 0.9830508474576272
+        },
+        "late_average": {
+          "macro_f1": 0.5965013690295101,
+          "accuracy": 0.6271186440677966,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7796610169491526,
+          "missed_fault_rate": 0.03389830508474576,
+          "fault_class_issued": 0.903954802259887
+        },
+        "gated": {
+          "macro_f1": 0.7327044349542339,
+          "accuracy": 0.7401129943502824,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.5254237288135594,
+          "missed_fault_rate": 0.07627118644067797,
+          "fault_class_issued": 0.7909604519774012
+        }
+      }
+    },
+    "spikes:100@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5834274952919009,
+        "gearbox": 0.41657250470809776
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.27733523179147745,
+          "accuracy": 0.3785310734463277,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.8305084745762712,
+          "missed_fault_rate": 0.09322033898305085,
+          "fault_class_issued": 0.8813559322033898
+        },
+        "early": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "late_average": {
+          "macro_f1": 0.33075616239123345,
+          "accuracy": 0.4180790960451977,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7796610169491526,
+          "missed_fault_rate": 0.06779661016949153,
+          "fault_class_issued": 0.8813559322033898
+        },
+        "gated": {
+          "macro_f1": 0.5985349696894476,
+          "accuracy": 0.615819209039548,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.5254237288135594,
+          "missed_fault_rate": 0.06779661016949153,
+          "fault_class_issued": 0.7966101694915254
+        }
+      }
+    },
+    "spikes:1000@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5831193288820395,
+        "gearbox": 0.41688067111795907
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.2554155614500442,
+          "accuracy": 0.3559322033898305,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7966101694915254,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.8418079096045198
+        },
+        "early": {
+          "macro_f1": 0.17617112699079915,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.9830508474576272,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.9887005649717514
+        },
+        "late_average": {
+          "macro_f1": 0.4389952649035524,
+          "accuracy": 0.4915254237288136,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.5932203389830508,
+          "missed_fault_rate": 0.1016949152542373,
+          "fault_class_issued": 0.7966101694915254
+        },
+        "gated": {
+          "macro_f1": 0.5978694714131607,
+          "accuracy": 0.615819209039548,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.4745762711864407,
+          "missed_fault_rate": 0.11016949152542373,
+          "fault_class_issued": 0.751412429378531
+        }
+      }
+    },
+    "stuck:None@gearbox": {
+      "windows": 177,
+      "flagged": {
+        "motor": 0.005649717514124294,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 1.0
+      },
+      "mean_weight": {
+        "motor": 1.0,
+        "gearbox": 0.0
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        },
+        "gearbox": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "early": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "late_average": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "gated": {
+          "macro_f1": 0.8736421484549957,
+          "accuracy": 0.8757062146892656,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.06779661016949153,
+          "missed_fault_rate": 0.13559322033898305,
+          "fault_class_issued": 0.5988700564971752
+        }
+      }
+    },
+    "dropout:None@both": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 1.0,
+        "gearbox": 1.0
+      },
+      "mean_weight": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "gearbox": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "early": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "late_average": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "gated": {
+          "macro_f1": 0.0,
+          "accuracy": 0.0,
+          "coverage": 0.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.0
+        }
+      }
+    },
+    "stuck:None@both": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 1.0,
+        "gearbox": 1.0
+      },
+      "mean_weight": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "gearbox": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "early": {
+          "macro_f1": 0.16666666666666666,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 1.0,
+          "fault_class_issued": 0.0
+        },
+        "late_average": {
+          "macro_f1": 0.26110795991680846,
+          "accuracy": 0.3333333333333333,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.3559322033898305,
+          "missed_fault_rate": 0.635593220338983,
+          "fault_class_issued": 0.3615819209039548
+        },
+        "gated": {
+          "macro_f1": 0.0,
+          "accuracy": 0.0,
+          "coverage": 0.0,
+          "false_alarm_rate": 0.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 0.0
+        }
+      }
+    },
+    "noise:0@both": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5002568053415511,
+        "gearbox": 0.4997431946584489
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.36600945887844727,
+          "accuracy": 0.4350282485875706,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.864406779661017,
+          "missed_fault_rate": 0.11864406779661017,
+          "fault_class_issued": 0.8757062146892656
+        },
+        "gearbox": {
+          "macro_f1": 0.35105263157894734,
+          "accuracy": 0.4576271186440678,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "early": {
+          "macro_f1": 0.3729931900779789,
+          "accuracy": 0.4745762711864407,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "late_average": {
+          "macro_f1": 0.48904214559386966,
+          "accuracy": 0.6101694915254238,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "gated": {
+          "macro_f1": 0.48904214559386966,
+          "accuracy": 0.6101694915254238,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        }
+      }
+    },
+    "noise:10@both": {
+      "windows": 177,
+      "flagged": {
+        "motor": 1.0,
+        "gearbox": 1.0
+      },
+      "failed": {
+        "motor": 0.0,
+        "gearbox": 0.0
+      },
+      "mean_weight": {
+        "motor": 0.5002568053415511,
+        "gearbox": 0.4997431946584489
+      },
+      "methods": {
+        "motor": {
+          "macro_f1": 0.5424679487179488,
+          "accuracy": 0.6214689265536724,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.15254237288135594,
+          "missed_fault_rate": 0.4322033898305085,
+          "fault_class_issued": 0.4293785310734463
+        },
+        "gearbox": {
+          "macro_f1": 0.5022944962887678,
+          "accuracy": 0.6214689265536724,
+          "coverage": 1.0,
+          "false_alarm_rate": 1.0,
+          "missed_fault_rate": 0.0,
+          "fault_class_issued": 1.0
+        },
+        "early": {
+          "macro_f1": 0.9439769439769439,
+          "accuracy": 0.943502824858757,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.01694915254237288,
+          "missed_fault_rate": 0.07627118644067797,
+          "fault_class_issued": 0.6214689265536724
+        },
+        "late_average": {
+          "macro_f1": 0.6606162608010752,
+          "accuracy": 0.7062146892655368,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7627118644067796,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.9152542372881356
+        },
+        "gated": {
+          "macro_f1": 0.6606162608010752,
+          "accuracy": 0.7062146892655368,
+          "coverage": 1.0,
+          "false_alarm_rate": 0.7627118644067796,
+          "missed_fault_rate": 0.00847457627118644,
+          "fault_class_issued": 0.9152542372881356
+        }
+      }
+    }
+  }
+}

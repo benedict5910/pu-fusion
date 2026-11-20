@@ -1,0 +1,23 @@
+folds=15  source=/home/claude/data/raw + /home/claude/data/raw_ka16
+condition               vib detect  cur detect  vib x-flag  cur x-flag
+both:noise:0                 0.083       1.000           -           -
+both:noise:10                0.024       1.000           -           -
+clean (false flag)           0.016       0.012
+clipping:0.05                1.000       1.000       0.015       0.013
+clipping:0.2                 1.000       1.000       0.015       0.013
+clipping:0.5                 0.962       1.000       0.015       0.013
+dropout:None                 1.000       1.000       0.015       0.013
+gain:0.5                     0.023       0.083       0.015       0.013
+gain:2.0                     0.161       0.763       0.015       0.013
+intermittent:0.05            1.000       1.000       0.015       0.013
+intermittent:0.2             1.000       1.000       0.015       0.013
+intermittent:0.5             1.000       1.000       0.015       0.013
+noise:-5                     0.154       1.000       0.015       0.013
+noise:0                      0.082       1.000       0.015       0.013
+noise:10                     0.025       1.000       0.015       0.013
+noise:20                     0.015       1.000       0.015       0.013
+noise:5                      0.037       1.000       0.015       0.013
+spikes:10                    0.019       1.000       0.015       0.013
+spikes:100                   0.031       1.000       0.015       0.013
+spikes:1000                  0.108       1.000       0.015       0.013
+stuck:None                   1.000       1.000       0.015       0.013

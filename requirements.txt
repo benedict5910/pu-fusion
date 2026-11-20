@@ -1,0 +1,8 @@
+# Pinned to the versions the dashboard was tested with (Windows PC, Python 3.11.9, 23 Oct 2026).
+# scikit-learn is pinned exactly because models/*.pkl were pickled with it.
+streamlit==1.66.0
+altair==6.3.0
+pandas==3.0.6
+numpy==2.4.6
+scikit-learn==1.9.1
+scipy>=1.15,<2

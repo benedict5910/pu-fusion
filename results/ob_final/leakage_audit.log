@@ -1,0 +1,8 @@
+[PASS] P1 bearing-disjoint (all 15 designed folds)
+[PASS] No identical feature windows shared between training rows and test rows
+[PASS] Augmented (seen-family) rows only from training bearings
+[PASS] Expert StandardScaler fitted on training rows only (mean matches training mean)
+[PASS] Gate normaliser computed from training out-of-fold outputs only
+[PASS] P3 held-out condition absent from training rows
+[PASS] v2 commissioning baseline (repetition 1) disjoint from evaluation windows
+[PASS] Leaky reference split shares bearings between train and test (by design; never reported as performance)

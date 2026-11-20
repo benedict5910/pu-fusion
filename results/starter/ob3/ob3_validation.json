@@ -1,0 +1,380 @@
+{
+ "model_trained_on": [
+  "K001",
+  "K002",
+  "K003",
+  "KA04",
+  "KA15",
+  "KA16",
+  "KI04",
+  "KI14",
+  "KI16"
+ ],
+ "demo_bearings_unseen": [
+  "K004",
+  "KA22",
+  "KI18"
+ ],
+ "inject_from_window": 4,
+ "scenarios": [
+  {
+   "bearing": "K004",
+   "truth": "healthy",
+   "scenario": "clean",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 19,
+    "INSPECT": 4
+   },
+   "final_state": "INSPECT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": 20,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 0.0,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.7562202848223311
+  },
+  {
+   "bearing": "K004",
+   "truth": "healthy",
+   "scenario": "dropout@vib",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 23
+   },
+   "final_state": "WARNING",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": null,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 0.2916666666666667,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.695872009956301
+  },
+  {
+   "bearing": "K004",
+   "truth": "healthy",
+   "scenario": "stuck@vib",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 23
+   },
+   "final_state": "WARNING",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": null,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 0.2916666666666667,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.695872009956301
+  },
+  {
+   "bearing": "K004",
+   "truth": "healthy",
+   "scenario": "spikes@vib",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 23
+   },
+   "final_state": "WARNING",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": null,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 0.7083333333333334,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.5539878571680876
+  },
+  {
+   "bearing": "K004",
+   "truth": "healthy",
+   "scenario": "dropout@cur",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 4,
+    "INSPECT": 19
+   },
+   "final_state": "INSPECT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": 5,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 0.0,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.9388030645218133
+  },
+  {
+   "bearing": "K004",
+   "truth": "healthy",
+   "scenario": "dropout@both",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 3,
+    "SENSOR_FAULT": 20
+   },
+   "final_state": "SENSOR_FAULT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": null,
+    "SENSOR_FAULT": 4
+   },
+   "frac_correct_type": 0.0,
+   "frac_SENSOR_FAULT_after_injection": 1.0,
+   "mean_p_fault": 0.6843572045598082
+  },
+  {
+   "bearing": "KA22",
+   "truth": "outer_race",
+   "scenario": "clean",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 4,
+    "INSPECT": 19
+   },
+   "final_state": "INSPECT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": 5,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 1.0,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.8369466706259194
+  },
+  {
+   "bearing": "KA22",
+   "truth": "outer_race",
+   "scenario": "dropout@vib",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 23
+   },
+   "final_state": "WARNING",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": null,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 0.8333333333333334,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.7625828729906193
+  },
+  {
+   "bearing": "KA22",
+   "truth": "outer_race",
+   "scenario": "stuck@vib",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 23
+   },
+   "final_state": "WARNING",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": null,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 0.8333333333333334,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.7625828729906193
+  },
+  {
+   "bearing": "KA22",
+   "truth": "outer_race",
+   "scenario": "spikes@vib",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 23
+   },
+   "final_state": "WARNING",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": null,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 0.25,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.5716925843599823
+  },
+  {
+   "bearing": "KA22",
+   "truth": "outer_race",
+   "scenario": "dropout@cur",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 4,
+    "INSPECT": 19
+   },
+   "final_state": "INSPECT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": 5,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 1.0,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.9506260771704679
+  },
+  {
+   "bearing": "KA22",
+   "truth": "outer_race",
+   "scenario": "dropout@both",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 3,
+    "SENSOR_FAULT": 20
+   },
+   "final_state": "SENSOR_FAULT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": null,
+    "SENSOR_FAULT": 4
+   },
+   "frac_correct_type": 0.16666666666666666,
+   "frac_SENSOR_FAULT_after_injection": 1.0,
+   "mean_p_fault": 0.6898716609117942
+  },
+  {
+   "bearing": "KI18",
+   "truth": "inner_race",
+   "scenario": "clean",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 2,
+    "INSPECT": 21
+   },
+   "final_state": "INSPECT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": 3,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 1.0,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.9543906306465396
+  },
+  {
+   "bearing": "KI18",
+   "truth": "inner_race",
+   "scenario": "dropout@vib",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 2,
+    "INSPECT": 21
+   },
+   "final_state": "INSPECT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": 3,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 0.2916666666666667,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.7303661447960516
+  },
+  {
+   "bearing": "KI18",
+   "truth": "inner_race",
+   "scenario": "stuck@vib",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 2,
+    "INSPECT": 21
+   },
+   "final_state": "INSPECT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": 3,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 0.2916666666666667,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.7303661447960516
+  },
+  {
+   "bearing": "KI18",
+   "truth": "inner_race",
+   "scenario": "spikes@vib",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 2,
+    "INSPECT": 21
+   },
+   "final_state": "INSPECT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": 3,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 1.0,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.8530026451730758
+  },
+  {
+   "bearing": "KI18",
+   "truth": "inner_race",
+   "scenario": "dropout@cur",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 2,
+    "INSPECT": 21
+   },
+   "final_state": "INSPECT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": 3,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 1.0,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.992414554961064
+  },
+  {
+   "bearing": "KI18",
+   "truth": "inner_race",
+   "scenario": "dropout@both",
+   "windows": 24,
+   "state_counts": {
+    "NORMAL": 1,
+    "WARNING": 2,
+    "INSPECT": 21
+   },
+   "final_state": "INSPECT",
+   "first_window": {
+    "WARNING": 1,
+    "INSPECT": 3,
+    "SENSOR_FAULT": null
+   },
+   "frac_correct_type": 1.0,
+   "frac_SENSOR_FAULT_after_injection": 0.0,
+   "mean_p_fault": 0.714542256374898
+  }
+ ],
+ "explanation_faithfulness_mean_prob_drop": {
+  "vibration": 0.2775138888888889,
+  "current": 0.05344444444444444,
+  "n_windows": 72
+ }
+}

@@ -1,0 +1,12 @@
+P1_r0_f0: 13981 eval windows x 7 models  (6s)
+P1_r0_f2: 17471 eval windows x 7 models  (9s)
+P1_r1_f2: 17479 eval windows x 7 models  (14s)
+P1_r2_f0: 13979 eval windows x 7 models  (18s)
+P1_r2_f1: 17472 eval windows x 7 models  (22s)
+P1_r2_f2: 10487 eval windows x 7 models  (27s)
+P1_r3_f0: 17474 eval windows x 7 models  (30s)
+P1_r3_f1: 13979 eval windows x 7 models  (35s)
+P1_r3_f2: 10485 eval windows x 7 models  (41s)
+P1_r4_f0: 13982 eval windows x 7 models  (46s)
+P1_r4_f1: 17471 eval windows x 7 models  (50s)
+wrote 1149820 prediction rows -> results/ob_final/predictions.npz

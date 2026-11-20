@@ -1,0 +1,42 @@
+P1_r0_f0: selected maha_base_pooled_a99.0  (97s)
+/home/claude/repo/scripts/eval_quality_v2.py:86: RuntimeWarning: Mean of empty slice
+  acc[(ver, "clean_healthy_bearings", s, "false_flag")].append(f[healthy_te].mean())
+/usr/local/lib/python3.13/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+P1_r0_f1: selected box_base_pooled_q1.0-99.0_m0.1  (211s)
+P1_r0_f2: selected box_base_pooled_q1.0-99.0_m0.1  (292s)
+/home/claude/repo/scripts/eval_quality_v2.py:86: RuntimeWarning: Mean of empty slice
+  acc[(ver, "clean_healthy_bearings", s, "false_flag")].append(f[healthy_te].mean())
+/usr/local/lib/python3.13/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+P1_r1_f0: selected box_base_pooled_q1.0-99.0_m0.1  (397s)
+P1_r1_f1: selected maha_base_pooled_a99.0  (511s)
+P1_r1_f2: selected maha_base_pooled_a99.0  (592s)
+P1_r2_f0: selected box_base_pooled_q1.0-99.0_m0.1  (687s)
+P1_r2_f1: selected maha_base_pooled_a99.0  (772s)
+
+folds=8  selected configs: {'box_base_pooled_q1.0-99.0_m0.1': 4, 'maha_base_pooled_a99.0': 4}
+condition                    v1 vib   v2 vib   v1 cur   v2 cur
+both:noise:0                  0.062    1.000    1.000    1.000
+both:noise:10                 0.019    0.405    1.000    1.000
+clean                         0.007    0.049    0.018    0.019
+clean_damaged_bearings        0.008    0.067    0.018    0.021
+clean_healthy_bearings          nan      nan      nan      nan
+clipping:0.05                 1.000    1.000    1.000    1.000
+clipping:0.2                  1.000    1.000    1.000    1.000
+clipping:0.5                  0.961    0.966    1.000    1.000
+dropout:None                  1.000    1.000    1.000    1.000
+gain:0.5                      0.020    0.873    0.094    1.000
+gain:2.0                      0.135    1.000    0.769    1.000
+intermittent:0.05             1.000    1.000    1.000    1.000
+intermittent:0.2              1.000    1.000    1.000    1.000
+intermittent:0.5              1.000    1.000    1.000    1.000
+noise:-5                      0.130    1.000    1.000    1.000
+noise:0                       0.062    1.000    1.000    1.000
+noise:10                      0.019    0.405    1.000    1.000
+noise:20                      0.009    0.027    1.000    1.000
+noise:5                       0.030    0.843    1.000    1.000
+spikes:10                     0.010    0.245    1.000    1.000
+spikes:100                    0.021    0.625    1.000    1.000
+spikes:1000                   0.077    1.000    1.000    1.000
+stuck:None                    1.000    1.000    1.000    1.000

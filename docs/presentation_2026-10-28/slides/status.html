@@ -1,0 +1,13 @@
+<section id="status" data-transition="fade" style="background:#FBFBF8;color:#1E2A3B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#14213D">Objective status at this review</h2>
+<table style="font-size:28px;color:#1E2A3B">
+<tr><th style="width:9%;text-align:left">Obj.</th><th style="width:31%;text-align:left">What it covers</th><th style="width:30%;text-align:left">Status</th><th style="width:30%;text-align:left">Evidence</th></tr>
+<tr><td>OB1</td><td>Fusion vs single-sensor on unseen Paderborn bearings</td><td><b>Evaluated</b>, preliminary</td><td>11 bearing-disjoint P1 runs, P3, leakage check, audit</td></tr>
+<tr style="background:#EEF1F5"><td>OB2</td><td>Label-free sensor-quality check</td><td><b>Evaluated</b>, preliminary</td><td>15 folds on held-out bearings, audit</td></tr>
+<tr><td>OB3</td><td>Health states, explanations, logging, reports, dashboard</td><td><b>Complete</b>, verified on the real UI</td><td>7-step dashboard check, screenshots, exports</td></tr>
+<tr style="background:#EEF1F5"><td>OB4</td><td>ESP32 rig with healthy-baseline detector</td><td><b>Pending</b></td><td>Code tested on simulated rig only</td></tr>
+</table>
+<p style="font-size:28px;line-height:1.45;color:#4A5568"><b>Evaluated</b> = measured on real data, results reported, not final. <b>Complete</b> = built and verified end to end. Preliminary = 12 of the 32 Paderborn bearings.</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7179">Status as of 21 Oct 2026 · docs/EVIDENCE_LOG.md</p>
+<aside>Two different words on purpose. OB1 and OB2 are experimentally evaluated: real measurements exist, but on a starter subset, so they are preliminary results, not finished objectives. OB3 is complete: the dashboard was run on the laptop with real held-out recordings and every function was checked. OB4 is pending: no hardware yet.</aside>
+</section>

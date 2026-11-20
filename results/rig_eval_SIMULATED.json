@@ -1,0 +1,36 @@
+{
+  "data_source": [
+    "SIMULATED"
+  ],
+  "fit": "SIM_H1",
+  "cal": "SIM_H2",
+  "sessions": {
+    "SIM_H3": {
+      "label": "healthy",
+      "source": "SIMULATED",
+      "windows": 240,
+      "window_alarm_rate": 0.0,
+      "ever_non_normal": false,
+      "first_non_normal_s": null,
+      "final_state": "NORMAL"
+    },
+    "SIM_F1": {
+      "label": "outer_race",
+      "source": "SIMULATED",
+      "windows": 240,
+      "window_alarm_rate": 1.0,
+      "ever_non_normal": true,
+      "first_non_normal_s": 1.0,
+      "final_state": "INSPECT"
+    },
+    "SIM_F2": {
+      "label": "unbalance",
+      "source": "SIMULATED",
+      "windows": 240,
+      "window_alarm_rate": 1.0,
+      "ever_non_normal": true,
+      "first_non_normal_s": 1.0,
+      "final_state": "INSPECT"
+    }
+  }
+}

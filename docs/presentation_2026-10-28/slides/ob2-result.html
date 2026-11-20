@@ -1,0 +1,20 @@
+<section id="ob2-result" data-transition="fade" style="background:#FBFBF8;color:#1E2A3B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:56px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#14213D">OB2: label-free sensor-quality check</h2>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:72px;font-weight:600;color:#2A78D6;line-height:1.1">1.6 % / 1.2 %</p>
+<p style="font-size:28px">clean false-flag rate, vibration / current</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:72px;font-weight:600;color:#2A78D6;line-height:1.1">96–100 %</p>
+<p style="font-size:28px;line-height:1.4">dropout, intermittent loss, stuck and clipping caught on both sensors (stuck and clipping were withheld)</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:72px;font-weight:600;color:#C0562F;line-height:1.1">2–16 %</p>
+<p style="font-size:28px;line-height:1.4">vibration noise, spikes and gain changes caught: a real weakness</p>
+</div>
+</div>
+<img src="/_blob/b689cb3fcbc9f438ae0dd35813b89e63" alt="Horizontal bar chart of detection rate per sensor-fault type and severity on held-out bearings; most current faults near 100 percent; vibration noise, spikes and gain low" style="width:640px;height:824px;object-fit:contain;background:#FFFFFF;border-radius:12px">
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7179">15 folds, held-out bearings · results/starter/quality.json</p>
+<aside>The assessor never sees fault labels; it learns each indicator’s normal range from clean training windows. It rarely flags a clean sensor and catches hard failures almost always, including the withheld stuck and clipping faults. Wrong flags on the other, healthy sensor stay at the clean rate. The weakness is vibration noise, spikes and gain, explained on the next slide.</aside>
+</section>

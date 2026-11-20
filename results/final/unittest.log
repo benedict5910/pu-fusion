@@ -1,0 +1,93 @@
+test_ack_and_sensor_failure_on_real_app (test_dashboard_apptest.TestDashboardAppTest.test_ack_and_sensor_failure_on_real_app) ... skipped 'needs Streamlit and the held-out recordings'
+test_every_view_renders (test_dashboard_apptest.TestDashboardAppTest.test_every_view_renders) ... skipped 'needs Streamlit and the held-out recordings'
+test_live_rig_not_connected_and_no_fabrication (test_dashboard_apptest.TestDashboardAppTest.test_live_rig_not_connected_and_no_fabrication) ... skipped 'needs Streamlit and the held-out recordings'
+test_professor_demo_steps (test_dashboard_apptest.TestDashboardAppTest.test_professor_demo_steps) ... skipped 'needs Streamlit and the held-out recordings'
+test_gearbox_clean_motor_dropout_and_dual_dropout (test_dashboard_apptest.TestGearboxAppTest.test_gearbox_clean_motor_dropout_and_dual_dropout) ... skipped 'needs Streamlit and the MCC5-THU recordings'
+test_demo_mode_pitting_replay (test_dashboard_apptest.TestGearboxDemoModeAppTest.test_demo_mode_pitting_replay) ... skipped 'needs Streamlit, data/mcc5 and the demo manifest'
+test_sessions_do_not_share_history (test_dashboard_ui.TestCloudSessionIsolation.test_sessions_do_not_share_history) ... ok
+test_full_sequence (test_dashboard_ui.TestDashboardHeadless.test_full_sequence) ... ok
+test_demo_set_reproduces_full_data_results (test_dashboard_ui.TestGearboxDemoMode.test_demo_set_reproduces_full_data_results) ... skipped 'needs data/mcc5 and the demo manifest'
+test_gearbox_replay_dropout_and_history (test_dashboard_ui.TestGearboxHeadless.test_gearbox_replay_dropout_and_history) ... skipped 'MCC5-THU recordings (data/mcc5) or bearing demo data not present'
+test_confusion_matrix_snapshot (test_dashboard_ui.TestResearchReaders.test_confusion_matrix_snapshot) ... ok
+test_no_holm_significant_claim (test_dashboard_ui.TestResearchReaders.test_no_holm_significant_claim) ... ok
+test_quality_table (test_dashboard_ui.TestResearchReaders.test_quality_table) ... ok
+test_summary_values_unchanged (test_dashboard_ui.TestResearchReaders.test_summary_values_unchanged) ... ok
+test_labels_are_readable_and_keep_file_names (test_dashboard_ui.TestScenarioLabels.test_labels_are_readable_and_keep_file_names) ... ok
+test_changed_source_reloads_project_modules (test_dashboard_ui.TestStaleModulesAfterUpdate.test_changed_source_reloads_project_modules) ... ok
+test_demo_uses_only_held_out_recordings (test_dashboard_ui.TestUiHelpers.test_demo_uses_only_held_out_recordings) ... ok
+test_source_labels_distinct (test_dashboard_ui.TestUiHelpers.test_source_labels_distinct) ... ok
+test_state_banner_escapes_and_labels (test_dashboard_ui.TestUiHelpers.test_state_banner_escapes_and_labels) ... ok
+test_svgs_are_well_formed (test_dashboard_ui.TestUiHelpers.test_svgs_are_well_formed) ... ok
+test_timestamp_format (test_dashboard_ui.TestUiHelpers.test_timestamp_format) ... ok
+test_extreme_severity_without_failure_never_abstains (test_fusion_v3.TestFusionV3.test_extreme_severity_without_failure_never_abstains) ... ok
+test_failed_sensor_excluded_and_dual_failure_abstains (test_fusion_v3.TestFusionV3.test_failed_sensor_excluded_and_dual_failure_abstains) ... ok
+test_mild_degradation_is_kept (test_fusion_v3.TestFusionV3.test_mild_degradation_is_kept) ... ok
+test_fault_is_isolated_to_target_sensor (test_gearbox.GearboxTests.test_fault_is_isolated_to_target_sensor) ... ok
+test_recording_holdout_and_shared_health_replay (test_gearbox.GearboxTests.test_recording_holdout_and_shared_health_replay) ... ok
+test_benchmark_monitor (test_ivhm.TestBenchmarkEngine.test_benchmark_monitor) ... ok
+test_contributions_reconstruct_logits (test_ivhm.TestExplain.test_contributions_reconstruct_logits) ... ok
+test_explain_gated (test_ivhm.TestExplain.test_explain_gated) ... ok
+test_names_match_features (test_ivhm.TestExplain.test_names_match_features) ... ok
+test_ack_does_not_hide_persistent_fault (test_ivhm.TestHealth.test_ack_does_not_hide_persistent_fault) ... ok
+test_ack_only_applies_to_inspect (test_ivhm.TestHealth.test_ack_only_applies_to_inspect) ... ok
+test_escalation_latch_and_ack (test_ivhm.TestHealth.test_escalation_latch_and_ack) ... ok
+test_sensor_failures (test_ivhm.TestHealth.test_sensor_failures) ... ok
+test_warning_recovers_after_quiet_windows (test_ivhm.TestHealth.test_warning_recovers_after_quiet_windows) ... ok
+test_sensor_outage_does_not_clear_warning (test_ivhm.TestOutageRecovery.test_sensor_outage_does_not_clear_warning)
+A sensor outage during WARNING recovery must not let the first good window jump to NORMAL. ... ok
+test_suspended_diagnosis_not_logged (test_ivhm.TestOutageRecovery.test_suspended_diagnosis_not_logged)
+While no sensor is usable, the logged history must not carry a fault probability. ... ok
+test_clean_is_ok (test_ivhm.TestReliability.test_clean_is_ok) ... ok
+test_failures_and_causes (test_ivhm.TestReliability.test_failures_and_causes) ... ok
+test_firmware_header_layout_matches_parser (test_ivhm.TestRig.test_firmware_header_layout_matches_parser)
+Compile the firmware's own Header struct on the host and decode its bytes. ... ok
+test_gap_becomes_nan_exactly (test_ivhm.TestRig.test_gap_becomes_nan_exactly) ... ok
+test_protocol_roundtrip_chunked_and_corrupt (test_ivhm.TestRig.test_protocol_roundtrip_chunked_and_corrupt) ... ok
+test_rig_pipeline_end_to_end (test_ivhm.TestRig.test_rig_pipeline_end_to_end) ... ok
+test_timing_flags_drops (test_ivhm.TestRig.test_timing_flags_drops) ... ok
+test_timing_recovers_clock_error_and_aligns_streams (test_ivhm.TestRig.test_timing_recovers_clock_error_and_aligns_streams) ... ok
+test_log_and_export (test_ivhm.TestStore.test_log_and_export) ... ok
+test_bearing_counts (test_pipeline.TestConfig.test_bearing_counts) ... ok
+test_fault_frequencies (test_pipeline.TestConfig.test_fault_frequencies) ... ok
+test_parse (test_pipeline.TestConfig.test_parse) ... ok
+test_deterministic (test_pipeline.TestCorruption.test_deterministic) ... ok
+test_dropout_and_stuck (test_pipeline.TestCorruption.test_dropout_and_stuck) ... ok
+test_families_partitioned (test_pipeline.TestCorruption.test_families_partitioned) ... ok
+test_snr (test_pipeline.TestCorruption.test_snr) ... ok
+test_finite_under_all_corruptions (test_pipeline.TestFeatures.test_finite_under_all_corruptions) ... ok
+test_gain_invariance_of_spectral_bands (test_pipeline.TestFeatures.test_gain_invariance_of_spectral_bands) ... ok
+test_nan_samples (test_pipeline.TestFeatures.test_nan_samples) ... ok
+test_quality_flags_dead_channel (test_pipeline.TestFeatures.test_quality_flags_dead_channel) ... ok
+test_load_paderborn_like_mat (test_pipeline.TestLoader.test_load_paderborn_like_mat) ... ok
+test_cm_counts (test_pipeline.TestMetricsConfusion.test_cm_counts) ... ok
+test_all_models_output_distributions (test_pipeline.TestModels.test_all_models_output_distributions) ... ok
+test_gate_routes_away_from_dead_vibration (test_pipeline.TestModels.test_gate_routes_away_from_dead_vibration) ... ok
+test_reproducible_tables (test_pipeline.TestModels.test_reproducible_tables) ... ok
+test_p1_disjoint_and_complete (test_pipeline.TestSplits.test_p1_disjoint_and_complete) ... ok
+test_p2 (test_pipeline.TestSplits.test_p2) ... ok
+test_run_refuses_leaky_fold (test_pipeline.TestSplits.test_run_refuses_leaky_fold) ... ok
+test_exclusion_and_abstain (test_reliability_v2.TestGatedV2Rule.test_exclusion_and_abstain) ... ok
+test_baseline_deviation_and_missing_baseline_is_flagged (test_reliability_v2.TestV2Detector.test_baseline_deviation_and_missing_baseline_is_flagged) ... ok
+test_clean_false_flags_low_on_training_like_data (test_reliability_v2.TestV2Detector.test_clean_false_flags_low_on_training_like_data) ... ok
+test_hard_rules_kept (test_reliability_v2.TestV2Detector.test_hard_rules_kept) ... ok
+test_original_class_unchanged (test_reliability_v2.TestV2Detector.test_original_class_unchanged) ... ok
+test_per_condition_catches_shift_pooled_misses (test_reliability_v2.TestV2Detector.test_per_condition_catches_shift_pooled_misses) ... ok
+test_repetition_parse (test_reliability_v2.TestV2Detector.test_repetition_parse) ... ok
+test_selection_never_uses_withheld_families (test_reliability_v2.TestV2Detector.test_selection_never_uses_withheld_families) ... ok
+test_physical_effects (test_sensor_faults.SensorFaultTests.test_physical_effects) ... ok
+test_scenarios_are_seeded_and_leave_source_intact (test_sensor_faults.SensorFaultTests.test_scenarios_are_seeded_and_leave_source_intact) ... ok
+test_bearing_outage_and_recovery_in_one_run (test_testbed.TestDashboardSimulation.test_bearing_outage_and_recovery_in_one_run) ... ok
+test_final_validation_is_displayed (test_testbed.TestDashboardSimulation.test_final_validation_is_displayed) ... ok
+test_gearbox_sensor_loss_and_recovery_in_one_run (test_testbed.TestDashboardSimulation.test_gearbox_sensor_loss_and_recovery_in_one_run) ... ok
+test_acknowledgement_is_logged_and_never_returns_to_normal (test_testbed.TestVirtualTestbed.test_acknowledgement_is_logged_and_never_returns_to_normal) ... ok
+test_all_bearing_scenarios_pass_their_checks (test_testbed.TestVirtualTestbed.test_all_bearing_scenarios_pass_their_checks) ... ok
+test_all_gearbox_scenarios_pass_their_checks (test_testbed.TestVirtualTestbed.test_all_gearbox_scenarios_pass_their_checks) ... ok
+test_checks_detect_a_violation (test_testbed.TestVirtualTestbed.test_checks_detect_a_violation) ... ok
+test_dual_failure_suspends_diagnosis_and_logs_nothing_diagnostic (test_testbed.TestVirtualTestbed.test_dual_failure_suspends_diagnosis_and_logs_nothing_diagnostic) ... ok
+test_gearbox_fallback_and_recovery (test_testbed.TestVirtualTestbed.test_gearbox_fallback_and_recovery) ... ok
+test_store_record_withholds_values_when_suspended (test_testbed.TestVirtualTestbed.test_store_record_withholds_values_when_suspended) ... ok
+
+----------------------------------------------------------------------
+Ran 85 tests in 51.959s
+
+OK (skipped=8)

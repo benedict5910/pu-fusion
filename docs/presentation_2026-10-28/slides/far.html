@@ -1,0 +1,19 @@
+<section id="far" data-transition="fade" style="background:#FBFBF8;color:#1E2A3B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#14213D">Audit: the ~45 % false-alarm rate comes from two healthy bearings</h2>
+<div style="display:flex;gap:48px;align-items:start">
+<table style="flex:1;font-size:28px;color:#1E2A3B">
+<tr><th style="width:28%;text-align:left">Held-out healthy</th><th style="width:24%;text-align:right">Vib-only FAR</th><th style="width:20%;text-align:right">Gated FAR</th><th style="width:28%;text-align:left">Gated says</th></tr>
+<tr><td>K001</td><td style="text-align:right">0.006</td><td style="text-align:right">0.062</td><td>healthy 94 %</td></tr>
+<tr style="background:#EEF1F5"><td>K002</td><td style="text-align:right">0.748</td><td style="text-align:right">0.752</td><td>outer race 70 %</td></tr>
+<tr><td>K003</td><td style="text-align:right">0.000</td><td style="text-align:right">0.008</td><td>healthy 99 %</td></tr>
+<tr style="background:#EEF1F5"><td>K004</td><td style="text-align:right">0.821</td><td style="text-align:right">0.869</td><td>outer / inner race</td></tr>
+</table>
+<div style="width:620px;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:28px;line-height:1.4"><b>Cause: classification.</b> Models trained on 2–3 healthy bearings miss healthy bearings unlike those.</p>
+<p style="font-size:28px;line-height:1.4"><b>Not evaluation:</b> the audit reproduces every fold’s reported FAR exactly.</p>
+<p style="font-size:28px;line-height:1.4"><b>Not the rules:</b> they turn it into INSPECT on 35–39 % of healthy recordings.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7179">Same folds and seeds, nothing tuned · docs/AUDIT_2026-10-21.md</p>
+<aside>We audited the false-alarm rate rather than adjusting thresholds. Folds that trained on both K002 and K004 had almost no false alarms (0.002–0.003). Folds whose healthy training bearings came only from the other group reached 0.78–0.95. So healthy bearings differ from each other as much as from damaged ones, and two or three healthy training bearings are not enough. The full dataset adds K005 and K006; whether that helps is a hypothesis to test, not a claim. We did not tune anything on the test bearings.</aside>
+</section>

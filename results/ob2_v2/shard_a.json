@@ -1,0 +1,2984 @@
+{
+  "features": "data/features_starter.npz",
+  "folds": 8,
+  "protocol": "P1 bearing-disjoint, all folds with >=1 train and test bearing (same as eval_quality.py); held-out evaluation on repetitions >= 2; repetition 1 of each held-out bearing is an unlabelled commissioning baseline used only by baseline configurations",
+  "withheld_families": [
+    "clipping",
+    "spikes",
+    "stuck"
+  ],
+  "selection": [
+    {
+      "fold": "P1_r0_f0",
+      "train": [
+        "K001",
+        "K002",
+        "KA04",
+        "KA16",
+        "KA22",
+        "KI04",
+        "KI14",
+        "KI18"
+      ],
+      "test": [
+        "K003",
+        "K004",
+        "KA15",
+        "KI16"
+      ],
+      "selected": "maha_base_pooled_a99.0",
+      "inner": [
+        {
+          "config": "box_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0223,
+          "inner_detect_seen": 0.6216
+        },
+        {
+          "config": "box_cond_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.1048,
+          "inner_detect_seen": 0.7356
+        },
+        {
+          "config": "box_cond_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.2341,
+          "inner_detect_seen": 0.8024
+        },
+        {
+          "config": "maha_pooled_a99.5",
+          "inner_false_flag": 0.1321,
+          "inner_detect_seen": 0.6934
+        },
+        {
+          "config": "maha_cond_a99.0",
+          "inner_false_flag": 0.1825,
+          "inner_detect_seen": 0.7881
+        },
+        {
+          "config": "maha_cond_a99.5",
+          "inner_false_flag": 0.1616,
+          "inner_detect_seen": 0.7818
+        },
+        {
+          "config": "box_base_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0377,
+          "inner_detect_seen": 0.8772
+        },
+        {
+          "config": "box_base_pooled_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.057,
+          "inner_detect_seen": 0.9185
+        },
+        {
+          "config": "maha_base_pooled_a99.5",
+          "inner_false_flag": 0.0345,
+          "inner_detect_seen": 0.8888
+        },
+        {
+          "config": "maha_base_pooled_a99.0",
+          "inner_false_flag": 0.0408,
+          "inner_detect_seen": 0.8966
+        }
+      ]
+    },
+    {
+      "fold": "P1_r0_f1",
+      "train": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "KA15",
+        "KA22",
+        "KI14",
+        "KI16",
+        "KI18"
+      ],
+      "test": [
+        "KA04",
+        "KA16",
+        "KI04"
+      ],
+      "selected": "box_base_pooled_q1.0-99.0_m0.1",
+      "inner": [
+        {
+          "config": "box_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.003,
+          "inner_detect_seen": 0.6489
+        },
+        {
+          "config": "box_cond_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0213,
+          "inner_detect_seen": 0.7164
+        },
+        {
+          "config": "box_cond_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.0923,
+          "inner_detect_seen": 0.7742
+        },
+        {
+          "config": "maha_pooled_a99.5",
+          "inner_false_flag": 0.0887,
+          "inner_detect_seen": 0.6847
+        },
+        {
+          "config": "maha_cond_a99.0",
+          "inner_false_flag": 0.1179,
+          "inner_detect_seen": 0.781
+        },
+        {
+          "config": "maha_cond_a99.5",
+          "inner_false_flag": 0.0953,
+          "inner_detect_seen": 0.7731
+        },
+        {
+          "config": "box_base_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0067,
+          "inner_detect_seen": 0.8995
+        },
+        {
+          "config": "box_base_pooled_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.0411,
+          "inner_detect_seen": 0.9288
+        },
+        {
+          "config": "maha_base_pooled_a99.5",
+          "inner_false_flag": 0.0094,
+          "inner_detect_seen": 0.8991
+        },
+        {
+          "config": "maha_base_pooled_a99.0",
+          "inner_false_flag": 0.0153,
+          "inner_detect_seen": 0.9072
+        }
+      ]
+    },
+    {
+      "fold": "P1_r0_f2",
+      "train": [
+        "K003",
+        "K004",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KI04",
+        "KI16"
+      ],
+      "test": [
+        "K001",
+        "K002",
+        "KA22",
+        "KI14",
+        "KI18"
+      ],
+      "selected": "box_base_pooled_q1.0-99.0_m0.1",
+      "inner": [
+        {
+          "config": "box_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0248,
+          "inner_detect_seen": 0.627
+        },
+        {
+          "config": "box_cond_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.1205,
+          "inner_detect_seen": 0.7481
+        },
+        {
+          "config": "box_cond_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.2428,
+          "inner_detect_seen": 0.8243
+        },
+        {
+          "config": "maha_pooled_a99.5",
+          "inner_false_flag": 0.0903,
+          "inner_detect_seen": 0.7176
+        },
+        {
+          "config": "maha_cond_a99.0",
+          "inner_false_flag": 0.2027,
+          "inner_detect_seen": 0.8836
+        },
+        {
+          "config": "maha_cond_a99.5",
+          "inner_false_flag": 0.1789,
+          "inner_detect_seen": 0.8616
+        },
+        {
+          "config": "box_base_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.022,
+          "inner_detect_seen": 0.8785
+        },
+        {
+          "config": "box_base_pooled_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.0425,
+          "inner_detect_seen": 0.9152
+        },
+        {
+          "config": "maha_base_pooled_a99.5",
+          "inner_false_flag": 0.0273,
+          "inner_detect_seen": 0.8889
+        },
+        {
+          "config": "maha_base_pooled_a99.0",
+          "inner_false_flag": 0.0297,
+          "inner_detect_seen": 0.8941
+        }
+      ]
+    },
+    {
+      "fold": "P1_r1_f0",
+      "train": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "KA15",
+        "KA16",
+        "KI04",
+        "KI14"
+      ],
+      "test": [
+        "KA04",
+        "KA22",
+        "KI16",
+        "KI18"
+      ],
+      "selected": "box_base_pooled_q1.0-99.0_m0.1",
+      "inner": [
+        {
+          "config": "box_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0342,
+          "inner_detect_seen": 0.6429
+        },
+        {
+          "config": "box_cond_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0936,
+          "inner_detect_seen": 0.7155
+        },
+        {
+          "config": "box_cond_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.1647,
+          "inner_detect_seen": 0.7644
+        },
+        {
+          "config": "maha_pooled_a99.5",
+          "inner_false_flag": 0.0569,
+          "inner_detect_seen": 0.6544
+        },
+        {
+          "config": "maha_cond_a99.0",
+          "inner_false_flag": 0.1077,
+          "inner_detect_seen": 0.7837
+        },
+        {
+          "config": "maha_cond_a99.5",
+          "inner_false_flag": 0.0884,
+          "inner_detect_seen": 0.7666
+        },
+        {
+          "config": "box_base_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.02,
+          "inner_detect_seen": 0.8648
+        },
+        {
+          "config": "box_base_pooled_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.039,
+          "inner_detect_seen": 0.8971
+        },
+        {
+          "config": "maha_base_pooled_a99.5",
+          "inner_false_flag": 0.0199,
+          "inner_detect_seen": 0.8568
+        },
+        {
+          "config": "maha_base_pooled_a99.0",
+          "inner_false_flag": 0.0225,
+          "inner_detect_seen": 0.8682
+        }
+      ]
+    },
+    {
+      "fold": "P1_r1_f1",
+      "train": [
+        "K001",
+        "K004",
+        "KA04",
+        "KA16",
+        "KA22",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI18"
+      ],
+      "test": [
+        "K002",
+        "K003",
+        "KA15"
+      ],
+      "selected": "maha_base_pooled_a99.0",
+      "inner": [
+        {
+          "config": "box_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0327,
+          "inner_detect_seen": 0.623
+        },
+        {
+          "config": "box_cond_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0922,
+          "inner_detect_seen": 0.7289
+        },
+        {
+          "config": "box_cond_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.1545,
+          "inner_detect_seen": 0.7915
+        },
+        {
+          "config": "maha_pooled_a99.5",
+          "inner_false_flag": 0.0837,
+          "inner_detect_seen": 0.6849
+        },
+        {
+          "config": "maha_cond_a99.0",
+          "inner_false_flag": 0.1137,
+          "inner_detect_seen": 0.7629
+        },
+        {
+          "config": "maha_cond_a99.5",
+          "inner_false_flag": 0.1044,
+          "inner_detect_seen": 0.7601
+        },
+        {
+          "config": "box_base_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0331,
+          "inner_detect_seen": 0.8794
+        },
+        {
+          "config": "box_base_pooled_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.0501,
+          "inner_detect_seen": 0.9277
+        },
+        {
+          "config": "maha_base_pooled_a99.5",
+          "inner_false_flag": 0.0315,
+          "inner_detect_seen": 0.8934
+        },
+        {
+          "config": "maha_base_pooled_a99.0",
+          "inner_false_flag": 0.0393,
+          "inner_detect_seen": 0.9038
+        }
+      ]
+    },
+    {
+      "fold": "P1_r1_f2",
+      "train": [
+        "K002",
+        "K003",
+        "KA04",
+        "KA15",
+        "KA22",
+        "KI16",
+        "KI18"
+      ],
+      "test": [
+        "K001",
+        "K004",
+        "KA16",
+        "KI04",
+        "KI14"
+      ],
+      "selected": "maha_base_pooled_a99.0",
+      "inner": [
+        {
+          "config": "box_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0193,
+          "inner_detect_seen": 0.6262
+        },
+        {
+          "config": "box_cond_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.1347,
+          "inner_detect_seen": 0.7643
+        },
+        {
+          "config": "box_cond_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.2363,
+          "inner_detect_seen": 0.8208
+        },
+        {
+          "config": "maha_pooled_a99.5",
+          "inner_false_flag": 0.1325,
+          "inner_detect_seen": 0.7257
+        },
+        {
+          "config": "maha_cond_a99.0",
+          "inner_false_flag": 0.2588,
+          "inner_detect_seen": 0.8878
+        },
+        {
+          "config": "maha_cond_a99.5",
+          "inner_false_flag": 0.2272,
+          "inner_detect_seen": 0.8689
+        },
+        {
+          "config": "box_base_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0072,
+          "inner_detect_seen": 0.9143
+        },
+        {
+          "config": "box_base_pooled_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.0673,
+          "inner_detect_seen": 0.9406
+        },
+        {
+          "config": "maha_base_pooled_a99.5",
+          "inner_false_flag": 0.0153,
+          "inner_detect_seen": 0.9257
+        },
+        {
+          "config": "maha_base_pooled_a99.0",
+          "inner_false_flag": 0.0192,
+          "inner_detect_seen": 0.9354
+        }
+      ]
+    },
+    {
+      "fold": "P1_r2_f0",
+      "train": [
+        "K001",
+        "K002",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KI14",
+        "KI16",
+        "KI18"
+      ],
+      "test": [
+        "K003",
+        "K004",
+        "KA22",
+        "KI04"
+      ],
+      "selected": "box_base_pooled_q1.0-99.0_m0.1",
+      "inner": [
+        {
+          "config": "box_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0163,
+          "inner_detect_seen": 0.6244
+        },
+        {
+          "config": "box_cond_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.103,
+          "inner_detect_seen": 0.7419
+        },
+        {
+          "config": "box_cond_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.17,
+          "inner_detect_seen": 0.8015
+        },
+        {
+          "config": "maha_pooled_a99.5",
+          "inner_false_flag": 0.079,
+          "inner_detect_seen": 0.6349
+        },
+        {
+          "config": "maha_cond_a99.0",
+          "inner_false_flag": 0.1316,
+          "inner_detect_seen": 0.738
+        },
+        {
+          "config": "maha_cond_a99.5",
+          "inner_false_flag": 0.1211,
+          "inner_detect_seen": 0.735
+        },
+        {
+          "config": "box_base_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.017,
+          "inner_detect_seen": 0.903
+        },
+        {
+          "config": "box_base_pooled_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.0425,
+          "inner_detect_seen": 0.9326
+        },
+        {
+          "config": "maha_base_pooled_a99.5",
+          "inner_false_flag": 0.0233,
+          "inner_detect_seen": 0.8829
+        },
+        {
+          "config": "maha_base_pooled_a99.0",
+          "inner_false_flag": 0.0247,
+          "inner_detect_seen": 0.8918
+        }
+      ]
+    },
+    {
+      "fold": "P1_r2_f1",
+      "train": [
+        "K001",
+        "K003",
+        "K004",
+        "KA16",
+        "KA22",
+        "KI04",
+        "KI16"
+      ],
+      "test": [
+        "K002",
+        "KA04",
+        "KA15",
+        "KI14",
+        "KI18"
+      ],
+      "selected": "maha_base_pooled_a99.0",
+      "inner": [
+        {
+          "config": "box_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0488,
+          "inner_detect_seen": 0.6456
+        },
+        {
+          "config": "box_cond_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0911,
+          "inner_detect_seen": 0.7201
+        },
+        {
+          "config": "box_cond_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.1862,
+          "inner_detect_seen": 0.7794
+        },
+        {
+          "config": "maha_pooled_a99.5",
+          "inner_false_flag": 0.0616,
+          "inner_detect_seen": 0.7009
+        },
+        {
+          "config": "maha_cond_a99.0",
+          "inner_false_flag": 0.1276,
+          "inner_detect_seen": 0.8415
+        },
+        {
+          "config": "maha_cond_a99.5",
+          "inner_false_flag": 0.1048,
+          "inner_detect_seen": 0.8331
+        },
+        {
+          "config": "box_base_pooled_q0.5-99.5_m0.25",
+          "inner_false_flag": 0.0386,
+          "inner_detect_seen": 0.8711
+        },
+        {
+          "config": "box_base_pooled_q1.0-99.0_m0.1",
+          "inner_false_flag": 0.0619,
+          "inner_detect_seen": 0.9021
+        },
+        {
+          "config": "maha_base_pooled_a99.5",
+          "inner_false_flag": 0.0304,
+          "inner_detect_seen": 0.8792
+        },
+        {
+          "config": "maha_base_pooled_a99.0",
+          "inner_false_flag": 0.0394,
+          "inner_detect_seen": 0.8867
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "v1": {
+      "both:noise:0": {
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_detect": {
+          "mean": 0.0617,
+          "sd": 0.1527
+        }
+      },
+      "both:noise:10": {
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_detect": {
+          "mean": 0.0186,
+          "sd": 0.0493
+        }
+      },
+      "clean": {
+        "cur_false_flag": {
+          "mean": 0.0175,
+          "sd": 0.0308
+        },
+        "vib_false_flag": {
+          "mean": 0.0075,
+          "sd": 0.0169
+        }
+      },
+      "clean_damaged_bearings": {
+        "cur_false_flag": {
+          "mean": 0.0182,
+          "sd": 0.0309
+        },
+        "vib_false_flag": {
+          "mean": 0.008,
+          "sd": 0.0168
+        }
+      },
+      "clean_healthy_bearings": {
+        "cur_false_flag": {
+          "mean": NaN,
+          "sd": NaN
+        },
+        "vib_false_flag": {
+          "mean": NaN,
+          "sd": NaN
+        }
+      },
+      "clipping:0.05": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "clipping:0.2": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "clipping:0.5": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.9612,
+          "sd": 0.0213
+        }
+      },
+      "dropout:None": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "gain:0.5": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 0.0938,
+          "sd": 0.121
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.0203,
+          "sd": 0.018
+        }
+      },
+      "gain:2.0": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 0.7687,
+          "sd": 0.0315
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.1349,
+          "sd": 0.2386
+        }
+      },
+      "intermittent:0.05": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "intermittent:0.2": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "intermittent:0.5": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "noise:-5": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.1304,
+          "sd": 0.2397
+        }
+      },
+      "noise:0": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.0616,
+          "sd": 0.1543
+        }
+      },
+      "noise:10": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.0186,
+          "sd": 0.0493
+        }
+      },
+      "noise:20": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.0088,
+          "sd": 0.0232
+        }
+      },
+      "noise:5": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.0296,
+          "sd": 0.0783
+        }
+      },
+      "spikes:10": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.0096,
+          "sd": 0.0229
+        }
+      },
+      "spikes:100": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.0206,
+          "sd": 0.0519
+        }
+      },
+      "spikes:1000": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 0.0766,
+          "sd": 0.1682
+        }
+      },
+      "stuck:None": {
+        "cur_cross_flag": {
+          "mean": 0.0187,
+          "sd": 0.0315
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0063,
+          "sd": 0.0143
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      }
+    },
+    "v2": {
+      "both:noise:0": {
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "both:noise:10": {
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_detect": {
+          "mean": 0.4052,
+          "sd": 0.2508
+        }
+      },
+      "clean": {
+        "cur_false_flag": {
+          "mean": 0.0193,
+          "sd": 0.0188
+        },
+        "vib_false_flag": {
+          "mean": 0.0492,
+          "sd": 0.0418
+        }
+      },
+      "clean_damaged_bearings": {
+        "cur_false_flag": {
+          "mean": 0.0209,
+          "sd": 0.0185
+        },
+        "vib_false_flag": {
+          "mean": 0.067,
+          "sd": 0.0581
+        }
+      },
+      "clean_healthy_bearings": {
+        "cur_false_flag": {
+          "mean": NaN,
+          "sd": NaN
+        },
+        "vib_false_flag": {
+          "mean": NaN,
+          "sd": NaN
+        }
+      },
+      "clipping:0.05": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "clipping:0.2": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "clipping:0.5": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 0.9657,
+          "sd": 0.0242
+        }
+      },
+      "dropout:None": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "gain:0.5": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 0.8728,
+          "sd": 0.1202
+        }
+      },
+      "gain:2.0": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "intermittent:0.05": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "intermittent:0.2": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "intermittent:0.5": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "noise:-5": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "noise:0": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "noise:10": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 0.4049,
+          "sd": 0.2467
+        }
+      },
+      "noise:20": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 0.027,
+          "sd": 0.0405
+        }
+      },
+      "noise:5": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 0.8434,
+          "sd": 0.1244
+        }
+      },
+      "spikes:10": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 0.2446,
+          "sd": 0.2132
+        }
+      },
+      "spikes:100": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 0.6254,
+          "sd": 0.2281
+        }
+      },
+      "spikes:1000": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "stuck:None": {
+        "cur_cross_flag": {
+          "mean": 0.0152,
+          "sd": 0.016
+        },
+        "cur_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "vib_cross_flag": {
+          "mean": 0.0505,
+          "sd": 0.0432
+        },
+        "vib_detect": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      }
+    }
+  },
+  "raw": {
+    "v1|both:noise:0|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|both:noise:0|vib|detect": [
+      0.0,
+      0.464912,
+      0.0,
+      0.0,
+      0.0,
+      0.028947,
+      0.0,
+      0.0
+    ],
+    "v1|both:noise:10|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|both:noise:10|vib|detect": [
+      0.0,
+      0.149123,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "v1|clean|cur|false_flag": [
+      0.0,
+      0.094951,
+      0.0,
+      0.025175,
+      0.0,
+      0.0,
+      0.0,
+      0.020119
+    ],
+    "v1|clean|vib|false_flag": [
+      0.0,
+      0.052141,
+      0.00099,
+      0.003302,
+      0.0,
+      0.0,
+      0.003296,
+      0.0
+    ],
+    "v1|clean_damaged_bearings|cur|false_flag": [
+      0.0,
+      0.094951,
+      0.0,
+      0.025175,
+      0.0,
+      0.0,
+      0.0,
+      0.025155
+    ],
+    "v1|clean_damaged_bearings|vib|false_flag": [
+      0.0,
+      0.052141,
+      0.001652,
+      0.003302,
+      0.0,
+      0.0,
+      0.006606,
+      0.0
+    ],
+    "v1|clean_healthy_bearings|cur|false_flag": [
+      0.0,
+      NaN,
+      0.0,
+      NaN,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "v1|clean_healthy_bearings|vib|false_flag": [
+      0.0,
+      NaN,
+      0.0,
+      NaN,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "v1|clipping:0.05|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|clipping:0.05|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|clipping:0.05|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|clipping:0.05|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|clipping:0.2|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|clipping:0.2|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|clipping:0.2|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|clipping:0.2|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|clipping:0.5|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|clipping:0.5|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|clipping:0.5|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|clipping:0.5|vib|detect": [
+      0.983553,
+      0.964912,
+      0.947368,
+      0.996711,
+      0.921053,
+      0.963158,
+      0.957237,
+      0.955263
+    ],
+    "v1|dropout:None|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|dropout:None|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|dropout:None|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|dropout:None|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|gain:0.5|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|gain:0.5|cur|detect": [
+      0.0,
+      0.25,
+      0.0,
+      0.25,
+      0.0,
+      0.0,
+      0.0,
+      0.25
+    ],
+    "v1|gain:0.5|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|gain:0.5|vib|detect": [
+      0.013158,
+      0.0,
+      0.026316,
+      0.032895,
+      0.017544,
+      0.002632,
+      0.059211,
+      0.010526
+    ],
+    "v1|gain:2.0|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|gain:2.0|cur|detect": [
+      0.75,
+      0.846491,
+      0.75,
+      0.779605,
+      0.75,
+      0.75,
+      0.75,
+      0.773684
+    ],
+    "v1|gain:2.0|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|gain:2.0|vib|detect": [
+      0.0,
+      0.75,
+      0.0,
+      0.101974,
+      0.0,
+      0.15,
+      0.003289,
+      0.073684
+    ],
+    "v1|intermittent:0.05|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|intermittent:0.05|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|intermittent:0.05|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|intermittent:0.05|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|intermittent:0.2|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|intermittent:0.2|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|intermittent:0.2|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|intermittent:0.2|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|intermittent:0.5|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|intermittent:0.5|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|intermittent:0.5|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|intermittent:0.5|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|noise:-5|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|noise:-5|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|noise:-5|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|noise:-5|vib|detect": [
+      0.0,
+      0.75,
+      0.0,
+      0.085526,
+      0.0,
+      0.15,
+      0.0,
+      0.057895
+    ],
+    "v1|noise:0|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|noise:0|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|noise:0|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|noise:0|vib|detect": [
+      0.0,
+      0.469298,
+      0.0,
+      0.0,
+      0.0,
+      0.023684,
+      0.0,
+      0.0
+    ],
+    "v1|noise:10|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|noise:10|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|noise:10|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|noise:10|vib|detect": [
+      0.0,
+      0.149123,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "v1|noise:20|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|noise:20|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|noise:20|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|noise:20|vib|detect": [
+      0.0,
+      0.070175,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "v1|noise:5|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|noise:5|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|noise:5|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|noise:5|vib|detect": [
+      0.0,
+      0.236842,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "v1|spikes:10|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|spikes:10|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|spikes:10|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|spikes:10|vib|detect": [
+      0.0,
+      0.070175,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|spikes:100|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|spikes:100|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|spikes:100|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|spikes:100|vib|detect": [
+      0.0,
+      0.157895,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|spikes:1000|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|spikes:1000|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|spikes:1000|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|spikes:1000|vib|detect": [
+      0.0,
+      0.513158,
+      0.0,
+      0.0,
+      0.0,
+      0.1,
+      0.0,
+      0.0
+    ],
+    "v1|stuck:None|cur|cross_flag": [
+      0.0,
+      0.096491,
+      0.0,
+      0.029605,
+      0.0,
+      0.0,
+      0.0,
+      0.023684
+    ],
+    "v1|stuck:None|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v1|stuck:None|vib|cross_flag": [
+      0.0,
+      0.04386,
+      0.0,
+      0.003289,
+      0.0,
+      0.0,
+      0.003289,
+      0.0
+    ],
+    "v1|stuck:None|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|both:noise:0|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|both:noise:0|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|both:noise:10|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|both:noise:10|vib|detect": [
+      0.167763,
+      0.846491,
+      0.265789,
+      0.733553,
+      0.065789,
+      0.436842,
+      0.3125,
+      0.413158
+    ],
+    "v2|clean|cur|false_flag": [
+      0.001235,
+      0.044457,
+      0.007588,
+      0.030128,
+      0.001099,
+      0.0,
+      0.020602,
+      0.049472
+    ],
+    "v2|clean|vib|false_flag": [
+      0.0,
+      0.118551,
+      0.056747,
+      0.063145,
+      0.0,
+      0.068773,
+      0.086115,
+      0.00066
+    ],
+    "v2|clean_damaged_bearings|cur|false_flag": [
+      0.002473,
+      0.044457,
+      0.007709,
+      0.030128,
+      0.001653,
+      0.0,
+      0.037985,
+      0.042887
+    ],
+    "v2|clean_damaged_bearings|vib|false_flag": [
+      0.0,
+      0.118551,
+      0.08315,
+      0.063145,
+      0.0,
+      0.108612,
+      0.16185,
+      0.000825
+    ],
+    "v2|clean_healthy_bearings|cur|false_flag": [
+      0.0,
+      NaN,
+      0.007407,
+      NaN,
+      0.000823,
+      0.0,
+      0.003289,
+      0.075783
+    ],
+    "v2|clean_healthy_bearings|vib|false_flag": [
+      0.0,
+      NaN,
+      0.017284,
+      NaN,
+      0.0,
+      0.009046,
+      0.010691,
+      0.0
+    ],
+    "v2|clipping:0.05|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|clipping:0.05|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|clipping:0.05|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|clipping:0.05|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|clipping:0.2|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|clipping:0.2|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|clipping:0.2|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|clipping:0.2|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|clipping:0.5|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|clipping:0.5|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|clipping:0.5|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|clipping:0.5|vib|detect": [
+      0.983553,
+      0.995614,
+      0.947368,
+      0.996711,
+      0.921053,
+      0.968421,
+      0.957237,
+      0.955263
+    ],
+    "v2|dropout:None|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|dropout:None|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|dropout:None|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|dropout:None|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|gain:0.5|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|gain:0.5|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|gain:0.5|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|gain:0.5|vib|detect": [
+      0.868421,
+      1.0,
+      0.855263,
+      0.861842,
+      0.885965,
+      1.0,
+      0.921053,
+      0.589474
+    ],
+    "v2|gain:2.0|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|gain:2.0|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|gain:2.0|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|gain:2.0|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|intermittent:0.05|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|intermittent:0.05|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|intermittent:0.05|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|intermittent:0.05|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|intermittent:0.2|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|intermittent:0.2|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|intermittent:0.2|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|intermittent:0.2|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|intermittent:0.5|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|intermittent:0.5|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|intermittent:0.5|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|intermittent:0.5|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|noise:-5|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|noise:-5|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|noise:-5|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|noise:-5|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|noise:0|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|noise:0|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|noise:0|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|noise:0|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|noise:10|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|noise:10|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|noise:10|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|noise:10|vib|detect": [
+      0.171053,
+      0.837719,
+      0.273684,
+      0.733553,
+      0.070175,
+      0.423684,
+      0.319079,
+      0.410526
+    ],
+    "v2|noise:20|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|noise:20|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|noise:20|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|noise:20|vib|detect": [
+      0.0,
+      0.118421,
+      0.005263,
+      0.003289,
+      0.0,
+      0.065789,
+      0.023026,
+      0.0
+    ],
+    "v2|noise:5|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|noise:5|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|noise:5|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|noise:5|vib|detect": [
+      0.720395,
+      0.97807,
+      0.789474,
+      0.940789,
+      0.644737,
+      0.992105,
+      0.75,
+      0.931579
+    ],
+    "v2|spikes:10|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|spikes:10|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|spikes:10|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|spikes:10|vib|detect": [
+      0.0,
+      0.587719,
+      0.371053,
+      0.467105,
+      0.0,
+      0.257895,
+      0.273026,
+      0.0
+    ],
+    "v2|spikes:100|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|spikes:100|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|spikes:100|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|spikes:100|vib|detect": [
+      0.368421,
+      0.912281,
+      0.615789,
+      0.976974,
+      0.25,
+      0.636842,
+      0.582237,
+      0.660526
+    ],
+    "v2|spikes:1000|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|spikes:1000|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|spikes:1000|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|spikes:1000|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|stuck:None|cur|cross_flag": [
+      0.0,
+      0.035088,
+      0.005263,
+      0.026316,
+      0.0,
+      0.0,
+      0.013158,
+      0.042105
+    ],
+    "v2|stuck:None|cur|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "v2|stuck:None|vib|cross_flag": [
+      0.0,
+      0.122807,
+      0.057895,
+      0.065789,
+      0.0,
+      0.068421,
+      0.088816,
+      0.0
+    ],
+    "v2|stuck:None|vib|detect": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  }
+}

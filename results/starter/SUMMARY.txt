@@ -1,0 +1,78 @@
+##### p1
+runs=11  (mean ± sd of macro-F1 across bearing-disjoint runs)
+model                          clean     seen-corr  heldout-corr         worst    ECE    FAR   miss  lat_s
+----------------------------------------------------------------------------------------------------------
+cur_only                 0.323±0.135   0.304±0.073   0.268±0.061   0.135±0.022  0.215  0.597  0.325  0.777
+early_fusion             0.567±0.163   0.536±0.163   0.405±0.113   0.167±0.060  0.257  0.446  0.075  0.953
+gated_both               0.533±0.172   0.507±0.166   0.455±0.146   0.201±0.090  0.224  0.470  0.141  1.454
+gated_both_nomask        0.533±0.172   0.507±0.165   0.443±0.153   0.178±0.071  0.224  0.470  0.141  1.454
+gated_confidence         0.550±0.177   0.518±0.170   0.455±0.147   0.182±0.088  0.207  0.445  0.142  1.506
+gated_quality            0.545±0.174   0.510±0.167   0.456±0.139   0.198±0.073  0.217  0.456  0.147  1.471
+late_average             0.558±0.165   0.524±0.163   0.398±0.119   0.165±0.072  0.190  0.443  0.136  1.080
+late_stacked             0.386±0.051   0.373±0.052   0.294±0.045   0.135±0.039  0.318  0.634  0.301  2.423
+vib_only                 0.562±0.184   0.520±0.173   0.470±0.141   0.159±0.050  0.271  0.443  0.133  1.497
+
+Paired Wilcoxon, gated_both vs baseline (per-run mean macro-F1; Holm-correct across baselines)
+  clean    vs cur_only             Δ=+0.209  p=0.0244  p_holm=0.4639
+  clean    vs early_fusion         Δ=-0.035  p=0.0674  p_holm=1.0000
+  clean    vs gated_both_nomask    Δ=+0.000  p=1.0000  p_holm=1.0000
+  clean    vs gated_confidence     Δ=-0.017  p=0.1934  p_holm=1.0000
+  clean    vs gated_quality        Δ=-0.012  p=0.0840  p_holm=1.0000
+  clean    vs late_average         Δ=-0.025  p=0.1230  p_holm=1.0000
+  clean    vs late_stacked         Δ=+0.146  p=0.0049  p_holm=0.1172
+  clean    vs vib_only             Δ=-0.029  p=0.0645  p_holm=1.0000
+  seen     vs cur_only             Δ=+0.204  p=0.0186  p_holm=0.3711
+  seen     vs early_fusion         Δ=-0.028  p=0.0674  p_holm=1.0000
+  seen     vs gated_both_nomask    Δ=+0.001  p=0.4316  p_holm=1.0000
+  seen     vs gated_confidence     Δ=-0.011  p=0.4316  p_holm=1.0000
+  seen     vs gated_quality        Δ=-0.003  p=0.6250  p_holm=1.0000
+  seen     vs late_average         Δ=-0.016  p=0.1230  p_holm=1.0000
+  seen     vs late_stacked         Δ=+0.135  p=0.0068  p_holm=0.1572
+  seen     vs vib_only             Δ=-0.013  p=0.5195  p_holm=1.0000
+  heldout  vs cur_only             Δ=+0.187  p=0.0068  p_holm=0.1572
+  heldout  vs early_fusion         Δ=+0.049  p=0.1016  p_holm=1.0000
+  heldout  vs gated_both_nomask    Δ=+0.011  p=0.0244  p_holm=0.4639
+  heldout  vs gated_confidence     Δ=-0.000  p=0.7695  p_holm=1.0000
+  heldout  vs gated_quality        Δ=-0.001  p=1.0000  p_holm=1.0000
+  heldout  vs late_average         Δ=+0.057  p=0.0674  p_holm=1.0000
+  heldout  vs late_stacked         Δ=+0.161  p=0.0068  p_holm=0.1572
+  heldout  vs vib_only             Δ=-0.015  p=0.8984  p_holm=1.0000
+##### p3
+runs=8  (mean ± sd of macro-F1 across bearing-disjoint runs)
+model                          clean     seen-corr  heldout-corr         worst    ECE    FAR   miss  lat_s
+----------------------------------------------------------------------------------------------------------
+cur_only                 0.240±0.100   0.255±0.068   0.230±0.050   0.127±0.039  0.290  0.725  0.120  0.818
+early_fusion             0.573±0.131   0.556±0.124   0.445±0.103   0.166±0.041  0.248  0.359  0.156  0.812
+gated_both               0.537±0.116   0.529±0.108   0.494±0.106   0.219±0.088  0.231  0.373  0.189  0.781
+late_average             0.570±0.134   0.543±0.123   0.441±0.104   0.153±0.050  0.134  0.373  0.150  1.646
+late_stacked             0.367±0.103   0.335±0.068   0.322±0.054   0.157±0.038  0.351  0.405  0.282  1.750
+vib_only                 0.588±0.130   0.559±0.114   0.510±0.106   0.174±0.048  0.233  0.373  0.166  0.812
+
+Paired Wilcoxon, gated_both vs baseline (per-run mean macro-F1; Holm-correct across baselines)
+  clean    vs cur_only             Δ=+0.297  p=0.0078  p_holm=0.1172
+  clean    vs early_fusion         Δ=-0.036  p=0.4609  p_holm=1.0000
+  clean    vs late_average         Δ=-0.033  p=0.2188  p_holm=1.0000
+  clean    vs late_stacked         Δ=+0.170  p=0.0156  p_holm=0.1875
+  clean    vs vib_only             Δ=-0.051  p=0.1953  p_holm=1.0000
+  seen     vs cur_only             Δ=+0.273  p=0.0078  p_holm=0.1172
+  seen     vs early_fusion         Δ=-0.028  p=0.3828  p_holm=1.0000
+  seen     vs late_average         Δ=-0.014  p=0.9453  p_holm=1.0000
+  seen     vs late_stacked         Δ=+0.194  p=0.0156  p_holm=0.1875
+  seen     vs vib_only             Δ=-0.030  p=0.3125  p_holm=1.0000
+  heldout  vs cur_only             Δ=+0.263  p=0.0078  p_holm=0.1172
+  heldout  vs early_fusion         Δ=+0.048  p=0.1953  p_holm=1.0000
+  heldout  vs late_average         Δ=+0.053  p=0.2500  p_holm=1.0000
+  heldout  vs late_stacked         Δ=+0.171  p=0.0156  p_holm=0.1875
+  heldout  vs vib_only             Δ=-0.016  p=0.3828  p_holm=1.0000
+##### leaky
+runs=3  (mean ± sd of macro-F1 across bearing-disjoint runs)
+model                          clean     seen-corr  heldout-corr         worst    ECE    FAR   miss  lat_s
+----------------------------------------------------------------------------------------------------------
+cur_only                 0.570±0.010       -             -         0.570±0.010  0.105  0.343  0.168    -  
+early_fusion             0.983±0.002       -             -         0.983±0.002  0.055  0.003  0.009    -  
+gated_both               0.945±0.005       -             -         0.945±0.005  0.217  0.089  0.026    -  
+late_average             0.966±0.007       -             -         0.966±0.007  0.319  0.012  0.034    -  
+late_stacked             0.870±0.011       -             -         0.870±0.011  0.109  0.015  0.095    -  
+vib_only                 0.953±0.008       -             -         0.953±0.008  0.066  0.025  0.047    -  
+
+(too few runs for a paired test; use >= 6, ideally 15 = 5 repeats x 3 folds)

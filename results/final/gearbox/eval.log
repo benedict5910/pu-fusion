@@ -1,0 +1,46 @@
+clean                        flagged m/g 0.01/0.01  motor=0.874 gearbox=0.817 early=0.955 late_average=0.909 gated=0.909  cov=1.00
+noise:20@motor               flagged m/g 1.00/0.01  motor=0.663 gearbox=0.817 early=0.955 late_average=0.874 gated=0.886  cov=1.00
+noise:10@motor               flagged m/g 1.00/0.01  motor=0.547 gearbox=0.817 early=0.933 late_average=0.858 gated=0.869  cov=1.00
+noise:5@motor                flagged m/g 1.00/0.01  motor=0.476 gearbox=0.817 early=0.921 late_average=0.832 gated=0.826  cov=1.00
+noise:0@motor                flagged m/g 1.00/0.01  motor=0.284 gearbox=0.817 early=0.815 late_average=0.701 gated=0.719  cov=1.00
+noise:-5@motor               flagged m/g 1.00/0.01  motor=0.197 gearbox=0.817 early=0.643 late_average=0.515 gated=0.646  cov=1.00
+dropout:None@motor           flagged m/g 1.00/0.01  motor=0.167 gearbox=0.817 early=0.167 late_average=0.167 gated=0.817  cov=1.00
+intermittent:0.05@motor      flagged m/g 1.00/0.01  motor=0.728 gearbox=0.817 early=0.955 late_average=0.932 gated=0.897  cov=1.00
+intermittent:0.2@motor       flagged m/g 1.00/0.01  motor=0.294 gearbox=0.817 early=0.597 late_average=0.815 gated=0.921  cov=1.00
+intermittent:0.5@motor       flagged m/g 1.00/0.01  motor=0.167 gearbox=0.817 early=0.428 late_average=0.451 gated=0.909  cov=1.00
+gain:0.5@motor               flagged m/g 0.01/0.01  motor=0.757 gearbox=0.817 early=0.961 late_average=0.939 gated=0.939  cov=1.00
+gain:2.0@motor               flagged m/g 0.01/0.01  motor=0.445 gearbox=0.817 early=0.678 late_average=0.611 gated=0.611  cov=1.00
+clipping:0.5@motor           flagged m/g 1.00/0.01  motor=0.541 gearbox=0.817 early=0.653 late_average=0.672 gated=0.759  cov=1.00
+clipping:0.2@motor           flagged m/g 1.00/0.01  motor=0.371 gearbox=0.817 early=0.202 late_average=0.606 gated=0.736  cov=1.00
+clipping:0.05@motor          flagged m/g 1.00/0.01  motor=0.376 gearbox=0.817 early=0.190 late_average=0.696 gated=0.817  cov=1.00
+spikes:10@motor              flagged m/g 1.00/0.01  motor=0.333 gearbox=0.817 early=0.506 late_average=0.728 gated=0.867  cov=1.00
+spikes:100@motor             flagged m/g 1.00/0.01  motor=0.167 gearbox=0.817 early=0.413 late_average=0.167 gated=0.748  cov=1.00
+spikes:1000@motor            flagged m/g 1.00/0.01  motor=0.251 gearbox=0.817 early=0.444 late_average=0.729 gated=0.827  cov=1.00
+stuck:None@motor             flagged m/g 1.00/0.01  motor=0.167 gearbox=0.817 early=0.167 late_average=0.167 gated=0.817  cov=1.00
+noise:20@gearbox             flagged m/g 0.01/0.18  motor=0.874 gearbox=0.762 early=0.960 late_average=0.847 gated=0.842  cov=1.00
+noise:10@gearbox             flagged m/g 0.01/1.00  motor=0.874 gearbox=0.497 early=0.914 late_average=0.659 gated=0.734  cov=1.00
+noise:5@gearbox              flagged m/g 0.01/1.00  motor=0.874 gearbox=0.482 early=0.785 late_average=0.655 gated=0.794  cov=1.00
+noise:0@gearbox              flagged m/g 0.01/1.00  motor=0.874 gearbox=0.343 early=0.352 late_average=0.751 gated=0.878  cov=1.00
+noise:-5@gearbox             flagged m/g 0.01/1.00  motor=0.874 gearbox=0.167 early=0.167 late_average=0.554 gated=0.790  cov=1.00
+dropout:None@gearbox         flagged m/g 0.01/1.00  motor=0.874 gearbox=0.167 early=0.167 late_average=0.167 gated=0.874  cov=1.00
+intermittent:0.05@gearbox    flagged m/g 0.01/1.00  motor=0.874 gearbox=0.813 early=0.840 late_average=0.915 gated=0.926  cov=1.00
+intermittent:0.2@gearbox     flagged m/g 0.01/1.00  motor=0.874 gearbox=0.854 early=0.704 late_average=0.922 gated=0.938  cov=1.00
+intermittent:0.5@gearbox     flagged m/g 0.01/1.00  motor=0.874 gearbox=0.678 early=0.390 late_average=0.872 gated=0.921  cov=1.00
+gain:0.5@gearbox             flagged m/g 0.01/0.01  motor=0.874 gearbox=0.920 early=0.961 late_average=0.955 gated=0.955  cov=1.00
+gain:2.0@gearbox             flagged m/g 0.01/0.01  motor=0.874 gearbox=0.545 early=0.920 late_average=0.633 gated=0.633  cov=1.00
+clipping:0.5@gearbox         flagged m/g 0.01/1.00  motor=0.874 gearbox=0.898 early=0.961 late_average=0.961 gated=0.961  cov=1.00
+clipping:0.2@gearbox         flagged m/g 0.01/1.00  motor=0.874 gearbox=0.178 early=0.315 late_average=0.525 gated=0.910  cov=1.00
+clipping:0.05@gearbox        flagged m/g 0.01/1.00  motor=0.874 gearbox=0.178 early=0.178 late_average=0.178 gated=0.910  cov=1.00
+spikes:10@gearbox            flagged m/g 0.01/1.00  motor=0.874 gearbox=0.490 early=0.386 late_average=0.597 gated=0.733  cov=1.00
+spikes:100@gearbox           flagged m/g 0.01/1.00  motor=0.874 gearbox=0.277 early=0.167 late_average=0.331 gated=0.599  cov=1.00
+spikes:1000@gearbox          flagged m/g 0.01/1.00  motor=0.874 gearbox=0.255 early=0.176 late_average=0.439 gated=0.598  cov=1.00
+stuck:None@gearbox           flagged m/g 0.01/1.00  motor=0.874 gearbox=0.167 early=0.167 late_average=0.167 gated=0.874  cov=1.00
+dropout:None@both            flagged m/g 1.00/1.00  motor=0.167 gearbox=0.167 early=0.167 late_average=0.167 gated=0.000  cov=0.00
+stuck:None@both              flagged m/g 1.00/1.00  motor=0.167 gearbox=0.167 early=0.167 late_average=0.261 gated=0.000  cov=0.00
+noise:0@both                 flagged m/g 1.00/1.00  motor=0.366 gearbox=0.351 early=0.373 late_average=0.489 gated=0.489  cov=1.00
+noise:10@both                flagged m/g 1.00/1.00  motor=0.542 gearbox=0.502 early=0.944 late_average=0.661 gated=0.661  cov=1.00
+wrote /home/claude/repo/results/final/gearbox
+
+real	5m29.853s
+user	5m26.727s
+sys	0m0.516s

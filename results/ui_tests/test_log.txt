@@ -1,0 +1,75 @@
+test_ack_and_sensor_failure_on_real_app (test_dashboard_apptest.TestDashboardAppTest.test_ack_and_sensor_failure_on_real_app) ... 2026-10-23 21:12:53.477 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-23 21:12:54.311 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-23 21:12:54.311 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-23 21:12:54.311 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-23 21:12:54.312 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-23 21:12:55.933 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-23 21:12:55.934 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-23 21:12:55.934 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_every_view_renders (test_dashboard_apptest.TestDashboardAppTest.test_every_view_renders) ... 2026-10-23 21:12:56.761 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_live_rig_not_connected_and_no_fabrication (test_dashboard_apptest.TestDashboardAppTest.test_live_rig_not_connected_and_no_fabrication) ... 2026-10-23 21:12:58.134 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-23 21:12:58.370 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_full_sequence (test_dashboard_ui.TestDashboardHeadless.test_full_sequence) ... skipped 'real Streamlit present: covered by test_dashboard_apptest'
+test_confusion_matrix_snapshot (test_dashboard_ui.TestResearchReaders.test_confusion_matrix_snapshot) ... ok
+test_no_holm_significant_claim (test_dashboard_ui.TestResearchReaders.test_no_holm_significant_claim) ... ok
+test_quality_table (test_dashboard_ui.TestResearchReaders.test_quality_table) ... ok
+test_summary_values_unchanged (test_dashboard_ui.TestResearchReaders.test_summary_values_unchanged) ... ok
+test_demo_uses_only_held_out_recordings (test_dashboard_ui.TestUiHelpers.test_demo_uses_only_held_out_recordings) ... C:\Users\Admin\Projects\pu-fusion\tests\test_dashboard_ui.py:104: ResourceWarning: unclosed file <_io.BufferedReader name='C:\\Users\\Admin\\Projects\\pu-fusion\\models\\demo_models.pkl'>
+  b = pickle.load(open(ROOT / "models" / "demo_models.pkl", "rb"))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_source_labels_distinct (test_dashboard_ui.TestUiHelpers.test_source_labels_distinct) ... ok
+test_state_banner_escapes_and_labels (test_dashboard_ui.TestUiHelpers.test_state_banner_escapes_and_labels) ... ok
+test_svgs_are_well_formed (test_dashboard_ui.TestUiHelpers.test_svgs_are_well_formed) ... ok
+test_timestamp_format (test_dashboard_ui.TestUiHelpers.test_timestamp_format) ... ok
+test_benchmark_monitor (test_ivhm.TestBenchmarkEngine.test_benchmark_monitor) ... ok
+test_contributions_reconstruct_logits (test_ivhm.TestExplain.test_contributions_reconstruct_logits) ... ok
+test_explain_gated (test_ivhm.TestExplain.test_explain_gated) ... ok
+test_names_match_features (test_ivhm.TestExplain.test_names_match_features) ... ok
+test_ack_does_not_hide_persistent_fault (test_ivhm.TestHealth.test_ack_does_not_hide_persistent_fault) ... ok
+test_ack_only_applies_to_inspect (test_ivhm.TestHealth.test_ack_only_applies_to_inspect) ... ok
+test_escalation_latch_and_ack (test_ivhm.TestHealth.test_escalation_latch_and_ack) ... ok
+test_sensor_failures (test_ivhm.TestHealth.test_sensor_failures) ... ok
+test_warning_recovers_after_quiet_windows (test_ivhm.TestHealth.test_warning_recovers_after_quiet_windows) ... ok
+test_sensor_outage_does_not_clear_warning (test_ivhm.TestOutageRecovery.test_sensor_outage_does_not_clear_warning)
+A sensor outage during WARNING recovery must not let the first good window jump to NORMAL. ... ok
+test_suspended_diagnosis_not_logged (test_ivhm.TestOutageRecovery.test_suspended_diagnosis_not_logged)
+While no sensor is usable, the logged history must not carry a fault probability. ... ok
+test_clean_is_ok (test_ivhm.TestReliability.test_clean_is_ok) ... ok
+test_failures_and_causes (test_ivhm.TestReliability.test_failures_and_causes) ... ok
+test_firmware_header_layout_matches_parser (test_ivhm.TestRig.test_firmware_header_layout_matches_parser)
+Compile the firmware's own Header struct on the host and decode its bytes. ... ok
+test_gap_becomes_nan_exactly (test_ivhm.TestRig.test_gap_becomes_nan_exactly) ... ok
+test_protocol_roundtrip_chunked_and_corrupt (test_ivhm.TestRig.test_protocol_roundtrip_chunked_and_corrupt) ... ok
+test_rig_pipeline_end_to_end (test_ivhm.TestRig.test_rig_pipeline_end_to_end) ... ok
+test_timing_flags_drops (test_ivhm.TestRig.test_timing_flags_drops) ... ok
+test_timing_recovers_clock_error_and_aligns_streams (test_ivhm.TestRig.test_timing_recovers_clock_error_and_aligns_streams) ... ok
+test_log_and_export (test_ivhm.TestStore.test_log_and_export) ... ok
+test_bearing_counts (test_pipeline.TestConfig.test_bearing_counts) ... ok
+test_fault_frequencies (test_pipeline.TestConfig.test_fault_frequencies) ... ok
+test_parse (test_pipeline.TestConfig.test_parse) ... ok
+test_deterministic (test_pipeline.TestCorruption.test_deterministic) ... ok
+test_dropout_and_stuck (test_pipeline.TestCorruption.test_dropout_and_stuck) ... ok
+test_families_partitioned (test_pipeline.TestCorruption.test_families_partitioned) ... ok
+test_snr (test_pipeline.TestCorruption.test_snr) ... ok
+test_finite_under_all_corruptions (test_pipeline.TestFeatures.test_finite_under_all_corruptions) ... ok
+test_gain_invariance_of_spectral_bands (test_pipeline.TestFeatures.test_gain_invariance_of_spectral_bands) ... ok
+test_nan_samples (test_pipeline.TestFeatures.test_nan_samples) ... ok
+test_quality_flags_dead_channel (test_pipeline.TestFeatures.test_quality_flags_dead_channel) ... ok
+test_load_paderborn_like_mat (test_pipeline.TestLoader.test_load_paderborn_like_mat) ... ok
+test_cm_counts (test_pipeline.TestMetricsConfusion.test_cm_counts) ... ok
+test_all_models_output_distributions (test_pipeline.TestModels.test_all_models_output_distributions) ... ok
+test_gate_routes_away_from_dead_vibration (test_pipeline.TestModels.test_gate_routes_away_from_dead_vibration) ... ok
+test_reproducible_tables (test_pipeline.TestModels.test_reproducible_tables) ... ok
+test_p1_disjoint_and_complete (test_pipeline.TestSplits.test_p1_disjoint_and_complete) ... ok
+test_p2 (test_pipeline.TestSplits.test_p2) ... ok
+test_run_refuses_leaky_fold (test_pipeline.TestSplits.test_run_refuses_leaky_fold) ... ok
+
+----------------------------------------------------------------------
+Ran 52 tests in 20.975s
+
+OK (skipped=1)
+exit code 0 

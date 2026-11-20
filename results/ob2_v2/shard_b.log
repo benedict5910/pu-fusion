@@ -1,0 +1,33 @@
+P1_r2_f2: selected box_base_pooled_q1.0-99.0_m0.1  (114s)
+P1_r3_f0: selected box_base_pooled_q1.0-99.0_m0.1  (194s)
+P1_r3_f1: selected box_base_pooled_q1.0-99.0_m0.1  (295s)
+P1_r3_f2: selected maha_base_pooled_a99.0  (413s)
+P1_r4_f0: selected maha_base_pooled_a99.0  (512s)
+P1_r4_f1: selected box_base_pooled_q1.0-99.0_m0.1  (596s)
+P1_r4_f2: selected box_base_pooled_q1.0-99.0_m0.1  (720s)
+
+folds=7  selected configs: {'maha_base_pooled_a99.0': 2, 'box_base_pooled_q1.0-99.0_m0.1': 5}
+condition                    v1 vib   v2 vib   v1 cur   v2 cur
+both:noise:0                  0.106    1.000    1.000    1.000
+both:noise:10                 0.030    0.514    1.000    1.000
+clean                         0.024    0.064    0.007    0.013
+clean_damaged_bearings        0.038    0.091    0.010    0.016
+clean_healthy_bearings        0.000    0.011    0.000    0.006
+clipping:0.05                 1.000    1.000    1.000    1.000
+clipping:0.2                  1.000    1.000    1.000    1.000
+clipping:0.5                  0.969    0.975    1.000    1.000
+dropout:None                  1.000    1.000    1.000    1.000
+gain:0.5                      0.026    0.927    0.071    1.000
+gain:2.0                      0.190    1.000    0.758    1.000
+intermittent:0.05             1.000    1.000    1.000    1.000
+intermittent:0.2              1.000    1.000    1.000    1.000
+intermittent:0.5              1.000    1.000    1.000    1.000
+noise:-5                      0.182    1.000    1.000    1.000
+noise:0                       0.104    1.000    1.000    1.000
+noise:10                      0.031    0.512    1.000    1.000
+noise:20                      0.020    0.051    1.000    1.000
+noise:5                       0.047    0.897    1.000    1.000
+spikes:10                     0.028    0.272    1.000    1.000
+spikes:100                    0.043    0.674    1.000    1.000
+spikes:1000                   0.143    1.000    1.000    1.000
+stuck:None                    1.000    1.000    1.000    1.000

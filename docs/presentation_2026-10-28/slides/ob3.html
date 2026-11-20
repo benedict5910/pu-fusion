@@ -1,0 +1,20 @@
+<section id="ob3" data-transition="fade" style="background:#FBFBF8;color:#1E2A3B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#14213D">OB3: health layer on real, unseen recordings</h2>
+<div style="display:flex;gap:48px;align-items:start">
+<table style="flex:1;font-size:26px;color:#1E2A3B">
+<tr><th style="width:34%;text-align:left">Replay scenario</th><th style="width:22%;text-align:left">K004 healthy</th><th style="width:22%;text-align:left">KA22 outer</th><th style="width:22%;text-align:left">KI18 inner</th></tr>
+<tr><td>Clean sensors</td><td>INSPECT (false alarm)</td><td>INSPECT</td><td>INSPECT</td></tr>
+<tr style="background:#EEF1F5"><td>Vibration dropout</td><td>WARNING</td><td>WARNING</td><td>INSPECT</td></tr>
+<tr><td>Vibration stuck</td><td>WARNING</td><td>WARNING</td><td>INSPECT</td></tr>
+<tr style="background:#EEF1F5"><td>Current dropout</td><td>INSPECT</td><td>INSPECT</td><td>INSPECT</td></tr>
+<tr><td>Both sensors dropped</td><td>SENSOR_FAULT</td><td>SENSOR_FAULT</td><td>INSPECT (latched first)</td></tr>
+</table>
+<div style="width:560px;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:28px;line-height:1.4">All four states exercised; INSPECT stays latched until acknowledged.</p>
+<p style="font-size:28px;line-height:1.4">Every window logged to SQLite; CSV and HTML reports exported.</p>
+<p style="font-size:28px;line-height:1.4">Explanation check: removing top features drops confidence by 0.28 (vib) / 0.05 (cur).</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7179">Final state after 24 windows; demo model trained on the other 9 bearings · results/starter/ob3/</p>
+<aside>This is the same engine the dashboard uses, run on recordings of three bearings the demo model never saw. Faults were injected from the fifth window. Point out the honest row: the healthy bearing K004 ends in INSPECT on clean data, the false-alarm problem from the audit. With both sensors dead the system suspends diagnosis (SENSOR_FAULT), except where INSPECT had already latched, which is by design. The Streamlit dashboard itself was then validated on the laptop on 21 Oct; screenshots follow.</aside>
+</section>

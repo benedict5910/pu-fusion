@@ -1,0 +1,75 @@
+runs=11  (mean +- sd over bearing-disjoint runs; abstain counts as wrong)
+
+[clean] model                macroF1  covered F1  coverage     FAR    miss  undiag
+      vib_only       0.562±0.185       0.562     1.000   0.443   0.132   0.000
+      cur_only       0.322±0.137       0.322     1.000   0.598   0.323   0.000
+      early_fusion   0.567±0.162       0.567     1.000   0.446   0.075   0.000
+      late_average   0.558±0.166       0.558     1.000   0.443   0.135   0.000
+      late_stacked   0.388±0.050       0.388     1.000   0.632   0.301   0.000
+      gated_both     0.533±0.173       0.533     1.000   0.471   0.141   0.000
+      gated_v2       0.521±0.154       0.522     0.998   0.472   0.139   0.004
+
+[seen] model                macroF1  covered F1  coverage     FAR    miss  undiag
+      vib_only       0.520±0.174       0.520     1.000   0.448   0.162   0.000
+      cur_only       0.304±0.075       0.304     1.000   0.592   0.347   0.000
+      early_fusion   0.535±0.164       0.535     1.000   0.432   0.125   0.000
+      late_average   0.524±0.164       0.524     1.000   0.443   0.163   0.000
+      late_stacked   0.373±0.052       0.373     1.000   0.563   0.326   0.000
+      gated_both     0.508±0.167       0.508     1.000   0.464   0.161   0.000
+      gated_v2       0.429±0.094       0.461     0.906   0.470   0.181   0.117
+
+[withheld] model                macroF1  covered F1  coverage     FAR    miss  undiag
+      vib_only       0.469±0.142       0.469     1.000   0.499   0.171   0.000
+      cur_only       0.268±0.063       0.268     1.000   0.589   0.359   0.000
+      early_fusion   0.406±0.114       0.406     1.000   0.526   0.204   0.000
+      late_average   0.398±0.119       0.398     1.000   0.499   0.254   0.000
+      late_stacked   0.294±0.046       0.294     1.000   0.519   0.402   0.000
+      gated_both     0.455±0.147       0.455     1.000   0.504   0.192   0.000
+      gated_v2       0.451±0.100       0.460     0.962   0.486   0.196   0.055
+
+Tests (gated_v2 vs model): unit group vs mean_diff p p_holm
+  run     clean     vib_only       -0.0408 0.0674 0.4717
+  run     clean     cur_only       +0.1989 0.0322 0.3867
+  run     clean     early_fusion   -0.0461 0.0322 0.3867
+  run     clean     late_average   -0.0368 0.0322 0.3867
+  run     clean     late_stacked   +0.1337 0.0068 0.1025
+  run     clean     gated_both     -0.0116 0.3223 0.9668
+  run     seen      vib_only       -0.0917 0.0322 0.3867
+  run     seen      cur_only       +0.1249 0.0049 0.0781
+  run     seen      early_fusion   -0.1067 0.0098 0.1367
+  run     seen      late_average   -0.0947 0.0098 0.1367
+  run     seen      late_stacked   +0.0556 0.1016 0.5078
+  run     seen      gated_both     -0.0788 0.0420 0.3867
+  run     withheld  vib_only       -0.0187 0.3652 0.9668
+  run     withheld  cur_only       +0.1822 0.0020 0.0332
+  run     withheld  early_fusion   +0.0450 0.1230 0.5078
+  run     withheld  late_average   +0.0530 0.0674 0.4717
+  run     withheld  late_stacked   +0.1562 0.0010 0.0176
+  run     withheld  gated_both     -0.0040 0.7002 0.9668
+  bearing clean     vib_only       -0.0411 0.0522 0.5225
+  bearing clean     cur_only       +0.2347 0.0161 0.2256
+  bearing clean     early_fusion   -0.0472 0.0522 0.5225
+  bearing clean     late_average   -0.0342 0.0210 0.2729
+  bearing clean     late_stacked   +0.1171 0.2661 1.0000
+  bearing clean     gated_both     -0.0094 0.4131 1.0000
+  bearing seen      vib_only       -0.1313 0.0068 0.1094
+  bearing seen      cur_only       +0.1051 0.1099 0.8789
+  bearing seen      early_fusion   -0.1346 0.0010 0.0176
+  bearing seen      late_average   -0.1224 0.0034 0.0581
+  bearing seen      late_stacked   +0.0088 0.9097 1.0000
+  bearing seen      gated_both     -0.1037 0.0093 0.1392
+  bearing withheld  vib_only       -0.0718 0.0425 0.4673
+  bearing withheld  cur_only       +0.1157 0.0210 0.2729
+  bearing withheld  early_fusion   -0.0123 0.5693 1.0000
+  bearing withheld  late_average   -0.0088 0.9697 1.0000
+  bearing withheld  late_stacked   +0.0769 0.4697 1.0000
+  bearing withheld  gated_both     -0.0354 0.1514 1.0000
+
+vibration-corruption families, pooled macro-F1:
+  vib_only       noise=0.521 gain=0.561 spikes=0.516 clipping=0.385 stuck=0.404 dropout=0.404 intermittent=0.506
+  cur_only       noise=0.325 gain=0.325 spikes=0.325 clipping=0.325 stuck=0.325 dropout=0.325 intermittent=0.325
+  early_fusion   noise=0.536 gain=0.580 spikes=0.507 clipping=0.387 stuck=0.349 dropout=0.349 intermittent=0.513
+  late_average   noise=0.509 gain=0.556 spikes=0.499 clipping=0.384 stuck=0.326 dropout=0.326 intermittent=0.496
+  late_stacked   noise=0.380 gain=0.403 spikes=0.370 clipping=0.416 stuck=0.295 dropout=0.295 intermittent=0.355
+  gated_both     noise=0.483 gain=0.528 spikes=0.474 clipping=0.350 stuck=0.325 dropout=0.325 intermittent=0.474
+  gated_v2       noise=0.384 gain=0.341 spikes=0.394 clipping=0.328 stuck=0.326 dropout=0.326 intermittent=0.326

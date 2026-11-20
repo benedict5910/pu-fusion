@@ -1,0 +1,1217 @@
+{
+  "generated": "2026-11-15",
+  "bearing": {
+    "data": "Paderborn, 28 bearings, 2,240 recordings; 15 bearing-disjoint runs, 17 held-out bearings",
+    "windows_per_model": 297070,
+    "models": [
+      {
+        "model": "vib_only",
+        "clean": 0.6178,
+        "seen": 0.5885,
+        "withheld": 0.5658,
+        "clean_sd": 0.1085,
+        "coverage_seen": 1.0,
+        "false_alarm_clean": 0.3385
+      },
+      {
+        "model": "cur_only",
+        "clean": 0.3869,
+        "seen": 0.3387,
+        "withheld": 0.2928,
+        "clean_sd": 0.1591,
+        "coverage_seen": 1.0,
+        "false_alarm_clean": 0.5395
+      },
+      {
+        "model": "early_fusion",
+        "clean": 0.6039,
+        "seen": 0.5776,
+        "withheld": 0.5212,
+        "clean_sd": 0.1149,
+        "coverage_seen": 1.0,
+        "false_alarm_clean": 0.3488
+      },
+      {
+        "model": "late_average",
+        "clean": 0.6232,
+        "seen": 0.597,
+        "withheld": 0.5195,
+        "clean_sd": 0.114,
+        "coverage_seen": 1.0,
+        "false_alarm_clean": 0.3224
+      },
+      {
+        "model": "late_stacked",
+        "clean": 0.5646,
+        "seen": 0.5336,
+        "withheld": 0.422,
+        "clean_sd": 0.1258,
+        "coverage_seen": 1.0,
+        "false_alarm_clean": 0.3634
+      },
+      {
+        "model": "gated_both",
+        "clean": 0.6043,
+        "seen": 0.5826,
+        "withheld": 0.5361,
+        "clean_sd": 0.125,
+        "coverage_seen": 1.0,
+        "false_alarm_clean": 0.3312
+      },
+      {
+        "model": "gated_v2",
+        "clean": 0.6046,
+        "seen": 0.4801,
+        "withheld": 0.5088,
+        "clean_sd": 0.1177,
+        "coverage_seen": 0.8977,
+        "false_alarm_clean": 0.3414
+      },
+      {
+        "model": "v3_strength",
+        "clean": 0.6126,
+        "seen": 0.5937,
+        "withheld": 0.577,
+        "clean_sd": 0.106,
+        "coverage_seen": 1.0,
+        "false_alarm_clean": 0.3559
+      }
+    ],
+    "v3_vs_vib_only": {
+      "clean": {
+        "diff": -0.0052,
+        "p_holm": 1.0
+      },
+      "seen": {
+        "diff": 0.0052,
+        "p_holm": 0.9476
+      },
+      "withheld": {
+        "diff": 0.0112,
+        "p_holm": 0.584
+      }
+    },
+    "v3_vs_hard_gating_seen": {
+      "diff": 0.1137,
+      "p_holm": 0.0037
+    },
+    "dual_failure": {
+      "windows": 25840,
+      "models": {
+        "vib_only": {
+          "coverage": 1.0,
+          "fault_class_issued": 0.1333
+        },
+        "late_average": {
+          "coverage": 1.0,
+          "fault_class_issued": 0.4706
+        },
+        "gated_both": {
+          "coverage": 0.0,
+          "fault_class_issued": 0.0
+        },
+        "gated_v2": {
+          "coverage": 0.0,
+          "fault_class_issued": 0.0
+        },
+        "v3_strength": {
+          "coverage": 0.0,
+          "fault_class_issued": 0.0
+        }
+      }
+    },
+    "raw_end_to_end_recordings": 456,
+    "leakage_checks_passed": "8/8",
+    "note": "v3_strength results are exploratory: the rule was designed after analysing this test set."
+  },
+  "gearbox": {
+    "pilot": {
+      "folds": 4,
+      "recordings": 12,
+      "windows": 708,
+      "rows": [
+        {
+          "scenario": "clean",
+          "motor": 0.5423350641522835,
+          "gearbox": 0.5925728880290534,
+          "early": 0.5911829491627262,
+          "late_average": 0.5654702062465194,
+          "gated": 0.5654702062465194,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.2852812359538817,
+          "gated_fold_max": 0.9094390134184742
+        },
+        {
+          "scenario": "clipping@gearbox",
+          "motor": 0.5423350641522835,
+          "gearbox": 0.2954227682634235,
+          "early": 0.3133428641018774,
+          "late_average": 0.4537102170414773,
+          "gated": 0.54617360716998,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.2618145743145743,
+          "gated_fold_max": 0.9096045197740112
+        },
+        {
+          "scenario": "clipping@motor",
+          "motor": 0.37661833165039993,
+          "gearbox": 0.5925728880290534,
+          "early": 0.36379514690287573,
+          "late_average": 0.43776180068650056,
+          "gated": 0.5715267236694385,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.32867652388200336,
+          "gated_fold_max": 0.7362922722399846
+        },
+        {
+          "scenario": "dropout@both",
+          "motor": 0.16666666666666666,
+          "gearbox": 0.16666666666666666,
+          "early": 0.16666666666666666,
+          "late_average": 0.16666666666666666,
+          "gated": 0.0,
+          "gated_coverage": 0.0,
+          "gated_fold_min": 0.0,
+          "gated_fold_max": 0.0
+        },
+        {
+          "scenario": "dropout@gearbox",
+          "motor": 0.5423350641522835,
+          "gearbox": 0.16666666666666666,
+          "early": 0.2490842490842491,
+          "late_average": 0.16666666666666666,
+          "gated": 0.5423350641522835,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.27928641449273583,
+          "gated_fold_max": 0.8736421484549957
+        },
+        {
+          "scenario": "dropout@motor",
+          "motor": 0.16666666666666666,
+          "gearbox": 0.5925728880290534,
+          "early": 0.16666666666666666,
+          "late_average": 0.16666666666666666,
+          "gated": 0.5925728880290534,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.3930581613508443,
+          "gated_fold_max": 0.8173556241168551
+        },
+        {
+          "scenario": "gain@gearbox",
+          "motor": 0.5423350641522835,
+          "gearbox": 0.5255431440869031,
+          "early": 0.5730581075185317,
+          "late_average": 0.49546081772586886,
+          "gated": 0.5038856031814779,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.22137294610566172,
+          "gated_fold_max": 0.6327654886007289
+        },
+        {
+          "scenario": "gain@motor",
+          "motor": 0.43374629701308703,
+          "gearbox": 0.5925728880290534,
+          "early": 0.5274113286957459,
+          "late_average": 0.4886488521773919,
+          "gated": 0.49011568825039903,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.22137294610566172,
+          "gated_fold_max": 0.611055865586377
+        },
+        {
+          "scenario": "intermittent@gearbox",
+          "motor": 0.5423350641522835,
+          "gearbox": 0.5102102819115313,
+          "early": 0.4846995119249355,
+          "late_average": 0.538406902983894,
+          "gated": 0.545243326615258,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.22187938288920053,
+          "gated_fold_max": 0.9382550635314084
+        },
+        {
+          "scenario": "intermittent@motor",
+          "motor": 0.3565014229922207,
+          "gearbox": 0.5925728880290534,
+          "early": 0.3962160820348552,
+          "late_average": 0.5483013674883254,
+          "gated": 0.5809109422809741,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.24441085358115924,
+          "gated_fold_max": 0.9212094327696615
+        },
+        {
+          "scenario": "noise@gearbox",
+          "motor": 0.5423350641522835,
+          "gearbox": 0.30318566621031645,
+          "early": 0.28341289485286736,
+          "late_average": 0.4618553812241127,
+          "gated": 0.5512353373073452,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.2023271151309591,
+          "gated_fold_max": 0.8777171215880893
+        },
+        {
+          "scenario": "noise@motor",
+          "motor": 0.33619703041876203,
+          "gearbox": 0.5925728880290534,
+          "early": 0.4586042965393329,
+          "late_average": 0.4503238510770177,
+          "gated": 0.5249216653195737,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.23268349145233214,
+          "gated_fold_max": 0.7192727141818934
+        },
+        {
+          "scenario": "spikes@gearbox",
+          "motor": 0.5423350641522835,
+          "gearbox": 0.31372605466112236,
+          "early": 0.1661364439731354,
+          "late_average": 0.35687486369146987,
+          "gated": 0.47409955247480845,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.2687782805429864,
+          "gated_fold_max": 0.5985349696894476
+        },
+        {
+          "scenario": "spikes@motor",
+          "motor": 0.28331951736207056,
+          "gearbox": 0.5925728880290534,
+          "early": 0.28920546040111256,
+          "late_average": 0.3001502341473697,
+          "gated": 0.5455016193847898,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.2825442834138487,
+          "gated_fold_max": 0.7483455745487831
+        },
+        {
+          "scenario": "stuck@gearbox",
+          "motor": 0.5423350641522835,
+          "gearbox": 0.2490842490842491,
+          "early": 0.2490842490842491,
+          "late_average": 0.2490842490842491,
+          "gated": 0.5423350641522835,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.27928641449273583,
+          "gated_fold_max": 0.8736421484549957
+        },
+        {
+          "scenario": "stuck@motor",
+          "motor": 0.16666666666666666,
+          "gearbox": 0.5925728880290534,
+          "early": 0.16666666666666666,
+          "late_average": 0.16666666666666666,
+          "gated": 0.5925728880290534,
+          "gated_coverage": 1.0,
+          "gated_fold_min": 0.3930581613508443,
+          "gated_fold_max": 0.8173556241168551
+        }
+      ],
+      "clean": {
+        "motor": {
+          "window_macro_f1": 0.5423350641522835,
+          "fold_min": 0.27928641449273583,
+          "fold_max": 0.8736421484549957,
+          "accuracy": 0.5437853107344632,
+          "false_alarm_rate": 0.4364406779661017,
+          "missed_fault_rate": 0.2563559322033898,
+          "recording_macro_f1": 0.5
+        },
+        "gearbox": {
+          "window_macro_f1": 0.5925728880290534,
+          "fold_min": 0.3930581613508443,
+          "fold_max": 0.8173556241168551,
+          "accuracy": 0.5833333333333334,
+          "false_alarm_rate": 0.3516949152542373,
+          "missed_fault_rate": 0.3622881355932203,
+          "recording_macro_f1": 0.5888888888888889
+        },
+        "early": {
+          "window_macro_f1": 0.5911829491627262,
+          "fold_min": 0.2854395604395605,
+          "fold_max": 0.9548485191555979,
+          "accuracy": 0.596045197740113,
+          "false_alarm_rate": 0.2584745762711864,
+          "missed_fault_rate": 0.2966101694915254,
+          "recording_macro_f1": 0.5793650793650794
+        },
+        "late_average": {
+          "window_macro_f1": 0.5654702062465194,
+          "fold_min": 0.2852812359538817,
+          "fold_max": 0.9094390134184742,
+          "accuracy": 0.5649717514124294,
+          "false_alarm_rate": 0.4449152542372881,
+          "missed_fault_rate": 0.2542372881355932,
+          "recording_macro_f1": 0.5793650793650794
+        },
+        "gated": {
+          "window_macro_f1": 0.5654702062465194,
+          "fold_min": 0.2852812359538817,
+          "fold_max": 0.9094390134184742,
+          "accuracy": 0.5649717514124294,
+          "false_alarm_rate": 0.4449152542372881,
+          "missed_fault_rate": 0.2542372881355932,
+          "recording_macro_f1": 0.5793650793650794
+        }
+      },
+      "flag_rate": {
+        "clean": {
+          "motor": {
+            "flagged": 0.16101694915254236,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 0.007062146892655367,
+            "failed": 0.0
+          }
+        },
+        "dropout@motor": {
+          "motor": {
+            "flagged": 1.0,
+            "failed": 1.0
+          },
+          "gearbox": {
+            "flagged": 0.007062146892655367,
+            "failed": 0.0
+          }
+        },
+        "dropout@gearbox": {
+          "motor": {
+            "flagged": 0.16101694915254236,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 1.0,
+            "failed": 1.0
+          }
+        },
+        "stuck@motor": {
+          "motor": {
+            "flagged": 1.0,
+            "failed": 1.0
+          },
+          "gearbox": {
+            "flagged": 0.007062146892655367,
+            "failed": 0.0
+          }
+        },
+        "stuck@gearbox": {
+          "motor": {
+            "flagged": 0.16101694915254236,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 1.0,
+            "failed": 1.0
+          }
+        },
+        "intermittent@motor": {
+          "motor": {
+            "flagged": 1.0,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 0.007062146892655367,
+            "failed": 0.0
+          }
+        },
+        "intermittent@gearbox": {
+          "motor": {
+            "flagged": 0.16101694915254236,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 1.0,
+            "failed": 0.0
+          }
+        },
+        "clipping@motor": {
+          "motor": {
+            "flagged": 1.0,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 0.007062146892655367,
+            "failed": 0.0
+          }
+        },
+        "clipping@gearbox": {
+          "motor": {
+            "flagged": 0.16101694915254236,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 1.0,
+            "failed": 0.0
+          }
+        },
+        "noise@motor": {
+          "motor": {
+            "flagged": 1.0,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 0.007062146892655367,
+            "failed": 0.0
+          }
+        },
+        "noise@gearbox": {
+          "motor": {
+            "flagged": 0.16101694915254236,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 1.0,
+            "failed": 0.0
+          }
+        },
+        "gain@motor": {
+          "motor": {
+            "flagged": 0.2937853107344633,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 0.007062146892655367,
+            "failed": 0.0
+          }
+        },
+        "gain@gearbox": {
+          "motor": {
+            "flagged": 0.16101694915254236,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 0.15254237288135594,
+            "failed": 0.0
+          }
+        },
+        "spikes@motor": {
+          "motor": {
+            "flagged": 1.0,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 0.007062146892655367,
+            "failed": 0.0
+          }
+        },
+        "spikes@gearbox": {
+          "motor": {
+            "flagged": 0.16101694915254236,
+            "failed": 0.0
+          },
+          "gearbox": {
+            "flagged": 1.0,
+            "failed": 0.0
+          }
+        },
+        "dropout@both": {
+          "motor": {
+            "flagged": 1.0,
+            "failed": 1.0
+          },
+          "gearbox": {
+            "flagged": 1.0,
+            "failed": 1.0
+          }
+        }
+      }
+    },
+    "heldout_profile": {
+      "condition": "torque_circulation_1000rpm_10Nm",
+      "recordings": 3,
+      "windows": 177,
+      "reproduction": {
+        "cells_compared": 160,
+        "confusion_mismatches": 0,
+        "max_abs_macro_f1_diff": 0.0
+      },
+      "rows": [
+        {
+          "scenario": "clean",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.8173556241168551,
+          "early": 0.9548485191555979,
+          "late_average": 0.9094390134184742,
+          "gated": 0.9094390134184742,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.1694915254237288
+        },
+        {
+          "scenario": "noise:20@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.6634625322997416,
+          "gearbox": 0.8173556241168551,
+          "early": 0.9549769863249488,
+          "late_average": 0.874456149649948,
+          "gated": 0.8857468874241473,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.2542372881355932
+        },
+        {
+          "scenario": "noise:10@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.5465970396158167,
+          "gearbox": 0.8173556241168551,
+          "early": 0.9329357817231393,
+          "late_average": 0.8577087253979455,
+          "gated": 0.8688957808123464,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.2711864406779661
+        },
+        {
+          "scenario": "noise:5@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.4758611619575081,
+          "gearbox": 0.8173556241168551,
+          "early": 0.9209998175515417,
+          "late_average": 0.8318375673011925,
+          "gated": 0.8255939412802157,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.4067796610169492
+        },
+        {
+          "scenario": "noise:0@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.2835529994408499,
+          "gearbox": 0.8173556241168551,
+          "early": 0.8152139708848382,
+          "late_average": 0.7008730852247691,
+          "gated": 0.7192727141818934,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.6779661016949152
+        },
+        {
+          "scenario": "noise:-5@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.19747545582047685,
+          "gearbox": 0.8173556241168551,
+          "early": 0.6432227002960195,
+          "late_average": 0.5153142817410652,
+          "gated": 0.6464885933961256,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.8135593220338984
+        },
+        {
+          "scenario": "dropout:None@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.16666666666666666,
+          "gearbox": 0.8173556241168551,
+          "early": 0.16666666666666666,
+          "late_average": 0.16666666666666666,
+          "gated": 0.8173556241168551,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.4406779661016949
+        },
+        {
+          "scenario": "intermittent:0.05@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.7276531829022197,
+          "gearbox": 0.8173556241168551,
+          "early": 0.9549877632846467,
+          "late_average": 0.9324786324786324,
+          "gated": 0.8973748035799686,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.2033898305084746
+        },
+        {
+          "scenario": "intermittent:0.2@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.29407151908042856,
+          "gearbox": 0.8173556241168551,
+          "early": 0.5971474580170232,
+          "late_average": 0.8153182275311455,
+          "gated": 0.9212094327696615,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.0847457627118644
+        },
+        {
+          "scenario": "intermittent:0.5@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.16666666666666666,
+          "gearbox": 0.8173556241168551,
+          "early": 0.4279782816991376,
+          "late_average": 0.45062216366564184,
+          "gated": 0.9092050613348789,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.15254237288135594
+        },
+        {
+          "scenario": "gain:0.5@motor",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.7568816556158328,
+          "gearbox": 0.8173556241168551,
+          "early": 0.9607868953183459,
+          "late_average": 0.9385234462414811,
+          "gated": 0.9385234462414811,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.03389830508474576
+        },
+        {
+          "scenario": "gain:2.0@motor",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.4450773125342091,
+          "gearbox": 0.8173556241168551,
+          "early": 0.6779904378726919,
+          "late_average": 0.611055865586377,
+          "gated": 0.611055865586377,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.864406779661017
+        },
+        {
+          "scenario": "clipping:0.5@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.5405085110967464,
+          "gearbox": 0.8173556241168551,
+          "early": 0.6527441729753868,
+          "late_average": 0.6721170924661809,
+          "gated": 0.7591252836675508,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.6101694915254238
+        },
+        {
+          "scenario": "clipping:0.2@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.37105448610956565,
+          "gearbox": 0.8173556241168551,
+          "early": 0.20215671734025456,
+          "late_average": 0.6058580998436652,
+          "gated": 0.7362922722399846,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.6610169491525424
+        },
+        {
+          "scenario": "clipping:0.05@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.37553688141923436,
+          "gearbox": 0.8173556241168551,
+          "early": 0.1903179657575338,
+          "late_average": 0.6960434798515441,
+          "gated": 0.8165994736512049,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.4406779661016949
+        },
+        {
+          "scenario": "spikes:10@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.3328302835942904,
+          "gearbox": 0.8173556241168551,
+          "early": 0.5060256534522309,
+          "late_average": 0.7276383949074519,
+          "gated": 0.8666076440436473,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.2711864406779661
+        },
+        {
+          "scenario": "spikes:100@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.16666666666666666,
+          "gearbox": 0.8173556241168551,
+          "early": 0.4128151921021191,
+          "late_average": 0.16666666666666666,
+          "gated": 0.7483455745487831,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.576271186440678
+        },
+        {
+          "scenario": "spikes:1000@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.251413407176647,
+          "gearbox": 0.8173556241168551,
+          "early": 0.4443048576214405,
+          "late_average": 0.7286693542400812,
+          "gated": 0.8270676691729323,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.4067796610169492
+        },
+        {
+          "scenario": "stuck:None@motor",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.16666666666666666,
+          "gearbox": 0.8173556241168551,
+          "early": 0.16666666666666666,
+          "late_average": 0.16666666666666666,
+          "gated": 0.8173556241168551,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.4406779661016949
+        },
+        {
+          "scenario": "noise:20@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 0.1751412429378531,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.7622511148797186,
+          "early": 0.9604016603019595,
+          "late_average": 0.8469690634047384,
+          "gated": 0.841614738961932,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.4067796610169492
+        },
+        {
+          "scenario": "noise:10@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.4973383796424506,
+          "early": 0.913979047276403,
+          "late_average": 0.659035409035409,
+          "gated": 0.7341736042277146,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.6610169491525424
+        },
+        {
+          "scenario": "noise:5@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.48178833348675937,
+          "early": 0.784815442016714,
+          "late_average": 0.6546204082855415,
+          "gated": 0.7936018440644177,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.5254237288135594
+        },
+        {
+          "scenario": "noise:0@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.34251873338167754,
+          "early": 0.35172210774212537,
+          "late_average": 0.7511136206788381,
+          "gated": 0.8777171215880893,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.3050847457627119
+        },
+        {
+          "scenario": "noise:-5@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.16666666666666666,
+          "early": 0.16666666666666666,
+          "late_average": 0.5535605863474716,
+          "gated": 0.789913335865727,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.5423728813559322
+        },
+        {
+          "scenario": "dropout:None@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.16666666666666666,
+          "early": 0.16666666666666666,
+          "late_average": 0.16666666666666666,
+          "gated": 0.8736421484549957,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.06779661016949153
+        },
+        {
+          "scenario": "intermittent:0.05@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.8131509121061361,
+          "early": 0.8397169394073419,
+          "late_average": 0.9148721425717333,
+          "gated": 0.9261919017870245,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.15254237288135594
+        },
+        {
+          "scenario": "intermittent:0.2@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.8538471691714742,
+          "early": 0.7037203253014418,
+          "late_average": 0.9216315724424149,
+          "gated": 0.9382550635314084,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.06779661016949153
+        },
+        {
+          "scenario": "intermittent:0.5@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.6778002395926924,
+          "early": 0.3900201106083459,
+          "late_average": 0.8718469192233136,
+          "gated": 0.9207178422131693,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.0
+        },
+        {
+          "scenario": "gain:0.5@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.9203703703703704,
+          "early": 0.9606749920229545,
+          "late_average": 0.9549484993394851,
+          "gated": 0.9549484993394851,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.03389830508474576
+        },
+        {
+          "scenario": "gain:2.0@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 0.005649717514124294,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.5448526557828155,
+          "early": 0.9204476397710343,
+          "late_average": 0.6327654886007289,
+          "gated": 0.6327654886007289,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.847457627118644
+        },
+        {
+          "scenario": "clipping:0.5@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.8975967198473592,
+          "early": 0.9607868953183459,
+          "late_average": 0.9605737823062134,
+          "gated": 0.9606658909581219,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.01694915254237288
+        },
+        {
+          "scenario": "clipping:0.2@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.1784869976359338,
+          "early": 0.31459072328637544,
+          "late_average": 0.5250497809637594,
+          "gated": 0.9096045197740112,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.1016949152542373
+        },
+        {
+          "scenario": "clipping:0.05@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.1784869976359338,
+          "early": 0.1784869976359338,
+          "late_average": 0.1784869976359338,
+          "gated": 0.9097923973297851,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.1016949152542373
+        },
+        {
+          "scenario": "spikes:10@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.4900639011491364,
+          "early": 0.3857834734330073,
+          "late_average": 0.5965013690295101,
+          "gated": 0.7327044349542339,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.5254237288135594
+        },
+        {
+          "scenario": "spikes:100@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.27733523179147745,
+          "early": 0.16666666666666666,
+          "late_average": 0.33075616239123345,
+          "gated": 0.5985349696894476,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.5254237288135594
+        },
+        {
+          "scenario": "spikes:1000@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.2554155614500442,
+          "early": 0.17617112699079915,
+          "late_average": 0.4389952649035524,
+          "gated": 0.5978694714131607,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.4745762711864407
+        },
+        {
+          "scenario": "stuck:None@gearbox",
+          "motor_flagged": 0.005649717514124294,
+          "gearbox_flagged": 1.0,
+          "motor": 0.8736421484549957,
+          "gearbox": 0.16666666666666666,
+          "early": 0.16666666666666666,
+          "late_average": 0.16666666666666666,
+          "gated": 0.8736421484549957,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.06779661016949153
+        },
+        {
+          "scenario": "dropout:None@both",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 1.0,
+          "motor": 0.16666666666666666,
+          "gearbox": 0.16666666666666666,
+          "early": 0.16666666666666666,
+          "late_average": 0.16666666666666666,
+          "gated": 0.0,
+          "gated_coverage": 0.0,
+          "gated_false_alarms": 0.0
+        },
+        {
+          "scenario": "stuck:None@both",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 1.0,
+          "motor": 0.16666666666666666,
+          "gearbox": 0.16666666666666666,
+          "early": 0.16666666666666666,
+          "late_average": 0.26110795991680846,
+          "gated": 0.0,
+          "gated_coverage": 0.0,
+          "gated_false_alarms": 0.0
+        },
+        {
+          "scenario": "noise:0@both",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 1.0,
+          "motor": 0.36600945887844727,
+          "gearbox": 0.35105263157894734,
+          "early": 0.3729931900779789,
+          "late_average": 0.48904214559386966,
+          "gated": 0.48904214559386966,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 1.0
+        },
+        {
+          "scenario": "noise:10@both",
+          "motor_flagged": 1.0,
+          "gearbox_flagged": 1.0,
+          "motor": 0.5424679487179488,
+          "gearbox": 0.5022944962887678,
+          "early": 0.9439769439769439,
+          "late_average": 0.6606162608010752,
+          "gated": 0.6606162608010752,
+          "gated_coverage": 1.0,
+          "gated_false_alarms": 0.7627118644067796
+        }
+      ]
+    },
+    "note": "12 pilot recordings, one bench, medium-severity pitting and wear only; descriptive, no significance test. The raw re-evaluation covers one of the four held-out profiles (the easiest one)."
+  },
+  "testbed": {
+    "scenarios": 15,
+    "scenarios_passed": 15,
+    "checks": 148,
+    "checks_passed": 148,
+    "windows": 549,
+    "events_logged": 36,
+    "data": "real held-out recordings (Paderborn K004/KA22/KI18; MCC5-THU 1000 rpm 10 Nm); synthetic sensor faults",
+    "rows": [
+      {
+        "scenario": "bearing-fault-ack",
+        "subsystem": "bearing",
+        "purpose": "Inner-race damage: evidence latches INSPECT; operator acknowledges; persistent evidence re-latches",
+        "windows": 24,
+        "segments": "clean [INSPECT, 100% diagnosed] \u2192 clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": 4,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "11/11"
+      },
+      {
+        "scenario": "bearing-vib-dropout",
+        "subsystem": "bearing",
+        "purpose": "Accelerometer dies mid-run: fall back to current, keep diagnosing, recover",
+        "windows": 24,
+        "segments": "clean [INSPECT, 100% diagnosed] \u2192 dropout on vib [INSPECT, 100% diagnosed] \u2192 clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": 4,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "11/11"
+      },
+      {
+        "scenario": "bearing-cur-stuck",
+        "subsystem": "bearing",
+        "purpose": "Current sensor frozen: fall back to vibration",
+        "windows": 24,
+        "segments": "clean [INSPECT, 100% diagnosed] \u2192 stuck on cur [INSPECT, 100% diagnosed] \u2192 clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": 6,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "10/10"
+      },
+      {
+        "scenario": "bearing-dual-failure-healthy",
+        "subsystem": "bearing",
+        "purpose": "Healthy bearing, both sensors die before any alarm: SENSOR_FAULT, no diagnosis, then recovery",
+        "windows": 17,
+        "segments": "clean [NORMAL, 100% diagnosed] \u2192 dropout on both [SENSOR_FAULT, 0% diagnosed] \u2192 clean [WARNING, 100% diagnosed]",
+        "first WARNING": 10,
+        "first INSPECT": null,
+        "first SENSOR_FAULT": 2,
+        "final state": "WARNING",
+        "checks passed": "11/11"
+      },
+      {
+        "scenario": "bearing-dual-failure-latched",
+        "subsystem": "bearing",
+        "purpose": "Both sensors die while INSPECT is latched: alert kept, diagnosis suspended, then recovery",
+        "windows": 24,
+        "segments": "clean [INSPECT, 100% diagnosed] \u2192 stuck on both [INSPECT, 0% diagnosed] \u2192 clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": 4,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "12/12"
+      },
+      {
+        "scenario": "bearing-vib-noise",
+        "subsystem": "bearing",
+        "purpose": "Strong noise (0 dB) on the accelerometer: sensor degraded but alive, diagnosis continues",
+        "windows": 24,
+        "segments": "clean [INSPECT, 100% diagnosed] \u2192 noise on vib [INSPECT, 100% diagnosed] \u2192 clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": 6,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "8/8"
+      },
+      {
+        "scenario": "bearing-healthy-clean",
+        "subsystem": "bearing",
+        "purpose": "Healthy held-out bearing, clean sensors (documents the known false-alarm behaviour)",
+        "windows": 24,
+        "segments": "clean [WARNING, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": null,
+        "first SENSOR_FAULT": null,
+        "final state": "WARNING",
+        "checks passed": "7/7"
+      },
+      {
+        "scenario": "gearbox-pitting-clean",
+        "subsystem": "gearbox",
+        "purpose": "Gear pitting, clean sensors: WARNING then INSPECT",
+        "windows": 59,
+        "segments": "clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": 7,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "9/9"
+      },
+      {
+        "scenario": "gearbox-motor-dropout",
+        "subsystem": "gearbox",
+        "purpose": "Motor accelerometer dies mid-run: gearbox sensor carries the diagnosis, then recovery",
+        "windows": 45,
+        "segments": "clean [INSPECT, 100% diagnosed] \u2192 dropout on motor [INSPECT, 100% diagnosed] \u2192 clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": 7,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "11/11"
+      },
+      {
+        "scenario": "gearbox-gearbox-stuck",
+        "subsystem": "gearbox",
+        "purpose": "Gearbox accelerometer frozen: motor sensor carries the diagnosis",
+        "windows": 45,
+        "segments": "clean [INSPECT, 100% diagnosed] \u2192 stuck on gearbox [INSPECT, 100% diagnosed] \u2192 clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": 7,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "10/10"
+      },
+      {
+        "scenario": "gearbox-dual-failure-healthy",
+        "subsystem": "gearbox",
+        "purpose": "Healthy gearbox, both accelerometers die: SENSOR_FAULT, no diagnosis, then recovery",
+        "windows": 45,
+        "segments": "clean [NORMAL, 100% diagnosed] \u2192 dropout on both [SENSOR_FAULT, 0% diagnosed] \u2192 clean [WARNING, 100% diagnosed]",
+        "first WARNING": 45,
+        "first INSPECT": null,
+        "first SENSOR_FAULT": 6,
+        "final state": "WARNING",
+        "checks passed": "10/10"
+      },
+      {
+        "scenario": "gearbox-dual-failure-latched",
+        "subsystem": "gearbox",
+        "purpose": "Both die while INSPECT is latched; operator acknowledges after restoration",
+        "windows": 45,
+        "segments": "clean [INSPECT, 100% diagnosed] \u2192 dropout on both [INSPECT, 0% diagnosed] \u2192 clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": 7,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "13/13"
+      },
+      {
+        "scenario": "gearbox-wear-noise",
+        "subsystem": "gearbox",
+        "purpose": "Gear wear with 0 dB noise on the gearbox accelerometer: degraded sensor down-weighted",
+        "windows": 45,
+        "segments": "clean [INSPECT, 100% diagnosed] \u2192 noise on gearbox [INSPECT, 100% diagnosed] \u2192 clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 2,
+        "first INSPECT": 7,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "9/9"
+      },
+      {
+        "scenario": "gearbox-healthy-spikes",
+        "subsystem": "gearbox",
+        "purpose": "Healthy gearbox with EMI-like spikes on the motor accelerometer",
+        "windows": 45,
+        "segments": "clean [NORMAL, 100% diagnosed] \u2192 spikes on motor [INSPECT, 100% diagnosed] \u2192 clean [INSPECT, 100% diagnosed]",
+        "first WARNING": 17,
+        "first INSPECT": 20,
+        "first SENSOR_FAULT": null,
+        "final state": "INSPECT",
+        "checks passed": "9/9"
+      },
+      {
+        "scenario": "gearbox-healthy-clean",
+        "subsystem": "gearbox",
+        "purpose": "Healthy held-out gearbox recording, clean sensors (documents false-alarm behaviour)",
+        "windows": 59,
+        "segments": "clean [NORMAL, 100% diagnosed]",
+        "first WARNING": 20,
+        "first INSPECT": null,
+        "first SENSOR_FAULT": null,
+        "final state": "NORMAL",
+        "checks passed": "7/7"
+      }
+    ]
+  }
+}

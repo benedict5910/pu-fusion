@@ -1,0 +1,1414 @@
+{
+  "scenarios": 15,
+  "scenarios_passed": 15,
+  "checks": 148,
+  "checks_passed": 148,
+  "windows": 549,
+  "events_logged": 36,
+  "skipped_no_data": [],
+  "data": "real held-out recordings (Paderborn K004/KA22/KI18; MCC5-THU 1000 rpm 10 Nm); synthetic sensor faults",
+  "results": [
+    {
+      "name": "bearing-fault-ack",
+      "subsystem": "bearing",
+      "recording": "KI18",
+      "purpose": "Inner-race damage: evidence latches INSPECT; operator acknowledges; persistent evidence re-latches",
+      "asset": "vt-bearing-fault-ack",
+      "windows": 24,
+      "segments": [
+        {
+          "windows": 12,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 2,
+            "INSPECT": 9
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 12,
+          "fault": "clean",
+          "ack_before": true,
+          "states": {
+            "WARNING": 3,
+            "INSPECT": 9
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": 4,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "24 logged / 24 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "4 events logged, 4 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "acknowledgement before window 13 logged, state not NORMAL",
+          "passed": true,
+          "detail": "state WARNING"
+        },
+        {
+          "check": "segment 0: reaches INSPECT",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: reaches INSPECT",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: states within ['WARNING', 'INSPECT']",
+          "passed": true,
+          "detail": "['INSPECT', 'WARNING']"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "bearing-vib-dropout",
+      "subsystem": "bearing",
+      "recording": "KI18",
+      "purpose": "Accelerometer dies mid-run: fall back to current, keep diagnosing, recover",
+      "asset": "vt-bearing-vib-dropout",
+      "windows": 24,
+      "segments": [
+        {
+          "windows": 8,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 2,
+            "INSPECT": 5
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 8,
+          "fault": "dropout on vib",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 8
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 8,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 8
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": 4,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "24 logged / 24 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "2 events logged, 2 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "8 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: vib weight 0",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: vib sensor flagged",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 2: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "bearing-cur-stuck",
+      "subsystem": "bearing",
+      "recording": "KA22",
+      "purpose": "Current sensor frozen: fall back to vibration",
+      "asset": "vt-bearing-cur-stuck",
+      "windows": 24,
+      "segments": [
+        {
+          "windows": 8,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 4,
+            "INSPECT": 3
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 8,
+          "fault": "stuck on cur",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 8
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 8,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 8
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": 6,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "24 logged / 24 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "2 events logged, 2 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "8 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: cur weight 0",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: cur sensor flagged",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "bearing-dual-failure-healthy",
+      "subsystem": "bearing",
+      "recording": "K004",
+      "purpose": "Healthy bearing, both sensors die before any alarm: SENSOR_FAULT, no diagnosis, then recovery",
+      "asset": "vt-bearing-dual-failure-healthy",
+      "windows": 17,
+      "segments": [
+        {
+          "windows": 1,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1
+          },
+          "end_state": "NORMAL",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 8,
+          "fault": "dropout on both",
+          "ack_before": false,
+          "states": {
+            "SENSOR_FAULT": 8
+          },
+          "end_state": "SENSOR_FAULT",
+          "diagnosis_coverage": 0.0
+        },
+        {
+          "windows": 8,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "WARNING": 8
+          },
+          "end_state": "WARNING",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 10,
+      "first_INSPECT": null,
+      "first_SENSOR_FAULT": 2,
+      "final_state": "WARNING",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "17 logged / 17 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "2 events logged, 2 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "8 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "8 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "diagnosis resumes at window 10 after outage",
+          "passed": true,
+          "detail": "state WARNING"
+        },
+        {
+          "check": "segment 1: states within ['SENSOR_FAULT']",
+          "passed": true,
+          "detail": "['SENSOR_FAULT']"
+        },
+        {
+          "check": "segment 1: diagnosis available = False",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 2: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "bearing-dual-failure-latched",
+      "subsystem": "bearing",
+      "recording": "KI18",
+      "purpose": "Both sensors die while INSPECT is latched: alert kept, diagnosis suspended, then recovery",
+      "asset": "vt-bearing-dual-failure-latched",
+      "windows": 24,
+      "segments": [
+        {
+          "windows": 8,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 2,
+            "INSPECT": 5
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 8,
+          "fault": "stuck on both",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 8
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 0.0
+        },
+        {
+          "windows": 8,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 8
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": 4,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "24 logged / 24 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "2 events logged, 2 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "8 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "8 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "diagnosis resumes at window 17 after outage",
+          "passed": true,
+          "detail": "state INSPECT"
+        },
+        {
+          "check": "segment 0: reaches INSPECT",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: states within ['INSPECT']",
+          "passed": true,
+          "detail": "['INSPECT']"
+        },
+        {
+          "check": "segment 1: diagnosis available = False",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 2: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "bearing-vib-noise",
+      "subsystem": "bearing",
+      "recording": "KA22",
+      "purpose": "Strong noise (0 dB) on the accelerometer: sensor degraded but alive, diagnosis continues",
+      "asset": "vt-bearing-vib-noise",
+      "windows": 24,
+      "segments": [
+        {
+          "windows": 8,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 4,
+            "INSPECT": 3
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 8,
+          "fault": "noise on vib",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 8
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 8,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 8
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": 6,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "24 logged / 24 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "2 events logged, 2 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "bearing-healthy-clean",
+      "subsystem": "bearing",
+      "recording": "K004",
+      "purpose": "Healthy held-out bearing, clean sensors (documents the known false-alarm behaviour)",
+      "asset": "vt-bearing-healthy-clean",
+      "windows": 24,
+      "segments": [
+        {
+          "windows": 24,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 23
+          },
+          "end_state": "WARNING",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": null,
+      "first_SENSOR_FAULT": null,
+      "final_state": "WARNING",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "24 logged / 24 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "1 events logged, 1 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "gearbox-pitting-clean",
+      "subsystem": "gearbox",
+      "recording": "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv",
+      "purpose": "Gear pitting, clean sensors: WARNING then INSPECT",
+      "asset": "vt-gearbox-pitting-clean",
+      "windows": 59,
+      "segments": [
+        {
+          "windows": 59,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 5,
+            "INSPECT": 53
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": 7,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "59 logged / 59 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "2 events logged, 2 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 0: reaches INSPECT",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 0: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "gearbox-motor-dropout",
+      "subsystem": "gearbox",
+      "recording": "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv",
+      "purpose": "Motor accelerometer dies mid-run: gearbox sensor carries the diagnosis, then recovery",
+      "asset": "vt-gearbox-motor-dropout",
+      "windows": 45,
+      "segments": [
+        {
+          "windows": 15,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 5,
+            "INSPECT": 9
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 15,
+          "fault": "dropout on motor",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 15
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 15,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 15
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": 7,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "45 logged / 45 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "2 events logged, 2 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "15 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: motor weight 0",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: motor sensor flagged",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 2: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "gearbox-gearbox-stuck",
+      "subsystem": "gearbox",
+      "recording": "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv",
+      "purpose": "Gearbox accelerometer frozen: motor sensor carries the diagnosis",
+      "asset": "vt-gearbox-gearbox-stuck",
+      "windows": 45,
+      "segments": [
+        {
+          "windows": 15,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 5,
+            "INSPECT": 9
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 15,
+          "fault": "stuck on gearbox",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 15
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 15,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 15
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": 7,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "45 logged / 45 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "2 events logged, 2 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "15 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: gearbox weight 0",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: gearbox sensor flagged",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "gearbox-dual-failure-healthy",
+      "subsystem": "gearbox",
+      "recording": "health_torque_circulation_1000rpm_10Nm.csv",
+      "purpose": "Healthy gearbox, both accelerometers die: SENSOR_FAULT, no diagnosis, then recovery",
+      "asset": "vt-gearbox-dual-failure-healthy",
+      "windows": 45,
+      "segments": [
+        {
+          "windows": 5,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 5
+          },
+          "end_state": "NORMAL",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 20,
+          "fault": "dropout on both",
+          "ack_before": false,
+          "states": {
+            "SENSOR_FAULT": 20
+          },
+          "end_state": "SENSOR_FAULT",
+          "diagnosis_coverage": 0.0
+        },
+        {
+          "windows": 20,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 19,
+            "WARNING": 1
+          },
+          "end_state": "WARNING",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 45,
+      "first_INSPECT": null,
+      "first_SENSOR_FAULT": 6,
+      "final_state": "WARNING",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "45 logged / 45 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "3 events logged, 3 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "20 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "20 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "diagnosis resumes at window 26 after outage",
+          "passed": true,
+          "detail": "state NORMAL"
+        },
+        {
+          "check": "segment 1: diagnosis available = False",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 2: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "gearbox-dual-failure-latched",
+      "subsystem": "gearbox",
+      "recording": "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv",
+      "purpose": "Both die while INSPECT is latched; operator acknowledges after restoration",
+      "asset": "vt-gearbox-dual-failure-latched",
+      "windows": 45,
+      "segments": [
+        {
+          "windows": 15,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 5,
+            "INSPECT": 9
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 15,
+          "fault": "dropout on both",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 15
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 0.0
+        },
+        {
+          "windows": 15,
+          "fault": "clean",
+          "ack_before": true,
+          "states": {
+            "WARNING": 14,
+            "INSPECT": 1
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": 7,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "45 logged / 45 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "4 events logged, 4 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "15 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "15 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "acknowledgement before window 31 logged, state not NORMAL",
+          "passed": true,
+          "detail": "state WARNING"
+        },
+        {
+          "check": "diagnosis resumes at window 31 after outage",
+          "passed": true,
+          "detail": "state WARNING"
+        },
+        {
+          "check": "segment 0: reaches INSPECT",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: states within ['INSPECT']",
+          "passed": true,
+          "detail": "['INSPECT']"
+        },
+        {
+          "check": "segment 1: diagnosis available = False",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 2: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "gearbox-wear-noise",
+      "subsystem": "gearbox",
+      "recording": "gear_wear_M_torque_circulation_1000rpm_10Nm.csv",
+      "purpose": "Gear wear with 0 dB noise on the gearbox accelerometer: degraded sensor down-weighted",
+      "asset": "vt-gearbox-wear-noise",
+      "windows": 45,
+      "segments": [
+        {
+          "windows": 15,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 5,
+            "INSPECT": 9
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 15,
+          "fault": "noise on gearbox",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 15
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 15,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 15
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 2,
+      "first_INSPECT": 7,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "45 logged / 45 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "2 events logged, 2 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: gearbox sensor flagged",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "gearbox-healthy-spikes",
+      "subsystem": "gearbox",
+      "recording": "health_torque_circulation_1000rpm_10Nm.csv",
+      "purpose": "Healthy gearbox with EMI-like spikes on the motor accelerometer",
+      "asset": "vt-gearbox-healthy-spikes",
+      "windows": 45,
+      "segments": [
+        {
+          "windows": 15,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 15
+          },
+          "end_state": "NORMAL",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 15,
+          "fault": "spikes on motor",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 1,
+            "WARNING": 3,
+            "INSPECT": 11
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        },
+        {
+          "windows": 15,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "INSPECT": 15
+          },
+          "end_state": "INSPECT",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 17,
+      "first_INSPECT": 20,
+      "first_SENSOR_FAULT": null,
+      "final_state": "INSPECT",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "45 logged / 45 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "2 events logged, 2 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: diagnosis available = True",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "segment 1: motor sensor flagged",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "gearbox-healthy-clean",
+      "subsystem": "gearbox",
+      "recording": "health_torque_circulation_1000rpm_10Nm.csv",
+      "purpose": "Healthy held-out gearbox recording, clean sensors (documents false-alarm behaviour)",
+      "asset": "vt-gearbox-healthy-clean",
+      "windows": 59,
+      "segments": [
+        {
+          "windows": 59,
+          "fault": "clean",
+          "ack_before": false,
+          "states": {
+            "NORMAL": 37,
+            "WARNING": 22
+          },
+          "end_state": "NORMAL",
+          "diagnosis_coverage": 1.0
+        }
+      ],
+      "first_WARNING": 20,
+      "first_INSPECT": null,
+      "first_SENSOR_FAULT": null,
+      "final_state": "NORMAL",
+      "checks": [
+        {
+          "check": "every window logged",
+          "passed": true,
+          "detail": "59 logged / 59 run"
+        },
+        {
+          "check": "one logged event per state change",
+          "passed": true,
+          "detail": "4 events logged, 4 expected"
+        },
+        {
+          "check": "no diagnostic values stored while suspended",
+          "passed": true,
+          "detail": "0 suspended windows"
+        },
+        {
+          "check": "all sensors failed -> diagnosis suspended, state SENSOR_FAULT or latched INSPECT",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "SENSOR_FAULT only when no sensor is usable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single failed sensor -> weight 0, diagnosis continues",
+          "passed": true,
+          "detail": "0 windows"
+        },
+        {
+          "check": "INSPECT never drops straight to NORMAL",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

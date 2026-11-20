@@ -1,0 +1,31 @@
+{
+  "source": "MCC5-THU v2, Chen, Liu, He, Zou and Zhou (2024), DOI 10.17632/p92gj2732w.2",
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); recordings redistributed unchanged (gzip-compressed copies of the publisher's CSV files)",
+  "condition": "torque_circulation_1000rpm_10Nm",
+  "model_file": "gearbox_demo_1000rpm_10Nm.pkl",
+  "model_sha256": "44853e3164e779e98856138f3acdccea3ffedbee5817fde14b0c7ddcae374dc6",
+  "release_url": "https://github.com/benedict5910/pu-fusion/releases/download/mcc5-demo-v1/",
+  "recordings": {
+    "gear_pitting_M_torque_circulation_1000rpm_10Nm.csv.gz": {
+      "sha256": "3ab734c9b9b7e47d76add4e304ace98f2d3bdfea84d97f998fe3a26a1b7a5178",
+      "bytes": 29438627,
+      "label": "gear_pitting"
+    },
+    "gear_wear_M_torque_circulation_1000rpm_10Nm.csv.gz": {
+      "sha256": "c10047330ad56f94c6e35291ce38d32c7ef57d0e3959e37f8cff63894fd7bb0d",
+      "bytes": 33804387,
+      "label": "gear_wear"
+    },
+    "health_torque_circulation_1000rpm_10Nm.csv.gz": {
+      "sha256": "995662c5798f845af1d04f770a292d5a3a7533b29dcb0035f6aa00666bdc73c3",
+      "bytes": 33756648,
+      "label": "healthy"
+    }
+  },
+  "versions": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "features": "data/features_starter.npz",
+  "n_checks": 8,
+  "all_pass": true,
+  "checks": [
+    {
+      "check": "P1 bearing-disjoint (all 15 designed folds)",
+      "result": "PASS",
+      "evidence": {
+        "folds_with_overlap": [],
+        "folds_with_artificial_in_test": [],
+        "valid_folds_on_available_data": 11
+      }
+    },
+    {
+      "check": "No identical feature windows shared between training rows and test rows",
+      "result": "PASS",
+      "evidence": []
+    },
+    {
+      "check": "Augmented (seen-family) rows only from training bearings",
+      "result": "PASS",
+      "evidence": []
+    },
+    {
+      "check": "Expert StandardScaler fitted on training rows only (mean matches training mean)",
+      "result": "PASS",
+      "evidence": {
+        "folds_failing": [],
+        "folds_checked": 11
+      }
+    },
+    {
+      "check": "Gate normaliser computed from training out-of-fold outputs only",
+      "result": "PASS",
+      "evidence": {
+        "folds_failing": [],
+        "folds_checked": 11
+      }
+    },
+    {
+      "check": "P3 held-out condition absent from training rows",
+      "result": "PASS",
+      "evidence": []
+    },
+    {
+      "check": "v2 commissioning baseline (repetition 1) disjoint from evaluation windows",
+      "result": "PASS",
+      "evidence": {
+        "baseline_windows": 385,
+        "shared_rows": 0,
+        "baseline_source": "clean table only (no corrupted or augmented rows)"
+      }
+    },
+    {
+      "check": "Leaky reference split shares bearings between train and test (by design; never reported as performance)",
+      "result": "PASS",
+      "evidence": {
+        "shared_bearings_per_seed": [
+          12,
+          12,
+          12
+        ]
+      }
+    }
+  ]
+}

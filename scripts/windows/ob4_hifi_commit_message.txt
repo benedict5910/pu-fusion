@@ -1,0 +1,18 @@
+OB4: high-fidelity CAD geometry and PBR 3D viewer
+
+- drivetrain_cad: prism primitive (fins, ribs, gussets, hex heads), involute gears with
+  backlash, detailed motor (fins, fan cowl + grille, terminal box, lifting eye), flanged
+  couplings with bolts, shaft collars, ribbed bearing housings, ribbed/flanged gearbox
+  with bosses, caps, inspection cover, finned load unit, levelling feet; 90 parts + 4
+  sensors, each one solid; per-part finish class; sensor positions unchanged
+- FreeCAD build: prism features, single-solid check, finish property; GLB export carries
+  finish, node count derived from the model
+- viewer: GGX PBR materials, studio environment, soft shadow map, ACES, state-coloured
+  highlighting, leader-line callouts with overlap avoidance, inset-aware camera fit
+- testbed view: one replay session per subsystem/recording (switching no longer resets)
+- tests: prism-aware geometry test, GLB finish/identity, AppTest for subsystem switching
+- docs/OB4_HIFI_CAD_2026-11-21.md, results/ob4_cad/screenshots_hifi/
+Frozen models, replay results and the diagnostic backend are unchanged.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01CtD7L315HM2tNW17qQQmKZ

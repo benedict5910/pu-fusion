@@ -13,7 +13,7 @@
     font: 12.5px/1.45 "Inter", "Segoe UI", system-ui, -apple-system, sans-serif; overflow: hidden; }
   #wrap { position: relative; width: 100%; height: 100%; border-radius: 12px; overflow: hidden;
     border: 1px solid var(--line);
-    background: radial-gradient(120% 90% at 50% 18%, #1a2639 0%, #111a2b 48%, #0b1220 100%); }
+    background: radial-gradient(110% 85% at 45% 30%, #1c2737 0%, #121a28 46%, #0a0f19 100%); }
   canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
   canvas.dragging { cursor: grabbing; } canvas.hovering { cursor: pointer; }
   .panel { position: absolute; background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
@@ -37,6 +37,7 @@
   #inspector table { width: 100%; border-collapse: collapse; }
   #inspector td { padding: 2px 0; vertical-align: top; }
   #inspector td:last-child { text-align: right; overflow-wrap: break-word; padding-left: 8px; }
+  #inspector td.k { white-space: nowrap; }
   #inspector { overflow-x: hidden; }
   .chip { display: inline-block; padding: 1px 8px; border-radius: 999px; font-weight: 600; font-size: 11px;
     border: 1px solid currentColor; }
@@ -48,13 +49,13 @@
   #legend .note { color: var(--muted); font-size: 10.5px; margin-top: 4px; }
   #legend .hint { color: #7dd3fc; font-size: 10.5px; margin-top: 3px; opacity: .85; }
   .tag { position: absolute; transform: translate(-50%, -100%); pointer-events: auto; cursor: pointer; white-space: nowrap;
-    font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 6px; background: rgba(11, 18, 32, 0.88);
-    border: 1px solid rgba(148, 163, 184, 0.35); user-select: none; }
-  .tag::after { content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 12px;
-    background: rgba(148, 163, 184, 0.55); }
-  .tag.inactive { opacity: .5; font-weight: 500; }
+    font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: rgba(8, 13, 24, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.32); user-select: none; letter-spacing: .01em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35); }
+  .tag.inactive { opacity: .62; font-weight: 500; font-size: 10.5px; padding: 2px 7px; }
+  #leaders { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
   .tag.sel { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35); }
-  .tag.state { font-size: 11.5px; padding: 3px 9px; }
+  .tag.state { font-size: 12px; padding: 4px 10px; background: rgba(8, 13, 24, 0.94); }
   #msg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--muted);
     font-size: 13px; pointer-events: none; text-align: center; padding: 30px; }
   #tip { position: absolute; pointer-events: none; padding: 3px 8px; font-size: 11px; border-radius: 6px;
@@ -64,6 +65,7 @@
 <body>
 <div id="wrap">
   <canvas id="gl"></canvas>
+  <svg id="leaders"></svg>
   <div id="tags"></div>
   <div id="title" class="panel"><div class="t1">Representative drivetrain · interactive 3D</div>
     <div class="t2" id="subtitle">FreeCAD model → STEP → GLB</div></div>

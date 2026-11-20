@@ -58,11 +58,12 @@ class TestGlbAgainstCadModel(unittest.TestCase):
     def test_one_node_per_solid_with_its_identity(self):
         expected = set(self.parts) | {f"{s['id']} {s['label']}" for s in D.SENSORS}
         self.assertEqual(set(self.nodes), expected)
-        self.assertEqual(len(self.nodes), 93)
+        self.assertEqual(len(self.nodes), len(D.parts()) + len(D.SENSORS))
         for name, p in self.parts.items():
             ex = self.nodes[name]["extras"]
             self.assertEqual((ex["kind"], ex["part"], ex["component"]), ("part", name, p["component"]), name)
             self.assertEqual(ex["explode"], list(D.explode_offset(p)), name)
+            self.assertEqual(ex.get("finish"), p["finish"], name)
 
     def test_sensor_identity_mount_and_explode(self):
         for s in D.SENSORS:

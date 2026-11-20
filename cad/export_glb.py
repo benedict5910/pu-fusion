@@ -9,7 +9,8 @@ against the parametric model (pufusion.drivetrain_cad bounding boxes), and tesse
 (normals smooth within a face, sharp across B-rep edges). The B-rep feature edges are exported as lines.
 
 Outputs
-  cad/out/ivhm_drivetrain.glb          one node per solid (89 parts + 4 sensors) with its identity in node.extras
+  cad/out/ivhm_drivetrain.glb          one node per solid (every part + 4 sensors) with its identity and surface finish
+                                       in node.extras
   cad/out/glb_export_report.json       matching, bbox agreement, triangle counts, size, SHA-256, verdict
 """
 import hashlib
@@ -61,13 +62,13 @@ def expected_nodes():
         exp[p["name"]] = {"kind": "part", "part": p["name"], "component": p["component"],
                           "component_label": D.COMPONENT_LABELS.get(p["component"], p["component"]),
                           "monitored_by": sub_of.get(p["component"]), "purpose": p.get("purpose", ""),
-                          "explode": list(D.explode_offset(p)), "bbox": list(D.part_bbox(p))}
+                          "finish": p.get("finish", ""), "explode": list(D.explode_offset(p)), "bbox": list(D.part_bbox(p))}
     by_name = {p["name"]: p for p in D.parts()}
     for s in D.SENSORS:
         ex = [a + 40 * b for a, b in zip(D.explode_offset(by_name[s["mount"]]), s["axis"])]
         exp[f"{s['id']} {s['label']}"] = {
             "kind": "sensor", "part": s["name"], "component": "sensors", "component_label": "Sensors",
-            "sensor_id": s["id"], "subsystem": s["subsystem"], "code": s["code"], "mount": s["mount"],
+            "sensor_id": s["id"], "subsystem": s["subsystem"], "code": s["code"], "mount": s["mount"], "finish": "sensor",
             "explode": ex, "bbox": list(D.bbox(D.resolve(s["geom"]))),
             "position_mm": [round(v, 3) for v in D.sensor_position(s)]}
     return exp
@@ -203,7 +204,8 @@ try:
                   max_bbox_dev_mm=round(worst, 4),
                   max_mesh_vs_brep_dev_mm=round(max(v["mesh_vs_brep_dev_mm"] for v in per_node.values()), 4),
                   readback_nodes=len(names_back), per_node=per_node)
-    REPORT["passed"] = (not REPORT["errors"] and len(names_back) == len(exp) == 93 and worst <= BBOX_TOL
+    REPORT["expected_nodes"] = len(D.parts()) + len(D.SENSORS)
+    REPORT["passed"] = (not REPORT["errors"] and len(names_back) == len(exp) == REPORT["expected_nodes"] and worst <= BBOX_TOL
                         and REPORT["max_mesh_vs_brep_dev_mm"] <= LIN_DEFLECTION + BBOX_TOL)
     finish(0 if REPORT["passed"] else 2)
 except Exception:  # noqa: BLE001

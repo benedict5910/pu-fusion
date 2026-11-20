@@ -1,0 +1,2473 @@
+{
+  "generated": "2026-11-21 03:45:31",
+  "freecad_version": [
+    "1",
+    "1",
+    "4",
+    "20260928 (Git shallow)",
+    "Unknown",
+    "2026/09/28 13:46:34",
+    "(HEAD detached at 4fd3bf320)",
+    "4fd3bf320d9566a27e60069fc8387448aaa3a094"
+  ],
+  "python": "3.11.14",
+  "modules": {
+    "Part": true,
+    "Import": true,
+    "Mesh": true,
+    "MeshPart": true,
+    "TechDraw": true,
+    "Spreadsheet": true
+  },
+  "exports": {
+    "FCStd": "cad\\out\\ivhm_drivetrain.FCStd",
+    "STEP assembly": "ok",
+    "STEP per component": "ok",
+    "STEP exploded": "ok",
+    "STL": "skipped (set IVHM_STL=1 to export)",
+    "TechDraw projectToSVG": "ok",
+    "TechDraw page + DXF": "ok",
+    "PDF": "not attempted headless: TechDraw PDF export is a GUI function. Open ivhm_drivetrain.FCStd in FreeCAD and use File > Export PDF on the GA_Drawing page, or use the dimensioned PDF drawings from cad/make_drawings.py."
+  },
+  "errors": [],
+  "recompute_invalid_objects": [],
+  "parts": [
+    {
+      "name": "base_plate",
+      "component": "base",
+      "valid": true,
+      "primitives": 25,
+      "faces": 74,
+      "solids": 1,
+      "volume_mm3": 8245326.2,
+      "bbox_freecad": [
+        -30.0,
+        -140.0,
+        -56.0,
+        1130.0,
+        200.0,
+        13.0
+      ],
+      "bbox_model": [
+        -30.0,
+        -140.0,
+        -56.0,
+        1130.0,
+        200.0,
+        13.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "motor_riser",
+      "component": "motor",
+      "valid": true,
+      "primitives": 9,
+      "faces": 42,
+      "solids": 1,
+      "volume_mm3": 2164350.4,
+      "bbox_freecad": [
+        40.0,
+        -90.0,
+        0.0,
+        280.0,
+        90.0,
+        56.8
+      ],
+      "bbox_model": [
+        40.0,
+        -90.0,
+        0.0,
+        280.0,
+        90.0,
+        56.8
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "motor_body",
+      "component": "motor",
+      "valid": true,
+      "primitives": 31,
+      "faces": 159,
+      "solids": 1,
+      "volume_mm3": 6546821.9,
+      "bbox_freecad": [
+        40.0,
+        -100.0,
+        50.0,
+        280.0,
+        100.0,
+        261.0
+      ],
+      "bbox_model": [
+        40.0,
+        -100.0,
+        50.0,
+        280.0,
+        100.0,
+        261.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "motor_fan_cowl",
+      "component": "motor",
+      "valid": true,
+      "primitives": 59,
+      "faces": 62,
+      "solids": 1,
+      "volume_mm3": 233898.6,
+      "bbox_freecad": [
+        -12.0,
+        -88.0,
+        52.0,
+        40.0,
+        88.0,
+        228.0
+      ],
+      "bbox_model": [
+        -12.0,
+        -88.0,
+        52.0,
+        40.0,
+        88.0,
+        228.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "motor_end_shield",
+      "component": "motor",
+      "valid": true,
+      "primitives": 12,
+      "faces": 77,
+      "solids": 1,
+      "volume_mm3": 365251.2,
+      "bbox_freecad": [
+        280.0,
+        -85.0,
+        55.0,
+        306.0,
+        85.0,
+        225.0
+      ],
+      "bbox_model": [
+        280.0,
+        -85.0,
+        55.0,
+        306.0,
+        85.0,
+        225.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "motor_terminal_box",
+      "component": "motor",
+      "valid": true,
+      "primitives": 9,
+      "faces": 27,
+      "solids": 1,
+      "volume_mm3": 536832.6,
+      "bbox_freecad": [
+        137.0,
+        -53.0,
+        230.0,
+        233.0,
+        57.6,
+        297.0
+      ],
+      "bbox_model": [
+        137.0,
+        -53.0,
+        230.0,
+        233.0,
+        57.6,
+        297.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "motor_supply_cable",
+      "component": "motor",
+      "valid": true,
+      "primitives": 1,
+      "faces": 3,
+      "solids": 1,
+      "volume_mm3": 8482.3,
+      "bbox_freecad": [
+        179.0,
+        45.0,
+        254.0,
+        191.0,
+        120.0,
+        266.0
+      ],
+      "bbox_model": [
+        179.0,
+        45.0,
+        254.0,
+        191.0,
+        120.0,
+        266.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "motor_shaft",
+      "component": "motor",
+      "valid": true,
+      "primitives": 1,
+      "faces": 3,
+      "solids": 1,
+      "volume_mm3": 29405.3,
+      "bbox_freecad": [
+        295.0,
+        -12.0,
+        128.0,
+        360.0,
+        12.0,
+        152.0
+      ],
+      "bbox_model": [
+        295.0,
+        -12.0,
+        128.0,
+        360.0,
+        12.0,
+        152.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "coupling_1_hub_in",
+      "component": "coupling_1",
+      "valid": true,
+      "primitives": 8,
+      "faces": 48,
+      "solids": 1,
+      "volume_mm3": 65295.3,
+      "bbox_freecad": [
+        330.0,
+        -32.5,
+        107.5,
+        360.0,
+        32.5,
+        172.5
+      ],
+      "bbox_model": [
+        330.0,
+        -32.5,
+        107.5,
+        360.0,
+        32.5,
+        172.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "coupling_1_spider",
+      "component": "coupling_1",
+      "valid": true,
+      "primitives": 1,
+      "faces": 3,
+      "solids": 1,
+      "volume_mm3": 23758.3,
+      "bbox_freecad": [
+        360.0,
+        -27.5,
+        112.5,
+        370.0,
+        27.5,
+        167.5
+      ],
+      "bbox_model": [
+        360.0,
+        -27.5,
+        112.5,
+        370.0,
+        27.5,
+        167.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "coupling_1_hub_out",
+      "component": "coupling_1",
+      "valid": true,
+      "primitives": 8,
+      "faces": 48,
+      "solids": 1,
+      "volume_mm3": 69442.2,
+      "bbox_freecad": [
+        370.0,
+        -32.5,
+        107.5,
+        400.0,
+        32.5,
+        172.5
+      ],
+      "bbox_model": [
+        370.0,
+        -32.5,
+        107.5,
+        400.0,
+        32.5,
+        172.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "line_shaft",
+      "component": "line_shaft",
+      "valid": true,
+      "primitives": 17,
+      "faces": 43,
+      "solids": 1,
+      "volume_mm3": 130494.8,
+      "bbox_freecad": [
+        370.0,
+        -17.5,
+        125.0,
+        720.0,
+        17.5,
+        155.0
+      ],
+      "bbox_model": [
+        370.0,
+        -17.5,
+        125.0,
+        720.0,
+        17.5,
+        155.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_housing",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 27,
+      "faces": 123,
+      "solids": 1,
+      "volume_mm3": 547328.3,
+      "bbox_freecad": [
+        419.94,
+        -55.0,
+        0.0,
+        480.06,
+        55.0,
+        195.0
+      ],
+      "bbox_model": [
+        419.94,
+        -55.0,
+        0.0,
+        480.06,
+        55.0,
+        195.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_outer_ring",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 3534.3,
+      "bbox_freecad": [
+        444.0,
+        -20.0,
+        120.0,
+        456.0,
+        20.0,
+        160.0
+      ],
+      "bbox_model": [
+        444.0,
+        -20.0,
+        120.0,
+        456.0,
+        20.0,
+        160.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_inner_ring",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 1432.6,
+      "bbox_freecad": [
+        444.0,
+        -10.5,
+        129.5,
+        456.0,
+        10.5,
+        150.5
+      ],
+      "bbox_model": [
+        444.0,
+        -10.5,
+        129.5,
+        456.0,
+        10.5,
+        150.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_ball_1",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        446.627,
+        10.627,
+        136.626,
+        453.373,
+        17.373,
+        143.374
+      ],
+      "bbox_model": [
+        446.627,
+        10.627,
+        136.626,
+        453.373,
+        17.373,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_ball_2",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        446.627,
+        6.526,
+        146.526,
+        453.373,
+        13.273,
+        153.273
+      ],
+      "bbox_model": [
+        446.627,
+        6.526,
+        146.526,
+        453.373,
+        13.273,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_ball_3",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        446.627,
+        -3.373,
+        150.626,
+        453.373,
+        3.373,
+        157.374
+      ],
+      "bbox_model": [
+        446.627,
+        -3.373,
+        150.626,
+        453.373,
+        3.373,
+        157.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_ball_4",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        446.627,
+        -13.273,
+        146.526,
+        453.373,
+        -6.526,
+        153.273
+      ],
+      "bbox_model": [
+        446.627,
+        -13.273,
+        146.526,
+        453.373,
+        -6.526,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_ball_5",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        446.627,
+        -17.373,
+        136.626,
+        453.373,
+        -10.627,
+        143.374
+      ],
+      "bbox_model": [
+        446.627,
+        -17.373,
+        136.626,
+        453.373,
+        -10.627,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_ball_6",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        446.627,
+        -13.273,
+        126.727,
+        453.373,
+        -6.526,
+        133.474
+      ],
+      "bbox_model": [
+        446.627,
+        -13.273,
+        126.727,
+        453.373,
+        -6.526,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_ball_7",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        446.627,
+        -3.373,
+        122.626,
+        453.373,
+        3.373,
+        129.374
+      ],
+      "bbox_model": [
+        446.627,
+        -3.373,
+        122.626,
+        453.373,
+        3.373,
+        129.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "support_bearing_ball_8",
+      "component": "support_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        446.627,
+        6.526,
+        126.727,
+        453.373,
+        13.273,
+        133.474
+      ],
+      "bbox_model": [
+        446.627,
+        6.526,
+        126.727,
+        453.373,
+        13.273,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_housing",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 27,
+      "faces": 123,
+      "solids": 1,
+      "volume_mm3": 547328.3,
+      "bbox_freecad": [
+        579.94,
+        -55.0,
+        0.0,
+        640.06,
+        55.0,
+        195.0
+      ],
+      "bbox_model": [
+        579.94,
+        -55.0,
+        0.0,
+        640.06,
+        55.0,
+        195.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_outer_ring",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 3534.3,
+      "bbox_freecad": [
+        604.0,
+        -20.0,
+        120.0,
+        616.0,
+        20.0,
+        160.0
+      ],
+      "bbox_model": [
+        604.0,
+        -20.0,
+        120.0,
+        616.0,
+        20.0,
+        160.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_inner_ring",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 1432.6,
+      "bbox_freecad": [
+        604.0,
+        -10.5,
+        129.5,
+        616.0,
+        10.5,
+        150.5
+      ],
+      "bbox_model": [
+        604.0,
+        -10.5,
+        129.5,
+        616.0,
+        10.5,
+        150.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_ball_1",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        606.626,
+        10.627,
+        136.626,
+        613.374,
+        17.373,
+        143.374
+      ],
+      "bbox_model": [
+        606.626,
+        10.627,
+        136.626,
+        613.374,
+        17.373,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_ball_2",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        606.626,
+        6.526,
+        146.526,
+        613.374,
+        13.273,
+        153.273
+      ],
+      "bbox_model": [
+        606.626,
+        6.526,
+        146.526,
+        613.374,
+        13.273,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_ball_3",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        606.626,
+        -3.373,
+        150.626,
+        613.374,
+        3.373,
+        157.374
+      ],
+      "bbox_model": [
+        606.626,
+        -3.373,
+        150.626,
+        613.374,
+        3.373,
+        157.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_ball_4",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        606.626,
+        -13.273,
+        146.526,
+        613.374,
+        -6.526,
+        153.273
+      ],
+      "bbox_model": [
+        606.626,
+        -13.273,
+        146.526,
+        613.374,
+        -6.526,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_ball_5",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        606.626,
+        -17.373,
+        136.626,
+        613.374,
+        -10.627,
+        143.374
+      ],
+      "bbox_model": [
+        606.626,
+        -17.373,
+        136.626,
+        613.374,
+        -10.627,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_ball_6",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        606.626,
+        -13.273,
+        126.727,
+        613.374,
+        -6.526,
+        133.474
+      ],
+      "bbox_model": [
+        606.626,
+        -13.273,
+        126.727,
+        613.374,
+        -6.526,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_ball_7",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        606.626,
+        -3.373,
+        122.626,
+        613.374,
+        3.373,
+        129.374
+      ],
+      "bbox_model": [
+        606.626,
+        -3.373,
+        122.626,
+        613.374,
+        3.373,
+        129.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "test_bearing_ball_8",
+      "component": "test_bearing",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        606.626,
+        6.526,
+        126.727,
+        613.374,
+        13.273,
+        133.474
+      ],
+      "bbox_model": [
+        606.626,
+        6.526,
+        126.727,
+        613.374,
+        13.273,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "coupling_2_hub_in",
+      "component": "coupling_2",
+      "valid": true,
+      "primitives": 8,
+      "faces": 48,
+      "solids": 1,
+      "volume_mm3": 69442.2,
+      "bbox_freecad": [
+        690.0,
+        -32.5,
+        107.5,
+        720.0,
+        32.5,
+        172.5
+      ],
+      "bbox_model": [
+        690.0,
+        -32.5,
+        107.5,
+        720.0,
+        32.5,
+        172.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "coupling_2_spider",
+      "component": "coupling_2",
+      "valid": true,
+      "primitives": 1,
+      "faces": 3,
+      "solids": 1,
+      "volume_mm3": 23758.3,
+      "bbox_freecad": [
+        720.0,
+        -27.5,
+        112.5,
+        730.0,
+        27.5,
+        167.5
+      ],
+      "bbox_model": [
+        720.0,
+        -27.5,
+        112.5,
+        730.0,
+        27.5,
+        167.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "coupling_2_hub_out",
+      "component": "coupling_2",
+      "valid": true,
+      "primitives": 8,
+      "faces": 48,
+      "solids": 1,
+      "volume_mm3": 72057.6,
+      "bbox_freecad": [
+        730.0,
+        -32.5,
+        107.5,
+        760.0,
+        32.5,
+        172.5
+      ],
+      "bbox_model": [
+        730.0,
+        -32.5,
+        107.5,
+        760.0,
+        32.5,
+        172.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gearbox_plinth",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 6,
+      "faces": 51,
+      "solids": 1,
+      "volume_mm3": 1410057.7,
+      "bbox_freecad": [
+        781.0,
+        -44.774,
+        0.0,
+        919.0,
+        136.774,
+        70.0
+      ],
+      "bbox_model": [
+        781.0,
+        -44.774,
+        0.0,
+        919.0,
+        136.774,
+        70.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gearbox_housing",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 45,
+      "faces": 251,
+      "solids": 1,
+      "volume_mm3": 1443863.1,
+      "bbox_freecad": [
+        768.5,
+        -59.06,
+        70.0,
+        931.5,
+        151.06,
+        210.0
+      ],
+      "bbox_model": [
+        768.5,
+        -59.06,
+        70.0,
+        931.5,
+        151.06,
+        210.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gearbox_cover",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 18,
+      "faces": 77,
+      "solids": 1,
+      "volume_mm3": 399707.0,
+      "bbox_freecad": [
+        774.0,
+        -51.0,
+        210.0,
+        926.0,
+        143.0,
+        255.0
+      ],
+      "bbox_model": [
+        774.0,
+        -51.0,
+        210.0,
+        926.0,
+        143.0,
+        255.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gearbox_input_shaft",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 3,
+      "solids": 1,
+      "volume_mm3": 43126.2,
+      "bbox_freecad": [
+        730.0,
+        -8.5,
+        131.5,
+        920.0,
+        8.5,
+        148.5
+      ],
+      "bbox_model": [
+        730.0,
+        -8.5,
+        131.5,
+        920.0,
+        8.5,
+        148.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gearbox_output_shaft",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 3,
+      "solids": 1,
+      "volume_mm3": 43126.2,
+      "bbox_freecad": [
+        780.0,
+        61.5,
+        131.5,
+        970.0,
+        78.5,
+        148.5
+      ],
+      "bbox_model": [
+        780.0,
+        61.5,
+        131.5,
+        970.0,
+        78.5,
+        148.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "pinion",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 2,
+      "faces": 307,
+      "solids": 1,
+      "volume_mm3": 24443.7,
+      "bbox_freecad": [
+        834.0,
+        -21.991,
+        118.009,
+        866.0,
+        21.991,
+        161.991
+      ],
+      "bbox_model": [
+        834.0,
+        -21.991,
+        118.009,
+        866.0,
+        21.991,
+        161.991
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gear_wheel",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 8,
+      "faces": 663,
+      "solids": 1,
+      "volume_mm3": 142047.3,
+      "bbox_freecad": [
+        834.0,
+        18.062,
+        88.005,
+        866.0,
+        121.938,
+        191.995
+      ],
+      "bbox_model": [
+        834.0,
+        18.062,
+        88.005,
+        866.0,
+        121.938,
+        191.995
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_1_outer_ring",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 3534.3,
+      "bbox_freecad": [
+        780.0,
+        -20.0,
+        120.0,
+        792.0,
+        20.0,
+        160.0
+      ],
+      "bbox_model": [
+        780.0,
+        -20.0,
+        120.0,
+        792.0,
+        20.0,
+        160.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_1_inner_ring",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 1432.6,
+      "bbox_freecad": [
+        780.0,
+        -10.5,
+        129.5,
+        792.0,
+        10.5,
+        150.5
+      ],
+      "bbox_model": [
+        780.0,
+        -10.5,
+        129.5,
+        792.0,
+        10.5,
+        150.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_1_ball_1",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        10.627,
+        136.626,
+        789.374,
+        17.373,
+        143.374
+      ],
+      "bbox_model": [
+        782.626,
+        10.627,
+        136.626,
+        789.374,
+        17.373,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_1_ball_2",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        6.526,
+        146.526,
+        789.374,
+        13.273,
+        153.273
+      ],
+      "bbox_model": [
+        782.626,
+        6.526,
+        146.526,
+        789.374,
+        13.273,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_1_ball_3",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        -3.373,
+        150.626,
+        789.374,
+        3.373,
+        157.374
+      ],
+      "bbox_model": [
+        782.626,
+        -3.373,
+        150.626,
+        789.374,
+        3.373,
+        157.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_1_ball_4",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        -13.273,
+        146.526,
+        789.374,
+        -6.526,
+        153.273
+      ],
+      "bbox_model": [
+        782.626,
+        -13.273,
+        146.526,
+        789.374,
+        -6.526,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_1_ball_5",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        -17.373,
+        136.626,
+        789.374,
+        -10.627,
+        143.374
+      ],
+      "bbox_model": [
+        782.626,
+        -17.373,
+        136.626,
+        789.374,
+        -10.627,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_1_ball_6",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        -13.273,
+        126.727,
+        789.374,
+        -6.526,
+        133.474
+      ],
+      "bbox_model": [
+        782.626,
+        -13.273,
+        126.727,
+        789.374,
+        -6.526,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_1_ball_7",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        -3.373,
+        122.626,
+        789.374,
+        3.373,
+        129.374
+      ],
+      "bbox_model": [
+        782.626,
+        -3.373,
+        122.626,
+        789.374,
+        3.373,
+        129.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_1_ball_8",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        6.526,
+        126.727,
+        789.374,
+        13.273,
+        133.474
+      ],
+      "bbox_model": [
+        782.626,
+        6.526,
+        126.727,
+        789.374,
+        13.273,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_2_outer_ring",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 3534.3,
+      "bbox_freecad": [
+        908.0,
+        -20.0,
+        120.0,
+        920.0,
+        20.0,
+        160.0
+      ],
+      "bbox_model": [
+        908.0,
+        -20.0,
+        120.0,
+        920.0,
+        20.0,
+        160.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_2_inner_ring",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 1432.6,
+      "bbox_freecad": [
+        908.0,
+        -10.5,
+        129.5,
+        920.0,
+        10.5,
+        150.5
+      ],
+      "bbox_model": [
+        908.0,
+        -10.5,
+        129.5,
+        920.0,
+        10.5,
+        150.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_2_ball_1",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        10.627,
+        136.626,
+        917.374,
+        17.373,
+        143.374
+      ],
+      "bbox_model": [
+        910.626,
+        10.627,
+        136.626,
+        917.374,
+        17.373,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_2_ball_2",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        6.526,
+        146.526,
+        917.374,
+        13.273,
+        153.273
+      ],
+      "bbox_model": [
+        910.626,
+        6.526,
+        146.526,
+        917.374,
+        13.273,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_2_ball_3",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        -3.373,
+        150.626,
+        917.374,
+        3.373,
+        157.374
+      ],
+      "bbox_model": [
+        910.626,
+        -3.373,
+        150.626,
+        917.374,
+        3.373,
+        157.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_2_ball_4",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        -13.273,
+        146.526,
+        917.374,
+        -6.526,
+        153.273
+      ],
+      "bbox_model": [
+        910.626,
+        -13.273,
+        146.526,
+        917.374,
+        -6.526,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_2_ball_5",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        -17.373,
+        136.626,
+        917.374,
+        -10.627,
+        143.374
+      ],
+      "bbox_model": [
+        910.626,
+        -17.373,
+        136.626,
+        917.374,
+        -10.627,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_2_ball_6",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        -13.273,
+        126.727,
+        917.374,
+        -6.526,
+        133.474
+      ],
+      "bbox_model": [
+        910.626,
+        -13.273,
+        126.727,
+        917.374,
+        -6.526,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_2_ball_7",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        -3.373,
+        122.626,
+        917.374,
+        3.373,
+        129.374
+      ],
+      "bbox_model": [
+        910.626,
+        -3.373,
+        122.626,
+        917.374,
+        3.373,
+        129.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_in_bearing_2_ball_8",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        6.526,
+        126.727,
+        917.374,
+        13.273,
+        133.474
+      ],
+      "bbox_model": [
+        910.626,
+        6.526,
+        126.727,
+        917.374,
+        13.273,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_1_outer_ring",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 3534.3,
+      "bbox_freecad": [
+        780.0,
+        50.0,
+        120.0,
+        792.0,
+        90.0,
+        160.0
+      ],
+      "bbox_model": [
+        780.0,
+        50.0,
+        120.0,
+        792.0,
+        90.0,
+        160.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_1_inner_ring",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 1432.6,
+      "bbox_freecad": [
+        780.0,
+        59.5,
+        129.5,
+        792.0,
+        80.5,
+        150.5
+      ],
+      "bbox_model": [
+        780.0,
+        59.5,
+        129.5,
+        792.0,
+        80.5,
+        150.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_1_ball_1",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        80.626,
+        136.626,
+        789.374,
+        87.374,
+        143.374
+      ],
+      "bbox_model": [
+        782.626,
+        80.626,
+        136.626,
+        789.374,
+        87.374,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_1_ball_2",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        76.526,
+        146.526,
+        789.374,
+        83.273,
+        153.273
+      ],
+      "bbox_model": [
+        782.626,
+        76.526,
+        146.526,
+        789.374,
+        83.273,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_1_ball_3",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        66.626,
+        150.626,
+        789.374,
+        73.374,
+        157.374
+      ],
+      "bbox_model": [
+        782.626,
+        66.626,
+        150.626,
+        789.374,
+        73.374,
+        157.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_1_ball_4",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        56.727,
+        146.526,
+        789.374,
+        63.474,
+        153.273
+      ],
+      "bbox_model": [
+        782.626,
+        56.727,
+        146.526,
+        789.374,
+        63.474,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_1_ball_5",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        52.627,
+        136.626,
+        789.374,
+        59.373,
+        143.374
+      ],
+      "bbox_model": [
+        782.626,
+        52.627,
+        136.626,
+        789.374,
+        59.373,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_1_ball_6",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        56.727,
+        126.727,
+        789.374,
+        63.474,
+        133.474
+      ],
+      "bbox_model": [
+        782.626,
+        56.727,
+        126.727,
+        789.374,
+        63.474,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_1_ball_7",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        66.626,
+        122.626,
+        789.374,
+        73.374,
+        129.374
+      ],
+      "bbox_model": [
+        782.626,
+        66.626,
+        122.626,
+        789.374,
+        73.374,
+        129.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_1_ball_8",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        782.626,
+        76.526,
+        126.727,
+        789.374,
+        83.273,
+        133.474
+      ],
+      "bbox_model": [
+        782.626,
+        76.526,
+        126.727,
+        789.374,
+        83.273,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_2_outer_ring",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 3534.3,
+      "bbox_freecad": [
+        908.0,
+        50.0,
+        120.0,
+        920.0,
+        90.0,
+        160.0
+      ],
+      "bbox_model": [
+        908.0,
+        50.0,
+        120.0,
+        920.0,
+        90.0,
+        160.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_2_inner_ring",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 4,
+      "solids": 1,
+      "volume_mm3": 1432.6,
+      "bbox_freecad": [
+        908.0,
+        59.5,
+        129.5,
+        920.0,
+        80.5,
+        150.5
+      ],
+      "bbox_model": [
+        908.0,
+        59.5,
+        129.5,
+        920.0,
+        80.5,
+        150.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_2_ball_1",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        80.626,
+        136.626,
+        917.374,
+        87.374,
+        143.374
+      ],
+      "bbox_model": [
+        910.626,
+        80.626,
+        136.626,
+        917.374,
+        87.374,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_2_ball_2",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        76.526,
+        146.526,
+        917.374,
+        83.273,
+        153.273
+      ],
+      "bbox_model": [
+        910.626,
+        76.526,
+        146.526,
+        917.374,
+        83.273,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_2_ball_3",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        66.626,
+        150.626,
+        917.374,
+        73.374,
+        157.374
+      ],
+      "bbox_model": [
+        910.626,
+        66.626,
+        150.626,
+        917.374,
+        73.374,
+        157.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_2_ball_4",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        56.727,
+        146.526,
+        917.374,
+        63.474,
+        153.273
+      ],
+      "bbox_model": [
+        910.626,
+        56.727,
+        146.526,
+        917.374,
+        63.474,
+        153.273
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_2_ball_5",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        52.627,
+        136.626,
+        917.374,
+        59.373,
+        143.374
+      ],
+      "bbox_model": [
+        910.626,
+        52.627,
+        136.626,
+        917.374,
+        59.373,
+        143.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_2_ball_6",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        56.727,
+        126.727,
+        917.374,
+        63.474,
+        133.474
+      ],
+      "bbox_model": [
+        910.626,
+        56.727,
+        126.727,
+        917.374,
+        63.474,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_2_ball_7",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        66.626,
+        122.626,
+        917.374,
+        73.374,
+        129.374
+      ],
+      "bbox_model": [
+        910.626,
+        66.626,
+        122.626,
+        917.374,
+        73.374,
+        129.374
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "gb_out_bearing_2_ball_8",
+      "component": "gearbox",
+      "valid": true,
+      "primitives": 1,
+      "faces": 1,
+      "solids": 1,
+      "volume_mm3": 160.8,
+      "bbox_freecad": [
+        910.626,
+        76.526,
+        126.727,
+        917.374,
+        83.273,
+        133.474
+      ],
+      "bbox_model": [
+        910.626,
+        76.526,
+        126.727,
+        917.374,
+        83.273,
+        133.474
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "coupling_3_hub_in",
+      "component": "coupling_3",
+      "valid": true,
+      "primitives": 8,
+      "faces": 48,
+      "solids": 1,
+      "volume_mm3": 72057.6,
+      "bbox_freecad": [
+        940.0,
+        37.5,
+        107.5,
+        970.0,
+        102.5,
+        172.5
+      ],
+      "bbox_model": [
+        940.0,
+        37.5,
+        107.5,
+        970.0,
+        102.5,
+        172.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "coupling_3_spider",
+      "component": "coupling_3",
+      "valid": true,
+      "primitives": 1,
+      "faces": 3,
+      "solids": 1,
+      "volume_mm3": 23758.3,
+      "bbox_freecad": [
+        970.0,
+        42.5,
+        112.5,
+        980.0,
+        97.5,
+        167.5
+      ],
+      "bbox_model": [
+        970.0,
+        42.5,
+        112.5,
+        980.0,
+        97.5,
+        167.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "coupling_3_hub_out",
+      "component": "coupling_3",
+      "valid": true,
+      "primitives": 8,
+      "faces": 48,
+      "solids": 1,
+      "volume_mm3": 69442.2,
+      "bbox_freecad": [
+        980.0,
+        37.5,
+        107.5,
+        1010.0,
+        102.5,
+        172.5
+      ],
+      "bbox_model": [
+        980.0,
+        37.5,
+        107.5,
+        1010.0,
+        102.5,
+        172.5
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "load_shaft",
+      "component": "load",
+      "valid": true,
+      "primitives": 1,
+      "faces": 3,
+      "solids": 1,
+      "volume_mm3": 15708.0,
+      "bbox_freecad": [
+        980.0,
+        60.0,
+        130.0,
+        1030.0,
+        80.0,
+        150.0
+      ],
+      "bbox_model": [
+        980.0,
+        60.0,
+        130.0,
+        1030.0,
+        80.0,
+        150.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "load_unit",
+      "component": "load",
+      "valid": true,
+      "primitives": 25,
+      "faces": 128,
+      "solids": 1,
+      "volume_mm3": 1281154.3,
+      "bbox_freecad": [
+        1020.5,
+        -8.0,
+        70.0,
+        1113.6,
+        148.0,
+        229.0
+      ],
+      "bbox_model": [
+        1020.5,
+        -8.0,
+        70.0,
+        1113.6,
+        148.0,
+        229.0
+      ],
+      "bbox_max_dev_mm": 0.0
+    },
+    {
+      "name": "load_pedestal",
+      "component": "load",
+      "valid": true,
+      "primitives": 11,
+      "faces": 76,
+      "solids": 1,
+      "volume_mm3": 629216.4,
+      "bbox_freecad": [
+        1021.8,
+        1.8,
+        0.0,
+        1108.2,
+        138.2,
+        76.105
+      ],
+      "bbox_model": [
+        1021.8,
+        1.8,
+        0.0,
+        1108.2,
+        138.2,
+        76.105
+      ],
+      "bbox_max_dev_mm": 0.0
+    }
+  ],
+  "bbox_max_deviation_mm": 0.0,
+  "all_parts_valid": true,
+  "parts_not_single_solid": [],
+  "parts_count": 90,
+  "faces_total": 2691,
+  "sensors": [
+    {
+      "id": "S1",
+      "name": "sensor_bearing_accel",
+      "centre_freecad": [
+        610.0,
+        0.0,
+        192.0
+      ],
+      "centre_model": [
+        610.0,
+        0.0,
+        192.0
+      ],
+      "dev_mm": 0.0,
+      "mount": "test_bearing_housing",
+      "gap_to_mount_mm": 0.0
+    },
+    {
+      "id": "S2",
+      "name": "sensor_motor_current",
+      "centre_freecad": [
+        185.0,
+        83.0,
+        260.0
+      ],
+      "centre_model": [
+        185.0,
+        83.0,
+        260.0
+      ],
+      "dev_mm": 0.0,
+      "mount": "motor_supply_cable",
+      "gap_to_mount_mm": 0.0
+    },
+    {
+      "id": "S3",
+      "name": "sensor_motor_accel",
+      "centre_freecad": [
+        260.0,
+        0.0,
+        237.0
+      ],
+      "centre_model": [
+        260.0,
+        0.0,
+        237.0
+      ],
+      "dev_mm": 0.0,
+      "mount": "motor_body",
+      "gap_to_mount_mm": 0.0
+    },
+    {
+      "id": "S4",
+      "name": "sensor_gearbox_accel",
+      "centre_freecad": [
+        798.0,
+        -52.0,
+        140.0
+      ],
+      "centre_model": [
+        798.0,
+        -52.0,
+        140.0
+      ],
+      "dev_mm": 0.0,
+      "mount": "gearbox_housing",
+      "gap_to_mount_mm": 0.0
+    }
+  ],
+  "interference": {
+    "pairs_checked": 232,
+    "overlaps": [],
+    "unexpected": [],
+    "seconds": 5.6
+  },
+  "step_reimport": {
+    "solids": 94,
+    "solids_expected": 94,
+    "volume_mm3": 25341042.4,
+    "volume_model_mm3": 25341042.4,
+    "relative_difference": 0.0
+  },
+  "edit_test": {
+    "changed": "Params.shaft_h 140 -> 150",
+    "motor_shaft_zmin_before": 128.0,
+    "motor_shaft_zmin_after": 138.0,
+    "gear_wheel_zmin_after": 98.005,
+    "moved_by_mm": 10.0,
+    "restored_zmin": 128.0
+  },
+  "passed": true
+}

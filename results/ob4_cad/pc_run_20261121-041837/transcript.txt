@@ -1,0 +1,64 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261121041837
+Username: DESKTOP-QN2T0J2\Admin
+RunAs User: DESKTOP-QN2T0J2\Admin
+Configuration Name: 
+Machine: DESKTOP-QN2T0J2 (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1
+Process ID: 25112
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+=== Preflight: can this shell start programs? ===
+  cmd.exe    OK    Microsoft Windows [Version 10.0.26200.9974]
+  python     OK    C:\Users\Admin\AppData\Local\Programs\Python\Python311\python.exe 3.11.9
+  git        OK    git version 2.55.0.windows.5
+  freecadcmd OK    FreeCAD 1.1.4 Revision: 20260928 (Git shallow)
+  started by: powershell.exe [25112] <- powershell.exe [21720] <- cmd.exe [4688] <- explorer.exe [11564]
+  restricted token: False; integrity SID:
+=== Phase 2: gearbox recordings ===
+gear_pitting_M_torque_circulation_1000rpm_10Nm.csv.gz: already present, verified
+gear_wear_M_torque_circulation_1000rpm_10Nm.csv.gz: already present, verified
+health_torque_circulation_1000rpm_10Nm.csv.gz: already present, verified
+=== Phase 1: FreeCAD ===
+freecadcmd: E:\freecad\bin\freecadcmd.exe
+=== Phase 3: CAD build ===
+python.exe : Traceback (most recent call last):
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:211 char:1
++ & python -c "import matplotlib" 2>$null
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'matplotlib'
+
+=== Phase 4: verification + tests ===
+python.exe : WARNING: Package(s) not found: matplotlib
+At C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_pc_run.ps1:224 char:1
++ & python -m pip show streamlit altair pandas numpy scikit-learn scipy ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: Packag...und: matplotlib:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+=== Git state (nothing committed) ===
+
+=== Result ===
+  PASS  gearbox recordings verified
+  PASS  CAD build report passed
+  PASS  FreeCAD GUI renders + TechDraw PDF
+  PASS  3D viewer GLB from STEP (all nodes)
+  PASS  drawings (make_drawings.py) exit 0
+  PASS  verify_ob4: 15 scenarios / 148 checks
+  PASS  verify_ob4 exit 0 (no FAIL verdicts)
+  PASS  unit tests exit 0
+Evidence: C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\results\ob4_cad\pc_run_20261121-041837
+**********************
+Windows PowerShell transcript end
+End time: 20261121043236
+**********************

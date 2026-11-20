@@ -1,0 +1,24 @@
+{
+  "started": "2026-11-21 04:21:29",
+  "images": {
+    "iso": 0.1132,
+    "front": 0.0777,
+    "top": 0.1397,
+    "right": 0.0523,
+    "exploded_iso": 0.0892
+  },
+  "errors": [],
+  "freecad_version": [
+    "1",
+    "1",
+    "4",
+    "20260928 (Git shallow)",
+    "Unknown",
+    "2026/09/28 13:46:34",
+    "(HEAD detached at 4fd3bf320)",
+    "4fd3bf320d9566a27e60069fc8387448aaa3a094"
+  ],
+  "fcstd_saved_with_colours": true,
+  "techdraw_pdf": true,
+  "finished": "2026-11-21 04:23:46"
+}

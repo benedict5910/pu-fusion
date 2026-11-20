@@ -1,11 +1,11 @@
 {
-  "started": "2026-11-20 00:25:39",
+  "started": "2026-11-21 04:21:29",
   "images": {
-    "iso": 0.1106,
-    "front": 0.0734,
-    "top": 0.1412,
-    "right": 0.0509,
-    "exploded_iso": 0.0945
+    "iso": 0.1132,
+    "front": 0.0777,
+    "top": 0.1397,
+    "right": 0.0523,
+    "exploded_iso": 0.0892
   },
   "errors": [],
   "freecad_version": [
@@ -20,5 +20,5 @@
   ],
   "fcstd_saved_with_colours": true,
   "techdraw_pdf": true,
-  "finished": "2026-11-20 00:25:54"
+  "finished": "2026-11-21 04:23:46"
 }

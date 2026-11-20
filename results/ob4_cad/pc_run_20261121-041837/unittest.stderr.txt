@@ -1,0 +1,172 @@
+test_export_report_matches_the_file (test_cad3d.TestGlbAgainstCadModel.test_export_report_matches_the_file) ... ok
+test_mesh_is_well_formed (test_cad3d.TestGlbAgainstCadModel.test_mesh_is_well_formed) ... ok
+test_one_node_per_solid_with_its_identity (test_cad3d.TestGlbAgainstCadModel.test_one_node_per_solid_with_its_identity) ... ok
+test_sensor_identity_mount_and_explode (test_cad3d.TestGlbAgainstCadModel.test_sensor_identity_mount_and_explode) ... ok
+test_sensor_markers_at_the_mapped_positions (test_cad3d.TestGlbAgainstCadModel.test_sensor_markers_at_the_mapped_positions) ... ok
+test_tessellated_extents_match_the_parametric_model (test_cad3d.TestGlbAgainstCadModel.test_tessellated_extents_match_the_parametric_model) ... ok
+test_round_trip (test_cad3d.TestGlbWriter.test_round_trip) ... ok
+test_abstention_is_shown_as_such_and_json_safe (test_cad3d.TestViewerArgs.test_abstention_is_shown_as_such_and_json_safe) ... ok
+test_colours_and_values_come_from_the_frame (test_cad3d.TestViewerArgs.test_colours_and_values_come_from_the_frame) ... ok
+test_no_frame_no_state (test_cad3d.TestViewerArgs.test_no_frame_no_state) ... ok
+test_viewer_files_present_and_self_contained (test_cad3d.TestViewerArgs.test_viewer_files_present_and_self_contained) ... ok
+test_build_passed (test_cad_model.TestFreeCADReport.test_build_passed) ... ok
+test_no_unexpected_brep_interference (test_cad_model.TestFreeCADReport.test_no_unexpected_brep_interference) ... ok
+test_sensors_match_and_touch_their_mounts (test_cad_model.TestFreeCADReport.test_sensors_match_and_touch_their_mounts) ... ok
+test_solids_valid_and_match_the_model (test_cad_model.TestFreeCADReport.test_solids_valid_and_match_the_model) ... ok
+test_spreadsheet_edit_moves_dependent_parts (test_cad_model.TestFreeCADReport.test_spreadsheet_edit_moves_dependent_parts) ... ok
+test_step_export_and_reimport (test_cad_model.TestFreeCADReport.test_step_export_and_reimport) ... ok
+test_design_checks (test_cad_model.TestGeometry.test_design_checks) ... ok
+test_every_expression_evaluates (test_cad_model.TestGeometry.test_every_expression_evaluates) ... ok
+test_expression_evaluator_rejects_code (test_cad_model.TestGeometry.test_expression_evaluator_rejects_code) ... ok
+test_freecad_expressions (test_cad_model.TestGeometry.test_freecad_expressions) ... ok
+test_gear_pair_centre_distance (test_cad_model.TestGeometry.test_gear_pair_centre_distance) ... ok
+test_interference_check_detects_a_clash (test_cad_model.TestGeometry.test_interference_check_detects_a_clash) ... ok
+test_no_unexpected_interference (test_cad_model.TestGeometry.test_no_unexpected_interference) ... ok
+test_parametric_change_propagates (test_cad_model.TestGeometry.test_parametric_change_propagates) ... ok
+test_shafts_coaxial_and_parts_on_the_base (test_cad_model.TestGeometry.test_shafts_coaxial_and_parts_on_the_base) ... ok
+test_bearing_channels_are_the_ones_the_loader_reads (test_cad_model.TestSensorMap.test_bearing_channels_are_the_ones_the_loader_reads) ... ok
+test_each_sensor_sits_on_its_mount (test_cad_model.TestSensorMap.test_each_sensor_sits_on_its_mount) ... ok
+test_four_sensors_two_per_subsystem (test_cad_model.TestSensorMap.test_four_sensors_two_per_subsystem) ... ok
+test_gearbox_channels_are_the_ones_the_loader_reads (test_cad_model.TestSensorMap.test_gearbox_channels_are_the_ones_the_loader_reads) ... ok
+test_map_says_representative (test_cad_model.TestSensorMap.test_map_says_representative) ... ok
+test_sample_rates (test_cad_model.TestSensorMap.test_sample_rates) ... ok
+test_sensors_mounted_on_the_monitored_component (test_cad_model.TestSensorMap.test_sensors_mounted_on_the_monitored_component) ... ok
+test_written_sensor_map_matches_the_model (test_cad_model.TestSensorMap.test_written_sensor_map_matches_the_model) ... ok
+test_ack_and_sensor_failure_on_real_app (test_dashboard_apptest.TestDashboardAppTest.test_ack_and_sensor_failure_on_real_app) ... 2026-11-21 04:29:10.524 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:29:12.329 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:29:12.334 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:29:12.334 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:29:12.335 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:29:15.424 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:29:15.425 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:29:15.425 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_every_view_renders (test_dashboard_apptest.TestDashboardAppTest.test_every_view_renders) ... 2026-11-21 04:29:17.266 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_live_rig_not_connected_and_no_fabrication (test_dashboard_apptest.TestDashboardAppTest.test_live_rig_not_connected_and_no_fabrication) ... 2026-11-21 04:29:20.640 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_professor_demo_steps (test_dashboard_apptest.TestDashboardAppTest.test_professor_demo_steps) ... 2026-11-21 04:29:21.730 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:29:22.180 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_gearbox_clean_motor_dropout_and_dual_dropout (test_dashboard_apptest.TestGearboxAppTest.test_gearbox_clean_motor_dropout_and_dual_dropout) ... skipped 'needs Streamlit and the MCC5-THU recordings'
+test_demo_mode_pitting_replay (test_dashboard_apptest.TestGearboxDemoModeAppTest.test_demo_mode_pitting_replay) ... skipped 'needs Streamlit, data/mcc5 and the demo manifest'
+test_sessions_do_not_share_history (test_dashboard_ui.TestCloudSessionIsolation.test_sessions_do_not_share_history) ... skipped 'real Streamlit present: covered by test_dashboard_apptest'
+test_full_sequence (test_dashboard_ui.TestDashboardHeadless.test_full_sequence) ... skipped 'real Streamlit present: covered by test_dashboard_apptest'
+test_demo_set_reproduces_full_data_results (test_dashboard_ui.TestGearboxDemoMode.test_demo_set_reproduces_full_data_results) ... skipped 'needs data/mcc5 and the demo manifest'
+test_gearbox_replay_dropout_and_history (test_dashboard_ui.TestGearboxHeadless.test_gearbox_replay_dropout_and_history) ... skipped 'MCC5-THU recordings (data/mcc5) or bearing demo data not present'
+test_confusion_matrix_snapshot (test_dashboard_ui.TestResearchReaders.test_confusion_matrix_snapshot) ... ok
+test_no_holm_significant_claim (test_dashboard_ui.TestResearchReaders.test_no_holm_significant_claim) ... ok
+test_quality_table (test_dashboard_ui.TestResearchReaders.test_quality_table) ... ok
+test_summary_values_unchanged (test_dashboard_ui.TestResearchReaders.test_summary_values_unchanged) ... ok
+test_labels_are_readable_and_keep_file_names (test_dashboard_ui.TestScenarioLabels.test_labels_are_readable_and_keep_file_names) ... ok
+test_changed_source_reloads_project_modules (test_dashboard_ui.TestStaleModulesAfterUpdate.test_changed_source_reloads_project_modules) ... skipped 'real Streamlit present'
+test_demo_uses_only_held_out_recordings (test_dashboard_ui.TestUiHelpers.test_demo_uses_only_held_out_recordings) ... C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\tests\test_dashboard_ui.py:108: ResourceWarning: unclosed file <_io.BufferedReader name='C:\\Users\\Admin\\Projects\\pu-fusion-ob4-2026-11-15\\models\\demo_models.pkl'>
+  b = pickle.load(open(ROOT / "models" / "demo_models.pkl", "rb"))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_source_labels_distinct (test_dashboard_ui.TestUiHelpers.test_source_labels_distinct) ... ok
+test_state_banner_escapes_and_labels (test_dashboard_ui.TestUiHelpers.test_state_banner_escapes_and_labels) ... ok
+test_svgs_are_well_formed (test_dashboard_ui.TestUiHelpers.test_svgs_are_well_formed) ... ok
+test_timestamp_format (test_dashboard_ui.TestUiHelpers.test_timestamp_format) ... ok
+test_extreme_severity_without_failure_never_abstains (test_fusion_v3.TestFusionV3.test_extreme_severity_without_failure_never_abstains) ... ok
+test_failed_sensor_excluded_and_dual_failure_abstains (test_fusion_v3.TestFusionV3.test_failed_sensor_excluded_and_dual_failure_abstains) ... ok
+test_mild_degradation_is_kept (test_fusion_v3.TestFusionV3.test_mild_degradation_is_kept) ... ok
+test_fault_is_isolated_to_target_sensor (test_gearbox.GearboxTests.test_fault_is_isolated_to_target_sensor) ... ok
+test_recording_holdout_and_shared_health_replay (test_gearbox.GearboxTests.test_recording_holdout_and_shared_health_replay) ... ok
+test_benchmark_monitor (test_ivhm.TestBenchmarkEngine.test_benchmark_monitor) ... ok
+test_contributions_reconstruct_logits (test_ivhm.TestExplain.test_contributions_reconstruct_logits) ... ok
+test_explain_gated (test_ivhm.TestExplain.test_explain_gated) ... ok
+test_names_match_features (test_ivhm.TestExplain.test_names_match_features) ... ok
+test_ack_does_not_hide_persistent_fault (test_ivhm.TestHealth.test_ack_does_not_hide_persistent_fault) ... ok
+test_ack_only_applies_to_inspect (test_ivhm.TestHealth.test_ack_only_applies_to_inspect) ... ok
+test_escalation_latch_and_ack (test_ivhm.TestHealth.test_escalation_latch_and_ack) ... ok
+test_sensor_failures (test_ivhm.TestHealth.test_sensor_failures) ... ok
+test_warning_recovers_after_quiet_windows (test_ivhm.TestHealth.test_warning_recovers_after_quiet_windows) ... ok
+test_sensor_outage_does_not_clear_warning (test_ivhm.TestOutageRecovery.test_sensor_outage_does_not_clear_warning)
+A sensor outage during WARNING recovery must not let the first good window jump to NORMAL. ... ok
+test_suspended_diagnosis_not_logged (test_ivhm.TestOutageRecovery.test_suspended_diagnosis_not_logged)
+While no sensor is usable, the logged history must not carry a fault probability. ... ok
+test_clean_is_ok (test_ivhm.TestReliability.test_clean_is_ok) ... ok
+test_failures_and_causes (test_ivhm.TestReliability.test_failures_and_causes) ... ok
+test_firmware_header_layout_matches_parser (test_ivhm.TestRig.test_firmware_header_layout_matches_parser)
+Compile the firmware's own Header struct on the host and decode its bytes. ... ok
+test_gap_becomes_nan_exactly (test_ivhm.TestRig.test_gap_becomes_nan_exactly) ... ok
+test_protocol_roundtrip_chunked_and_corrupt (test_ivhm.TestRig.test_protocol_roundtrip_chunked_and_corrupt) ... ok
+test_rig_pipeline_end_to_end (test_ivhm.TestRig.test_rig_pipeline_end_to_end) ... ok
+test_timing_flags_drops (test_ivhm.TestRig.test_timing_flags_drops) ... ok
+test_timing_recovers_clock_error_and_aligns_streams (test_ivhm.TestRig.test_timing_recovers_clock_error_and_aligns_streams) ... ok
+test_log_and_export (test_ivhm.TestStore.test_log_and_export) ... ok
+test_bearing_counts (test_pipeline.TestConfig.test_bearing_counts) ... ok
+test_fault_frequencies (test_pipeline.TestConfig.test_fault_frequencies) ... ok
+test_parse (test_pipeline.TestConfig.test_parse) ... ok
+test_deterministic (test_pipeline.TestCorruption.test_deterministic) ... ok
+test_dropout_and_stuck (test_pipeline.TestCorruption.test_dropout_and_stuck) ... ok
+test_families_partitioned (test_pipeline.TestCorruption.test_families_partitioned) ... ok
+test_snr (test_pipeline.TestCorruption.test_snr) ... ok
+test_finite_under_all_corruptions (test_pipeline.TestFeatures.test_finite_under_all_corruptions) ... ok
+test_gain_invariance_of_spectral_bands (test_pipeline.TestFeatures.test_gain_invariance_of_spectral_bands) ... ok
+test_nan_samples (test_pipeline.TestFeatures.test_nan_samples) ... ok
+test_quality_flags_dead_channel (test_pipeline.TestFeatures.test_quality_flags_dead_channel) ... ok
+test_load_paderborn_like_mat (test_pipeline.TestLoader.test_load_paderborn_like_mat) ... ok
+test_cm_counts (test_pipeline.TestMetricsConfusion.test_cm_counts) ... ok
+test_all_models_output_distributions (test_pipeline.TestModels.test_all_models_output_distributions) ... ok
+test_gate_routes_away_from_dead_vibration (test_pipeline.TestModels.test_gate_routes_away_from_dead_vibration) ... ok
+test_reproducible_tables (test_pipeline.TestModels.test_reproducible_tables) ... ok
+test_p1_disjoint_and_complete (test_pipeline.TestSplits.test_p1_disjoint_and_complete) ... ok
+test_p2 (test_pipeline.TestSplits.test_p2) ... ok
+test_run_refuses_leaky_fold (test_pipeline.TestSplits.test_run_refuses_leaky_fold) ... ok
+test_exclusion_and_abstain (test_reliability_v2.TestGatedV2Rule.test_exclusion_and_abstain) ... ok
+test_baseline_deviation_and_missing_baseline_is_flagged (test_reliability_v2.TestV2Detector.test_baseline_deviation_and_missing_baseline_is_flagged) ... ok
+test_clean_false_flags_low_on_training_like_data (test_reliability_v2.TestV2Detector.test_clean_false_flags_low_on_training_like_data) ... ok
+test_hard_rules_kept (test_reliability_v2.TestV2Detector.test_hard_rules_kept) ... ok
+test_original_class_unchanged (test_reliability_v2.TestV2Detector.test_original_class_unchanged) ... ok
+test_per_condition_catches_shift_pooled_misses (test_reliability_v2.TestV2Detector.test_per_condition_catches_shift_pooled_misses) ... ok
+test_repetition_parse (test_reliability_v2.TestV2Detector.test_repetition_parse) ... ok
+test_selection_never_uses_withheld_families (test_reliability_v2.TestV2Detector.test_selection_never_uses_withheld_families) ... ok
+test_physical_effects (test_sensor_faults.SensorFaultTests.test_physical_effects) ... ok
+test_scenarios_are_seeded_and_leave_source_intact (test_sensor_faults.SensorFaultTests.test_scenarios_are_seeded_and_leave_source_intact) ... ok
+test_bearing_outage_and_recovery_in_one_run (test_testbed.TestDashboardSimulation.test_bearing_outage_and_recovery_in_one_run) ... skipped 'real Streamlit present: run scripts/windows/run_tests.bat for the AppTest suite'
+test_final_validation_is_displayed (test_testbed.TestDashboardSimulation.test_final_validation_is_displayed) ... skipped 'real Streamlit present: run scripts/windows/run_tests.bat for the AppTest suite'
+test_gearbox_sensor_loss_and_recovery_in_one_run (test_testbed.TestDashboardSimulation.test_gearbox_sensor_loss_and_recovery_in_one_run) ... skipped 'real Streamlit present: run scripts/windows/run_tests.bat for the AppTest suite'
+test_acknowledgement_is_logged_and_never_returns_to_normal (test_testbed.TestVirtualTestbed.test_acknowledgement_is_logged_and_never_returns_to_normal) ... ok
+test_all_bearing_scenarios_pass_their_checks (test_testbed.TestVirtualTestbed.test_all_bearing_scenarios_pass_their_checks) ... ok
+test_all_gearbox_scenarios_pass_their_checks (test_testbed.TestVirtualTestbed.test_all_gearbox_scenarios_pass_their_checks) ... ok
+test_checks_detect_a_violation (test_testbed.TestVirtualTestbed.test_checks_detect_a_violation) ... ok
+test_dual_failure_suspends_diagnosis_and_logs_nothing_diagnostic (test_testbed.TestVirtualTestbed.test_dual_failure_suspends_diagnosis_and_logs_nothing_diagnostic) ... ok
+test_gearbox_fallback_and_recovery (test_testbed.TestVirtualTestbed.test_gearbox_fallback_and_recovery) ... ok
+test_store_record_withholds_values_when_suspended (test_testbed.TestVirtualTestbed.test_store_record_withholds_values_when_suspended) ... ok
+test_bearing_controls_faults_and_sync (test_testbed_apptest.TestVirtualTestbedAppTest.test_bearing_controls_faults_and_sync) ... 2026-11-21 04:30:49.351 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:30:50.480 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:30:51.251 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_gearbox_replay_and_motor_dropout (test_testbed_apptest.TestVirtualTestbedAppTest.test_gearbox_replay_and_motor_dropout) ... 2026-11-21 04:31:01.784 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:31:04.708 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:31:04.712 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_other_views_still_render (test_testbed_apptest.TestVirtualTestbedAppTest.test_other_views_still_render) ... 2026-11-21 04:31:15.880 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_switching_subsystem_keeps_each_replay (test_testbed_apptest.TestVirtualTestbedAppTest.test_switching_subsystem_keeps_each_replay)
+Bearing -> gearbox -> bearing: each replay keeps its recording, windows and asset (it is paused, not reset). ... 2026-11-21 04:31:19.516 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-21 04:31:20.138 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_all_bearing_scenarios (test_testbed_session.TestBearingEquivalence.test_all_bearing_scenarios) ... ok
+test_all_gearbox_scenarios (test_testbed_session.TestGearboxEquivalence.test_all_gearbox_scenarios) ... ok
+test_acknowledge_only_when_inspect (test_testbed_session.TestPlaybackControls.test_acknowledge_only_when_inspect) ... ok
+test_dual_sensor_failure_abstains (test_testbed_session.TestPlaybackControls.test_dual_sensor_failure_abstains) ... ok
+test_fault_changes_apply_from_the_next_window (test_testbed_session.TestPlaybackControls.test_fault_changes_apply_from_the_next_window) ... ok
+test_invalid_inputs_are_rejected (test_testbed_session.TestPlaybackControls.test_invalid_inputs_are_rejected) ... ok
+test_noise_and_clipping_are_injected_on_the_selected_sensor_only (test_testbed_session.TestPlaybackControls.test_noise_and_clipping_are_injected_on_the_selected_sensor_only) ... ok
+test_reset_restarts_from_window_one_with_a_fresh_tracker (test_testbed_session.TestPlaybackControls.test_reset_restarts_from_window_one_with_a_fresh_tracker) ... ok
+test_step_advances_one_window_and_logs_it (test_testbed_session.TestPlaybackControls.test_step_advances_one_window_and_logs_it) ... ok
+test_stepping_equals_running (test_testbed_session.TestPlaybackControls.test_stepping_equals_running) ... ok
+test_monitored_component_takes_the_health_state_colour (test_testbed_view.TestCadStateMapping.test_monitored_component_takes_the_health_state_colour) ... ok
+test_no_frame_no_state_colour (test_testbed_view.TestCadStateMapping.test_no_frame_no_state_colour) ... ok
+test_sensor_colours_follow_reliability_and_inactive_sensors_are_grey (test_testbed_view.TestCadStateMapping.test_sensor_colours_follow_reliability_and_inactive_sensors_are_grey) ... ok
+test_svg_contains_the_colours (test_testbed_view.TestCadStateMapping.test_svg_contains_the_colours) ... ok
+test_other_views_unchanged (test_testbed_view.TestTestbedViewHeadless.test_other_views_unchanged) ... skipped 'real Streamlit present: covered by test_testbed_apptest'
+test_playback_and_sync (test_testbed_view.TestTestbedViewHeadless.test_playback_and_sync) ... skipped 'real Streamlit present: covered by test_testbed_apptest'
+
+----------------------------------------------------------------------
+Ran 139 tests in 301.244s
+
+OK (skipped=12)

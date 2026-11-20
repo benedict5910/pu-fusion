@@ -238,6 +238,24 @@ def _cyl_faces(pr, n=28):
     return faces + [ring, top]
 
 
+def _prism_faces(pr):
+    i = "xyz".index(pr["axis"])
+    others = [k for k in range(3) if k != i]
+    c = [pr["x"], pr["y"], pr["z"]]
+
+    def pt(u, v, a):
+        p = list(c)
+        p[i] += a
+        p[others[0]] += u
+        p[others[1]] += v
+        return p
+    poly = pr["poly"]
+    bot = [pt(u, v, 0) for u, v in poly]
+    top = [pt(u, v, pr["h"]) for u, v in poly]
+    n = len(poly)
+    return [[bot[k], bot[(k + 1) % n], top[(k + 1) % n], top[k]] for k in range(n)] + [bot, top]
+
+
 def draw3d(ax, exploded=False, alpha=1.0):
     """All faces in ONE Poly3DCollection, so matplotlib depth-sorts faces across parts (painter's algorithm)."""
     faces, fcs, ecs, labels = [], [], [], []
@@ -249,7 +267,8 @@ def draw3d(ax, exploded=False, alpha=1.0):
         for pr in p["add"]:
             r = D.resolve(pr)
             r = {**r, "x": r["x"] + off[0], "y": r["y"] + off[1], "z": r["z"] + off[2]}
-            fs = _box_faces(D.bbox(r)) if r["type"] == "box" else _cyl_faces(r) if r["type"] != "sphere" else []
+            fs = (_box_faces(D.bbox(r)) if r["type"] == "box" else _prism_faces(r) if r["type"] == "prism"
+                  else _cyl_faces(r) if r["type"] != "sphere" else [])
             faces += fs; fcs += [fc] * len(fs); ecs += ["#6b7280"] * len(fs)
     for s in D.SENSORS:
         mount = next(p for p in D.parts() if p["name"] == s["mount"])
@@ -265,7 +284,7 @@ def draw3d(ax, exploded=False, alpha=1.0):
     for c, t in labels:
         ax.text(c[0], c[1], c[2] + 50, t, color=SENS, fontsize=9, fontweight="bold", zorder=TOP)
     xl = (-230, 1310) if exploded else (-60, 1160)
-    ax.set_xlim(*xl); ax.set_ylim(-300, 340); ax.set_zlim(-30, 600 if exploded else 330)
+    ax.set_xlim(*xl); ax.set_ylim(-300, 340); ax.set_zlim(-60, 600 if exploded else 330)
     ax.set_box_aspect((xl[1] - xl[0], 640, 630 if exploded else 360), zoom=1.2 if exploded else 1.25)
     ax.view_init(elev=24, azim=-58)
     ax.set_proj_type("ortho")
@@ -336,7 +355,7 @@ def sheet_details(pdf, checks):
     dim_h(ax, 0, ay, 212, f"a = {D.ev('centre_dist'):.0f}", ext_from=(h + 30, h + 60))
     ax.text(-35, 60, "\n".join([f"module m = {P['gear_m']:g}", f"pinion z = {int(P['z_pinion'])}, gear z = {int(P['z_gear'])}",
                                 f"ratio {P['z_gear'] / P['z_pinion']:g} : 1, face width {P['gear_b']:.0f}",
-                                "tooth form simplified (trapezoidal),", "not involute - visual only"]), fontsize=7)
+                                "involute teeth, 20 deg, 0.1 mm backlash", "(polygonal approximation - visual only)"]), fontsize=7)
     # checks table
     tab = fig.add_axes([0.67, 0.30, 0.31, 0.66]); tab.axis("off")
     tab.text(0, 0.98, "Representative sizing checks", fontsize=10, fontweight="bold", va="top")

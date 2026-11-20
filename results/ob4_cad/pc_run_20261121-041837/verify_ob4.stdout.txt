@@ -1,0 +1,39 @@
+# OB4 verification 2026-11-21 04:25:07
+
+Python 3.11.9; gearbox recordings: C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\data\mcc5_demo
+
+| Item | Result |
+|---|---|
+| frozen models unchanged | PASS |
+| regression replay: all run scenarios pass | PASS |
+| regression replay identical to Nov 15 evidence | PASS |
+| documented 15 scenarios / 148 checks reproduced | PASS |
+| interactive session reproduces every scenario run | PASS |
+| single-sensor fallback verified | PASS |
+| dual-sensor abstention verified | PASS |
+| CAD: no unexpected interference | PASS |
+| CAD: FreeCAD build report passed | PASS |
+| v3_strength not used by replay or live views | PASS |
+
+Regression replay: 15/15 scenarios, 148/148 checks, 549 windows, 36 events; not run (no data): none.
+Fallback windows: 46; abstention windows: 51.
+
+| Scenario | Session vs batch |
+|---|---|
+| bearing-fault-ack | pass 11/11 |
+| bearing-vib-dropout | pass 11/11 |
+| bearing-cur-stuck | pass 10/10 |
+| bearing-dual-failure-healthy | pass 11/11 |
+| bearing-dual-failure-latched | pass 12/12 |
+| bearing-vib-noise | pass 8/8 |
+| bearing-healthy-clean | pass 7/7 |
+| gearbox-pitting-clean | pass 9/9 |
+| gearbox-motor-dropout | pass 11/11 |
+| gearbox-gearbox-stuck | pass 10/10 |
+| gearbox-dual-failure-healthy | pass 10/10 |
+| gearbox-dual-failure-latched | pass 13/13 |
+| gearbox-wear-noise | pass 9/9 |
+| gearbox-healthy-spikes | pass 9/9 |
+| gearbox-healthy-clean | pass 7/7 |
+
+evidence: C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\results\ob4_cad\pc_run_20261121-041837\verification

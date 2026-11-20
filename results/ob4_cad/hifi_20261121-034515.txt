@@ -1,0 +1,25 @@
+﻿OB4 hi-fi run 20261121-034515
+=== 1. ob4_pc_run.ps1 ===
+pc_run exit: 0; evidence: C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\results\ob4_cad\pc_run_20261121-034522
+result: ALL PASSED
+  PASS  gearbox recordings verified
+  PASS  CAD build report passed
+  PASS  FreeCAD GUI renders + TechDraw PDF
+  PASS  3D viewer GLB from STEP (all nodes)
+  PASS  drawings (make_drawings.py) exit 0
+  PASS  verify_ob4: 15 scenarios / 148 checks
+  PASS  verify_ob4 exit 0 (no FAIL verdicts)
+  PASS  unit tests exit 0
+unittest: 
+----------------------------------------------------------------------
+Ran 138 tests in 268.120s
+
+OK (skipped=12)
+
+=== 2. frozen models / historical results ===
+changed frozen paths: 0
+  150f6b41c040417a5f0d386f593dcad053dc140695bf1b6e24d9386b5168ff71 demo_models.pkl
+  44853e3164e779e98856138f3acdccea3ffedbee5817fde14b0c7ddcae374dc6 gearbox_demo_1000rpm_10Nm.pkl
+  e8a703428f5cdbab763f0929a081be42fe91a7ed5fbf4384281b4c16d3663d15 rig_models_simulated.pkl
+dashboard started in its own window on http://localhost:8520
+DONE exit=0

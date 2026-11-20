@@ -1,0 +1,162 @@
+FreeCAD 1.1.4, Libs: 1.1.4R20260928 (Git shallow)
+(C) 2001-2026 FreeCAD contributors
+FreeCAD is free and open-source software licensed under the terms of LGPL2+ license.
+
+Recompute......
+						(100 %)									Recompute......
+						(0 %)							(1 %)							(2 %)							(3 %)							(4 %)							(5 %)							(6 %)							(7 %)							(8 %)							(9 %)							(10 %)							(11 %)							(12 %)							(13 %)							(14 %)							(15 %)							(16 %)							(17 %)							(18 %)							(19 %)							(20 %)							(21 %)							(22 %)							(23 %)							(24 %)							(25 %)							(26 %)							(27 %)							(28 %)							(29 %)							(30 %)							(31 %)							(32 %)							(33 %)							(34 %)							(35 %)							(36 %)							(37 %)							(38 %)							(39 %)							(40 %)							(41 %)							(42 %)							(43 %)							(44 %)							(45 %)							(46 %)							(47 %)							(48 %)							(49 %)							(50 %)							(51 %)							(52 %)							(53 %)							(54 %)							(55 %)							(56 %)							(57 %)							(58 %)							(59 %)							(60 %)							(61 %)							(62 %)							(63 %)							(64 %)							(65 %)							(66 %)							(67 %)							(68 %)							(69 %)							(70 %)							(71 %)							(72 %)							(73 %)							(74 %)							(75 %)							(76 %)							(77 %)							(78 %)							(79 %)							(80 %)							(81 %)							(82 %)							(83 %)							(84 %)							(85 %)							(86 %)							(87 %)							(88 %)							(89 %)							(90 %)							(91 %)							(92 %)							(93 %)							(94 %)							(95 %)							(96 %)							(97 %)							(98 %)							(99 %)							(100 %)									Recompute......
+						(0 %)							(1 %)							(2 %)							(3 %)							(4 %)							(5 %)							(6 %)							(7 %)							(8 %)							(9 %)							(10 %)							(11 %)							(12 %)							(13 %)							(14 %)							(15 %)							(16 %)							(17 %)							(18 %)							(19 %)							(20 %)							(21 %)							(22 %)							(23 %)							(24 %)							(25 %)							(26 %)							(27 %)							(28 %)							(29 %)							(30 %)							(31 %)							(32 %)							(33 %)							(34 %)							(35 %)							(36 %)							(37 %)							(38 %)							(39 %)							(40 %)							(41 %)							(42 %)							(43 %)							(44 %)							(45 %)							(46 %)							(47 %)							(48 %)							(49 %)							(50 %)							(51 %)							(52 %)							(53 %)							(54 %)							(55 %)							(56 %)							(57 %)							(58 %)							(59 %)							(60 %)							(61 %)							(62 %)							(63 %)							(64 %)							(65 %)							(66 %)							(67 %)							(68 %)							(69 %)							(70 %)							(71 %)							(72 %)							(73 %)							(74 %)							(75 %)							(76 %)							(77 %)							(78 %)							(79 %)							(80 %)							(81 %)							(82 %)							(83 %)							(84 %)							(85 %)							(86 %)							(87 %)							(88 %)							(89 %)							(90 %)							(91 %)							(92 %)							(93 %)							(94 %)							(95 %)							(96 %)							(97 %)							(98 %)							(99 %)							(100 %)									
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/ivhm_drivetrain.step(85454 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/base.step(1925 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/motor.step(11357 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/coupling_1.step(3210 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/line_shaft.step(1428 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/support_bearing.step(4262 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/test_bearing.step(4262 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/coupling_2.step(3210 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/gearbox.step(45873 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/coupling_3.step(3210 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/load.step(6301 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:/Users/Admin/Projects/pu-fusion-ob4-2026-11-15/cad/out/step/sensors.step(363 ents)  Write  Done
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\cad\out\ivhm_drivetrain_exploded.step(83039 ents)  Write  Done
+Recompute......
+						(0 %)							(1 %)							(2 %)							(3 %)							(4 %)							(5 %)							(6 %)							(7 %)							(8 %)							(9 %)							(10 %)							(11 %)							(12 %)							(13 %)							(14 %)							(15 %)							(16 %)							(17 %)							(18 %)							(19 %)							(20 %)							(21 %)							(22 %)							(23 %)							(24 %)							(25 %)							(26 %)							(27 %)							(28 %)							(29 %)							(30 %)							(31 %)							(32 %)							(33 %)							(34 %)							(35 %)							(36 %)							(37 %)							(38 %)							(39 %)							(40 %)							(41 %)							(42 %)							(43 %)							(44 %)							(45 %)							(46 %)							(47 %)							(48 %)							(49 %)							(50 %)							(51 %)							(52 %)							(53 %)							(54 %)							(55 %)							(56 %)							(57 %)							(58 %)							(59 %)							(60 %)							(61 %)							(62 %)							(63 %)							(64 %)							(65 %)							(66 %)							(67 %)							(68 %)							(69 %)							(70 %)							(71 %)							(72 %)							(73 %)							(74 %)							(75 %)							(76 %)							(77 %)							(78 %)							(79 %)							(80 %)							(81 %)							(82 %)							(83 %)							(84 %)							(85 %)							(86 %)							(87 %)							(88 %)							(89 %)							(90 %)							(91 %)							(92 %)							(93 %)							(94 %)							(95 %)							(96 %)							(97 %)							(98 %)							(99 %)							(100 %)									Recompute......
+						(0 %)							(1 %)							(2 %)							(3 %)							(4 %)							(5 %)							(6 %)							(7 %)							(8 %)							(9 %)							(10 %)							(11 %)							(12 %)							(13 %)							(14 %)							(15 %)							(16 %)							(17 %)							(18 %)							(19 %)							(20 %)							(21 %)							(22 %)							(23 %)							(24 %)							(25 %)							(26 %)							(27 %)							(28 %)							(29 %)							(30 %)							(31 %)							(32 %)							(33 %)							(34 %)							(35 %)							(36 %)							(37 %)							(38 %)							(39 %)							(40 %)							(41 %)							(42 %)							(43 %)							(44 %)							(45 %)							(46 %)							(47 %)							(48 %)							(49 %)							(50 %)							(51 %)							(52 %)							(53 %)							(54 %)							(55 %)							(56 %)							(57 %)							(58 %)							(59 %)							(60 %)							(61 %)							(62 %)							(63 %)							(64 %)							(65 %)							(66 %)							(67 %)							(68 %)							(69 %)							(70 %)							(71 %)							(72 %)							(73 %)							(74 %)							(75 %)							(76 %)							(77 %)							(78 %)							(79 %)							(80 %)							(81 %)							(82 %)							(83 %)							(84 %)							(85 %)							(86 %)							(87 %)							(88 %)							(89 %)							(90 %)							(91 %)							(92 %)							(93 %)							(94 %)							(95 %)							(96 %)							(97 %)							(98 %)							(99 %)							(100 %)									Recompute......
+						(0 %)							(1 %)							(2 %)							(3 %)							(4 %)							(5 %)							(6 %)							(7 %)							(8 %)							(9 %)							(10 %)							(11 %)							(12 %)							(13 %)							(14 %)							(15 %)							(16 %)							(17 %)							(18 %)							(19 %)							(20 %)							(21 %)							(22 %)							(23 %)							(24 %)							(25 %)							(26 %)							(27 %)							(28 %)							(29 %)							(30 %)							(31 %)							(32 %)							(33 %)							(34 %)							(35 %)							(36 %)							(37 %)							(38 %)							(39 %)							(40 %)							(41 %)							(42 %)							(43 %)							(44 %)							(45 %)							(46 %)							(47 %)							(48 %)							(49 %)							(50 %)							(51 %)							(52 %)							(53 %)							(54 %)							(55 %)							(56 %)							(57 %)							(58 %)							(59 %)							(60 %)							(61 %)							(62 %)							(63 %)							(64 %)							(65 %)							(66 %)							(67 %)							(68 %)							(69 %)							(70 %)							(71 %)							(72 %)							(73 %)							(74 %)							(75 %)							(76 %)							(77 %)							(78 %)							(79 %)							(80 %)							(81 %)							(82 %)							(83 %)							(84 %)							(85 %)							(86 %)							(87 %){
+  "freecad_version": [
+    "1",
+    "1",
+    "4",
+    "20260928 (Git shallow)",
+    "Unknown",
+    "2026/09/28 13:46:34",
+    "(HEAD detached at 4fd3bf320)",
+    "4fd3bf320d9566a27e60069fc8387448aaa3a094"
+  ],
+  "modules": {
+    "Part": true,
+    "Import": true,
+    "Mesh": true,
+    "MeshPart": true,
+    "TechDraw": true,
+    "Spreadsheet": true
+  },
+  "exports": {
+    "FCStd": "cad\\out\\ivhm_drivetrain.FCStd",
+    "STEP assembly": "ok",
+    "STEP per component": "ok",
+    "STEP exploded": "ok",
+    "STL": "skipped (set IVHM_STL=1 to export)",
+    "TechDraw projectToSVG": "ok",
+    "TechDraw page + DXF": "ok",
+    "PDF": "not attempted headless: TechDraw PDF export is a GUI function. Open ivhm_drivetrain.FCStd in FreeCAD and use File > Export PDF on the GA_Drawing page, or use the dimensioned PDF drawings from cad/make_drawings.py."
+  },
+  "bbox_max_deviation_mm": 0.0,
+  "all_parts_valid": true,
+  "passed": true
+}
+interference: 0 overlaps, 0 unexpected; errors: 0
+							(88 %)							(89 %)							(90 %)							(91 %)							(92 %)							(93 %)							(94 %)							(95 %)							(96 %)							(97 %)							(98 %)							(99 %)							(100 %)									

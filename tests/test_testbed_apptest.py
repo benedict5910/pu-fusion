@@ -91,6 +91,37 @@ class TestVirtualTestbedAppTest(unittest.TestCase):
         self.assertEqual((f["status"]["motor"], f["weights"]["motor"]), ("failed", 0.0))
         self.assertTrue(f["diagnosis_available"])
 
+    @unittest.skipUnless(__import__("pufusion.testbed", fromlist=["x"]).gearbox_data_dir() is not None,
+                         "held-out MCC5-THU recordings not present")
+    def test_switching_subsystem_keeps_each_replay(self):
+        """Bearing -> gearbox -> bearing: each replay keeps its recording, windows and asset (it is paused, not reset)."""
+        at = self.app()
+        at.session_state["tb_pace"] = 0.0
+        at.sidebar.radio(key="tb_sub").set_value("Bearing").run()
+        at.sidebar.selectbox(key="tb_rec").set_value("KI18").run()
+        for _ in range(3):
+            self.press(at, "tb_step")
+        b = at.session_state["tb_session"]
+        self.assertEqual((b.recording, b.i), ("KI18", 3))
+        at.sidebar.radio(key="tb_sub").set_value("Gearbox").run()
+        self.assertFalse(at.exception, at.exception)
+        for _ in range(2):
+            self.press(at, "tb_step")
+        g = at.session_state["tb_session"]
+        self.assertEqual(g.i, 2)
+        at.sidebar.radio(key="tb_sub").set_value("Bearing").run()
+        self.assertFalse(at.exception, at.exception)
+        self.assertEqual(at.session_state["tb_rec"], "KI18")
+        back = at.session_state["tb_session"]
+        self.assertIs(back, b)
+        self.assertEqual((back.i, back.asset), (3, b.asset))
+        self.assertFalse(at.session_state["tb_playing"])
+        self.press(at, "tb_step")                                      # continues at window 4
+        self.assertEqual(at.session_state["tb_session"].i, 4)
+        at.sidebar.radio(key="tb_sub").set_value("Gearbox").run()
+        self.assertIs(at.session_state["tb_session"], g)
+        self.assertEqual(g.i, 2)
+
     def test_other_views_still_render(self):
         at = self.app()
         for v in ("Overview", "Live Diagnostics", "Research Lab", "History & Reports", "Virtual Testbed"):

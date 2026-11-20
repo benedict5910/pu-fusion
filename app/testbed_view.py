@@ -218,8 +218,11 @@ def render(env):
     if subsystem == "gearbox" and not recs:
         html(ui.alert("warn", "Gearbox replay unavailable", "The held-out MCC5-THU recordings are not present."))
         return
+    # each subsystem remembers its own recording and replay session, so switching bearing <-> gearbox and back
+    # resumes where that replay was (paused) instead of starting it again
+    last_rec = ss.setdefault("tb_last_rec", {})
     if ss.get("tb_rec") not in recs:
-        ss.tb_rec = recs[0]
+        ss.tb_rec = last_rec.get(subsystem) if last_rec.get(subsystem) in recs else recs[0]
 
     with st.sidebar:
         fmt = (lambda r: ui.bearing_scenario_label(f"N15_M07_F10_{r}_1")) if subsystem == "bearing" else ui.gearbox_scenario_label
@@ -246,11 +249,15 @@ def render(env):
                        "(noise 0 dB, clipping 0.2 of peak, spikes 100/s, gain x2).")
         st.caption("A fault change applies from the next replayed window.")
 
+    last_rec[subsystem] = ss.tb_rec
     key = (subsystem, ss.tb_rec)
-    sess = ss.get("tb_session")
-    if sess is None or ss.get("tb_key") != key:
-        sess = _new_session(ctx, subsystem, ss.tb_rec, store)
-        ss.tb_session, ss.tb_key, ss.tb_playing = sess, key, False
+    sessions = ss.setdefault("tb_sessions", {})
+    if ss.get("tb_key") != key:                       # another subsystem or recording: pause, keep the old replay
+        ss.tb_playing = False
+    sess = sessions.get(key)
+    if sess is None:
+        sess = sessions[key] = _new_session(ctx, subsystem, ss.tb_rec, store)
+    ss.tb_session, ss.tb_key = sess, key
     stop = ss.get(f"tb_stop_{subsystem}", DEFAULT_RUN[subsystem])
 
     # ---------------------------------------------------------------- controls
@@ -262,7 +269,7 @@ def render(env):
     ack = c[4].button("Acknowledge INSPECT", key="tb_ack", **FULL)
     msg = st.empty()
     if reset:
-        sess = _new_session(ctx, subsystem, ss.tb_rec, store)
+        sess = sessions[key] = _new_session(ctx, subsystem, ss.tb_rec, store)
         ss.tb_session, ss.tb_playing = sess, False
     done = False
     if ack:

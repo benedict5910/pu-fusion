@@ -4,63 +4,70 @@
   "linear_deflection_mm": 0.15,
   "angular_deflection_rad": 0.3,
   "errors": [],
-  "started": "2026-11-20 00:25:55",
+  "started": "2026-11-21 04:23:47",
   "freecad_version": [
     "1",
     "1",
     "4",
     "20260928 (Git shallow)"
   ],
-  "step_sha256": "b2cd11e47a07ecec20f55578d2e156ae4cbca8247a0aa48478b38c60dae19bce",
+  "step_sha256": "3aca944223179675191520a213d099be325fc81cdacb95b6103ed5e3852bbd94",
   "matching": {
-    "expected": 93,
-    "matched": 93,
+    "expected": 94,
+    "matched": 94,
     "missing": [],
     "duplicated": []
   },
-  "nodes": 93,
-  "triangles": 54544,
-  "edge_segments": 4148,
-  "glb_bytes": 1694628,
-  "glb_sha256": "0e159f516c65eff15f98e5b2417254d7b48aa9b7cac08e5527f6d6ffc8a95fa1",
+  "nodes": 94,
+  "triangles": 91782,
+  "edge_segments": 15474,
+  "glb_bytes": 3391296,
+  "glb_sha256": "a96b05ef80466fbf0aef6b6f73e8b9906b3d1635ef18f359552bbb28bcda0910",
   "max_bbox_dev_mm": 0.0,
-  "max_mesh_vs_brep_dev_mm": 0.0749,
-  "readback_nodes": 93,
+  "max_mesh_vs_brep_dev_mm": 0.0746,
+  "readback_nodes": 94,
   "per_node": {
     "base_plate": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 700,
-      "edge_segments": 140,
-      "volume_mm3": 7875684.96
+      "triangles": 3492,
+      "edge_segments": 1016,
+      "volume_mm3": 8245326.24
     },
     "motor_riser": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 12,
-      "edge_segments": 12,
-      "volume_mm3": 2160000.0
+      "triangles": 780,
+      "edge_segments": 220,
+      "volume_mm3": 2164350.42
     },
     "motor_body": {
       "bbox_dev_mm": 0.0,
-      "mesh_vs_brep_dev_mm": 0.0749,
-      "triangles": 380,
-      "edge_segments": 148,
-      "volume_mm3": 6321544.37
+      "mesh_vs_brep_dev_mm": 0.0232,
+      "triangles": 1598,
+      "edge_segments": 614,
+      "volume_mm3": 6546821.76
+    },
+    "motor_fan_cowl": {
+      "bbox_dev_mm": 0.0,
+      "mesh_vs_brep_dev_mm": 0.0732,
+      "triangles": 10408,
+      "edge_segments": 1584,
+      "volume_mm3": 233898.56
     },
     "motor_end_shield": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0746,
-      "triangles": 296,
-      "edge_segments": 106,
-      "volume_mm3": 340470.1
+      "triangles": 888,
+      "edge_segments": 394,
+      "volume_mm3": 365251.24
     },
     "motor_terminal_box": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 12,
-      "edge_segments": 12,
-      "volume_mm3": 486000.0
+      "triangles": 1372,
+      "edge_segments": 250,
+      "volume_mm3": 536832.64
     },
     "motor_supply_cable": {
       "bbox_dev_mm": 0.0,
@@ -79,9 +86,9 @@
     "coupling_1_hub_in": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0726,
-      "triangles": 356,
-      "edge_segments": 106,
-      "volume_mm3": 85977.54
+      "triangles": 710,
+      "edge_segments": 284,
+      "volume_mm3": 65295.3
     },
     "coupling_1_spider": {
       "bbox_dev_mm": 0.0,
@@ -93,23 +100,23 @@
     "coupling_1_hub_out": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0726,
-      "triangles": 356,
-      "edge_segments": 104,
-      "volume_mm3": 90124.44
+      "triangles": 710,
+      "edge_segments": 282,
+      "volume_mm3": 69442.2
     },
     "line_shaft": {
       "bbox_dev_mm": 0.0,
-      "mesh_vs_brep_dev_mm": 0.0308,
-      "triangles": 836,
-      "edge_segments": 184,
-      "volume_mm3": 115704.86
+      "mesh_vs_brep_dev_mm": 0.0,
+      "triangles": 3764,
+      "edge_segments": 692,
+      "volume_mm3": 130494.85
     },
     "support_bearing_housing": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 200,
-      "edge_segments": 76,
-      "volume_mm3": 513680.71
+      "triangles": 1944,
+      "edge_segments": 646,
+      "volume_mm3": 547328.28
     },
     "support_bearing_outer_ring": {
       "bbox_dev_mm": 0.0,
@@ -184,9 +191,9 @@
     "test_bearing_housing": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 200,
-      "edge_segments": 76,
-      "volume_mm3": 513680.71
+      "triangles": 1944,
+      "edge_segments": 646,
+      "volume_mm3": 547328.28
     },
     "test_bearing_outer_ring": {
       "bbox_dev_mm": 0.0,
@@ -261,9 +268,9 @@
     "coupling_2_hub_in": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0726,
-      "triangles": 356,
-      "edge_segments": 104,
-      "volume_mm3": 90124.44
+      "triangles": 710,
+      "edge_segments": 282,
+      "volume_mm3": 69442.2
     },
     "coupling_2_spider": {
       "bbox_dev_mm": 0.0,
@@ -275,30 +282,30 @@
     "coupling_2_hub_out": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0726,
-      "triangles": 356,
-      "edge_segments": 100,
-      "volume_mm3": 92739.82
+      "triangles": 710,
+      "edge_segments": 278,
+      "volume_mm3": 72057.58
     },
     "gearbox_plinth": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 12,
-      "edge_segments": 12,
-      "volume_mm3": 1360800.0
+      "triangles": 188,
+      "edge_segments": 144,
+      "volume_mm3": 1410057.72
     },
     "gearbox_housing": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 716,
-      "edge_segments": 232,
-      "volume_mm3": 1160897.42
+      "triangles": 2904,
+      "edge_segments": 1246,
+      "volume_mm3": 1443863.05
     },
     "gearbox_cover": {
       "bbox_dev_mm": 0.0,
-      "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 12,
-      "edge_segments": 12,
-      "volume_mm3": 305760.0
+      "mesh_vs_brep_dev_mm": 0.0358,
+      "triangles": 2164,
+      "edge_segments": 492,
+      "volume_mm3": 399707.02
     },
     "gearbox_input_shaft": {
       "bbox_dev_mm": 0.0,
@@ -317,16 +324,16 @@
     "pinion": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 488,
-      "edge_segments": 274,
-      "volume_mm3": 19194.23
+      "triangles": 1704,
+      "edge_segments": 1022,
+      "volume_mm3": 24443.66
     },
     "gear_wheel": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 968,
-      "edge_segments": 634,
-      "volume_mm3": 148923.38
+      "triangles": 4136,
+      "edge_segments": 2276,
+      "volume_mm3": 142047.32
     },
     "gb_in_bearing_1_outer_ring": {
       "bbox_dev_mm": 0.0,
@@ -611,9 +618,9 @@
     "coupling_3_hub_in": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0726,
-      "triangles": 356,
-      "edge_segments": 100,
-      "volume_mm3": 92739.82
+      "triangles": 710,
+      "edge_segments": 278,
+      "volume_mm3": 72057.58
     },
     "coupling_3_spider": {
       "bbox_dev_mm": 0.0,
@@ -625,9 +632,9 @@
     "coupling_3_hub_out": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0726,
-      "triangles": 356,
-      "edge_segments": 104,
-      "volume_mm3": 90124.44
+      "triangles": 710,
+      "edge_segments": 282,
+      "volume_mm3": 69442.2
     },
     "load_shaft": {
       "bbox_dev_mm": 0.0,
@@ -639,23 +646,23 @@
     "load_unit": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 268,
-      "edge_segments": 96,
-      "volume_mm3": 1077566.28
+      "triangles": 1636,
+      "edge_segments": 672,
+      "volume_mm3": 1281154.31
     },
     "load_pedestal": {
       "bbox_dev_mm": 0.0,
       "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 12,
-      "edge_segments": 12,
-      "volume_mm3": 588000.0
+      "triangles": 848,
+      "edge_segments": 304,
+      "volume_mm3": 629216.4
     },
     "S1 Bearing accelerometer": {
       "bbox_dev_mm": 0.0,
-      "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 12,
-      "edge_segments": 12,
-      "volume_mm3": 3584.0
+      "mesh_vs_brep_dev_mm": 0.0224,
+      "triangles": 164,
+      "edge_segments": 34,
+      "volume_mm3": 2814.87
     },
     "S2 Motor current sensors (phases 1, 2)": {
       "bbox_dev_mm": 0.0,
@@ -666,19 +673,20 @@
     },
     "S3 Motor accelerometer (3-axis)": {
       "bbox_dev_mm": 0.0,
-      "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 12,
-      "edge_segments": 12,
-      "volume_mm3": 3584.0
+      "mesh_vs_brep_dev_mm": 0.0224,
+      "triangles": 164,
+      "edge_segments": 34,
+      "volume_mm3": 2814.87
     },
     "S4 Gearbox accelerometer (3-axis)": {
       "bbox_dev_mm": 0.0,
-      "mesh_vs_brep_dev_mm": 0.0,
-      "triangles": 12,
-      "edge_segments": 12,
-      "volume_mm3": 3584.0
+      "mesh_vs_brep_dev_mm": 0.0224,
+      "triangles": 164,
+      "edge_segments": 34,
+      "volume_mm3": 2814.87
     }
   },
+  "expected_nodes": 94,
   "passed": true,
-  "finished": "2026-11-20 00:25:56"
+  "finished": "2026-11-21 04:24:00"
 }

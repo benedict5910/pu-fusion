@@ -144,7 +144,7 @@ def make_prim(prim, name, container):
                           ("Placement.Base.z", "z")):
             bind(o, prop, prim[key])
     elif t == "gear":
-        # simplified tooth form (see drivetrain_cad.gear_outline); shape built at the origin, placement bound
+        # involute tooth outline (see drivetrain_cad.gear_outline); shape built at the origin, placement bound
         pts = [V(0, u, v) for u, v in D.gear_outline(r["teeth"], r["module"], r["phase"])]
         face = Part.Face(Part.makePolygon(pts + [pts[0]]))
         solid = face.extrude(V(r["width"], 0, 0))
@@ -155,8 +155,25 @@ def make_prim(prim, name, container):
         for prop, key in (("Placement.Base.x", "x"), ("Placement.Base.y", "y"), ("Placement.Base.z", "z")):
             bind(o, prop, prim[key])
         for prop, val in (("Teeth", r["teeth"]), ("Module_mm", r["module"])):
-            o.addProperty("App::PropertyFloat", prop, "Gear", "simplified (trapezoidal) tooth form")
+            o.addProperty("App::PropertyFloat", prop, "Gear", "involute tooth form, 20 deg (polygonal, visual)")
             setattr(o, prop, val)
+    elif t == "prism":
+        # fins, ribs, gussets, hexagon heads: polygon section (fixed) extruded along the axis; position bound to Params
+        i = "xyz".index(prim["axis"])
+        others = [k for k in range(3) if k != i]
+
+        def p3(u, v):
+            q = [0.0, 0.0, 0.0]
+            q[others[0]], q[others[1]] = u, v
+            return V(*q)
+        pts = [p3(u, v) for u, v in r["poly"]]
+        d = [0.0, 0.0, 0.0]
+        d[i] = r["h"]
+        o = doc.addObject("Part::Feature", name)
+        o.Shape = Part.Face(Part.makePolygon(pts + [pts[0]])).extrude(V(*d))
+        o.Placement = App.Placement(V(r["x"], r["y"], r["z"]), App.Rotation())
+        for prop, key in (("Placement.Base.x", "x"), ("Placement.Base.y", "y"), ("Placement.Base.z", "z")):
+            bind(o, prop, prim[key])
     else:
         raise ValueError(t)
     return o
@@ -200,6 +217,8 @@ def build_part(part, container):
         final.Label = part["name"]
     final.addProperty("App::PropertyString", "Component", "IVHM", "assembly component")
     final.Component = part["component"]
+    final.addProperty("App::PropertyString", "Finish", "IVHM", "surface finish class (3D viewer materials)")
+    final.Finish = part.get("finish", "")
     if part.get("purpose"):
         final.addProperty("App::PropertyString", "Purpose", "IVHM", "role in the assembly")
         final.Purpose = part["purpose"]
@@ -249,12 +268,16 @@ for part in D.parts():
     dev = max(abs(a - b) for a, b in zip(fc_bb, py_bb))
     max_dev = max(max_dev, dev)
     parts_report.append({"name": part["name"], "component": part["component"], "valid": sh.isValid(),
+                         "primitives": len(part["add"]) + len(part["sub"]), "faces": len(sh.Faces),
                          "solids": len(sh.Solids), "volume_mm3": round(sh.Volume, 1),
                          "bbox_freecad": [round(v, 3) for v in fc_bb], "bbox_model": [round(v, 3) for v in py_bb],
                          "bbox_max_dev_mm": round(dev, 4)})
 REPORT["parts"] = parts_report
 REPORT["bbox_max_deviation_mm"] = round(max_dev, 4)
 REPORT["all_parts_valid"] = all(p["valid"] and p["solids"] >= 1 for p in parts_report)
+REPORT["parts_not_single_solid"] = [p["name"] for p in parts_report if p["solids"] != 1]
+REPORT["parts_count"] = len(parts_report)
+REPORT["faces_total"] = sum(p["faces"] for p in parts_report)
 
 sens_report = []
 for s in D.SENSORS:
@@ -461,7 +484,7 @@ except Exception as ex:  # noqa: BLE001
 # ----------------------------------------------------------------------------- sensor map + summary
 (OUT / "sensor_map.json").write_text(json.dumps(D.sensor_map(), indent=2))
 REPORT["passed"] = bool(
-    not invalid and REPORT["all_parts_valid"] and max_dev < 0.05
+    not invalid and REPORT["all_parts_valid"] and not REPORT["parts_not_single_solid"] and max_dev < 0.05
     and all(s["dev_mm"] < 0.05 and s["gap_to_mount_mm"] < 0.05 for s in sens_report)
     and not REPORT["interference"]["unexpected"]
     and REPORT["exports"].get("STEP assembly") == "ok"

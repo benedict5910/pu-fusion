@@ -118,21 +118,97 @@ def gear(x, y, z, teeth, module, width, bore, phase=0.0):
             "width": width, "bore": bore, "phase": phase}
 
 
-def gear_outline(teeth, module, phase=0.0, pts_per_tooth=4):
-    """Simplified (trapezoidal, NOT involute) tooth outline in the plane normal to the gear axis.
+def prism(axis, x, y, z, poly, h):
+    """Straight prism: the polygon `poly` [(u, v), ...] (plain numbers, mm, relative to (x, y, z)) extruded h along
+    +axis. (u, v) are the two other axes in x-y-z order: axis x -> (y, z), axis y -> (x, z), axis z -> (x, y).
+    Used for cooling fins, ribs, gussets and hexagon bolt heads. The position (x, y, z) and h are expressions, so a
+    prism moves with the parameters; its cross-section is fixed."""
+    return {"type": "prism", "axis": axis, "x": x, "y": y, "z": z, "poly": [(float(u), float(v)) for u, v in poly], "h": h}
 
-    Root radius r_p - 1.25 m, tip radius r_p + m, tooth width 0.5 of the pitch at the root and 0.25 at the tip.
-    Returns [(u, v)] around the gear centre. Adequate for visualising a mesh, not for load or contact analysis."""
+
+def _involute(r_base, r):
+    a = math.acos(min(1.0, r_base / r))
+    return math.tan(a) - a
+
+
+def gear_outline(teeth, module, phase=0.0, pressure_deg=20.0, backlash=0.10, n_flank=6):
+    """Involute spur-gear tooth outline (standard addendum m, dedendum 1.25 m, 20 deg pressure angle) in the plane
+    normal to the gear axis. Each flank is the involute of the base circle, sampled at n_flank radii; below the base
+    circle (small tooth counts) the flank continues radially to the root circle. `backlash` (mm, on the pitch circle)
+    thins every tooth so a correctly spaced pair does not touch. Returns [(u, v)] around the gear centre.
+    Polygonal approximation for visualisation and clearance checks - not for load or contact analysis."""
     rp = module * teeth / 2
     ra, rf = rp + module, rp - 1.25 * module
+    rb = rp * math.cos(math.radians(pressure_deg))
     pitch = 2 * math.pi / teeth
+    half_pitch_angle = (math.pi * module / 2 - backlash) / (2 * rp)          # half tooth thickness at the pitch circle
+    inv_p = _involute(rb, rp)
+    r_start = max(rb, rf)
+    radii = [r_start + (ra - r_start) * k / (n_flank - 1) for k in range(n_flank)]
+    half = [half_pitch_angle + inv_p - _involute(rb, r) for r in radii]   # half-angle of the tooth at each radius
     pts = []
     for k in range(teeth):
         a0 = k * pitch + phase
-        for frac, r in ((-0.30, rf), (-0.125, ra), (0.125, ra), (0.30, rf)):
-            a = a0 + frac * pitch
-            pts.append((r * math.cos(a), r * math.sin(a)))
+        flank = []
+        if rf < r_start:
+            flank.append((rf, half[0]))
+        flank += list(zip(radii, half))
+        for r, h in flank:                                                 # one flank, root -> tip
+            pts.append((r * math.cos(a0 - h), r * math.sin(a0 - h)))
+        for r, h in reversed(flank):                                       # other flank, tip -> root
+            pts.append((r * math.cos(a0 + h), r * math.sin(a0 + h)))
+        root_mid = a0 + pitch / 2
+        pts.append((rf * math.cos(root_mid), rf * math.sin(root_mid)))
     return pts
+
+
+def hexagon(across_flats):
+    """Regular hexagon [(u, v)] with the given width across flats (bolt heads and nuts)."""
+    rc = across_flats / math.sqrt(3)
+    return [(rc * math.cos(math.radians(30 + 60 * k)), rc * math.sin(math.radians(30 + 60 * k))) for k in range(6)]
+
+
+def radial_fin(r0, r1, t, angle_deg):
+    """Rectangular fin section [(u, v)] from radius r0 to r1, thickness t, at angle_deg around the origin."""
+    a = math.radians(angle_deg)
+    c, s_ = math.cos(a), math.sin(a)
+    n = (-s_ * t / 2, c * t / 2)
+    return [(r0 * c - n[0], r0 * s_ - n[1]), (r1 * c - n[0], r1 * s_ - n[1]),
+            (r1 * c + n[0], r1 * s_ + n[1]), (r0 * c + n[0], r0 * s_ + n[1])]
+
+
+def bolt_z(x, y, z_face, s=13.0, k=5.5, washer=True):
+    """Hexagon bolt head (across flats s, height k) and washer standing on a horizontal face at z_face.
+    Both are embedded 0.4 mm into the face so they fuse with the part they fasten."""
+    out = []
+    z0 = f"({z_face}) - 0.4"
+    if washer:
+        out.append(cyl("z", x, y, z0, 0.62 * s, 2.0))
+        out.append(prism("z", x, y, f"({z_face}) + 1.3", hexagon(s), k))
+    else:
+        out.append(prism("z", x, y, z0, hexagon(s), k + 0.4))
+    return out
+
+
+def bolt_x(x_face, y, z, direction, s=8.0, k=4.0):
+    """Hexagon bolt head on a face normal to x at x_face, protruding k in `direction` (+1 or -1)."""
+    x0 = f"({x_face}) - 0.4" if direction > 0 else f"({x_face}) - {k}"
+    return [prism("x", x0, y, z, hexagon(s), k + 0.4)]
+
+
+def bolt_circle_x(x_face, yc, zc, pitch_r, n, direction, s=8.0, k=4.0, start_deg=45.0):
+    out = []
+    for i in range(n):
+        a = math.radians(start_deg + 360.0 * i / n)
+        out += bolt_x(x_face, f"({yc}) + ({pitch_r * math.cos(a):.4f})", f"({zc}) + ({pitch_r * math.sin(a):.4f})",
+                      direction, s, k)
+    return out
+
+
+def axial_fins(x0, yc, zc, length, r0, r1, t, angles):
+    """Axial cooling fins (prisms along x) around the axis through (yc, zc)."""
+    r0, r1 = ev(r0), ev(r1)                    # fin section is fixed geometry (evaluated at the default parameters)
+    return [prism("x", x0, yc, zc, radial_fin(r0, r1, t, a), length) for a in angles]
 
 
 # --------------------------------------------------------------------------------------------- the assembly
@@ -157,89 +233,220 @@ def _bearing(prefix, comp, xc, yc, zc, purpose):
 
 
 def _coupling(prefix, x0, yc, bore_in, bore_out):
-    hub = "cpl_hub"
+    """Flanged jaw coupling: each hub is a neck plus a flange with six hexagon bolt heads; elastomer spider between.
+    Overall length and diameter are unchanged (cpl_hub, cpl_gap, cpl_d)."""
+    hub, z = "cpl_hub", "shaft_h"
+    neck_r = "cpl_d / 2 - 10.5"
+    bolts_in = bolt_circle_x(f"{x0} + 12", yc, z, 26.0, 6, -1, s=7.0, k=3.5, start_deg=30.0)
+    bolts_out = bolt_circle_x(f"{x0} + {hub} + cpl_gap + {hub} - 12", yc, z, 26.0, 6, +1, s=7.0, k=3.5, start_deg=30.0)
     return [
-        {"name": f"{prefix}_hub_in", "component": prefix, "add": [tube("x", x0, yc, "shaft_h", "cpl_d / 2", bore_in, hub)]},
-        {"name": f"{prefix}_spider", "component": prefix, "add": [cyl("x", f"{x0} + {hub}", yc, "shaft_h", "spider_d / 2", "cpl_gap")]},
-        {"name": f"{prefix}_hub_out", "component": prefix,
-         "add": [tube("x", f"{x0} + {hub} + cpl_gap", yc, "shaft_h", "cpl_d / 2", bore_out, hub)]},
+        {"name": f"{prefix}_hub_in", "component": prefix, "finish": "black_oxide",
+         "add": [tube("x", x0, yc, z, neck_r, bore_in, 12.5),
+                 tube("x", f"{x0} + 12", yc, z, "cpl_d / 2", bore_in, f"{hub} - 12")] + bolts_in},
+        {"name": f"{prefix}_spider", "component": prefix, "finish": "elastomer",
+         "add": [cyl("x", f"{x0} + {hub}", yc, z, "spider_d / 2", "cpl_gap")]},
+        {"name": f"{prefix}_hub_out", "component": prefix, "finish": "black_oxide",
+         "add": [tube("x", f"{x0} + {hub} + cpl_gap", yc, z, "cpl_d / 2", bore_out, f"{hub} - 12"),
+                 tube("x", f"{x0} + {hub} + cpl_gap + {hub} - 12.5", yc, z, neck_r, bore_out, 12.5)] + bolts_out},
     ]
 
 
+# cooling-fin angles (degrees, 0 = +y, 90 = up), chosen to clear the terminal box, the feet and the pedestals
+MOTOR_FIN_ANGLES = [a for a in range(-60, 61, 10)] + [a for a in range(120, 241, 10)]
+LOAD_FIN_ANGLES = [-60, -40, -20, 0, 20, 40, 60, 120, 140, 160, 180, 200, 220, 240]
+
+
+def _grille_holes(x0, yc, zc, length):
+    """Ventilation holes of the fan cowl: concentric rings of round holes."""
+    holes = [cyl("x", x0, yc, zc, 5.0, length)]
+    for ring_r, n in ((19.0, 6), (34.0, 12), (49.0, 16), (64.0, 22)):
+        for k in range(n):
+            a = 2 * math.pi * (k + 0.5 * (n % 4 == 0)) / n
+            holes.append(cyl("x", x0, f"({yc}) + ({ring_r * math.cos(a):.4f})", f"({zc}) + ({ring_r * math.sin(a):.4f})",
+                             4.2, length))
+    return holes
+
+
 def parts():
-    """Every solid of the assembly: {'name', 'component', 'add': [primitives], 'sub': [primitives]}."""
+    """Every solid of the assembly: {'name', 'component', 'add': [primitives], 'sub': [primitives], 'finish'}.
+
+    Detail (fins, bolts, ribs, bosses) is fused into the part it belongs to, so every part stays ONE solid and the
+    part list, names, components, sensor mounts and explode offsets keep their meaning."""
     P_ = []
-    P_ += [{"name": "base_plate", "component": "base",
-            "add": [box("base_x0", "base_y0", "-base_t", "base_l", "base_w", "base_t")],
-            "sub": [cyl("z", f"base_x0 + {dx}", f"base_y0 + {dy}", "-base_t - 1", 7, "base_t + 2")
-                    for dx, dy in ((30, 30), (30, 310), (1130, 30), (1130, 310))]}]
-    # ---- motor
-    P_ += [{"name": "motor_riser", "component": "motor", "add": [box("mot_x0", -90, 0, "mot_l", 180, "riser_h")]},
-           {"name": "motor_body", "component": "motor",
+    # ---- base plate: four anchor holes with nuts, six levelling feet
+    corners = ((30, 30), (30, 310), (1130, 30), (1130, 310))
+    feet = []
+    for fx in ("base_x0 + 90", "base_x0 + base_l / 2", "base_x0 + base_l - 90"):
+        for fy in ("base_y0 + 45", "base_y0 + base_w - 45"):
+            feet += [cyl("z", fx, fy, "-base_t - 30", 22, 30.4), cyl("z", fx, fy, "-base_t - 36", 27, 6.4)]
+    nuts = []
+    for dx, dy in corners:
+        nuts += [prism("z", f"base_x0 + {dx}", f"base_y0 + {dy}", -0.4, hexagon(19), 8.4),
+                 cyl("z", f"base_x0 + {dx}", f"base_y0 + {dy}", 7.5, 6, 5.5)]
+    P_ += [{"name": "base_plate", "component": "base", "finish": "plate",
+            "add": [box("base_x0", "base_y0", "-base_t", "base_l", "base_w", "base_t")] + feet + nuts,
+            "sub": [cyl("z", f"base_x0 + {dx}", f"base_y0 + {dy}", "-base_t - 1", 7, "base_t + 2") for dx, dy in corners]}]
+    # ---- motor (IEC-style TEFC: finned frame, fan cowl with grille, terminal box with gland, lifting eye, feet)
+    P_ += [{"name": "motor_riser", "component": "motor", "finish": "painted_dark",
+            "add": [box("mot_x0", -90, 0, "mot_l", 180, "riser_h")]
+            + [b for bx in ("mot_x0 + 10", "mot_x1 - 10") for by in (-80, 80) for b in bolt_z(bx, by, "riser_h")]},
+           {"name": "motor_body", "component": "motor", "finish": "painted",
             "add": [cyl("x", "mot_x0", 0, "shaft_h", "mot_d / 2", "mot_l"),
-                    box("mot_x0 + 20", -75, "riser_h", "mot_l - 40", 150, 12)]},          # body + feet pad
-           {"name": "motor_end_shield", "component": "motor", "add": [cyl("x", "mot_x1", 0, "shaft_h", "es_d / 2", "es_t")]},
-           {"name": "motor_terminal_box", "component": "motor",
-            "add": [box("mot_x0 + 100", "-tb_w / 2", "shaft_h + mot_d / 2", "tb_l", "tb_w", "tb_h")]},
-           {"name": "motor_supply_cable", "component": "motor",
+                    box("mot_x0 + 20", -75, "riser_h", "mot_l - 40", 150, 12),            # feet pad
+                    box("mot_x0 + 110", -30, "shaft_h + mot_d / 2 - 10", 70, 60, 10)]    # terminal-box seat
+            + axial_fins("mot_x0 + 10", 0, "shaft_h", "mot_l - 20", "mot_d / 2 - 2", "mot_d / 2 + 10", 4, MOTOR_FIN_ANGLES)
+            + [cyl("z", "mot_x0 + 40", 0, "shaft_h + mot_d / 2 - 3", 9, 10),                # lifting-eye boss
+               tube("y", "mot_x0 + 40", -4, "shaft_h + mot_d / 2 + 18", 13, 7, 8)]},       # lifting eye
+           {"name": "motor_fan_cowl", "component": "motor", "finish": "painted",
+            "purpose": "fan cowl with ventilation grille (non-drive end)",
+            "add": [tube("x", "mot_x0 - 46", 0, "shaft_h", "mot_d / 2 - 2", "mot_d / 2 - 6", 46),
+                    cyl("x", "mot_x0 - 52", 0, "shaft_h", "mot_d / 2 - 2", 6.4)],
+            "sub": _grille_holes("mot_x0 - 53", 0, "shaft_h", 8)},
+           {"name": "motor_end_shield", "component": "motor", "finish": "painted",
+            "add": [cyl("x", "mot_x1", 0, "shaft_h", "es_d / 2", "es_t"),
+                    tube("x", "mot_x1 + es_t - 0.4", 0, "shaft_h", 32, "mot_shaft_d / 2 + 0.5", 8.4)]   # bearing cap
+            + bolt_circle_x("mot_x1 + es_t", 0, "shaft_h", 72.0, 6, +1, s=10.0, k=5.0, start_deg=0.0)
+            + bolt_circle_x("mot_x1 + es_t + 8", 0, "shaft_h", 25.0, 4, +1, s=6.0, k=3.0)},
+           {"name": "motor_terminal_box", "component": "motor", "finish": "painted",
+            "add": [box("mot_x0 + 100", "-tb_w / 2", "shaft_h + mot_d / 2", "tb_l", "tb_w", "tb_h"),
+                    box("mot_x0 + 97", "-tb_w / 2 - 3", "shaft_h + mot_d / 2 + tb_h - 0.4", "tb_l + 6", "tb_w + 6", 5.4),
+                    tube("y", "mot_x0 + 100 + tb_l / 2", "tb_w / 2 - 0.4", "shaft_h + mot_d / 2 + tb_h / 2", 10, "cable_d / 2", 8.4),
+                    tube("y", "mot_x0 + 100 + tb_l / 2", "tb_w / 2 + 7.6", "shaft_h + mot_d / 2 + tb_h / 2", 8, "cable_d / 2", 5),
+                    cyl("y", "mot_x0 + 100 + tb_l / 2", "-tb_w / 2 - 8", "shaft_h + mot_d / 2 + tb_h / 2", 9, 8.4)]  # blanking plug
+            + [cyl("z", f"mot_x0 + 100 + {dx}", dy, "shaft_h + mot_d / 2 + tb_h + 4.6", 3.2, 2.4)
+               for dx in (6, 84) for dy in (-39, 39)]},
+           {"name": "motor_supply_cable", "component": "motor", "finish": "cable",
             "add": [cyl("y", "mot_x0 + 100 + tb_l / 2", "tb_w / 2", "shaft_h + mot_d / 2 + tb_h / 2", "cable_d / 2", "cable_l")]},
-           {"name": "motor_shaft", "component": "motor",
+           {"name": "motor_shaft", "component": "motor", "finish": "machined",
             "add": [cyl("x", "mot_x1 + es_t", 0, "shaft_h", "mot_shaft_d / 2", "cpl1_x + cpl_hub - (mot_x1 + es_t)")]}]
     # coupling 1: motor shaft (24) -> line shaft (20); motor shaft ends at the spider
     P_ += _coupling("coupling_1", "cpl1_x", 0, "mot_shaft_d / 2", "shaft_d / 2")
-    # ---- line shaft (stepped) between coupling 1 and coupling 2
+    # ---- line shaft (stepped) between coupling 1 and coupling 2, with a locking collar either side of each bearing
     c1_end = "cpl1_x + 2 * cpl_hub + cpl_gap"
-    P_ += [{"name": "line_shaft", "component": "line_shaft", "add": [
+    collars = []
+    for xc in ("brg_a_x", "brg_b_x"):
+        for x0 in (f"{xc} - 24", f"{xc} + 14"):
+            collars += [cyl("x", x0, 0, "shaft_h", 15, 10),                                  # collar + 2 set screws
+                        cyl("y", f"{x0} + 5", 14, "shaft_h", 2.5, 3.5), cyl("y", f"{x0} + 5", -17.5, "shaft_h", 2.5, 3.5)]
+    P_ += [{"name": "line_shaft", "component": "line_shaft", "finish": "machined", "add": [
         cyl("x", "cpl1_x + cpl_hub + cpl_gap", 0, "shaft_h", "shaft_d / 2", f"brg_a_x - brg_b / 2 - 4 - (cpl1_x + cpl_hub + cpl_gap)"),
         cyl("x", "brg_a_x - brg_b / 2 - 4", 0, "shaft_h", "brg_d / 2", "brg_b + 8"),
         cyl("x", "brg_a_x + brg_b / 2 + 4", 0, "shaft_h", "shoulder_d / 2", "brg_b_x - brg_a_x - brg_b - 8"),
         cyl("x", "brg_b_x - brg_b / 2 - 4", 0, "shaft_h", "brg_d / 2", "brg_b + 8"),
-        cyl("x", "brg_b_x + brg_b / 2 + 4", 0, "shaft_h", "shaft_d / 2", "cpl2_x + cpl_hub - (brg_b_x + brg_b / 2 + 4)")]}]
+        cyl("x", "brg_b_x + brg_b / 2 + 4", 0, "shaft_h", "shaft_d / 2", "cpl2_x + cpl_hub - (brg_b_x + brg_b / 2 + 4)")]
+        + collars}]
     assert ev(c1_end) <= P["brg_a_x"] - P["hsg_t"] / 2
     for tag, xc, purpose in (("support_bearing", "brg_a_x", "support bearing (drive end)"),
                              ("test_bearing", "brg_b_x", "monitored test bearing (Paderborn sensor analogue)")):
-        P_ += [{"name": f"{tag}_housing", "component": tag, "purpose": purpose,
-                "add": [box(f"{xc} - hsg_t / 2", "-hsg_w / 2", 0, "hsg_t", "hsg_w", "shaft_h + hsg_top"),
-                        box(f"{xc} - hsg_t / 2 - 18", "-hsg_w / 2", 0, "hsg_t + 36", "hsg_w", 14)],   # foot flange
+        gusset_l = [(-30.0, 13.6), (-11.6, 13.6), (-11.6, 70.0)]
+        gusset_r = [(11.6, 13.6), (30.0, 13.6), (11.6, 70.0)]
+        hsg = [box(f"{xc} - hsg_t / 2", "-hsg_w / 2", 0, "hsg_t", "hsg_w", "shaft_h + hsg_top"),
+               box(f"{xc} - hsg_t / 2 - 18", "-hsg_w / 2", 0, "hsg_t + 36", "hsg_w", 14),           # foot flange
+               cyl("x", f"{xc} - hsg_t / 2 - 4", 0, "shaft_h", 30, 4.4),                          # bore bosses
+               cyl("x", f"{xc} + hsg_t / 2 - 0.4", 0, "shaft_h", 30, 4.4),
+               cyl("z", xc, 30, "shaft_h + hsg_top - 0.4", 4, 8.4),                               # grease nipple
+               cyl("z", xc, 30, "shaft_h + hsg_top + 6", 2.5, 4)]
+        hsg += [prism("y", xc, y0, 0, g, 8) for y0 in ("-hsg_w / 2", "hsg_w / 2 - 8") for g in (gusset_l, gusset_r)]
+        hsg += [b for bx in (f"{xc} - 22", f"{xc} + 22") for by in (-32, 32) for b in bolt_z(bx, by, 14, s=13, k=5.5)]
+        hsg += bolt_circle_x(f"{xc} - hsg_t / 2 - 4", 0, "shaft_h", 25.0, 4, -1, s=5.5, k=3.0)
+        hsg += bolt_circle_x(f"{xc} + hsg_t / 2 + 4", 0, "shaft_h", 25.0, 4, +1, s=5.5, k=3.0)
+        P_ += [{"name": f"{tag}_housing", "component": tag, "purpose": purpose, "finish": "cast",
+                "add": hsg,
                 "sub": [cyl("x", f"{xc} - hsg_t / 2 - 19", 0, "shaft_h", "brg_od / 2", "hsg_t + 38")]}]
         P_ += _bearing(tag, tag, xc, 0, "shaft_h", purpose)
     # coupling 2: line shaft (20) -> gearbox input shaft (17)
     P_ += _coupling("coupling_2", "cpl2_x", 0, "shaft_d / 2", "brg_d / 2")
-    # ---- gearbox
+    # ---- gearbox: ribbed housing with split-line and foot flanges, bearing bosses / blind caps, inspection cover
     gx1 = "gb_x0 + gb_l"
-    P_ += [{"name": "gearbox_plinth", "component": "gearbox",
-            "add": [box("gb_x0 + 10", "gb_y0 + 10", 0, "gb_l - 20", "gb_w - 20", "gb_z0")]},
-           {"name": "gearbox_housing", "component": "gearbox",
-            "add": [box("gb_x0", "gb_y0", "gb_z0", "gb_l", "gb_w", "gb_top - gb_z0")],
+    gb = [box("gb_x0", "gb_y0", "gb_z0", "gb_l", "gb_w", "gb_top - gb_z0"),
+          box("gb_x0 - 10", "gb_y0 - 12", "gb_z0", "gb_l + 20", "gb_w + 24", 12),                 # foot flange
+          box("gb_x0 - 6", "gb_y0 - 6", "gb_top - 12", "gb_l + 12", "gb_w + 12", 12)]             # split-line flange
+    for xf, d in (("gb_x0", -1), (gx1, +1)):                         # bosses (open bore) and blind caps on both ends
+        x0 = f"{xf} - 8" if d < 0 else f"{xf} - 0.4"
+        open_y, cap_y = (0, "out_y") if d < 0 else ("out_y", 0)
+        gb += [tube("x", x0, open_y, "shaft_h", 32, "brg_od / 2", 8.4), cyl("x", x0, cap_y, "shaft_h", 32, 8.4)]
+        for yy in (0, "out_y"):
+            gb += bolt_circle_x(f"{xf} - 8" if d < 0 else f"{xf} + 8", yy, "shaft_h", 26.0, 4, d, s=6.0, k=3.5)
+            gb.append(box(f"{xf} - 8" if d < 0 else f"{xf} - 0.4", f"({yy}) - 4", "gb_z0 + 11.6", 8.4, 8,
+                          "shaft_h - 32 - gb_z0 - 11.2"))                                           # rib under the boss
+    for rx in (25, 55, 85, 115):                                       # vertical ribs, +y wall
+        gb.append(box(f"gb_x0 + {rx} - 4", "gb_y0 + gb_w - 0.4", "gb_z0 + 11.6", 8, 8.4, "gb_top - gb_z0 - 23.2"))
+    for rx in (55, 85, 115):                                           # -y wall (S4 sits at the input end)
+        gb.append(box(f"gb_x0 + {rx} - 4", "gb_y0 - 8", "gb_z0 + 11.6", 8, 8.4, "gb_top - gb_z0 - 23.2"))
+    gb += [b for bx in ("gb_x0 - 2", "gb_x0 + gb_l + 2") for by in ("gb_y0 - 6", "gb_y0 + gb_w + 6")
+           for b in bolt_z(bx, by, "gb_z0 + 12", s=13, k=5.5)]
+    cover = [box("gb_x0 - 6", "gb_y0 - 6", "gb_top", "gb_l + 12", "gb_w + 12", "gb_cover_t"),
+             box("gb_x0 + 35", "gb_y0 + 40", "gb_top + gb_cover_t - 0.4", 70, 90, 5.4),            # inspection cover
+             cyl("z", "gb_x0 + gb_l - 20", "gb_y0 + gb_w - 25", "gb_top + gb_cover_t - 0.4", 5, 12.4),   # breather
+             cyl("z", "gb_x0 + gb_l - 20", "gb_y0 + gb_w - 25", "gb_top + gb_cover_t + 10", 8, 5)]
+    for ex in ("gb_x0 + 12", "gb_x0 + gb_l - 12"):                    # lifting eyes
+        cover += [cyl("z", ex, "gb_y0 + gb_w / 2", "gb_top + gb_cover_t - 0.4", 9, 8.4),
+                  tube("x", f"{ex} - 4", "gb_y0 + gb_w / 2", "gb_top + gb_cover_t + 20", 13, 7, 8)]
+    cover += [cyl("z", f"gb_x0 + {dx}", f"gb_y0 + {dy}", "gb_top + gb_cover_t + 4.6", 3, 2.4)
+              for dx in (41, 99) for dy in (46, 124)]
+    cover += [b for bx in ("gb_x0", "gb_x0 + gb_l / 2", "gb_x0 + gb_l") for by in ("gb_y0", "gb_y0 + gb_w")
+              for b in bolt_z(bx, by, "gb_top + gb_cover_t", s=10, k=4.5, washer=False)]
+    P_ += [{"name": "gearbox_plinth", "component": "gearbox", "finish": "painted_dark",
+            "add": [box("gb_x0 + 10", "gb_y0 + 10", 0, "gb_l - 20", "gb_w - 20", "gb_z0"),
+                    box("gb_x0 + 2", "gb_y0 + 2", 0, "gb_l - 4", "gb_w - 4", 10)]
+            + [b for bx in ("gb_x0 + 6", "gb_x0 + gb_l - 6") for by in ("gb_y0 + 6", "gb_y0 + gb_w - 6")
+               for b in bolt_z(bx, by, 10, s=10, k=4.5, washer=False)]},
+           {"name": "gearbox_housing", "component": "gearbox", "finish": "cast",
+            "add": gb,
             "sub": [box("gb_x0 + gb_wall", "gb_y0 + gb_wall", "gb_z0 + gb_wall", "gb_l - 2 * gb_wall",
                         "gb_w - 2 * gb_wall", "gb_top - gb_z0")]
             + [cyl("x", "gb_x0 - 1", yy, "shaft_h", "brg_od / 2", "gb_l + 2") for yy in (0, "out_y")]},
-           {"name": "gearbox_cover", "component": "gearbox",
-            "add": [box("gb_x0", "gb_y0", "gb_top", "gb_l", "gb_w", "gb_cover_t")]},
-           {"name": "gearbox_input_shaft", "component": "gearbox",
+           {"name": "gearbox_cover", "component": "gearbox", "finish": "cast", "add": cover},
+           {"name": "gearbox_input_shaft", "component": "gearbox", "finish": "machined",
             "add": [cyl("x", "cpl2_x + cpl_hub + cpl_gap", 0, "shaft_h", "brg_d / 2", f"{gx1} - (cpl2_x + cpl_hub + cpl_gap)")]},
-           {"name": "gearbox_output_shaft", "component": "gearbox",
+           {"name": "gearbox_output_shaft", "component": "gearbox", "finish": "machined",
             "add": [cyl("x", "gb_x0", "out_y", "shaft_h", "brg_d / 2", "cpl3_x + cpl_hub - gb_x0")]},
-           {"name": "pinion", "component": "gearbox", "purpose": "simplified tooth form",
-            "add": [gear("gear_x", 0, "shaft_h", "z_pinion", "gear_m", "gear_b", "brg_d", phase=0.0)]},
-           {"name": "gear_wheel", "component": "gearbox", "purpose": "simplified tooth form",
-            "add": [gear("gear_x", "out_y", "shaft_h", "z_gear", "gear_m", "gear_b", "brg_d", phase=math.pi + math.pi / 50)]}]
+           {"name": "pinion", "component": "gearbox", "finish": "gear", "purpose": "involute spur pinion (20 deg, visual)",
+            "add": [gear("gear_x", 0, "shaft_h", "z_pinion", "gear_m", "gear_b", "brg_d", phase=0.0),
+                    tube("x", "gear_x - 6", 0, "shaft_h", 14, "brg_d / 2", "gear_b + 12")]},
+           {"name": "gear_wheel", "component": "gearbox", "finish": "gear", "purpose": "involute spur gear (20 deg, visual)",
+            "add": [gear("gear_x", "out_y", "shaft_h", "z_gear", "gear_m", "gear_b", "brg_d", phase=math.pi + math.pi / 50),
+                    tube("x", "gear_x - 6", "out_y", "shaft_h", 18, "brg_d / 2", "gear_b + 12")],
+            "sub": [cyl("x", "gear_x - 1", f"out_y + ({31 * math.cos(2 * math.pi * k / 6):.4f})",
+                        f"shaft_h + ({31 * math.sin(2 * math.pi * k / 6):.4f})", 7, "gear_b + 2") for k in range(6)]}]
     for tag, xc in (("gb_in_bearing_1", "gb_x0 + gb_wall / 2"), ("gb_in_bearing_2", f"{gx1} - gb_wall / 2")):
         P_ += _bearing(tag, "gearbox", xc, 0, "shaft_h", "gearbox input shaft bearing")
     for tag, xc in (("gb_out_bearing_1", "gb_x0 + gb_wall / 2"), ("gb_out_bearing_2", f"{gx1} - gb_wall / 2")):
         P_ += _bearing(tag, "gearbox", xc, "out_y", "shaft_h", "gearbox output shaft bearing")
     # ---- coupling 3 and load (brake) unit on the output axis
-    P_ += [{**p, "add": [{**p["add"][0], "y": "out_y"}]} for p in _coupling("coupling_3", "cpl3_x", 0, "brg_d / 2", "shaft_d / 2")]
-    P_ += [{"name": "load_shaft", "component": "load",
+    P_ += _coupling("coupling_3", "cpl3_x", "out_y", "brg_d / 2", "shaft_d / 2")
+    saddle = [(-29.8, -72.0)] + [(70.5 * math.cos(math.radians(a)), 70.5 * math.sin(math.radians(a)))
+                                 for a in range(245, 296, 5)] + [(29.8, -72.0)]
+    P_ += [{"name": "load_shaft", "component": "load", "finish": "machined",
             "add": [cyl("x", "cpl3_x + cpl_hub + cpl_gap", "out_y", "shaft_h", "shaft_d / 2", "load_x0 - (cpl3_x + cpl_hub + cpl_gap)")]},
-           {"name": "load_unit", "component": "load", "purpose": "brake / load (representative)",
-            "add": [cyl("x", "load_x0", "out_y", "shaft_h", "load_d / 2", "load_l")]},
-           {"name": "load_pedestal", "component": "load",
-            "add": [box("load_x0", "out_y - 60", 0, "load_l", 120, "shaft_h - load_d / 2")]}]
+           {"name": "load_unit", "component": "load", "purpose": "brake / load (representative)", "finish": "painted_load",
+            "add": [cyl("x", "load_x0", "out_y", "shaft_h", "load_d / 2", "load_l"),
+                    tube("x", "load_x0 - 6", "out_y", "shaft_h", "load_d / 2 - 10", "shaft_d / 2", 6.4),   # end bells
+                    cyl("x", "load_x0 + load_l - 0.4", "out_y", "shaft_h", "load_d / 2 - 10", 6.4),
+                    cyl("x", "load_x0 + load_l + 5.6", "out_y", "shaft_h", 30, 8),
+                    box("load_x0 + 20", "out_y - 18", "shaft_h + load_d / 2 - 3", 30, 36, 22)]           # terminal box
+            + axial_fins("load_x0 + 6", "out_y", "shaft_h", "load_l - 12", "load_d / 2 - 2", "load_d / 2 + 8", 4,
+                         LOAD_FIN_ANGLES)
+            + bolt_circle_x("load_x0 - 6", "out_y", "shaft_h", 45.0, 6, -1, s=7.0, k=3.5, start_deg=0.0)},
+           {"name": "load_pedestal", "component": "load", "finish": "painted_dark",
+            "add": [box("load_x0", "out_y - 60", 0, "load_l", 120, "shaft_h - load_d / 2"),
+                    box("load_x0 - 8", "out_y - 68", 0, "load_l + 16", 136, 10),
+                    prism("x", "load_x0 + 6", "out_y", "shaft_h", saddle, "load_l - 12")]
+            + [b for bx in ("load_x0 - 2", "load_x0 + load_l + 2") for by in ("out_y - 62", "out_y + 62")
+               for b in bolt_z(bx, by, 10, s=10, k=4.5)]}]
     for p in P_:
         p.setdefault("sub", [])
         p.setdefault("purpose", "")
+        p.setdefault("finish", finish_of(p))
     return P_
+
+
+def finish_of(part):
+    """Surface finish class used by the 3D viewer's materials (display only)."""
+    n = part["name"]
+    if "_ball_" in n or n.endswith(("_outer_ring", "_inner_ring")):
+        return "bearing_steel"
+    return "painted"
 
 
 # --------------------------------------------------------------------------------------------- sensors
@@ -250,7 +457,7 @@ SENSORS = [
      "subsystem": "bearing", "code": "vib", "dataset": "Paderborn KAt (bearing bench)",
      "channels": ["vibration_1"], "quantity": "acceleration, 1 axis (radial, vertical)", "fs_hz": 64000,
      "mount": "test_bearing_housing", "where": "top face of the test-bearing housing, above the bearing",
-     "geom": box("brg_b_x - 8", -8, "shaft_h + hsg_top", 16, 16, 14), "axis": (0, 0, 1)},
+     "geom": cyl("z", "brg_b_x", 0, "shaft_h + hsg_top", 8, 14), "axis": (0, 0, 1)},
     {"id": "S2", "name": "sensor_motor_current", "label": "Motor current sensors (phases 1, 2)",
      "subsystem": "bearing", "code": "cur", "dataset": "Paderborn KAt (bearing bench)",
      "channels": ["phase_current_1", "phase_current_2"], "quantity": "phase current, 2 phases", "fs_hz": 64000,
@@ -261,12 +468,12 @@ SENSORS = [
      "subsystem": "gearbox", "code": "motor", "dataset": "MCC5-THU (gearbox bench)",
      "channels": ["motor_vibration_x", "motor_vibration_y", "motor_vibration_z"], "quantity": "acceleration, 3 axes",
      "fs_hz": 12800, "mount": "motor_body", "where": "top of the motor frame at the drive end",
-     "geom": box("mot_x1 - 28", -8, "shaft_h + mot_d / 2", 16, 16, 14), "axis": (0, 0, 1)},
+     "geom": cyl("z", "mot_x1 - 20", 0, "shaft_h + mot_d / 2", 8, 14), "axis": (0, 0, 1)},
     {"id": "S4", "name": "sensor_gearbox_accel", "label": "Gearbox accelerometer (3-axis)",
      "subsystem": "gearbox", "code": "gearbox", "dataset": "MCC5-THU (gearbox bench)",
      "channels": ["gearbox_vibration_x", "gearbox_vibration_y", "gearbox_vibration_z"], "quantity": "acceleration, 3 axes",
      "fs_hz": 12800, "mount": "gearbox_housing", "where": "side wall of the gearbox housing, at the input-shaft bearing",
-     "geom": box("gb_x0 + 10", "gb_y0 - 14", "shaft_h - 8", 16, 14, 16), "axis": (0, -1, 0)},
+     "geom": cyl("y", "gb_x0 + 18", "gb_y0 - 14", "shaft_h", 8, 14), "axis": (0, -1, 0)},
 ]
 
 # The component that a subsystem's health state colours in the views.
@@ -283,6 +490,8 @@ def resolve(prim, params=None):
     for k, v in prim.items():
         if k in ("type", "axis"):
             out[k] = v
+        elif k == "poly":
+            out[k] = [(float(u), float(w)) for u, w in v]
         elif k == "teeth":
             out[k] = int(ev(v, params))
         elif k == "phase":
@@ -305,8 +514,8 @@ def bbox(prim):
     c = [prim["x"], prim["y"], prim["z"]]
     i = "xyz".index(prim["axis"])
     others = [k for k in range(3) if k != i]
-    if t == "gear":                            # extents of the actual (polygonal) tooth outline, not the tip circle
-        pts = gear_outline(prim["teeth"], prim["module"], prim["phase"])
+    if t in ("gear", "prism"):                 # extents of the actual polygon (tooth outline / prism section)
+        pts = gear_outline(prim["teeth"], prim["module"], prim["phase"]) if t == "gear" else prim["poly"]
         lo, hi = list(c), list(c)
         for k, j in enumerate(others):
             lo[j] = c[j] + min(p[k] for p in pts)
@@ -416,6 +625,8 @@ def _inside_prim(pr, pts):
     if t == "gear":
         inpoly = _in_polygon(u, v, gear_outline(pr["teeth"], pr["module"], pr["phase"]))
         return along & inpoly & (r2 > (pr["bore"] / 2) ** 2 + eps)
+    if t == "prism":
+        return along & _in_polygon(u, v, pr["poly"])
     raise ValueError(t)
 
 
@@ -446,8 +657,18 @@ def inside(part, pts, params=None):
 
 # Contacts that are intended by design and therefore allowed to share volume in this simplified model.
 INTENDED_OVERLAPS = {
-    frozenset({"pinion", "gear_wheel"}): "simplified (non-involute) tooth form at the mesh",
+    # kept as a safeguard: the involute pair with 0.1 mm backlash shows no shared volume (cad/out/interference_check.json)
+    frozenset({"pinion", "gear_wheel"}): "polygonal involute teeth at the mesh",
 }
+
+
+def _cost(part):
+    """Relative cost of the inside() test of a part (polygon edges dominate)."""
+    n = 0
+    for pr in part["add"] + part.get("sub", []):
+        n += {"gear": 8 * int(ev(pr["teeth"])) if pr["type"] == "gear" else 0,
+              "prism": len(pr.get("poly", []))}.get(pr["type"], 1)
+    return n
 
 
 def interference_check(step=0.5, params=None, min_volume_mm3=1.0, sensors=True):
@@ -473,8 +694,11 @@ def interference_check(step=0.5, params=None, min_volume_mm3=1.0, sensors=True):
             if any(len(ax) == 0 for ax in axes):
                 continue
             g = np.stack(np.meshgrid(*axes, indexing="ij"), -1).reshape(-1, 3)
-            both = inside(items[i], g, params) & inside(items[j], g, params)
-            vol = float(both.sum()) * step ** 3
+            a_, b_ = items[i], items[j]
+            if _cost(a_) > _cost(b_):
+                a_, b_ = b_, a_
+            in_a = inside(a_, g, params)
+            vol = float(inside(b_, g[in_a], params).sum()) * step ** 3 if in_a.any() else 0.0
             if vol >= min_volume_mm3:
                 key = frozenset({items[i]["name"], items[j]["name"]})
                 overlaps.append({"a": items[i]["name"], "b": items[j]["name"], "volume_mm3": round(vol, 2),
@@ -505,6 +729,11 @@ def project(prim, view):
         if t == "gear":
             pts = gear_outline(prim["teeth"], prim["module"], prim["phase"])
             return [("poly", [(c[hu] + u, c[hv] + v) for u, v in pts]), ("circle", c[hu], c[hv], prim["bore"] / 2)]
+        if t == "prism":
+            # (u, v) of the prism are the two non-axis coordinates in x-y-z order; map them to the view axes
+            others = [a for a in "xyz" if a != prim["axis"]]
+            return [("poly", [(c[hu] + (u if others[0] == hu else v), c[hv] + (v if others[1] == hv else u))
+                              for u, v in prim["poly"]])]
         out = [("circle", c[hu], c[hv], prim.get("r", prim.get("ro")))]
         if t == "tube":
             out.append(("circle", c[hu], c[hv], prim["ri"]))

@@ -202,7 +202,7 @@ if ($FC) {
     if (Test-Path "$Root\cad\out\glb_export_report.json") {
         Copy-Item "$Root\cad\out\glb_export_report.json" $Out
         $g = Get-Content "$Root\cad\out\glb_export_report.json" -Raw | ConvertFrom-Json
-        $S.glb_report = [ordered]@{ passed = $g.passed; nodes = $g.nodes; triangles = $g.triangles; bytes = $g.glb_bytes;
+        $S.glb_report = [ordered]@{ passed = $g.passed; nodes = $g.nodes; expected_nodes = $g.expected_nodes; triangles = $g.triangles; bytes = $g.glb_bytes;
             max_bbox_dev_mm = $g.max_bbox_dev_mm; max_mesh_vs_brep_dev_mm = $g.max_mesh_vs_brep_dev_mm }
     } else { $S.glb_report = 'glb_export_report.json NOT produced' }
     Save-Summary
@@ -246,7 +246,7 @@ $checks = [ordered]@{
     'gearbox recordings verified'           = $true
     'CAD build report passed'               = ($S.cad_report -isnot [string]) -and ($S.cad_report.passed -eq $true)
     'FreeCAD GUI renders + TechDraw PDF'    = ($gui -ne $null) -and (@($gui.errors).Count -eq 0) -and ($gui.techdraw_pdf -eq $true)
-    '3D viewer GLB from STEP (93 nodes)'    = ($S.glb_report -isnot [string]) -and ($S.glb_report.passed -eq $true) -and ($S.glb_report.nodes -eq 93)
+    '3D viewer GLB from STEP (all nodes)'   = ($S.glb_report -isnot [string]) -and ($S.glb_report.passed -eq $true) -and ($S.glb_report.nodes -eq $S.glb_report.expected_nodes)
     'drawings (make_drawings.py) exit 0'    = ($S.drawings_exit -eq 0)
     'verify_ob4: 15 scenarios / 148 checks' = ($S.regression -ne $null) -and ($S.regression.matches_documented_15_148 -eq $true)
     'verify_ob4 exit 0 (no FAIL verdicts)'  = ($S.verify_exit -eq 0)

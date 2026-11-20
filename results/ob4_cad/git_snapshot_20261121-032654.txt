@@ -19,3 +19,15 @@ SerializationVersion: 1.1.0.1
 Rebuilding the repository made by the earlier snapshot run (0 commits, nothing pushed).
 git user: Benedict <benedictijraj.a@gmail.com>
 Indexed (all): 466
+Baseline files: 275; OB4 paths still indexed: 0
+OB4 commit: 194 files
+* 1168efd OB4: CAD-supported virtual testbed
+* 041ce11 Nov 15 2026 IVHM baseline (archive pu-fusion_final_2026-11-15.zip, SHA-256 c81db673...)
+master files: 275; ob4-cad-testbed files: 466
+ M results/ob4_cad/git_snapshot_20261121-032654.txt
+OK: master (baseline) and ob4-cad-testbed (OB4 as verified on 2026-11-20) committed. Nothing pushed.
+RESULT: 0
+**********************
+Windows PowerShell transcript end
+End time: 20261121032709
+**********************

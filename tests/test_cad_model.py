@@ -75,7 +75,10 @@ class TestGeometry(unittest.TestCase):
             for pr in p["add"] + p["sub"]:
                 r = D.resolve(pr)
                 for k, v in r.items():
-                    if k not in ("type", "axis"):
+                    if k == "poly":
+                        self.assertGreaterEqual(len(v), 3, p["name"])
+                        self.assertTrue(all(math.isfinite(c) for uv in v for c in uv), f"{p['name']}.poly")
+                    elif k not in ("type", "axis"):
                         self.assertTrue(math.isfinite(v), f"{p['name']}.{k}")
                 dims = [r.get(k) for k in ("L", "W", "H", "r", "h", "ro", "ri", "width") if k in r]
                 self.assertTrue(all(d > 0 for d in dims), p["name"])

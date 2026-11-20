@@ -61,8 +61,16 @@ Representative bench drivetrain: IEC-90-proportioned motor on a riser, jaw coupl
 6203 deep-groove ball bearings (support bearing and monitored test bearing) in block housings, second coupling,
 single-stage spur gearbox (pinion z = 20, gear z = 50, m = 2, a = 70 mm, ratio 2.5) with four 6203 shaft bearings
 in the housing walls, removable cover, third coupling and a brake/load unit, all on a 1160 x 340 x 20 mm base plate.
-Shaft centre height 140 mm. Tooth form is simplified (trapezoidal, not involute); bearings have rings and balls but
-no raceway grooves or cage. 89 solids + 4 sensors.
+Shaft centre height 140 mm. Since 21 Nov 2026 (high-fidelity upgrade, `docs/OB4_HIFI_CAD_2026-11-21.md`) the
+parts carry engineering detail fused into the same solids: TEFC motor with 26 axial cooling fins, fan cowl with a
+ventilation grille, terminal box with lid, cable gland and blanking plug, lifting eye, bearing cap, end-shield and
+foot bolts; flanged jaw couplings with six bolts per hub; locking collars with set screws on the line shaft; bearing
+housings with bore bosses, cap bolts, gussets, grease nipples and hold-down bolts; gearbox housing with split-line
+and foot flanges, vertical ribs, bearing bosses and blind caps with bolts, inspection cover, breather, lifting eyes
+and cover bolts; involute gear teeth (20 deg, 0.1 mm backlash, polygonal) with hubs and lightening holes; finned
+load unit with end bells, terminal box and a cradle pedestal; base plate with anchor nuts and six levelling feet.
+Bearings have rings and balls but no raceway grooves or cage. 90 solids + 4 sensors (one new part: the motor fan
+cowl). Fins, ribs, gussets and bolt heads are prisms with a fixed section whose position follows `Params`.
 
 Editable: every primitive in the FCStd is a parametric FreeCAD feature whose dimensions and placement are
 expressions on the spreadsheet `Params` (same names as below); changing `shaft_h`, for example, moves every shaft,
@@ -127,7 +135,7 @@ bearing; plausibility only, not a validated design): motor torque 7.0 N m; shaft
 27.4 MPa; line-shaft first lateral critical speed about 52,400 rpm (35x running speed).
 
 Mechanical coherence: a sampled interference check (0.5 mm grid, every pair of overlapping bounding boxes, sensors
-included) finds no shared volume between any two of the 93 solids, and it is shown to detect planted clashes
+included) finds no shared volume between any two of the 94 solids, and it is shown to detect planted clashes
 (oversize shaft shoulder vs housings, oversize gear vs housing, gear teeth rotated half a pitch). The FreeCAD build
 repeats the check on the B-rep solids (`common()` volume).
 
@@ -228,7 +236,9 @@ pilot recordings into `data/mcc5`. (The 15 Nov baseline had 10 skips; the two ne
 * Not a physics model: no dynamics, no load or speed coupling between CAD parts and signals; the animation is a
   colour mapping of model outputs.
 * CAD is representative: dimensions are engineering choices (sizing checks are plausibility checks), not either
-  bench; tooth form simplified; no grooves, cages, seals, keys, fasteners or tolerances beyond the bore callout.
+  bench; gear teeth are a polygonal involute for display and clearance checks (not for load or contact analysis);
+  no raceway grooves, cages, seals, keys, threads or tolerances beyond the bore callout. Fasteners are represented
+  by their heads and washers, fused into the part they fasten, and drawn in that part's finish.
 * Two separate benches: bearing and gearbox replays cannot be combined into one machine-level diagnosis.
 * All sensor faults are synthetic; no physical sensor fault has been tested.
 * Gearbox: one recording per class at the held-out profile; model accuracy across speeds is poor (frozen pilot
@@ -249,4 +259,5 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\windows\ob4_finish.p
 scripts\windows\build_cad.bat          (FreeCAD model, STEP, drawings; python cad/make_drawings.py alone needs no FreeCAD)
 scripts\windows\verify_ob4.bat         (evidence folder + full unit-test log under results\ob4_cad\)
 scripts\windows\run_integrated_dashboard.bat  -> view "Virtual Testbed"  (see docs/OB4_DEMO_GUIDE.md)
+scripts\windows\ob4_hifi_run.bat      (21 Nov hi-fi upgrade: rebuild + export + verify + tests + dashboard, no prompts)
 ```

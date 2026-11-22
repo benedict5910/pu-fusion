@@ -1,0 +1,147 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261121043340
+Username: DESKTOP-QN2T0J2\Admin
+RunAs User: DESKTOP-QN2T0J2\Admin
+Configuration Name: 
+Machine: DESKTOP-QN2T0J2 (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\Admin\Projects\pu-fusion-ob4-2026-11-15\scripts\windows\ob4_hifi_commit.ps1
+Process ID: 23060
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+verified by: hifi_20261121-041830.txt
+
+ app/cad3d_component/index.html                     |     16 +-
+ app/cad3d_component/viewer.js                      |    357 +-
+ app/testbed_view.py                                |     19 +-
+ cad/build_freecad.py                               |     29 +-
+ cad/export_glb.py                                  |     10 +-
+ cad/make_drawings.py                               |     25 +-
+ cad/out/drawings/ivhm_drivetrain_drawings.pdf      |    Bin 117369 -> 294795 bytes
+ cad/out/drawings/sheet1_general_arrangement.png    |    Bin 76789 -> 129357 bytes
+ cad/out/drawings/sheet2_sensor_map.png             |    Bin 156687 -> 191720 bytes
+ cad/out/drawings/sheet3_exploded.png               |    Bin 160104 -> 206794 bytes
+ cad/out/drawings/sheet4_details.png                |    Bin 163029 -> 170526 bytes
+ cad/out/drawings/techdraw_GA.dxf                   |  84832 +++++++++++++-
+ cad/out/drawings/techdraw_GA.pdf                   |    Bin 5447 -> 3132 bytes
+ cad/out/drawings/techdraw_projection_end.svg       |    376 +-
+ cad/out/drawings/techdraw_projection_front.svg     |    854 +-
+ cad/out/drawings/techdraw_projection_top.svg       |    857 +-
+ cad/out/freecad_report.json                        |    493 +-
+ cad/out/glb_export_report.json                     |    188 +-
+ cad/out/gui_snapshot_report.json                   |     14 +-
+ cad/out/interference_check.json                    |      2 +-
+ cad/out/iso_assembled.png                          |    Bin 56133 -> 79982 bytes
+ cad/out/ivhm_drivetrain.20261120-002529.FCBak      |    Bin 191587 -> 0 bytes
+ cad/out/ivhm_drivetrain.20261121-042012.FCBak      |    Bin 0 -> 1265437 bytes
+ cad/out/ivhm_drivetrain.FCStd                      |    Bin 284418 -> 1548406 bytes
+ cad/out/ivhm_drivetrain.glb                        |    Bin 1694628 -> 3391296 bytes
+ cad/out/ivhm_drivetrain.step                       | 105357 +++++++++++++++---
+ cad/out/ivhm_drivetrain_exploded.step              |  99171 ++++++++++++++---
+ cad/out/renders/exploded_iso.png                   |    Bin 57884 -> 60103 bytes
+ cad/out/renders/front.png                          |    Bin 24641 -> 35839 bytes
+ cad/out/renders/iso.png                            |    Bin 54351 -> 63884 bytes
+ cad/out/renders/right.png                          |    Bin 24911 -> 33838 bytes
+ cad/out/renders/top.png                            |    Bin 18647 -> 26977 bytes
+ cad/out/sensor_map.json                            |     20 +-
+ cad/out/step/base.step                             |   2050 +-
+ cad/out/step/coupling_1.step                       |   3498 +-
+ cad/out/step/coupling_2.step                       |   3497 +-
+ cad/out/step/coupling_3.step                       |   3503 +-
+ cad/out/step/gearbox.step                          |  58114 ++++++++--
+ cad/out/step/line_shaft.step                       |   2068 +-
+ cad/out/step/load.step                             |   6486 +-
+ cad/out/step/motor.step                            |  12465 ++-
+ cad/out/step/sensors.step                          |    961 +-
+ cad/out/step/support_bearing.step                  |   5124 +-
+ cad/out/step/test_bearing.step                     |   5108 +-
+ docs/OB4_HIFI_CAD_2026-11-21.md                    |    113 +
+ docs/OB4_TESTBED.md                                |     19 +-
+ results/ob4_cad/git_snapshot_20261121-032654.txt   |     12 +
+ results/ob4_cad/hifi_20261121-034515.txt           |     25 +
+ results/ob4_cad/hifi_20261121-041830.txt           |     26 +
+ results/ob4_cad/hifi_commit_20261121-043339.txt    |      0
+ results/ob4_cad/pc_run_20261121-034522/env.txt     |    Bin 0 -> 106552 bytes
+ .../pc_run_20261121-034522/export_glb.stderr.txt   |      0
+ .../pc_run_20261121-034522/export_glb.stdout.txt   |      7 +
+ .../freecad_build.stderr.txt                       |      0
+ .../freecad_build.stdout.txt                       |    162 +
+ .../pc_run_20261121-034522/freecad_env.json        |     29 +
+ .../pc_run_20261121-034522/freecad_env.stderr.txt  |      0
+ .../pc_run_20261121-034522/freecad_env.stdout.txt  |     42 +
+ .../pc_run_20261121-034522/freecad_gui.stderr.txt  |      0
+ .../pc_run_20261121-034522/freecad_gui.stdout.txt  |      4 +
+ .../pc_run_20261121-034522/freecad_report.json     |   2473 +
+ .../pc_run_20261121-034522/glb_export_report.json  |    692 +
+ .../gui_snapshot_report.json                       |     24 +
+ .../make_drawings.stderr.txt                       |      0
+ .../make_drawings.stdout.txt                       |      2 +
+ .../ob4_cad/pc_run_20261121-034522/summary.json    |    443 +
+ .../ob4_cad/pc_run_20261121-034522/transcript.txt  |     64 +
+ .../pc_run_20261121-034522/unittest.stderr.txt     |    168 +
+ .../pc_run_20261121-034522/unittest.stdout.txt     |      0
+ .../pc_run_20261121-034522/verify_ob4.stderr.txt   |      0
+ .../pc_run_20261121-034522/verify_ob4.stdout.txt   |     39 +
+ results/ob4_cad/pc_run_20261121-041837/env.txt     |    Bin 0 -> 106552 bytes
+ .../pc_run_20261121-041837/export_glb.stderr.txt   |      0
+ .../pc_run_20261121-041837/export_glb.stdout.txt   |      7 +
+ .../freecad_build.stderr.txt                       |      0
+ .../freecad_build.stdout.txt                       |    162 +
+ .../pc_run_20261121-041837/freecad_env.json        |     29 +
+ .../pc_run_20261121-041837/freecad_env.stderr.txt  |      0
+ .../pc_run_20261121-041837/freecad_env.stdout.txt  |     42 +
+ .../pc_run_20261121-041837/freecad_gui.stderr.txt  |      0
+ .../pc_run_20261121-041837/freecad_gui.stdout.txt  |      4 +
+ .../pc_run_20261121-041837/freecad_report.json     |   2473 +
+ .../pc_run_20261121-041837/glb_export_report.json  |    692 +
+ .../gui_snapshot_report.json                       |     24 +
+ .../make_drawings.stderr.txt                       |      0
+ .../make_drawings.stdout.txt                       |      2 +
+ .../ob4_cad/pc_run_20261121-041837/summary.json    |    443 +
+ .../ob4_cad/pc_run_20261121-041837/transcript.txt  |     64 +
+ .../pc_run_20261121-041837/unittest.stderr.txt     |    172 +
+ .../pc_run_20261121-041837/unittest.stdout.txt     |      0
+ .../pc_run_20261121-041837/verify_ob4.stderr.txt   |      0
+ .../pc_run_20261121-041837/verify_ob4.stdout.txt   |     39 +
+ .../00_comparison_reference_before_after.jpg       |    Bin 0 -> 590082 bytes
+ .../01_bearing_KI18_INSPECT_iso.jpg                |    Bin 0 -> 55647 bytes
+ .../02_gearbox_pitting_INSPECT_iso.jpg             |    Bin 0 -> 45161 bytes
+ .../03_gearbox_running_sensor_S3_selected.jpg      |    Bin 0 -> 44682 bytes
+ .../04_gearbox_INSPECT_xray_exploded.jpg           |    Bin 0 -> 47302 bytes
+ ...thy_WARNING_known_false_alarm_xray_exploded.jpg |    Bin 0 -> 48541 bytes
+ ...g_vib_dropout_S1_failed_fallback_to_current.jpg |    Bin 0 -> 54108 bytes
+ ...rs_dropout_SENSOR_FAULT_diagnosis_suspended.jpg |    Bin 0 -> 52021 bytes
+ ...8_bearing_KI18_INSPECT_acknowledged_WARNING.jpg |    Bin 0 -> 52331 bytes
+ .../09_bearing_KI18_acknowledged_top_view.jpg      |    Bin 0 -> 51291 bytes
+ ...box_both_sensors_dropout_SENSOR_FAULT_front.jpg |    Bin 0 -> 50069 bytes
+ ..._viewer_fullres_harness_render_sample_frame.png |    Bin 0 -> 399072 bytes
+ results/ob4_cad/screenshots_hifi/README.md         |     26 +
+ scripts/windows/ob4_hifi_commit.bat                |      5 +
+ scripts/windows/ob4_hifi_commit.ps1                |     24 +
+ scripts/windows/ob4_hifi_commit_message.txt        |     18 +
+ scripts/windows/ob4_hifi_run.bat                   |      5 +
+ scripts/windows/ob4_hifi_run.ps1                   |     42 +
+ scripts/windows/ob4_pc_run.ps1                     |      4 +-
+ src/pufusion/drivetrain_cad.py                     |    347 +-
+ tests/test_cad3d.py                                |      3 +-
+ tests/test_cad_model.py                            |      5 +-
+ tests/test_testbed_apptest.py                      |     31 +
+ 115 files changed, 348127 insertions(+), 56374 deletions(-)
+
+* cb1a775 OB4: high-fidelity CAD geometry and PBR 3D viewer
+* 1168efd OB4: CAD-supported virtual testbed
+* 041ce11 Nov 15 2026 IVHM baseline (archive pu-fusion_final_2026-11-15.zip, SHA-256 c81db673...)
+ M results/ob4_cad/hifi_commit_20261121-043339.txt
+OK: committed on ob4-cad-testbed. Nothing pushed.
+RESULT: 0
+**********************
+Windows PowerShell transcript end
+End time: 20261121043341
+**********************

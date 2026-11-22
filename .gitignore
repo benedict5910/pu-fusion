@@ -52,3 +52,6 @@ cad/out/*.stl
 
 # OB4 3D viewer: generated copy of cad/out/ivhm_drivetrain.glb served by the component
 app/cad3d_component/model/
+
+# FreeCAD automatic backups (generated)
+*.FCBak

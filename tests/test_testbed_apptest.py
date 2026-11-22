@@ -124,7 +124,7 @@ class TestVirtualTestbedAppTest(unittest.TestCase):
 
     def test_other_views_still_render(self):
         at = self.app()
-        for v in ("Overview", "Live Diagnostics", "Research Lab", "History & Reports", "Virtual Testbed"):
+        for v in ("Overview", "Live Diagnostics", "Virtual Testbed", "Simulations", "Research Lab", "History & Reports"):
             at.sidebar.radio(key="view").set_value(v).run()
             self.assertFalse(at.exception, f"{v}: {at.exception}")
 

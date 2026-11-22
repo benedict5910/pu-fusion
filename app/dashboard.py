@@ -5,6 +5,8 @@
 Views
   Overview          monitoring pipeline, data-source legend, headline results, current state per component
   Live Diagnostics  monitoring engine on a selected component (bearing / gearbox) and source, guided demo
+  Virtual Testbed   OB4: interactive 3D CAD drivetrain driven by the replay engine and the frozen models
+  Simulations       prerecorded animations from the IVHM virtual testbed
   Research Lab      frozen preliminary bearing and gearbox results, confusion matrices, limitations
   History & Reports SQLite history per asset, event audit trail, CSV/HTML export
 
@@ -88,7 +90,7 @@ CLOUD = os.environ.get("IVHM_CLOUD", "1" if str(ROOT).startswith("/mount/src") e
 if CLOUD and hasattr(time, "tzset"):                 # cloud servers run on UTC; show the team's local time
     os.environ["TZ"] = os.environ.get("IVHM_TZ", "Asia/Kolkata")
     time.tzset()
-VIEWS = ["Overview", "Live Diagnostics", "Research Lab", "History & Reports", "Virtual Testbed"]
+VIEWS = ["Overview", "Live Diagnostics", "Virtual Testbed", "Simulations", "Research Lab", "History & Reports"]
 COMPONENTS = ["Bearing", "Gearbox"]
 TEST_RUNS = ROOT / "results" / "test_runs"
 MCC5 = Path(os.environ.get("IVHM_MCC5", str(ROOT / "data" / "mcc5")))
@@ -1316,10 +1318,28 @@ def view_history():
         st.download_button("⬇ CSV history", cp.read_bytes(), cp.name, "text/csv", **FULL)
 
 
+def view_simulations():
+    st.title("Simulations")
+    st.caption("Prerecorded animations from the IVHM virtual testbed. Use Live Diagnostics or Virtual Testbed for "
+               "model predictions.")
+    component = st.radio("Component", ("Bearing", "Gearbox"), horizontal=True, key="simulation_video_component")
+    title, duration = {
+        "Bearing": ("Rolling-element bearing", "1:03"),
+        "Gearbox": ("Reduction gearbox", "1:02"),
+    }[component]
+    st.subheader(title)
+    st.caption(f"Simulation video · {duration}")
+    video = APP / "media" / f"ivhm_{component.lower()}_simulation.mp4"
+    if video.is_file():
+        st.video(video, alt=f"IVHM virtual testbed animation of the {title.lower()}")
+    else:
+        st.info(f"The {component.lower()} simulation video is unavailable in this checkout.")
+
+
 def view_testbed():
     """OB4: CAD-linked virtual testbed (app/testbed_view.py); same frozen models and logging as the other views."""
     TV.render(dict(store=store, header=header, html=html, FULL=FULL, ss=ss, gearbox_source=gearbox_source))
 
 
 {"Overview": view_overview, "Live Diagnostics": view_live, "Research Lab": view_research,
- "History & Reports": view_history, "Virtual Testbed": view_testbed}[ss.view]()
+ "History & Reports": view_history, "Virtual Testbed": view_testbed, "Simulations": view_simulations}[ss.view]()
